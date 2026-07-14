@@ -7,7 +7,7 @@ const links = [
   { href: '/terapia-de-pareja', label: 'Terapia de pareja' },
   { href: '/sobre-mi', label: 'Sobre mí' },
   { href: '/tarifas', label: 'Tarifas' },
-  { href: '/blog', label: 'Recursos' },
+  { href: '/blog', label: 'Blog' },
   { href: '/contacto', label: 'Contacto' },
 ];
 
@@ -92,12 +92,18 @@ const isActive = (href: string) =>
 </header>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-  toggle?.addEventListener('click', () => {
-    const open = menu?.classList.toggle('hidden') === false;
-    toggle.setAttribute('aria-expanded', String(open));
-    toggle.querySelector('.icon-open')?.classList.toggle('hidden', open);
-    toggle.querySelector('.icon-close')?.classList.toggle('hidden', !open);
-  });
+  // Se reengancha en cada navegación de View Transitions.
+  // astro:page-load también dispara en la carga inicial.
+  function initMenu() {
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if (!toggle || !menu) return;
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('hidden') === false;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.querySelector('.icon-open')?.classList.toggle('hidden', open);
+      toggle.querySelector('.icon-close')?.classList.toggle('hidden', !open);
+    });
+  }
+  document.addEventListener('astro:page-load', initMenu);
 </script>

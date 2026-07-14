@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import Wave from '../components/Wave.astro';
 import RibbonField from '../components/RibbonField.astro';
+import TestOrientacion from '../components/TestOrientacion.astro';
 import { SITE } from '../consts';
 import hero from '../assets/img/hero.jpg';
 import consulta from '../assets/img/consulta.webp';
@@ -128,7 +129,33 @@ const servicios = [
   'Regulación emocional',
   'Autoestima y autoconcepto',
   'Relaciones y dificultades de apego',
+  'Dependencia emocional',
+  'Relaciones familiares',
   'Terapia de pareja',
+];
+
+// ⚠️ EDITAR: testimonios de ejemplo. Sustituir por reseñas reales de
+// Doctoralia cuando estén disponibles (respetando la privacidad: iniciales
+// o nombre + consentimiento). La estructura ya está lista para ese cambio.
+const testimonios = [
+  {
+    texto:
+      'Encontré un espacio en el que por fin me sentí escuchada sin juicios. He aprendido a entender lo que me pasaba y a gestionarlo en el día a día.',
+    autor: 'M. G.',
+    contexto: 'Ansiedad · terapia online',
+  },
+  {
+    texto:
+      'Llegué agotado y sin saber por dónde empezar. El acompañamiento ha sido cercano y profesional, y he notado cambios reales.',
+    autor: 'J. R.',
+    contexto: 'Estrés y burnout · presencial',
+  },
+  {
+    texto:
+      'La terapia de EMDR me ayudó a cerrar cosas del pasado que arrastraba desde hacía años. Muy agradecida por el proceso.',
+    autor: 'L. F.',
+    contexto: 'Trauma · presencial',
+  },
 ];
 
 const faqs = [
@@ -182,7 +209,7 @@ const faqSchema = {
       class="mx-auto grid min-h-[680px] w-[calc(100%-2rem)] max-w-[1120px] items-center gap-12 py-16 md:w-[92%] md:py-20 lg:grid-cols-[1.02fr_1fr]"
     >
       <div class="hero-copy relative z-10">
-        <p class="eyebrow !text-forest-dark"><span class="mr-2 inline-block h-2 w-2 rounded-full bg-sun"></span>Maria Morales · Psicología integradora</p>
+        <p class="eyebrow !text-forest-dark">Maria Morales · Psicología integradora</p>
         <h1 class="font-editorial text-[2.65rem] font-semibold leading-[1.08] text-forest-dark sm:text-5xl md:text-6xl">
           Psicóloga sanitaria en Barcelona
         </h1>
@@ -228,7 +255,7 @@ const faqSchema = {
   <!-- ¿En qué puedo ayudarte? -->
   <section class="bg-forest-light pb-16 pt-10 md:pb-24 md:pt-16" id="ayuda">
     <div class="mx-auto w-[min(1120px,92%)]">
-      <div class="mx-auto max-w-[75ch] text-center">
+      <div class="reveal mx-auto max-w-[75ch] text-center">
         <p class="eyebrow">A veces solo sentimos que algo no va bien</p>
         <h2 class="font-editorial text-5xl font-semibold text-forest-dark md:text-6xl">
           ¿En qué puedo ayudarte?
@@ -243,7 +270,7 @@ const faqSchema = {
       <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {
           ayudasDestacadas.map((a) => (
-            <a href={a.href} class="card card-aura group block bg-white">
+            <a href={a.href} class="reveal card card-aura group block bg-white">
               <h3 class="font-display text-2xl font-semibold text-forest-dark group-hover:text-forest">
                 {a.title}
               </h3>
@@ -277,11 +304,29 @@ const faqSchema = {
     </div>
   </section>
 
+  <!-- Test de orientación -->
+  <Wave from="var(--color-forest-light)" to="var(--color-lilac-light)" />
+  <section class="bg-lilac-light pb-16 pt-4 md:pb-24 md:pt-6" id="test-orientacion">
+    <div class="mx-auto w-[min(1120px,92%)]">
+      <div class="reveal mx-auto mb-9 max-w-[60ch] text-center">
+        <p class="eyebrow">Orientación en 30 segundos</p>
+        <h2 class="font-display text-3xl font-semibold text-forest-dark sm:text-4xl">
+          ¿No sabes por dónde empezar?
+        </h2>
+        <p class="mt-4 text-ink-soft">
+          Responde tres preguntas y te oriento sobre cómo la terapia puede ayudarte y cuál sería el
+          primer paso. Sin compromiso.
+        </p>
+      </div>
+      <TestOrientacion />
+    </div>
+  </section>
+
   <!-- Cómo trabajo -->
-  <Wave from="var(--color-forest-light)" to="#ffffff" />
+  <Wave from="var(--color-lilac-light)" to="#ffffff" />
   <section class="bg-white pb-16 pt-8 md:pb-24 md:pt-12" id="como-trabajo">
     <div class="mx-auto grid w-[min(1120px,92%)] items-center gap-12 lg:grid-cols-2">
-      <div>
+      <div class="reveal reveal-left">
         <p class="eyebrow text-forest-dark">Cómo trabajo</p>
         <h2 class="font-editorial text-4xl font-semibold text-forest-dark">
           Psicología integradora, adaptada a ti
@@ -307,25 +352,50 @@ const faqSchema = {
         </p>
         <a href="/terapia-psicologica" class="btn-primary mt-6">Descubre cómo es la terapia</a>
       </div>
-      <div class="grid gap-5">
+      <div class="reveal reveal-right grid gap-5">
         {
           [
             {
               t: 'Espacio seguro',
               d: 'Un lugar confidencial y sin juicios donde poder hablar con libertad.',
+              tint: 'bg-forest-light text-forest',
+              icon: 'M12 3l7 3.5v5c0 4.6-3 8.2-7 9.5-4-1.3-7-4.9-7-9.5v-5L12 3z',
             },
             {
               t: 'Basado en la evidencia',
               d: 'EMDR, TCC, ACT y mindfulness: herramientas con respaldo científico.',
+              tint: 'bg-lilac-soft/60 text-[#6d5b9e]',
+              icon: 'M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7l-4-4zM14 3v4h4M9.5 13.5l2 2 3.5-3.5',
             },
             {
               t: 'Cambios profundos',
               d: 'No solo aliviar síntomas: comprender su origen para lograr cambios duraderos.',
+              tint: 'bg-sun/25 text-[#c05f38]',
+              icon: 'M12 22v-8M12 14C12 10 9 8 5 8c0 4 3 6 7 6M12 14c0-4 3-6 7-6 0 4-3 6-7 6',
             },
           ].map((c) => (
-            <div class="card border-transparent bg-white">
-              <h3 class="font-display text-xl font-bold text-forest-dark">{c.t}</h3>
-              <p class="mt-1 text-sm text-ink/80">{c.d}</p>
+            <div class="card flex items-start gap-4 border-transparent bg-white">
+              <span
+                class:list={['grid h-11 w-11 shrink-0 place-items-center rounded-xl', c.tint]}
+                aria-hidden="true"
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d={c.icon} />
+                </svg>
+              </span>
+              <div>
+                <h3 class="font-display text-xl font-bold text-forest-dark">{c.t}</h3>
+                <p class="mt-1 text-sm text-ink/80">{c.d}</p>
+              </div>
             </div>
           ))
         }
@@ -338,7 +408,7 @@ const faqSchema = {
   <section class="relative isolate overflow-hidden bg-lilac-light py-16 md:py-24" id="servicios">
     <RibbonField class="absolute -right-[38%] -top-[12%] -z-10 h-[125%] w-[115%] opacity-30" />
     <div class="mx-auto grid w-[min(1120px,92%)] items-center gap-12 lg:grid-cols-2">
-      <div class="relative order-2 lg:order-1">
+      <div class="reveal reveal-left relative order-2 lg:order-1">
         <div class="absolute -inset-4 -z-10 -rotate-2 rounded-3xl bg-lilac-soft/60"></div>
         <Image
           src={consulta}
@@ -348,7 +418,7 @@ const faqSchema = {
           sizes="(max-width: 1024px) 92vw, 520px"
         />
       </div>
-      <div class="order-1 lg:order-2">
+      <div class="reveal reveal-right order-1 lg:order-2">
         <p class="eyebrow">Servicios</p>
         <h2 class="font-display text-4xl font-semibold text-forest-dark">
           Acompañamiento psicológico para diferentes procesos
@@ -369,26 +439,51 @@ const faqSchema = {
   <!-- Opiniones -->
   <Wave from="var(--color-lilac-light)" to="#ffffff" />
   <section class="bg-white pb-16 pt-8 md:pb-24 md:pt-12" id="opiniones">
-    <div class="mx-auto w-[min(820px,92%)] text-center">
-      <p class="eyebrow">Opiniones</p>
-      <h2 class="font-display text-4xl font-semibold text-forest-dark">
-        Lo que se llevan quienes pasan por consulta
-      </h2>
-      <p class="mt-8 font-editorial text-2xl font-semibold leading-relaxed text-forest-dark">
-        Un espacio para sentirte escuchado, comprender lo que te ocurre y avanzar a tu ritmo con
-        herramientas útiles para el día a día.
-      </p>
-      <p class="mt-6 text-ink-soft">
-        La terapia puede convertirse en un espacio de cambio, pero también de calma, claridad y
-        reconexión contigo.
-      </p>
-      <a
-        href={SITE.doctoralia}
-        target="_blank"
-        rel="noopener"
-        class="mt-2 inline-block font-semibold text-forest underline decoration-forest-soft underline-offset-4 hover:text-forest-dark"
-        >Lee las opiniones verificadas en Doctoralia →</a
-      >
+    <div class="mx-auto w-[min(1120px,92%)]">
+      <div class="reveal mx-auto max-w-[70ch] text-center">
+        <p class="eyebrow">Opiniones</p>
+        <h2 class="font-display text-4xl font-semibold text-forest-dark">
+          Lo que se llevan quienes pasan por consulta
+        </h2>
+        <p class="mt-6 text-lg text-ink-soft">
+          Un espacio para sentirte escuchado, comprender lo que te ocurre y avanzar a tu ritmo con
+          herramientas útiles para el día a día.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {
+          testimonios.map((t) => (
+            <figure class="reveal card flex h-full flex-col border-transparent bg-mist">
+              <div class="mb-3 flex gap-0.5 text-sun" aria-label="5 de 5 estrellas">
+                {[0, 1, 2, 3, 4].map(() => (
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77l-5.2 2.73.99-5.79L1.58 7.62l5.82-.85L10 1.5z" />
+                  </svg>
+                ))}
+              </div>
+              <blockquote class="flex-1 font-editorial text-lg leading-relaxed text-forest-dark">
+                «{t.texto}»
+              </blockquote>
+              <figcaption class="mt-5 border-t border-forest-soft/25 pt-4">
+                <span class="block font-display font-bold text-ink">{t.autor}</span>
+                <span class="text-sm text-ink-soft">{t.contexto}</span>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+
+      <div class="reveal mt-10 flex flex-col items-center justify-center gap-3 text-center">
+        <a
+          href={SITE.doctoralia}
+          target="_blank"
+          rel="noopener"
+          class="btn-outline"
+          >Lee las opiniones verificadas en Doctoralia →</a
+        >
+        <p class="text-sm text-ink-soft">Reseñas verificadas por pacientes reales.</p>
+      </div>
     </div>
   </section>
 
@@ -396,11 +491,11 @@ const faqSchema = {
   <Wave from="#ffffff" to="var(--color-forest-light)" />
   <section class="bg-forest-light pb-16 pt-8 md:pb-24 md:pt-12" id="faq">
     <div class="mx-auto w-[min(820px,92%)]">
-      <div class="text-center">
+      <div class="reveal text-center">
         <p class="eyebrow">Preguntas frecuentes</p>
         <h2 class="font-display text-4xl font-semibold text-forest-dark">Resuelve tus dudas</h2>
       </div>
-      <div class="mt-10">
+      <div class="reveal mt-10">
         {
           faqs.map((f) => (
             <details class="group border-b border-forest-soft/25">

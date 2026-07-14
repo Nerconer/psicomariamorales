@@ -15,18 +15,23 @@
   --color-ink-soft: #4c5b53;
   --color-sun: #f2a38a;
 
-  --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-editorial: 'Lora', ui-serif, Georgia, serif;
+  --font-display: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: 'Lora Variable', 'Lora', ui-serif, Georgia, serif;
 
   --shadow-forest: 0 12px 32px -16px rgb(27 67 50 / 0.38);
   --shadow-soft: 0 6px 20px -10px rgb(31 31 31 / 0.12);
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 6rem;
   overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -63,7 +68,7 @@ body {
     @apply btn bg-cream text-forest-dark hover:bg-forest-light hover:-translate-y-0.5;
   }
   .btn-sun {
-    @apply btn bg-sun text-ink hover:bg-[#f2b93e] hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-12px_rgb(255_202_92/0.6)];
+    @apply btn bg-sun text-ink hover:bg-[#ee8f6e] hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-12px_rgb(242_138_105/0.55)];
   }
   .btn-sun-outline {
     @apply btn border border-white/70 text-white hover:bg-white hover:text-forest-dark hover:-translate-y-0.5;
@@ -74,6 +79,11 @@ body {
 
   .eyebrow {
     @apply mb-4 inline-block max-w-full text-[0.72rem] font-bold uppercase tracking-[0.18em] text-forest sm:text-[0.78rem] sm:tracking-[0.22em];
+  }
+  /* Microacento cálido recurrente: punto salmón delante de cada eyebrow */
+  .eyebrow::before {
+    content: '';
+    @apply mr-2 inline-block h-1.5 w-1.5 rounded-full bg-sun align-[0.08em];
   }
 
   .card {
@@ -117,3 +127,34 @@ body {
   @apply prose prose-lg max-w-none text-ink prose-headings:font-display prose-headings:font-bold prose-headings:text-forest-dark prose-a:text-forest-dark prose-strong:text-forest-dark prose-blockquote:border-forest-soft prose-blockquote:font-semibold prose-blockquote:text-forest-dark prose-li:marker:text-forest;
 }
 .prose-brand p { hyphens: auto; }
+
+/* ── Scroll-reveal ─────────────────────────────────────────────
+   Entrada suave de secciones y tarjetas al hacer scroll.
+   Solo CSS (Scroll-driven Animations API). Con @supports garantizamos
+   que en navegadores sin soporte el contenido se ve siempre (nunca
+   queda oculto) y respetamos prefers-reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 2% cover 22%;
+    }
+    /* Variante con desplazamiento lateral suave para columnas */
+    .reveal-left { animation-name: reveal-left; }
+    .reveal-right { animation-name: reveal-right; }
+  }
+
+  @keyframes reveal-in {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes reveal-left {
+    from { opacity: 0; transform: translateX(-28px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes reveal-right {
+    from { opacity: 0; transform: translateX(28px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+}

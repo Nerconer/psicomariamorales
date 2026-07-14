@@ -135,8 +135,13 @@ body {
    queda oculto) y respetamos prefers-reduced-motion. */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
+    /* Longhands a propósito: el minificador (LightningCSS) fusiona el
+       shorthand `animation` con `animation-timeline` generando un valor
+       inválido que el navegador descarta. No convertir en shorthand. */
     .reveal {
-      animation: reveal-in linear both;
+      animation-name: reveal-in;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: view();
       animation-range: entry 2% cover 22%;
     }

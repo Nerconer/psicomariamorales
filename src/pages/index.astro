@@ -1,0 +1,534 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import Wave from '../components/Wave.astro';
+import RibbonField from '../components/RibbonField.astro';
+import { SITE } from '../consts';
+import hero from '../assets/img/hero.jpg';
+import consulta from '../assets/img/consulta.webp';
+
+const ayudas = [
+  {
+    title: 'Ansiedad',
+    href: '/terapia-psicologica#ansiedad',
+    items: [
+      'Tu mente no deja de pensar y te resulta difícil desconectar.',
+      'Anticipas constantemente que algo malo puede ocurrir.',
+      'Sientes tensión, inquietud o nerviosismo casi todos los días.',
+      'Te cuesta disfrutar del presente porque siempre estás preocupado por el futuro.',
+    ],
+  },
+  {
+    title: 'Estrés y burnout',
+    href: '/terapia-psicologica#estres',
+    items: [
+      'Sientes que ya no puedes con todo.',
+      'Estás agotado física y mentalmente, aunque descanses.',
+      'Has perdido la motivación o disfrutas mucho menos de tu trabajo.',
+      'Tienes la sensación de vivir en «piloto automático».',
+    ],
+  },
+  {
+    title: 'Relaciones y apego',
+    href: '/terapia-psicologica#apego',
+    items: [
+      'Tienes miedo al rechazo o al abandono.',
+      'Repites patrones de relación que terminan haciéndote daño.',
+      'Te cuesta confiar o expresar lo que necesitas.',
+      'Sientes que das mucho por los demás y te olvidas de ti.',
+    ],
+  },
+  {
+    title: 'Terapia de pareja',
+    href: '/terapia-de-pareja',
+    items: [
+      'Las discusiones son cada vez más frecuentes.',
+      'Sentís que la comunicación ya no funciona como antes.',
+      'Existe distancia emocional o dificultades para recuperar la conexión.',
+      'Queréis aprender a resolver los conflictos de una forma más saludable.',
+    ],
+  },
+  {
+    title: 'Duelo',
+    href: '/terapia-psicologica#duelo',
+    items: [
+      'Has perdido a alguien o algo importante y el dolor no encuentra alivio.',
+      'Sientes culpa, rabia o un vacío difícil de explicar.',
+      'Te cuesta retomar tu día a día o hablar de lo que ha pasado.',
+    ],
+  },
+  {
+    title: 'Autoestima',
+    href: '/terapia-psicologica#autoestima',
+    items: [
+      'Eres muy exigente contigo mismo.',
+      'Sientes que nunca haces las cosas lo suficientemente bien.',
+      'Te comparas constantemente con los demás.',
+      'Te cuesta reconocer tus logros o poner límites.',
+    ],
+  },
+  {
+    title: 'Regulación emocional',
+    href: '/terapia-psicologica#regulacion',
+    items: [
+      'Tus emociones son tan intensas que a veces sientes que te desbordan.',
+      'Pasas rápidamente de la calma a la tristeza, la ira o la ansiedad.',
+      'Te cuesta comprender lo que sientes o expresar tus emociones.',
+    ],
+  },
+  {
+    title: 'Ataques de pánico',
+    href: '/terapia-psicologica#panico',
+    items: [
+      'Has sentido un miedo intenso de forma repentina.',
+      'Te falta el aire, notas el corazón acelerado o piensas que vas a perder el control.',
+      'Evitas lugares o situaciones por miedo a que vuelva a ocurrir.',
+    ],
+  },
+  {
+    title: 'Pensamientos intrusivos',
+    href: '/terapia-psicologica#intrusivos',
+    items: [
+      'Aparecen pensamientos que no deseas tener y no consigues apartarlos.',
+      'Cuanto más intentas dejar de pensar en ellos, más presentes están.',
+      'Estos pensamientos generan miedo, culpa o ansiedad.',
+    ],
+  },
+  {
+    title: 'Crisis vitales',
+    href: '/terapia-psicologica#crisis',
+    items: [
+      'Una separación, un cambio laboral o una pérdida ha puesto tu vida del revés.',
+      'Sientes que el suelo se ha movido y no sabes por dónde empezar.',
+      'Necesitas adaptarte a una etapa nueva que no elegiste.',
+    ],
+  },
+  {
+    title: 'Trauma y experiencias difíciles',
+    href: '/terapia-psicologica#trauma',
+    items: [
+      'Sientes que algunas experiencias del pasado siguen influyendo en tu presente.',
+      'Te cuesta confiar en los demás o sentirte seguro en las relaciones.',
+      'Permaneces en estado de alerta, como si tu cuerpo nunca pudiera relajarse.',
+      'Revives recuerdos dolorosos o evitas situaciones que te los recuerdan.',
+    ],
+  },
+];
+
+const ayudasDestacadas = [ayudas[0], ayudas[1], ayudas[2], ayudas[3], ayudas[5], ayudas[10]];
+
+
+const servicios = [
+  'Ansiedad y estrés',
+  'Trauma y experiencias difíciles',
+  'Burnout o desgaste profesional',
+  'Ataques de pánico',
+  'Pensamientos intrusivos',
+  'Regulación emocional',
+  'Autoestima y autoconcepto',
+  'Relaciones y dificultades de apego',
+  'Terapia de pareja',
+];
+
+const faqs = [
+  {
+    q: '¿Necesito saber exactamente qué me pasa para empezar terapia?',
+    a: 'No. Muchas personas llegan a terapia sintiendo malestar, bloqueo o confusión, sin tener todavía claro qué les ocurre. Ese también es un buen punto de partida.',
+  },
+  {
+    q: '¿Cuánto dura un proceso terapéutico?',
+    a: 'Depende de cada persona, de sus objetivos y del motivo de consulta. No hay una duración fija, ya que cada proceso avanza a un ritmo diferente.',
+  },
+  {
+    q: '¿La terapia es solo para momentos muy graves?',
+    a: 'No. La terapia también puede ayudarte a conocerte mejor, prevenir que el malestar aumente y desarrollar herramientas para afrontar con mayor seguridad los retos de la vida.',
+  },
+  {
+    q: '¿Qué ocurre en la primera sesión?',
+    a: 'La primera sesión es un espacio para conocernos. Exploraremos qué te trae a consulta, cómo te está afectando y cuáles son tus objetivos, además de resolver cualquier duda sobre el proceso terapéutico.',
+  },
+  {
+    q: '¿La terapia de pareja es útil aunque no exista una crisis importante?',
+    a: 'Sí. La terapia de pareja no solo ayuda a resolver conflictos, sino también a mejorar la comunicación, fortalecer el vínculo y construir una relación más sana y satisfactoria.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Layout
+  title="Psicóloga sanitaria en Barcelona · Terapia presencial y online"
+  description="Maria Morales, psicóloga sanitaria en Barcelona. Consulta de psicología presencial y terapia online especializada en trauma, EMDR, ansiedad, burnout, autoestima y terapia de pareja."
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- Hero -->
+  <section class="hero-organic relative isolate overflow-hidden bg-white">
+    <div class="hero-texture absolute inset-0 -z-20" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob-a absolute -z-10" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob-b absolute -z-10" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob-c absolute -z-10" aria-hidden="true"></div>
+    <RibbonField class="hero-ribbons absolute -z-10 opacity-70" />
+    <div
+      class="mx-auto grid min-h-[680px] w-[calc(100%-2rem)] max-w-[1120px] items-center gap-12 py-16 md:w-[92%] md:py-20 lg:grid-cols-[1.02fr_1fr]"
+    >
+      <div class="hero-copy relative z-10">
+        <p class="eyebrow !text-forest-dark"><span class="mr-2 inline-block h-2 w-2 rounded-full bg-sun"></span>Maria Morales · Psicología integradora</p>
+        <h1 class="font-editorial text-[2.65rem] font-semibold leading-[1.08] text-forest-dark sm:text-5xl md:text-6xl">
+          Psicóloga sanitaria en Barcelona
+        </h1>
+        <p class="mt-6 max-w-[50ch] text-lg leading-relaxed text-ink-soft md:text-xl">
+          Terapia presencial y online. Un espacio seguro, cercano y sin juicios donde comprender lo
+          que te ocurre y construir cambios reales.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-4">
+          <a href={SITE.doctoralia} target="_blank" rel="noopener" class="btn-sun"
+            >Reserva tu primera sesión</a
+          >
+        </div>
+        <a href="/sobre-mi" class="mt-5 inline-flex items-center gap-2 font-semibold text-forest-dark underline decoration-forest-soft underline-offset-4 hover:decoration-forest-dark">Conoce mi enfoque <span aria-hidden="true">→</span></a>
+        <div class="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-ink-soft">
+          <span>Colegiada n.º {SITE.licenseNumber}</span>
+          <span aria-hidden="true" class="hidden text-forest-soft sm:inline">•</span>
+          <span>Barcelona y online</span>
+          <span aria-hidden="true" class="hidden text-forest-soft sm:inline">•</span>
+          <span>Trauma, apego y EMDR</span>
+        </div>
+      </div>
+      <div class="hero-visual relative mx-auto w-full max-w-[520px] pb-7 pt-5">
+        <div class="hero-orbit absolute inset-0" aria-hidden="true"></div>
+        <div class="hero-image-wrap relative z-10 overflow-hidden shadow-forest">
+          <Image
+            src={hero}
+            alt="Sesión de terapia psicológica: la terapeuta toma notas mientras escucha"
+            class="h-[350px] w-full object-cover md:h-[470px]"
+            loading="eager"
+            widths={[480, 800, 920]}
+            sizes="(max-width: 1024px) 92vw, 520px"
+          />
+        </div>
+        <div class="hero-note absolute bottom-0 left-0 z-20 rounded-full border border-forest-soft/50 bg-white/90 px-5 py-3 text-sm font-semibold text-forest-dark shadow-soft backdrop-blur-md">
+          Presencial <span class="mx-2 text-sun">•</span> Online
+        </div>
+        <div class="hero-spark absolute right-3 top-0 z-20 h-16 w-16 rounded-full bg-sun shadow-soft" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+  <div class="organic-section-transition" aria-hidden="true"></div>
+
+  <!-- ¿En qué puedo ayudarte? -->
+  <section class="bg-forest-light pb-16 pt-10 md:pb-24 md:pt-16" id="ayuda">
+    <div class="mx-auto w-[min(1120px,92%)]">
+      <div class="mx-auto max-w-[75ch] text-center">
+        <p class="eyebrow">A veces solo sentimos que algo no va bien</p>
+        <h2 class="font-editorial text-5xl font-semibold text-forest-dark md:text-6xl">
+          ¿En qué puedo ayudarte?
+        </h2>
+        <p class="mt-6 text-lg text-ink-soft">
+          Quizá llevas tiempo intentando gestionar la situación por tu cuenta, pero sientes que has
+          llegado a un punto en el que necesitas apoyo. Si te reconoces en alguna de estas
+          situaciones, la terapia puede ayudarte:
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          ayudasDestacadas.map((a) => (
+            <a href={a.href} class="card card-aura group block bg-white">
+              <h3 class="font-display text-2xl font-semibold text-forest-dark group-hover:text-forest">
+                {a.title}
+              </h3>
+              <ul class="checklist mt-4 text-[0.95rem] text-ink-soft">
+                {a.items.slice(0, 2).map((i) => (
+                  <li>{i}</li>
+                ))}
+              </ul>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 text-center sm:flex-row">
+        <a href="/terapia-psicologica#especialidades" class="btn-outline">Ver todas las especialidades</a>
+        <a href="/contacto" class="font-semibold text-forest-dark underline decoration-forest-soft underline-offset-4">No sé exactamente qué me ocurre</a>
+      </div>
+
+      <div class="mx-auto mt-12 max-w-[70ch] text-center text-ink-soft">
+        <p>
+          No es necesario esperar a que el malestar sea insoportable para pedir ayuda. La terapia
+          también puede ser un espacio para conocerte mejor, comprender lo que te ocurre,
+          desarrollar nuevas herramientas y construir una vida más acorde con tus necesidades y
+          valores.
+        </p>
+        <p class="mt-8 font-display text-xl font-semibold text-forest">
+          Sea cual sea el motivo por el que hayas llegado hasta aquí, estaré encantada de
+          acompañarte en este proceso desde un enfoque cercano, respetuoso y adaptado a tu ritmo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo trabajo -->
+  <Wave from="var(--color-forest-light)" to="#ffffff" />
+  <section class="bg-white pb-16 pt-8 md:pb-24 md:pt-12" id="como-trabajo">
+    <div class="mx-auto grid w-[min(1120px,92%)] items-center gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow text-forest-dark">Cómo trabajo</p>
+        <h2 class="font-editorial text-4xl font-semibold text-forest-dark">
+          Psicología integradora, adaptada a ti
+        </h2>
+        <p class="justify-md mt-5 text-ink-soft">
+          Acompaño a cada persona desde un enfoque cercano, respetuoso y adaptado a su ritmo. Mi
+          objetivo es que puedas sentirte en un espacio seguro, donde comprender lo que te ocurre,
+          ponerle nombre a lo que sientes y empezar a construir cambios reales y sostenibles.
+        </p>
+        <p class="justify-md mt-4 text-ink-soft">
+          Trabajo desde una <strong class="text-ink">psicología integradora</strong>: cada persona
+          tiene una historia, unas necesidades y unos objetivos diferentes, por lo que adapto el
+          proceso terapéutico utilizando las herramientas que mejor se ajustan a cada caso.
+        </p>
+        <p class="justify-md mt-4 text-ink-soft">
+          Estoy especializada en el abordaje del <strong class="text-ink"
+            >trauma y el trauma complejo</strong
+          >, utilizando <strong class="text-ink">EMDR</strong> como una de las principales
+          herramientas terapéuticas, e integro recursos de la <strong class="text-ink"
+            >Terapia Cognitivo-Conductual (TCC)</strong
+          >, las terapias contextuales o de tercera generación (como la Terapia de Aceptación y
+          Compromiso, ACT, o el mindfulness) y otros enfoques basados en la evidencia científica.
+        </p>
+        <a href="/terapia-psicologica" class="btn-primary mt-6">Descubre cómo es la terapia</a>
+      </div>
+      <div class="grid gap-5">
+        {
+          [
+            {
+              t: 'Espacio seguro',
+              d: 'Un lugar confidencial y sin juicios donde poder hablar con libertad.',
+            },
+            {
+              t: 'Basado en la evidencia',
+              d: 'EMDR, TCC, ACT y mindfulness: herramientas con respaldo científico.',
+            },
+            {
+              t: 'Cambios profundos',
+              d: 'No solo aliviar síntomas: comprender su origen para lograr cambios duraderos.',
+            },
+          ].map((c) => (
+            <div class="card border-transparent bg-white">
+              <h3 class="font-display text-xl font-bold text-forest-dark">{c.t}</h3>
+              <p class="mt-1 text-sm text-ink/80">{c.d}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <Wave from="#ffffff" to="var(--color-lilac-light)" />
+  <section class="relative isolate overflow-hidden bg-lilac-light py-16 md:py-24" id="servicios">
+    <RibbonField class="absolute -right-[38%] -top-[12%] -z-10 h-[125%] w-[115%] opacity-30" />
+    <div class="mx-auto grid w-[min(1120px,92%)] items-center gap-12 lg:grid-cols-2">
+      <div class="relative order-2 lg:order-1">
+        <div class="absolute -inset-4 -z-10 -rotate-2 rounded-3xl bg-lilac-soft/60"></div>
+        <Image
+          src={consulta}
+          alt="Consulta de psicología: sesión de terapia en un ambiente tranquilo"
+          class="h-[320px] w-full rounded-3xl object-cover shadow-forest md:h-[440px]"
+          widths={[480, 800, 920]}
+          sizes="(max-width: 1024px) 92vw, 520px"
+        />
+      </div>
+      <div class="order-1 lg:order-2">
+        <p class="eyebrow">Servicios</p>
+        <h2 class="font-display text-4xl font-semibold text-forest-dark">
+          Acompañamiento psicológico para diferentes procesos
+        </h2>
+        <ul class="checklist mt-6 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+          {servicios.map((s) => <li>{s}</li>)}
+        </ul>
+        <p class="mt-6 text-ink-soft">
+          Cada proceso es único, por eso el trabajo terapéutico se adapta a lo que necesitas en cada
+          momento, con objetivos claros y un acompañamiento profesional, cercano y basado en la
+          evidencia científica.
+        </p>
+        <a href="/tarifas" class="btn-outline mt-2">Ver tarifas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Opiniones -->
+  <Wave from="var(--color-lilac-light)" to="#ffffff" />
+  <section class="bg-white pb-16 pt-8 md:pb-24 md:pt-12" id="opiniones">
+    <div class="mx-auto w-[min(820px,92%)] text-center">
+      <p class="eyebrow">Opiniones</p>
+      <h2 class="font-display text-4xl font-semibold text-forest-dark">
+        Lo que se llevan quienes pasan por consulta
+      </h2>
+      <p class="mt-8 font-editorial text-2xl font-semibold leading-relaxed text-forest-dark">
+        Un espacio para sentirte escuchado, comprender lo que te ocurre y avanzar a tu ritmo con
+        herramientas útiles para el día a día.
+      </p>
+      <p class="mt-6 text-ink-soft">
+        La terapia puede convertirse en un espacio de cambio, pero también de calma, claridad y
+        reconexión contigo.
+      </p>
+      <a
+        href={SITE.doctoralia}
+        target="_blank"
+        rel="noopener"
+        class="mt-2 inline-block font-semibold text-forest underline decoration-forest-soft underline-offset-4 hover:text-forest-dark"
+        >Lee las opiniones verificadas en Doctoralia →</a
+      >
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <Wave from="#ffffff" to="var(--color-forest-light)" />
+  <section class="bg-forest-light pb-16 pt-8 md:pb-24 md:pt-12" id="faq">
+    <div class="mx-auto w-[min(820px,92%)]">
+      <div class="text-center">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2 class="font-display text-4xl font-semibold text-forest-dark">Resuelve tus dudas</h2>
+      </div>
+      <div class="mt-10">
+        {
+          faqs.map((f) => (
+            <details class="group border-b border-forest-soft/25">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-display text-xl font-semibold text-forest-dark [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="shrink-0 text-2xl font-light text-forest transition-transform duration-200 group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+              <p class="pb-6 text-ink-soft">{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaFinal waveFrom="var(--color-forest-light)" />
+</Layout>
+
+<style>
+  .hero-organic {
+    background:
+      radial-gradient(circle at 13% 12%, rgb(232 242 237 / 0.72), transparent 28rem),
+      radial-gradient(circle at 88% 78%, rgb(242 163 138 / 0.13), transparent 24rem),
+      #fff;
+  }
+
+  .organic-section-transition {
+    position: relative;
+    z-index: 1;
+    height: 28px;
+    margin-top: -1px;
+    background: var(--color-forest-light);
+  }
+
+  .hero-texture {
+    opacity: 0.38;
+    background-image: radial-gradient(rgb(45 106 79 / 0.22) 0.7px, transparent 0.7px);
+    background-size: 18px 18px;
+    mask-image: linear-gradient(115deg, #000, transparent 58%);
+  }
+
+  .hero-copy::before {
+    content: '';
+    position: absolute;
+    inset: -2rem -1.5rem;
+    z-index: -1;
+    border-radius: 38% 62% 55% 45% / 58% 43% 57% 42%;
+    background: rgb(255 255 255 / 0.82);
+    filter: blur(18px);
+  }
+
+  .hero-blob {
+    filter: blur(1px);
+    will-change: transform, border-radius;
+  }
+
+  .hero-blob-a {
+    right: -8rem;
+    top: -11rem;
+    width: 38rem;
+    height: 35rem;
+    border-radius: 45% 55% 58% 42% / 41% 39% 61% 59%;
+    background: rgb(149 184 166 / 0.28);
+    animation: blob-drift 16s ease-in-out infinite alternate;
+  }
+
+  .hero-blob-b {
+    left: 38%;
+    bottom: -16rem;
+    width: 32rem;
+    height: 27rem;
+    border-radius: 62% 38% 45% 55% / 43% 61% 39% 57%;
+    background: rgb(220 210 240 / 0.62);
+    animation: blob-drift 20s ease-in-out -7s infinite alternate-reverse;
+  }
+
+  .hero-blob-c {
+    left: -7rem;
+    top: 4rem;
+    width: 14rem;
+    height: 14rem;
+    border-radius: 43% 57% 67% 33% / 59% 39% 61% 41%;
+    border: 1px solid rgb(45 106 79 / 0.18);
+    animation: slow-spin 25s linear infinite;
+  }
+
+  .hero-ribbons {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.72;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 92%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .hero-image-wrap {
+    border-radius: 42% 58% 54% 46% / 37% 42% 58% 63%;
+    animation: image-morph 12s ease-in-out infinite alternate;
+  }
+
+  .hero-orbit {
+    inset: -1.2rem 0.5rem 0 -1.2rem;
+    border: 1px solid rgb(45 106 79 / 0.28);
+    border-radius: 55% 45% 42% 58% / 48% 60% 40% 52%;
+    animation: slow-spin 28s linear infinite;
+  }
+
+  .hero-note { animation: gentle-float 6s ease-in-out infinite; }
+  .hero-spark { animation: gentle-float 5s ease-in-out -2s infinite; }
+
+  @keyframes blob-drift {
+    to { transform: translate3d(2rem, 1.5rem, 0) rotate(7deg) scale(1.06); border-radius: 56% 44% 38% 62% / 55% 48% 52% 45%; }
+  }
+  @keyframes image-morph {
+    to { border-radius: 51% 49% 42% 58% / 48% 55% 45% 52%; transform: translateY(-5px); }
+  }
+  @keyframes slow-spin { to { transform: rotate(360deg); } }
+  @keyframes gentle-float { 50% { transform: translateY(-8px); } }
+
+  @media (max-width: 1023px) {
+    .hero-ribbons { width: 180%; left: -45%; opacity: 0.58; }
+    .hero-blob-a { right: -20rem; top: 16rem; }
+    .hero-visual { margin-top: 1rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-blob, .hero-image-wrap, .hero-orbit, .hero-note, .hero-spark { animation: none !important; }
+  }
+</style>

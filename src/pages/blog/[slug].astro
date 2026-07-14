@@ -1,0 +1,66 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CtaFinal from '../../components/CtaFinal.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  inLanguage: 'es',
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+  author: {
+    '@type': 'Person',
+    name: 'Maria Morales Herrerías',
+    jobTitle: 'Psicóloga General Sanitaria',
+    url: new URL('/sobre-mi', Astro.site).href,
+  },
+  publisher: { '@type': 'Organization', name: 'PsicoMariaMorales' },
+};
+---
+
+<Layout title={post.data.title} description={post.data.description} ogType="article">
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <article>
+    <header class="border-b border-forest-soft/15 bg-mist">
+      <div class="mx-auto w-[min(820px,92%)] py-16 text-center md:py-20">
+        <span class="mb-5 inline-block rounded-full border border-forest-soft bg-forest-light px-4 py-1 text-xs font-semibold uppercase tracking-wider text-forest">
+          {post.data.tag}
+        </span>
+        <h1 class="font-display text-4xl font-semibold leading-tight text-forest-dark md:text-5xl">
+          {post.data.title}
+        </h1>
+        <p class="mt-5 text-sm uppercase tracking-wider text-forest">
+          {formatDate(post.data.pubDate)} · Maria Morales
+        </p>
+      </div>
+    </header>
+
+    <div class="mx-auto w-[min(760px,92%)] py-14 md:py-20">
+      <div class="pforest-soft-brand">
+        <Content />
+      </div>
+      <div class="mt-12 border-t border-forest-soft/20 pt-8">
+        <a href="/blog" class="font-semibold text-forest hover:text-forest-dark">← Volver al blog</a>
+      </div>
+    </div>
+  </article>
+
+  <CtaFinal />
+</Layout>

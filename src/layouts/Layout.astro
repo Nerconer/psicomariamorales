@@ -1,0 +1,129 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../consts';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogType?: string;
+}
+
+const {
+  title,
+  description = 'Maria Morales, psicóloga sanitaria en Barcelona. Consulta de psicología presencial y terapia online: trauma, EMDR, ansiedad, burnout, autoestima y terapia de pareja.',
+  ogType = 'website',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.jpg', Astro.site);
+
+// Ficha de negocio local (schema.org) para búsquedas tipo "psicóloga Barcelona"
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['MedicalBusiness', 'LocalBusiness'],
+  '@id': new URL('/', Astro.site).href,
+  name: 'Maria Morales · Psicóloga sanitaria en Barcelona',
+  alternateName: SITE.brand,
+  description:
+    'Psicóloga sanitaria en Barcelona. Terapia psicológica presencial y online: trauma y EMDR, ansiedad, estrés, burnout, autoestima, apego y terapia de pareja.',
+  url: new URL('/', Astro.site).href,
+  image: ogImage.href,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Carrer de los Castillejos, 326',
+    postalCode: '08025',
+    addressLocality: 'Barcelona',
+    addressRegion: 'Barcelona',
+    addressCountry: 'ES',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Barcelona' },
+    { '@type': 'Country', name: 'España' },
+  ],
+  priceRange: '45 € - 50 €',
+  currenciesAccepted: 'EUR',
+  sameAs: [SITE.doctoralia, SITE.linkedin],
+  founder: {
+    '@type': 'Person',
+    name: 'Maria Morales Herrerías',
+    jobTitle: 'Psicóloga General Sanitaria',
+    identifier: `Colegiada n.º ${SITE.licenseNumber}`,
+  },
+  knowsAbout: [
+    'Psicología sanitaria',
+    'Trauma y trauma complejo',
+    'EMDR',
+    'Ansiedad',
+    'Estrés y burnout',
+    'Autoestima',
+    'Apego',
+    'Regulación emocional',
+    'Terapia de pareja',
+    'Terapia online',
+  ],
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} · {SITE.brand}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:site_name" content={SITE.brand} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_ES" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:text-forest-dark focus:shadow-lg">Saltar al contenido</a>
+    <Header />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- Botón flotante de WhatsApp -->
+    <a
+      href={SITE.whatsapp}
+      target="_blank"
+      rel="noopener"
+      aria-label="Escríbeme por WhatsApp"
+      class="fixed bottom-5 right-5 z-50 hidden h-14 w-14 place-items-center rounded-full bg-[#18783e] text-white shadow-lg transition-transform duration-200 hover:scale-110 md:grid"
+    >
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+          d="M12 2a10 10 0 0 0-8.66 15L2 22l5.2-1.3A10 10 0 1 0 12 2Zm5.42 14.13c-.23.64-1.33 1.22-1.86 1.26-.5.05-1.12.24-3.76-.78-3.18-1.25-5.2-4.5-5.36-4.7-.15-.21-1.27-1.7-1.27-3.23s.8-2.29 1.09-2.6c.28-.32.62-.4.83-.4h.6c.19 0 .45-.07.7.54.26.62.87 2.14.95 2.3.08.15.13.34.02.55-.1.21-.16.34-.31.52-.16.18-.33.41-.47.55-.16.15-.32.32-.14.63.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.16.49.13.67-.08.18-.2.77-.9.98-1.2.2-.31.41-.26.7-.16.28.1 1.8.85 2.1 1 .31.16.52.24.6.37.07.13.07.75-.16 1.4Z"
+        ></path>
+      </svg>
+    </a>
+    <a href={SITE.doctoralia} target="_blank" rel="noopener" class="btn-primary fixed bottom-4 left-1/2 z-50 w-[calc(100%-2rem)] -translate-x-1/2 justify-center shadow-lg md:hidden">Reservar primera sesión</a>
+  </body>
+</html>

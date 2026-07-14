@@ -1,0 +1,39 @@
+---
+import { SITE } from '../consts';
+import Wave from './Wave.astro';
+import RibbonField from './RibbonField.astro';
+
+interface Props {
+  title?: string;
+  text?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  waveFrom?: string;
+}
+
+const {
+  title = '¿Damos el primer paso?',
+  text = 'Dar el paso de pedir ayuda no siempre es fácil, pero puede ser el inicio de un cambio importante. Si sientes que ha llegado tu momento, estaré encantada de acompañarte con una atención cercana, personalizada y adaptada a tus necesidades.',
+  primaryLabel = 'Reserva tu primera sesión',
+  primaryHref = SITE.doctoralia,
+  waveFrom = 'var(--color-cream)',
+} = Astro.props;
+---
+
+<Wave from={waveFrom} to="var(--color-forest)" />
+<section class="relative isolate overflow-hidden bg-forest">
+  <RibbonField tone="light" class="absolute inset-0 -z-10 opacity-50" />
+  <div class="absolute -bottom-32 -right-20 -z-10 h-72 w-72 rounded-full bg-lilac-soft/15" aria-hidden="true"></div>
+  <div class="mx-auto w-[min(820px,92%)] pb-16 pt-8 text-center md:pb-20 md:pt-10">
+    <h2 class="font-editorial text-3xl font-semibold text-white md:text-4xl">{title}</h2>
+    <p class="mx-auto mt-4 max-w-[60ch] text-white/90">{text}</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a href={primaryHref} target="_blank" rel="noopener" class="btn-light">{primaryLabel}</a>
+      <a
+        href="/contacto"
+        class="btn border border-white/70 text-white hover:bg-white/10 hover:-translate-y-0.5"
+        >Contactar</a
+      >
+    </div>
+  </div>
+</section>

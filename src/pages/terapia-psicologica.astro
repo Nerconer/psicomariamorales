@@ -1,0 +1,237 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+
+const especialidades = [
+  {
+    id: 'trauma',
+    title: 'Trauma y trauma complejo',
+    text: [
+      'Las experiencias traumáticas no siempre son acontecimientos extremos. A veces el trauma surge tras años de invalidación emocional, abandono, críticas constantes, relaciones inseguras o situaciones mantenidas de estrés.',
+      'Si sientes que repites patrones que no comprendes, vives en estado de alerta, te cuesta confiar en los demás o experimentas un gran sufrimiento emocional, trabajaremos para procesar esas experiencias y recuperar la sensación de seguridad utilizando EMDR y otras herramientas adaptadas a ti.',
+    ],
+  },
+  {
+    id: 'ansiedad',
+    title: 'Ansiedad',
+    text: [
+      'La ansiedad puede manifestarse mediante preocupaciones constantes, nerviosismo, sensación de peligro, dificultad para relajarte o síntomas físicos como taquicardia, tensión muscular o falta de aire.',
+      'En terapia aprenderás a comprender por qué aparece, regular tu sistema nervioso y desarrollar recursos para recuperar la calma.',
+    ],
+  },
+  {
+    id: 'estres',
+    title: 'Estrés',
+    text: [
+      'Cuando las exigencias superan durante mucho tiempo los recursos disponibles, el cuerpo y la mente terminan pasando factura.',
+      'Trabajaremos para reducir el impacto del estrés, mejorar la gestión emocional y encontrar un equilibrio más saludable entre tus responsabilidades y tu bienestar.',
+    ],
+  },
+  {
+    id: 'burnout',
+    title: 'Burnout',
+    text: [
+      'El agotamiento laboral puede hacer que pierdas la motivación, la energía y el disfrute por aquello que antes tenía sentido.',
+      'La terapia puede ayudarte a identificar las causas del burnout, establecer límites saludables y prevenir que vuelva a repetirse.',
+    ],
+  },
+  {
+    id: 'panico',
+    title: 'Ataques de pánico',
+    text: [
+      'Los ataques de pánico generan una intensa sensación de miedo acompañada de síntomas físicos que pueden resultar muy alarmantes.',
+      'En terapia aprenderás qué está ocurriendo en tu organismo, reducirás el miedo a que vuelvan a aparecer y recuperarás la sensación de control.',
+    ],
+  },
+  {
+    id: 'intrusivos',
+    title: 'Pensamientos intrusivos',
+    text: [
+      'Los pensamientos intrusivos son ideas, imágenes o impulsos que aparecen de forma involuntaria y generan un gran malestar.',
+      'Trabajaremos para cambiar la relación que mantienes con esos pensamientos, disminuyendo su impacto sin necesidad de luchar constantemente contra ellos.',
+    ],
+  },
+  {
+    id: 'autoestima',
+    title: 'Autoestima',
+    text: [
+      'La autoestima influye en cómo te relacionas contigo mismo y con los demás.',
+      'Si te cuesta valorarte, eres muy exigente contigo o sientes que nunca eres suficiente, construiremos una relación más sana contigo basada en la aceptación y el respeto.',
+    ],
+  },
+  {
+    id: 'regulacion',
+    title: 'Regulación emocional',
+    text: [
+      'A veces las emociones se sienten tan intensas que cuesta comprenderlas o manejarlas.',
+      'En terapia aprenderás a identificar lo que sientes, entender el mensaje de tus emociones y desarrollar estrategias para regularlas de forma saludable.',
+    ],
+  },
+  {
+    id: 'dependencia',
+    title: 'Dependencia emocional',
+    text: [
+      'Cuando el miedo a perder una relación condiciona tus decisiones o tu bienestar depende de la otra persona, es frecuente que aparezca un gran sufrimiento.',
+      'Trabajaremos para fortalecer tu autonomía emocional, establecer relaciones más equilibradas y desarrollar vínculos más seguros.',
+    ],
+  },
+  {
+    id: 'apego',
+    title: 'Problemas de apego',
+    text: [
+      'Las experiencias tempranas influyen en la forma en que nos relacionamos con los demás.',
+      'Si te cuesta confiar, poner límites, expresar necesidades o mantener relaciones estables, exploraremos estos patrones para construir vínculos más seguros y satisfactorios.',
+    ],
+  },
+  {
+    id: 'familia',
+    title: 'Relaciones familiares',
+    text: [
+      'Los conflictos familiares pueden generar un importante desgaste emocional.',
+      'La terapia ofrece un espacio para comprender las dinámicas familiares, mejorar la comunicación, establecer límites y afrontar situaciones complejas desde una mayor calma.',
+    ],
+  },
+  {
+    id: 'crisis',
+    title: 'Crisis vitales',
+    text: [
+      'Hay momentos en los que la vida cambia de forma inesperada: separaciones, cambios laborales, maternidad o paternidad, enfermedades o pérdidas.',
+      'Durante estas etapas, la terapia puede ayudarte a adaptarte, recuperar el equilibrio y encontrar nuevas formas de afrontar la situación.',
+    ],
+  },
+  {
+    id: 'duelo',
+    title: 'Duelo',
+    text: [
+      'Perder a alguien o algo importante implica atravesar un proceso de adaptación que puede resultar muy doloroso.',
+      'La terapia ofrece un espacio para expresar el dolor, elaborar la pérdida y avanzar respetando tu propio ritmo.',
+    ],
+  },
+  {
+    id: 'perfeccionismo',
+    title: 'Perfeccionismo',
+    text: [
+      'El perfeccionismo puede llevarte a vivir con una presión constante, miedo al error y sensación de que nunca haces lo suficiente.',
+      'Trabajaremos para flexibilizar la autoexigencia, reducir la ansiedad asociada al rendimiento y construir una forma de vivir más amable contigo mismo.',
+    ],
+  },
+];
+---
+
+<Layout
+  title="Terapia psicológica en Barcelona y online"
+  description="Terapia psicológica presencial en Barcelona y online. Especializada en trauma y EMDR, ansiedad, estrés, burnout, autoestima, apego, duelo y más."
+>
+  <PageHero
+    eyebrow="Terapia psicológica"
+    title="Comprender lo que te ocurre es el primer paso"
+    lead="La terapia te ofrece un espacio para dar sentido a lo que sientes, reconocer los patrones que mantienen el malestar y aprender nuevas formas de afrontar las dificultades."
+  />
+
+  <section class="py-16 md:py-24">
+    <div class="mx-auto w-[min(820px,92%)]">
+      <p class="justify-md text-ink-soft">
+        Mi forma de trabajar se basa en una <strong class="text-ink">psicología integradora</strong
+        >, adaptando cada proceso a la historia, las necesidades y el ritmo de cada persona. Estoy
+        especializada en <strong class="text-ink">trauma y EMDR</strong>, pero también integro
+        herramientas de la Terapia Cognitivo-Conductual (TCC), las terapias de tercera generación,
+        la teoría del apego, la regulación del sistema nervioso y otros enfoques basados en la
+        evidencia para ofrecer un tratamiento personalizado.
+      </p>
+      <p class="justify-md mt-4 text-ink-soft">
+        El objetivo no es únicamente aliviar los síntomas, sino ayudarte a comprender el origen de
+        lo que te ocurre para conseguir cambios profundos y duraderos.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-y border-forest-soft/30 bg-white py-16 md:py-20">
+    <div class="mx-auto w-[min(1120px,92%)]">
+      <div class="max-w-[650px]">
+        <p class="eyebrow">Cómo empezamos</p>
+        <h2 class="font-editorial text-4xl font-semibold text-forest-dark">Un proceso claro desde la primera sesión</h2>
+      </div>
+      <ol class="mt-10 grid gap-6 md:grid-cols-3">
+        <li class="card">
+          <span class="text-sm font-bold text-forest">01</span>
+          <h3 class="mt-3 text-xl font-semibold text-forest-dark">Nos conocemos</h3>
+          <p class="mt-2 text-sm text-ink-soft">Exploramos qué te trae a consulta, cómo te está afectando y resolvemos tus dudas.</p>
+        </li>
+        <li class="card">
+          <span class="text-sm font-bold text-forest">02</span>
+          <h3 class="mt-3 text-xl font-semibold text-forest-dark">Definimos objetivos</h3>
+          <p class="mt-2 text-sm text-ink-soft">Acordamos qué necesitas trabajar y planteamos un acompañamiento adaptado a tu momento.</p>
+        </li>
+        <li class="card">
+          <span class="text-sm font-bold text-forest">03</span>
+          <h3 class="mt-3 text-xl font-semibold text-forest-dark">Revisamos el avance</h3>
+          <p class="mt-2 text-sm text-ink-soft">Valoramos periódicamente los cambios y ajustamos el proceso a tu ritmo y necesidades.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Modalidades -->
+  <section class="bg-mist py-16 md:py-24">
+    <div class="mx-auto w-[min(1120px,92%)]">
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="card">
+          <p class="eyebrow !mb-2">Presencial</p>
+          <h2 class="font-display text-3xl font-semibold text-forest-dark">
+            Terapia presencial en Barcelona
+          </h2>
+          <p class="justify-md mt-4 text-ink-soft">
+            Dirigida a personas que prefieren un espacio físico donde sentirse acompañadas durante
+            su proceso. Las sesiones tienen lugar en un ambiente tranquilo, confidencial y seguro,
+            donde podremos trabajar aquello que te preocupa desde la cercanía y el vínculo
+            terapéutico.
+          </p>
+          <p class="justify-md mt-3 text-ink-soft">
+            La atención presencial permite realizar un trabajo profundo sobre emociones,
+            experiencias traumáticas, ansiedad, autoestima, relaciones personales y cualquier
+            dificultad que esté afectando a tu bienestar.
+          </p>
+        </div>
+        <div class="card">
+          <p class="eyebrow !mb-2">Online</p>
+          <h2 class="font-display text-3xl font-semibold text-forest-dark">Terapia online</h2>
+          <p class="justify-md mt-4 text-ink-soft">
+            Ofrece la misma calidad y eficacia que la presencial, permitiéndote acceder a apoyo
+            psicológico desde cualquier lugar. Solo necesitas un espacio tranquilo y una conexión a
+            internet.
+          </p>
+          <p class="justify-md mt-3 text-ink-soft">
+            Es una opción especialmente útil si vives fuera de Barcelona, viajas con frecuencia o
+            necesitas una mayor flexibilidad horaria. Las sesiones mantienen el mismo nivel de
+            confidencialidad, cercanía y personalización que la terapia presencial.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Especialidades -->
+  <section class="py-16 md:py-24" id="especialidades">
+    <div class="mx-auto w-[min(1120px,92%)]">
+      <div class="text-center">
+        <p class="eyebrow">Especialidades</p>
+        <h2 class="font-display text-4xl font-semibold text-forest-dark">¿Qué trabajamos en terapia?</h2>
+      </div>
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        {
+          especialidades.map((e) => (
+            <article id={e.id} class="card scroll-mt-28">
+              <h3 class="font-display text-2xl font-semibold text-forest-dark">{e.title}</h3>
+              {e.text.map((p) => (
+                <p class="mt-3 text-[0.95rem] text-ink-soft">{p}</p>
+              ))}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaFinal />
+</Layout>

@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE } from '../consts';
+---
+
+<Layout title="Aviso legal" description="Aviso legal del sitio web de Maria Morales, psicóloga sanitaria en Barcelona.">
+  <PageHero title="Aviso legal" />
+  <section class="py-14 md:py-20">
+    <div class="pforest-soft-brand mx-auto w-[min(760px,92%)]">
+      <p>
+        En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la
+        Información y de Comercio Electrónico (LSSI-CE), se informa de los siguientes datos:
+      </p>
+      <h2>Titular del sitio web</h2>
+      <ul>
+        <li><strong>Titular:</strong> Maria Morales Herrerías</li>
+        <li><strong>Actividad:</strong> Psicóloga General Sanitaria</li>
+        <li><strong>N.º de colegiada:</strong> [NÚMERO DE COLEGIADA] (Col·legi Oficial de Psicologia de Catalunya)</li>
+        <li><strong>NIF:</strong> [NIF]</li>
+        <li><strong>Domicilio:</strong> {SITE.address}</li>
+        <li><strong>Email de contacto:</strong> {SITE.email}</li>
+      </ul>
+      <h2>Objeto</h2>
+      <p>
+        Este sitio web tiene carácter informativo sobre los servicios de psicología ofrecidos por
+        la titular. La información contenida en este sitio no sustituye en ningún caso la atención
+        psicológica o médica profesional.
+      </p>
+      <h2>Propiedad intelectual</h2>
+      <p>
+        Los contenidos de este sitio web (textos, imágenes, logotipos y diseño) son propiedad de la
+        titular o se utilizan con la debida autorización, y quedan protegidos por la normativa de
+        propiedad intelectual. Queda prohibida su reproducción sin autorización expresa.
+      </p>
+      <h2>Responsabilidad</h2>
+      <p>
+        La titular no se hace responsable del mal uso que se realice de los contenidos de este
+        sitio web ni de los contenidos de sitios de terceros a los que se enlaza (por ejemplo,
+        Doctoralia o redes sociales).
+      </p>
+      <h2>Legislación aplicable</h2>
+      <p>
+        La relación entre la titular y las personas usuarias se regirá por la normativa española
+        vigente, y cualquier controversia se someterá a los juzgados y tribunales competentes.
+      </p>
+    </div>
+  </section>
+</Layout>

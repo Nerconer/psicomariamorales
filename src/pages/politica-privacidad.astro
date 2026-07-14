@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE } from '../consts';
+---
+
+<Layout title="Política de privacidad" description="Política de privacidad del sitio web de Maria Morales, psicóloga sanitaria en Barcelona.">
+  <PageHero title="Política de privacidad" />
+  <section class="py-14 md:py-20">
+    <div class="pforest-soft-brand mx-auto w-[min(760px,92%)]">
+      <p>
+        De conformidad con el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 de
+        Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD), se informa
+        de lo siguiente:
+      </p>
+      <h2>Responsable del tratamiento</h2>
+      <ul>
+        <li><strong>Responsable:</strong> Maria Morales Herrerías</li>
+        <li><strong>Email:</strong> {SITE.email}</li>
+        <li><strong>Domicilio:</strong> {SITE.address}</li>
+      </ul>
+      <h2>Finalidad del tratamiento</h2>
+      <p>
+        Los datos personales que facilites al contactar por email, WhatsApp o al reservar cita se
+        utilizarán exclusivamente para gestionar tu solicitud, responder a tus consultas y, en su
+        caso, prestar los servicios de atención psicológica solicitados.
+      </p>
+      <p>
+        La reserva de citas a través de Doctoralia se rige, además, por la política de privacidad
+        de dicha plataforma.
+      </p>
+      <h2>Legitimación</h2>
+      <p>
+        La base legal para el tratamiento es el consentimiento de la persona interesada y, en su
+        caso, la ejecución de la relación contractual de prestación de servicios sanitarios. Los
+        datos de salud se tratan conforme al deber de secreto profesional y a la normativa
+        sanitaria aplicable.
+      </p>
+      <h2>Conservación</h2>
+      <p>
+        Los datos se conservarán durante el tiempo necesario para cumplir la finalidad para la que
+        se recabaron y las obligaciones legales aplicables, incluida la normativa sobre historia
+        clínica.
+      </p>
+      <h2>Destinatarios</h2>
+      <p>
+        No se cederán datos a terceros salvo obligación legal. No se realizan transferencias
+        internacionales de datos.
+      </p>
+      <h2>Derechos</h2>
+      <p>
+        Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y
+        portabilidad escribiendo a {SITE.email}. También tienes derecho a presentar una reclamación
+        ante la Agencia Española de Protección de Datos (www.aepd.es).
+      </p>
+    </div>
+  </section>
+</Layout>

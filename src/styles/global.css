@@ -1,0 +1,119 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@theme {
+  /* Paleta esmeralda: profesional, cálida y con contraste AA. */
+  --color-forest: #2d6a4f;
+  --color-forest-dark: #1b4332;
+  --color-forest-soft: #95b8a6;
+  --color-forest-light: #e8f2ed;
+  --color-lilac-soft: #dcd2f0;
+  --color-lilac-light: #f3eef9;
+  --color-cream: #ffffff;
+  --color-mist: #f1f5f0;
+  --color-ink: #17211c;
+  --color-ink-soft: #4c5b53;
+  --color-sun: #f2a38a;
+
+  --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: 'Lora', ui-serif, Georgia, serif;
+
+  --shadow-forest: 0 12px 32px -16px rgb(27 67 50 / 0.38);
+  --shadow-soft: 0 6px 20px -10px rgb(31 31 31 / 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  overflow-x: clip;
+}
+
+body {
+  @apply bg-cream pb-20 font-sans text-ink antialiased md:pb-0;
+}
+
+.grid > *,
+.flex > * {
+  min-width: 0;
+}
+
+:focus-visible {
+  outline: 3px solid #f2a38a;
+  outline-offset: 3px;
+}
+
+::selection {
+  background: #cfe3d8;
+  color: #1b4332;
+}
+
+@utility btn {
+  @apply inline-flex items-center gap-2 rounded-full px-7 py-3 text-[0.95rem] font-bold tracking-wide transition-all duration-200;
+}
+
+@layer components {
+  .btn-primary {
+    @apply btn bg-forest text-white hover:bg-forest-dark hover:-translate-y-0.5 hover:shadow-forest;
+  }
+  .btn-outline {
+    @apply btn border border-forest text-forest-dark hover:bg-forest hover:text-white hover:-translate-y-0.5;
+  }
+  .btn-light {
+    @apply btn bg-cream text-forest-dark hover:bg-forest-light hover:-translate-y-0.5;
+  }
+  .btn-sun {
+    @apply btn bg-sun text-ink hover:bg-[#f2b93e] hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-12px_rgb(255_202_92/0.6)];
+  }
+  .btn-sun-outline {
+    @apply btn border border-white/70 text-white hover:bg-white hover:text-forest-dark hover:-translate-y-0.5;
+  }
+  .btn-whatsapp {
+    @apply btn border border-[#1faa53]/40 bg-[#e9f8ef] text-[#177a3d] hover:bg-[#d5f2e0] hover:-translate-y-0.5;
+  }
+
+  .eyebrow {
+    @apply mb-4 inline-block max-w-full text-[0.72rem] font-bold uppercase tracking-[0.18em] text-forest sm:text-[0.78rem] sm:tracking-[0.22em];
+  }
+
+  .card {
+    @apply rounded-2xl border border-forest-soft/40 bg-white p-7 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-forest;
+  }
+
+  /* Aura pastel como halo exterior de la tarjeta (un solo color: forest) */
+  .card-aura {
+    border-color: color-mix(in srgb, var(--color-forest-soft) 45%, white);
+    box-shadow:
+      0 4px 18px -4px color-mix(in srgb, var(--color-forest-soft) 42%, transparent),
+      0 14px 44px -10px color-mix(in srgb, var(--color-forest-soft) 32%, transparent);
+  }
+  .card-aura:hover {
+    box-shadow:
+      0 6px 22px -4px color-mix(in srgb, var(--color-forest-soft) 62%, transparent),
+      0 20px 56px -10px color-mix(in srgb, var(--color-forest-soft) 48%, transparent);
+  }
+
+  /* Lista con viñeta de marca */
+  .checklist {
+    @apply list-none space-y-2 pl-0;
+  }
+  .checklist li {
+    @apply relative pl-8;
+  }
+  .checklist li::before {
+    content: '';
+    @apply absolute left-0 top-[0.5em] h-4 w-4 rounded-full border-[1.5px] border-forest-soft bg-forest-light;
+  }
+
+  /* Párrafos largos justificados en pantallas medianas+ (feedback Maria);
+     en móvil se mantiene bandera izquierda para evitar ríos de espacios */
+  .justify-md {
+    hyphens: auto;
+  }
+}
+
+/* Tipografía de artículos y páginas legales, en tonos de marca */
+.prose-brand {
+  @apply prose prose-lg max-w-none text-ink prose-headings:font-display prose-headings:font-bold prose-headings:text-forest-dark prose-a:text-forest-dark prose-strong:text-forest-dark prose-blockquote:border-forest-soft prose-blockquote:font-semibold prose-blockquote:text-forest-dark prose-li:marker:text-forest;
+}
+.prose-brand p { hyphens: auto; }

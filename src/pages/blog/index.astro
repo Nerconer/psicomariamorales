@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaFinal from '../../components/CtaFinal.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Layout
+  title="Blog de psicología"
+  description="Artículos sobre salud mental escritos por Maria Morales, psicóloga sanitaria: ansiedad, trauma, EMDR, burnout, autoestima y bienestar emocional."
+>
+  <PageHero
+    eyebrow="Blog"
+    title="Recursos para tu bienestar"
+    lead="Artículos sobre ansiedad, trauma, burnout y salud mental, escritos con rigor y con la voluntad de acercarte la psicología de forma clara y útil."
+  />
+
+  <section class="py-16 md:py-24">
+    <div class="mx-auto grid w-[min(1120px,92%)] gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        posts.map((post) => (
+          <a href={`/blog/${post.id}`} class="card group flex flex-col">
+            <span class="mb-4 inline-block self-start rounded-full border border-forest-soft bg-forest-light px-4 py-1 text-xs font-semibold uppercase tracking-wider text-forest">
+              {post.data.tag}
+            </span>
+            <h2 class="font-display text-2xl font-semibold leading-snug text-forest-dark group-hover:text-forest">
+              {post.data.title}
+            </h2>
+            <p class="mt-3 flex-1 text-sm text-ink-soft">{post.data.description}</p>
+            <p class="mt-5 text-xs uppercase tracking-wider text-forest">
+              {formatDate(post.data.pubDate)}
+            </p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <CtaFinal />
+</Layout>

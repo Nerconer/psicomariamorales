@@ -223,7 +223,7 @@ const faqSchema = {
           >
         </div>
         <a href="/sobre-mi" class="mt-5 inline-flex items-center gap-2 font-semibold text-forest-dark underline decoration-forest-soft underline-offset-4 hover:decoration-forest-dark">Conoce mi enfoque <span aria-hidden="true">→</span></a>
-        <div class="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-ink-soft">
+        <div class="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-base font-medium text-ink-soft">
           <span>Colegiada n.º {SITE.licenseNumber}</span>
           <span aria-hidden="true" class="hidden text-forest-soft sm:inline">•</span>
           <span>Barcelona y online</span>
@@ -274,7 +274,7 @@ const faqSchema = {
               <h3 class="font-display text-2xl font-semibold text-forest-dark group-hover:text-forest">
                 {a.title}
               </h3>
-              <ul class="checklist mt-4 text-[0.95rem] text-ink-soft">
+              <ul class="checklist mt-4 text-base text-ink-soft">
                 {a.items.slice(0, 2).map((i) => (
                   <li>{i}</li>
                 ))}
@@ -394,7 +394,7 @@ const faqSchema = {
               </span>
               <div>
                 <h3 class="font-display text-xl font-bold text-forest-dark">{c.t}</h3>
-                <p class="mt-1 text-sm text-ink/80">{c.d}</p>
+                <p class="mt-1 text-base text-ink/80">{c.d}</p>
               </div>
             </div>
           ))
@@ -467,7 +467,7 @@ const faqSchema = {
               </blockquote>
               <figcaption class="mt-5 border-t border-forest-soft/25 pt-4">
                 <span class="block font-display font-bold text-ink">{t.autor}</span>
-                <span class="text-sm text-ink-soft">{t.contexto}</span>
+                <span class="text-base text-ink-soft">{t.contexto}</span>
               </figcaption>
             </figure>
           ))
@@ -482,7 +482,7 @@ const faqSchema = {
           class="btn-outline"
           >Lee las opiniones verificadas en Doctoralia →</a
         >
-        <p class="text-sm text-ink-soft">Reseñas verificadas por pacientes reales.</p>
+        <p class="text-base text-ink-soft">Reseñas verificadas por pacientes reales.</p>
       </div>
     </div>
   </section>

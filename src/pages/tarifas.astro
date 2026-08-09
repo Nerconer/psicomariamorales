@@ -63,7 +63,7 @@ const tarifas = [
               >
                 {t.price}
               </p>
-              <p class:list={['text-sm', t.featured ? 'text-cream/85' : 'text-ink-soft']}>
+              <p class:list={['text-base', t.featured ? 'text-cream/85' : 'text-ink-soft']}>
                 {t.desc}
               </p>
               <a
@@ -82,21 +82,21 @@ const tarifas = [
       <div class="mt-12 grid gap-6 md:grid-cols-2">
         <div class="card">
           <h3 class="font-display text-xl font-semibold text-forest-dark">Formas de pago</h3>
-          <p class="mt-2 text-sm text-ink-soft">
+          <p class="mt-2 text-base text-ink-soft">
             Puedes abonar las sesiones en efectivo, por transferencia bancaria o Bizum. Las
             sesiones online se abonan antes de la cita.
           </p>
         </div>
         <div class="card">
           <h3 class="font-display text-xl font-semibold text-forest-dark">Política de cancelación</h3>
-          <p class="mt-2 text-sm text-ink-soft">
+          <p class="mt-2 text-base text-ink-soft">
             Si no puedes asistir a una sesión, te agradezco que avises con al menos 24 horas de
             antelación para poder reprogramarla sin coste.
           </p>
         </div>
       </div>
 
-      <p class="mt-10 text-center text-sm text-ink-soft">
+      <p class="mt-10 text-center text-base text-ink-soft">
         Los precios se mantienen sincronizados con el perfil de <a
           href={SITE.doctoralia}
           target="_blank"

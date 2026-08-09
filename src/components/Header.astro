@@ -27,7 +27,7 @@ const isActive = (href: string) =>
         <span class="block font-display text-xl font-semibold text-ink"
           >Psico<em class="not-italic text-forest">Maria</em>Morales</span
         >
-        <span class="block text-[0.62rem] font-medium uppercase tracking-[0.28em] text-forest"
+        <span class="block text-[0.72rem] font-medium uppercase tracking-[0.2em] text-forest"
           >Psicología integradora</span
         >
       </span>
@@ -48,14 +48,14 @@ const isActive = (href: string) =>
           </a>
         ))
       }
-      <a href={SITE.doctoralia} target="_blank" rel="noopener" class="btn-primary whitespace-nowrap !px-5 !py-2 text-sm">
+      <a href={SITE.doctoralia} target="_blank" rel="noopener" class="btn-primary whitespace-nowrap !px-5 !py-2">
         Reservar cita
       </a>
     </nav>
 
     <button
       id="menu-toggle"
-      class="grid h-11 w-11 place-items-center rounded-full text-forest transition-colors hover:bg-mist xl:hidden"
+      class="grid h-11 w-11 shrink-0 place-items-center rounded-full text-forest transition-colors hover:bg-mist xl:hidden"
       aria-label="Abrir menú"
       aria-expanded="false"
       aria-controls="mobile-menu"

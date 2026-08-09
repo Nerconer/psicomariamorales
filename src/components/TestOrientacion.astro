@@ -190,10 +190,10 @@ const modalidades = [
       </h3>
       <p class="mx-auto mt-4 max-w-[52ch] text-ink-soft" data-result-text></p>
       <div class="mx-auto mt-6 max-w-[52ch] rounded-2xl bg-forest-light/60 p-5 text-left sm:p-6">
-        <p class="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-forest">
+        <p class="mb-3 text-sm font-bold uppercase tracking-[0.12em] text-forest">
           Así lo trabajaremos en consulta
         </p>
-        <ul class="checklist space-y-2 text-[0.95rem] text-ink" data-result-puntos></ul>
+        <ul class="checklist space-y-2 text-base text-ink" data-result-puntos></ul>
       </div>
       <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a class="btn-primary" data-result-cta href="#">Reservar primera sesión</a>
@@ -203,7 +203,7 @@ const modalidades = [
           href="#">Ver más</a
         >
       </div>
-      <p class="mx-auto mt-7 max-w-[46ch] text-xs text-ink-soft/80">
+      <p class="mx-auto mt-7 max-w-[46ch] text-sm text-ink-soft">
         Esta orientación es informativa y no sustituye una valoración profesional.
       </p>
       <button type="button" class="test-back mt-3" data-restart>↺ Empezar de nuevo</button>
@@ -234,7 +234,9 @@ const modalidades = [
     transform: translateY(-2px);
   }
   .test-back {
-    font-size: 0.9rem;
+    min-height: 2.75rem;
+    padding-inline: 0.5rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--color-ink-soft);
     transition: color 0.18s ease;

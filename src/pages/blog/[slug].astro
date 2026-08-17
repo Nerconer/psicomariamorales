@@ -2,16 +2,19 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import CtaFinal from '../../components/CtaFinal.astro';
+import RelatedPosts from '../../components/RelatedPosts.astro';
+import { buildRelatedMap } from '../../lib/related';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
+  const relatedMap = buildRelatedMap(posts);
   return posts.map((post) => ({
     params: { slug: post.id },
-    props: { post },
+    props: { post, related: relatedMap.get(post.id) ?? [] },
   }));
 }
 
-const { post } = Astro.props;
+const { post, related } = Astro.props;
 const { Content } = await render(post);
 
 const formatDate = (d: Date) =>
@@ -61,6 +64,8 @@ const articleSchema = {
       </div>
     </div>
   </article>
+
+  <RelatedPosts posts={related} />
 
   <CtaFinal />
 </Layout>

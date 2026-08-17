@@ -83,7 +83,7 @@ Aunque aprender técnicas para regular las emociones es importante, el cambio su
 
 - ¿Qué situaciones activan mi rabia?
 - ¿Qué pensamientos aparecen en esos momentos?
-- ¿Qué emoción hay debajo del enfado?
+- [¿Qué emoción hay debajo del enfado?](/blog/metacognicion-comprender-tu-funcionamiento)
 - ¿Qué intento proteger cuando reacciono así?
 
 Responder a estas preguntas permite salir poco a poco del piloto automático.
@@ -97,7 +97,7 @@ El objetivo es que deje de controlar tu forma de relacionarte. En terapia podemo
 - Comprender qué desencadena la rabia.
 - Identificar las emociones que hay debajo del enfado.
 - Aprender estrategias de regulación emocional.
-- Mejorar la comunicación durante los conflictos.
+- [Mejorar la comunicación durante los conflictos](/blog/conflicto-en-la-pareja-terapia).
 - Identificar patrones aprendidos en la infancia o en relaciones anteriores.
 - Desarrollar formas más saludables de protegerte sin necesidad de atacar.
 

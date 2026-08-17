@@ -9,7 +9,7 @@ Todas las parejas discuten. De hecho, el conflicto no es un indicador de que una
 
 Con frecuencia, las parejas llegan a consulta pensando que el problema es "discutimos mucho". Sin embargo, tras explorar lo que ocurre, descubrimos que el verdadero problema no es la discusión en sí, sino los patrones que se repiten una y otra vez: ataques, silencios, críticas, reproches o una profunda sensación de que la otra persona ya no nos entiende.
 
-La buena noticia es que estos patrones pueden comprenderse y modificarse. La terapia de pareja ofrece un espacio seguro para hacerlo.
+La buena noticia es que estos patrones pueden comprenderse y modificarse. La [terapia de pareja](/terapia-de-pareja) ofrece un espacio seguro para hacerlo.
 
 ## Cuando el otro deja de ser mi compañero y se convierte en mi enemigo
 
@@ -100,7 +100,7 @@ Durante el proceso terapéutico se trabaja para:
 - Comprender qué emociones y necesidades hay detrás de las discusiones.
 - Mejorar la comunicación y la escucha.
 - Aprender a regular las emociones antes de responder impulsivamente.
-- Reparar heridas del pasado que siguen afectando al presente.
+- [Reparar heridas del pasado](/blog/que-es-emdr-terapia-trauma) que siguen afectando al presente.
 - Recuperar la sensación de seguridad dentro de la relación.
 - Construir acuerdos realistas y saludables.
 

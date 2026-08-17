@@ -52,7 +52,7 @@ Saben que están mal. Saben que lloran, que se enfadan, que tienen ansiedad o qu
 - No identifican patrones que se repiten.
 - No reconocen qué situaciones activan determinadas emociones.
 
-Sin esa capacidad de observar y comprender el propio funcionamiento (lo que en psicología conocemos como **metacognición**) resulta muy difícil cambiar aquello que produce sufrimiento.
+Sin esa capacidad de observar y comprender el propio funcionamiento (lo que en psicología conocemos como **[metacognición](/blog/metacognicion-comprender-tu-funcionamiento)**) resulta muy difícil cambiar aquello que produce sufrimiento.
 
 Porque nadie puede modificar un patrón que ni siquiera sabe que existe.
 

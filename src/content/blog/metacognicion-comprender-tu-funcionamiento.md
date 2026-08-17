@@ -37,7 +37,7 @@ Cuanta mayor capacidad metacognitiva desarrollamos, más posibilidades tenemos d
 
 Muchas personas viven sus emociones como si aparecieran de la nada.
 
-Sienten ansiedad, pero no saben qué la desencadena. Se enfadan con facilidad, pero creen que siempre es culpa de los demás. Se bloquean en una discusión sin entender qué les ocurre. Repiten relaciones que les hacen daño sin identificar el patrón.
+Sienten ansiedad, pero no saben qué la desencadena. [Se enfadan con facilidad](/blog/rabia-constante-necesidad-de-atacar), pero creen que siempre es culpa de los demás. Se bloquean en una discusión sin entender qué les ocurre. Repiten relaciones que les hacen daño sin identificar el patrón.
 
 No es que no quieran cambiar. Es que les falta un mapa para comprender lo que está sucediendo dentro de ellas.
 
@@ -61,7 +61,7 @@ Uno de los mayores beneficios de la metacognición es que permite identificar pa
 
 - Descubrir que siempre evitamos los conflictos por miedo al rechazo.
 - Darnos cuenta de que nos exigimos demasiado y nunca sentimos que hacemos suficiente.
-- Observar que tendemos a elegir relaciones en las que acabamos cuidando más de lo que somos cuidados.
+- Observar que tendemos a elegir relaciones en las que acabamos [cuidando más de lo que somos cuidados](/blog/dependencia-emocional-por-que-cuesta-salir-de-ciertas-relaciones).
 - Entender que determinadas críticas nos afectan especialmente porque conectan con experiencias del pasado.
 
 Cuando empezamos a reconocer estos patrones, dejamos de pensar que todo ocurre por casualidad.

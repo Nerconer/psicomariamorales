@@ -21,11 +21,11 @@ No se trata de borrar recuerdos ni de olvidar lo vivido. Se trata de que, al rec
 
 ## El trauma no siempre es un gran acontecimiento
 
-Solemos asociar la palabra "trauma" a sucesos extremos. Pero existe también el llamado **trauma complejo**: el que se construye a lo largo de años de experiencias repetidas de abandono, críticas constantes, relaciones inseguras o estrés mantenido.
+Solemos asociar la palabra "trauma" a sucesos extremos. Pero existe también el llamado **[trauma complejo](/blog/jovenes-el-dolor-que-nadie-ve)**: el que se construye a lo largo de años de experiencias repetidas de abandono, críticas constantes, relaciones inseguras o estrés mantenido.
 
 Algunas señales de que puede haber experiencias sin procesar:
 
-- Repites patrones de relación que no comprendes.
+- [Repites patrones de relación que no comprendes](/blog/estilos-de-apego-relaciones).
 - Vives en estado de alerta, como si nunca pudieras relajarte.
 - Te cuesta confiar en los demás o sentirte seguro/a en las relaciones.
 - Reaccionas de forma muy intensa ante situaciones aparentemente pequeñas.

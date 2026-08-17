@@ -31,7 +31,7 @@ La Organización Mundial de la Salud lo reconoce como un fenómeno ocupacional c
 
 El burnout no se soluciona únicamente con unas vacaciones. Cuando el sistema de estrés lleva demasiado tiempo activado, el cuerpo y la mente necesitan algo más que unos días de desconexión: necesitan comprender qué ha llevado a esa situación y qué cambios (internos y externos) hacen falta para que no se repita.
 
-Detrás del burnout suele haber también patrones personales que merecen atención: autoexigencia elevada, dificultad para poner límites, perfeccionismo o la tendencia a anteponer siempre las necesidades de los demás.
+Detrás del burnout suele haber también patrones personales que merecen atención: autoexigencia elevada, [dificultad para poner límites](/blog/como-poner-limites-sin-sentir-culpa), perfeccionismo o la tendencia a anteponer siempre las necesidades de los demás.
 
 ## Cómo ayuda la terapia
 
@@ -45,4 +45,4 @@ En un proceso terapéutico trabajaremos en varios niveles:
 
 > Recuperarse del burnout no es volver a ser quien eras antes: es aprender a vivir y trabajar de una forma que no te haga enfermar.
 
-Si sientes que el trabajo te está pasando factura, no esperes a llegar al límite. Puedo acompañarte en este proceso, de forma presencial en Barcelona o mediante terapia online.
+Si sientes que el trabajo te está pasando factura, no esperes a llegar al límite. Puedo acompañarte en este proceso, de forma presencial en Barcelona o mediante [terapia online](/terapia-psicologica).

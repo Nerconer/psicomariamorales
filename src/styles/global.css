@@ -54,6 +54,12 @@ html {
 
 body {
   @apply bg-cream pb-20 font-sans text-ink antialiased md:pb-0;
+  /* Red de seguridad contra el scroll horizontal. Varias secciones apoyan su
+     diseno en elementos decorativos que sobresalen (tarjetas rotadas con
+     -inset, manchas, cintas) y en pantallas estrechas empujaban el ancho del
+     documento. Es `clip` y no `hidden` a proposito: `hidden` convertiria el
+     body en contenedor de scroll y romperia la cabecera sticky. */
+  overflow-x: clip;
 }
 
 .grid > *,
@@ -166,6 +172,17 @@ body {
     /* Variante con desplazamiento lateral suave para columnas */
     .reveal-left { animation-name: reveal-left; }
     .reveal-right { animation-name: reveal-right; }
+
+    /* En pantallas estrechas no hay margen lateral que absorba el
+       desplazamiento: el translateX empuja la columna fuera del viewport y
+       aparece scroll horizontal con una banda blanca a la derecha. Ahi se usa
+       la entrada vertical, que no desborda y a ese tamano se percibe igual. */
+    @media (max-width: 768px) {
+      .reveal-left,
+      .reveal-right {
+        animation-name: reveal-in;
+      }
+    }
   }
 
   @keyframes reveal-in {

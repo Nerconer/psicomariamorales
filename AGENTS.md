@@ -22,9 +22,14 @@ Todo el texto que redactes debe leerse como escrito por una persona. Aplica a la
 entradas del blog, a los mensajes de commit, a las descripciones de pull request y a
 los comentarios del código.
 
-**Excepción:** el texto que ya ha escrito Maria, por ejemplo el cuerpo de una issue, se
-reproduce tal cual. Estas normas son para lo que escribes tú, no para corregirle el
-estilo a ella.
+**Sobre el texto de Maria.** Cuando una entrada sale del cuerpo de una issue, sus
+palabras y su argumento no se tocan. No se reescriben sus frases, no se reordenan sus
+ideas y no se "mejora" su voz. La puntuación sí se normaliza según estas normas, porque
+cambiar un punto y coma por un punto no altera ni una palabra de lo que ella dice.
+
+Y al pasar su texto a Markdown, respeta cómo corta ella las frases. Unir dos frases
+suyas con dos puntos, o convertirlas en un "no se trata de X, sino de Y", mete justo el
+tic que estas normas quieren evitar, y encima lo mete en boca de otra persona.
 
 ### Puntuación
 

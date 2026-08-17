@@ -16,7 +16,10 @@ const isActive = (href: string) =>
   href === '/' ? current === '/' : current.startsWith(href);
 ---
 
-<header class="sticky top-0 z-50 border-b border-forest-soft/20 bg-cream/90 backdrop-blur-md">
+<!-- Fondo opaco y sin backdrop-blur por debajo de xl: en Android, un elemento
+     sticky con backdrop-filter deja de repintar la banda que tiene debajo cuando
+     la barra de URL redimensiona el viewport. En escritorio se conserva. -->
+<header class="sticky top-0 z-50 border-b border-forest-soft/20 bg-cream xl:bg-cream/90 xl:backdrop-blur-md">
   <div class="mx-auto flex w-[min(1200px,94%)] items-center justify-between gap-4 py-3">
     <a href="/" class="flex items-center gap-3" aria-label="Inicio — PsicoMariaMorales">
       <span

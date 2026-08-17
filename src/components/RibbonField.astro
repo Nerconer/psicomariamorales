@@ -59,7 +59,7 @@ const secondary = Array.from({ length: 14 }, (_, i) => {
   .ribbon-layer-b { transform-origin: 58% 44%; animation: breathe-reverse 19s ease-in-out -6s infinite alternate; }
   @keyframes breathe { to { transform: translate3d(1.4%, -1.2%, 0) rotate(0.8deg) scaleY(1.035); } }
   @keyframes breathe-reverse { to { transform: translate3d(-1%, 1.4%, 0) rotate(-0.65deg) scaleY(0.97); } }
-  @media (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce), (max-width: 768px) {
     .ribbon-layer { animation: none !important; }
   }
 </style>

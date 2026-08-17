@@ -243,7 +243,7 @@ const faqSchema = {
             sizes="(max-width: 1024px) 92vw, 520px"
           />
         </div>
-        <div class="hero-note absolute bottom-0 left-0 z-20 rounded-full border border-forest-soft/50 bg-white/90 px-5 py-3 text-sm font-semibold text-forest-dark shadow-soft backdrop-blur-md">
+        <div class="hero-note absolute bottom-0 left-0 z-20 rounded-full border border-forest-soft/50 bg-white px-5 py-3 text-sm font-semibold text-forest-dark shadow-soft xl:bg-white/90 xl:backdrop-blur-md">
           Presencial <span class="mx-2 text-sun">•</span> Online
         </div>
         <div class="hero-spark absolute right-3 top-0 z-20 h-16 w-16 rounded-full bg-sun shadow-soft" aria-hidden="true"></div>
@@ -539,19 +539,37 @@ const faqSchema = {
     mask-image: linear-gradient(115deg, #000, transparent 58%);
   }
 
+  /* Halo blanco que separa el texto del fondo.
+     Antes era un rectangulo blanco con filter: blur(18px). El filtro obligaba a
+     Chrome a promocionarlo a capa compositada, y al rehacer la composicion (en
+     Android la barra de URL redimensiona el viewport al hacer scroll) se perdia
+     el orden de pintado del z-index negativo y el halo acababa tapando el
+     titular. Un degradado radial da el mismo difuminado sin crear capa, y el
+     apilado pasa a ser explicito en lugar de depender de un z-index negativo. */
   .hero-copy::before {
     content: '';
     position: absolute;
     inset: -2rem -1.5rem;
-    z-index: -1;
+    z-index: 0;
     border-radius: 38% 62% 55% 45% / 58% 43% 57% 42%;
-    background: rgb(255 255 255 / 0.82);
-    filter: blur(18px);
+    background: radial-gradient(
+      closest-side,
+      rgb(255 255 255 / 0.86),
+      rgb(255 255 255 / 0.74) 58%,
+      rgb(255 255 255 / 0) 100%
+    );
   }
 
+  .hero-copy > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Sin will-change: mantenia tres capas compositadas vivas de forma permanente
+     y una de las propiedades declaradas (border-radius) ni siquiera se puede
+     componer. El navegador ya promociona lo que necesita mientras anima. */
   .hero-blob {
     filter: blur(1px);
-    will-change: transform, border-radius;
   }
 
   .hero-blob-a {
@@ -623,7 +641,10 @@ const faqSchema = {
     .hero-visual { margin-top: 1rem; }
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  /* En movil las animaciones decorativas se paran. No aportan nada a esa
+     escala, mantienen capas compositadas en movimiento continuo y son parte de
+     la presion de repintado que provoca el fallo de Android. */
+  @media (prefers-reduced-motion: reduce), (max-width: 768px) {
     .hero-blob, .hero-image-wrap, .hero-orbit, .hero-note, .hero-spark { animation: none !important; }
   }
 </style>

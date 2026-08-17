@@ -52,7 +52,7 @@ const articleSchema = {
         <h1 class="font-display text-4xl font-semibold leading-tight text-forest-dark md:text-5xl">
           {post.data.title}
         </h1>
-        <p class="mt-5 text-sm uppercase tracking-wider text-forest">
+        <p class="mt-5 text-sm uppercase tracking-wider text-ink-soft">
           {formatDate(post.data.pubDate)} · Maria Morales
         </p>
       </div>
@@ -63,7 +63,9 @@ const articleSchema = {
         <Content />
       </div>
       <div class="mt-12 border-t border-forest-soft/20 pt-8">
-        <a href="/blog" class="font-semibold text-forest hover:text-forest-dark">← Volver al blog</a>
+        <a href="/blog" class="group font-semibold text-forest hover:text-forest-dark">
+          <span class="text-sun transition-transform group-hover:-translate-x-0.5 inline-block">←</span> Volver al blog
+        </a>
       </div>
     </div>
   </article>

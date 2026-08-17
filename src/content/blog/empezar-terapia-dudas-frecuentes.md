@@ -1,8 +1,8 @@
 ---
-title: '¿Estás pensando en empezar terapia? Resolvemos las dudas más frecuentes'
-description: 'Cómo es la primera sesión, cuánto dura un proceso, cómo elegir psicólogo y qué hay de cierto en los mitos más habituales sobre ir a terapia.'
+title: "¿Estás pensando en empezar terapia? Resolvemos las dudas más frecuentes"
+description: "Cómo es la primera sesión, cuánto dura un proceso, cómo elegir psicólogo y qué hay de cierto en los mitos más habituales sobre ir a terapia."
 pubDate: 2026-08-14
-tag: 'Empezar terapia'
+tag: "Empezar terapia"
 ---
 
 Tomar la decisión de acudir al psicólogo no siempre es fácil.
@@ -19,7 +19,7 @@ Durante esa sesión hablaremos sobre el motivo por el que has decidido pedir ayu
 
 No es necesario saber explicar perfectamente lo que te ocurre. Muchas personas llegan diciendo simplemente:
 
-> "No sé qué me pasa, pero sé que no estoy bien."
+> No sé qué me pasa, pero sé que no estoy bien.
 
 Y eso es suficiente para empezar.
 
@@ -31,7 +31,7 @@ Algunas personas acuden para trabajar una dificultad concreta durante unos meses
 
 La duración no depende únicamente del problema, sino también del ritmo de cada persona y del trabajo que se realiza entre sesiones.
 
-El objetivo de la terapia no es generar dependencia, sino ayudarte a desarrollar recursos para que puedas afrontar tu vida con mayor autonomía.
+**El objetivo de la terapia no es generar dependencia, sino ayudarte a desarrollar recursos para que puedas afrontar tu vida con mayor autonomía.**
 
 ## ¿Cómo elegir un psicólogo en Barcelona?
 

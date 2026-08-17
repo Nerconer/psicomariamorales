@@ -142,7 +142,7 @@ body {
 
 /* Tipografía de artículos y páginas legales, en tonos de marca */
 .prose-brand {
-  @apply prose prose-lg max-w-none text-ink prose-headings:font-display prose-headings:font-bold prose-headings:text-forest-dark prose-a:text-forest-dark prose-strong:text-ink prose-blockquote:border-forest-soft prose-blockquote:font-semibold prose-blockquote:text-forest-dark prose-li:marker:text-forest-soft;
+  @apply prose prose-lg max-w-none text-ink prose-headings:font-display prose-headings:font-bold prose-headings:text-forest-dark prose-a:text-forest-dark prose-strong:text-ink prose-blockquote:border-sun prose-blockquote:font-semibold prose-blockquote:text-forest-dark prose-li:marker:text-forest-soft;
 }
 .prose-brand p { hyphens: auto; }
 

@@ -48,7 +48,7 @@ No es necesario esperar a que la ansiedad sea insoportable. Si notas que estas s
 1. **Ponle nombre**: reconocer que lo que sientes es ansiedad ya reduce parte de su intensidad.
 2. **Cuida la base**: sueño, alimentación y movimiento influyen directamente en tu sistema nervioso.
 3. **Respira de forma consciente**: alargar la exhalación activa la respuesta de relajación del cuerpo.
-4. **No luches contra los pensamientos**: intentar suprimirlos suele hacerlos más presentes; obsérvalos con distancia.
+4. **No luches contra los pensamientos**: intentar suprimirlos suele hacerlos más presentes. Obsérvalos con distancia.
 5. **[Pide ayuda profesional](/blog/senales-para-ir-al-psicologo)**: un proceso terapéutico te dará herramientas adaptadas a tu caso concreto.
 
 Si te has reconocido en estas líneas y sientes que ha llegado tu momento, estaré encantada de acompañarte, de forma presencial en Barcelona o mediante [terapia online](/terapia-psicologica).

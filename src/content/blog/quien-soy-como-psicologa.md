@@ -17,7 +17,7 @@ Pero para mí, la terapia no consiste únicamente en aplicar técnicas.
 
 Puedes esperar un espacio seguro, cercano y sin juicios, en el que podamos entender qué te está pasando y, sobre todo, **por qué** te está pasando.
 
-No quiero que la terapia se limite a hablar de tus problemas. Me interesa que podamos comprender cómo has aprendido a relacionarte contigo mismo, con los demás y con el mundo; qué experiencias han podido influir en ello y qué haces actualmente para protegerte, incluso cuando esas estrategias ya no te ayudan.
+No quiero que la terapia se limite a hablar de tus problemas. Me interesa que podamos comprender cómo has aprendido a relacionarte contigo mismo, con los demás y con el mundo, qué experiencias han podido influir en ello y qué haces actualmente para protegerte, incluso cuando esas estrategias ya no te ayudan.
 
 También prestaremos atención a algo que a veces dejamos de lado: el cuerpo.
 

@@ -6,7 +6,7 @@ import Wave from '../components/Wave.astro';
 import RibbonField from '../components/RibbonField.astro';
 import TestOrientacion from '../components/TestOrientacion.astro';
 import { SITE } from '../consts';
-import hero from '../assets/img/hero.jpg';
+import mariaHero from '../assets/img/maria-hero.jpg';
 import consulta from '../assets/img/consulta.webp';
 
 const ayudas = [
@@ -235,11 +235,12 @@ const faqSchema = {
         <div class="hero-orbit absolute inset-0" aria-hidden="true"></div>
         <div class="hero-image-wrap relative z-10 overflow-hidden shadow-forest">
           <Image
-            src={hero}
-            alt="Sesión de terapia psicológica: la terapeuta toma notas mientras escucha"
+            src={mariaHero}
+            alt="Maria Morales, psicóloga general sanitaria, en su consulta de Barcelona"
             class="h-[350px] w-full object-cover md:h-[470px]"
             loading="eager"
-            widths={[480, 800, 920]}
+            fetchpriority="high"
+            widths={[400, 560, 760, 973]}
             sizes="(max-width: 1024px) 92vw, 520px"
           />
         </div>

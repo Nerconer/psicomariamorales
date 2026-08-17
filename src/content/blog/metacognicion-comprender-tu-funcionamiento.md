@@ -68,7 +68,9 @@ Cuando empezamos a reconocer estos patrones, dejamos de pensar que todo ocurre p
 
 ## La metacognición no consiste en juzgarse
 
-Observarse no significa criticarse. No se trata de pensar *"siempre lo hago mal"*, sino de preguntarse:
+Observarse no significa criticarse.
+
+No se trata de pensar *"siempre lo hago mal"*. Se trata de preguntarse:
 
 - "¿Qué estaba necesitando en ese momento?"
 - "¿Qué intentaba proteger mi mente con esta reacción?"

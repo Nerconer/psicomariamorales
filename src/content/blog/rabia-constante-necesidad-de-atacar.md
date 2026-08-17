@@ -54,7 +54,9 @@ El problema es que esa protección suele deteriorar precisamente aquello que má
 
 Cuando la intensidad emocional disminuye suele aparecer el arrepentimiento:
 
-> "No quería decir eso." · "He reaccionado exageradamente." · "Siempre hago lo mismo."
+- "No quería decir eso."
+- "He reaccionado exageradamente."
+- "Siempre hago lo mismo."
 
 Entonces llega la culpa y la promesa de que la próxima vez será diferente. Pero, cuando vuelve a activarse la sensación de amenaza, el patrón se repite.
 

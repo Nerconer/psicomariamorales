@@ -46,7 +46,7 @@ Uno de los duelos más profundos es aceptar que aquello que necesitábamos duran
 
 Hay personas que pasan años esperando que sus padres cambien. Que pidan perdón. Que reconozcan el daño. Que, por fin, les den el amor que siempre buscaron.
 
-En ocasiones, ese momento nunca llega. Y aceptar esa realidad implica hacer un duelo: no solo por lo que ocurrió, sino también por lo que nunca ocurrió.
+En ocasiones, ese momento nunca llega. Y aceptar esa realidad implica hacer un duelo. No solo por lo que ocurrió, sino también por lo que nunca ocurrió.
 
 ## Cuando el duelo queda bloqueado
 

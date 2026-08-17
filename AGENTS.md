@@ -16,6 +16,17 @@
 4. **Ejecuta el plan.** Solo entonces se implementa, y cualquier desviación relevante
    respecto al plan se comunica.
 
+## Al terminar una tarea
+
+- **Nunca cierres la issue de GitHub** ni la marques como completada, aunque el trabajo
+  esté terminado y verificado por tu parte. El cierre lo decide siempre una persona.
+- En su lugar, **añade a la issue la etiqueta `verificar`**, que es la señal de que el
+  trabajo está listo para revisión.
+- Por el mismo motivo, **no uses palabras clave de cierre automático** en los mensajes de
+  commit ni en las descripciones de los pull requests: nada de `Closes #N`, `Fixes #N`,
+  `Resolves #N` ni sus variantes, porque GitHub cierra la issue al mergear. Referencia la
+  issue con `Refs #N`.
+
 ## Git commits
 
 - Use Conventional Commits for every commit unless the user explicitly requests another format.

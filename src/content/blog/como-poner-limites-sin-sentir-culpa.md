@@ -80,7 +80,7 @@ No hace falta empezar por la conversación más difícil. Algunas ideas que suel
 
 1. **Empieza por lo pequeño.** Practica en situaciones de bajo riesgo antes de abordar los vínculos más complicados.
 2. **Habla desde ti.** "Necesito descansar este fin de semana" genera menos defensa que "nunca tienes en cuenta lo cansado que estoy".
-3. **No te justifiques de más.** Una explicación breve suele bastar; alargarla suele ser una forma de pedir permiso.
+3. **No te justifiques de más.** Una explicación breve suele bastar. Alargarla suele ser una forma de pedir permiso.
 4. **Anticipa la incomodidad.** Es probable que aparezca culpa. Que aparezca no significa que debas dar marcha atrás.
 5. **Sostén el límite con calma.** Repetirlo sin entrar en discusión suele ser más eficaz que defenderlo con argumentos.
 

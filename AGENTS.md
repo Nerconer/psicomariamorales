@@ -16,6 +16,41 @@
 4. **Ejecuta el plan.** Solo entonces se implementa, y cualquier desviación relevante
    respecto al plan se comunica.
 
+## Cómo se escribe
+
+Todo el texto que redactes debe leerse como escrito por una persona. Aplica a las
+entradas del blog, a los mensajes de commit, a las descripciones de pull request y a
+los comentarios del código.
+
+**Excepción:** el texto que ya ha escrito Maria, por ejemplo el cuerpo de una issue, se
+reproduce tal cual. Estas normas son para lo que escribes tú, no para corregirle el
+estilo a ella.
+
+### Puntuación
+
+- Nada de guion largo (—) ni guion medio (–) como inciso o pausa dramática. En su lugar
+  usa coma, paréntesis, dos puntos o punto y aparte.
+- Nada de punto y coma en prosa. Casi siempre esconde dos frases. Sepáralas con un punto.
+- Nada de emoji en titulares ni de flechas decorativas dentro del texto.
+
+### Muletillas que delatan
+
+- "No se trata de X, sino de Y" y demás contrastes en cadena.
+- Enumeraciones de tres elementos por sistema, todas del mismo largo y con el mismo ritmo.
+- Aperturas de relleno: "Es importante destacar que", "Cabe señalar", "En un mundo donde",
+  "Ya sea que".
+- Cierres de resumen ("En conclusión", "En resumen") cuando el texto ya ha dicho lo que
+  tenía que decir.
+- Negrita repartida por todo el párrafo para dar énfasis. Resérvala para lo que de verdad
+  quieres que el lector se lleve.
+- Preguntas retóricas encadenadas, cada una seguida de su propia respuesta.
+
+### La prueba
+
+Léelo en voz alta. Si suena a folleto corporativo o a informe, reescríbelo. Cuando
+escribe una persona las frases tienen longitudes desiguales, alguna empieza por una
+conjunción y no todos los párrafos rematan con una conclusión.
+
 ## Al terminar una tarea
 
 - **Nunca cierres la issue de GitHub** ni la marques como completada, aunque el trabajo

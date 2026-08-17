@@ -2,7 +2,7 @@
 title: 'Cómo poner límites sin sentir culpa'
 description: "Aprender a poner límites es una de las habilidades más importantes para cuidar de nuestra salud mental y construir relaciones sanas. Descubre por qué cuesta tanto decir 'no' y cómo la terapia puede ayudarte."
 pubDate: 2026-07-03
-tag: 'Relaciones'
+tag: 'Autoestima y emociones'
 ---
 
 ¿Te cuesta decir "no"? ¿Aceptas compromisos que realmente no quieres? ¿Sientes que decepcionarás a los demás si priorizas tus propias necesidades?

@@ -2,7 +2,7 @@
 title: 'Burnout: cuando el trabajo agota más de lo que llena'
 description: 'El síndrome de desgaste profesional va mucho más allá del cansancio. Aprende a reconocer sus señales y descubre cómo la terapia puede ayudarte a recuperarte.'
 pubDate: 2026-05-30
-tag: 'Burnout'
+tag: 'Ansiedad y estrés'
 ---
 
 Llega el domingo por la tarde y notas cómo se te encoge el estómago. Te levantas cansado aunque hayas dormido. Aquello que antes te motivaba ahora te resulta indiferente, y tienes la sensación de funcionar en "piloto automático". Si te reconoces en esta descripción, es posible que estés atravesando un proceso de burnout.

@@ -2,7 +2,7 @@
 title: 'Dependencia emocional: por qué cuesta salir de ciertas relaciones'
 description: 'La dependencia emocional va más allá del amor. Descubre por qué cuesta tanto terminar algunas relaciones, qué hay detrás de este patrón y cómo la terapia psicológica puede ayudarte.'
 pubDate: 2026-07-22
-tag: 'Relaciones'
+tag: 'Relaciones y pareja'
 ---
 
 > "Si sé que esta relación me hace daño, ¿por qué no puedo irme?"

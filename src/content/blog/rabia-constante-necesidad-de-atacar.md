@@ -2,7 +2,7 @@
 title: 'Estoy siempre a la defensiva: cuando la rabia se convierte en la forma habitual de relacionarnos'
 description: 'Sentir rabia constantemente o reaccionar atacando no significa que seas una mala persona. Descubre qué hay detrás de la ira, por qué ocurre y cómo la terapia psicológica puede ayudarte.'
 pubDate: 2026-07-10
-tag: 'Regulación emocional'
+tag: 'Autoestima y emociones'
 ---
 
 - "Salto por cualquier cosa."

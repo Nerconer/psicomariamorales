@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { categoryBadgeClass } from '../lib/categories';
 
 interface Props {
   posts: CollectionEntry<'blog'>[];
@@ -24,7 +25,9 @@ const formatDate = (d: Date) =>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <a href={`/blog/${post.id}`} class="card group flex flex-col">
-              <span class="mb-4 inline-block self-start rounded-full border border-forest-soft bg-forest-light px-4 py-1 text-sm font-semibold uppercase tracking-wider text-forest">
+              <span
+                class={`mb-4 inline-block self-start rounded-full border px-4 py-1 text-sm font-semibold uppercase tracking-wider ${categoryBadgeClass(post.data.tag)}`}
+              >
                 {post.data.tag}
               </span>
               <h3 class="font-display text-xl font-semibold leading-snug text-forest-dark group-hover:text-forest">

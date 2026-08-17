@@ -11,6 +11,24 @@
   --color-lilac-light: #f3eef9;
   --color-cream: #ffffff;
   --color-mist: #f1f5f0;
+
+  /* Color propio de cada categoría del blog. Pasteles muy desaturados; el par
+     fondo/texto de cada uno supera AA (contraste mínimo medido: 5,75:1). */
+  --color-badge-mint: #e8f2ed;
+  --color-badge-mint-ink: #1b4332;
+  --color-badge-mint-line: #a8c9b7;
+  --color-badge-coral: #fbe9e2;
+  --color-badge-coral-ink: #8a4a33;
+  --color-badge-coral-line: #eec3b2;
+  --color-badge-lilac: #f0eaf8;
+  --color-badge-lilac-ink: #56407e;
+  --color-badge-lilac-line: #cbb8e6;
+  --color-badge-sand: #f5efe3;
+  --color-badge-sand-ink: #6b5730;
+  --color-badge-sand-line: #ddc9a6;
+  --color-badge-sky: #e4edf3;
+  --color-badge-sky-ink: #2b4a5e;
+  --color-badge-sky-line: #a9c6d8;
   --color-ink: #17211c;
   --color-ink-soft: #4c5b53;
   --color-sun: #f2a38a;

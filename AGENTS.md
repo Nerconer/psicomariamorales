@@ -67,6 +67,11 @@ conjunción y no todos los párrafos rematan con una conclusión.
   `Resolves #N` ni sus variantes, porque GitHub cierra la issue al mergear. Referencia la
   issue con `Refs #N`.
 
+## Ramas de trabajo
+
+- Por defecto se trabaja directamente sobre la rama `main`. No crees una rama nueva
+  para la tarea salvo que la persona lo pida explícitamente.
+
 ## Git commits
 
 - Use Conventional Commits for every commit unless the user explicitly requests another format.

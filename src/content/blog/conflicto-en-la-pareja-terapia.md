@@ -1,8 +1,8 @@
 ---
-title: 'Cuando el conflicto entra en la pareja: por qué discutimos como discutimos y cómo la terapia puede ayudar'
-description: 'El conflicto no es señal de que una relación vaya mal: lo determinante es cómo lo gestionamos. Repasamos los patrones que más se repiten y qué puede aportar la terapia de pareja.'
+title: "Cuando el conflicto entra en la pareja: por qué discutimos como discutimos y cómo la terapia puede ayudar"
+description: "El conflicto no es señal de que una relación vaya mal: lo determinante es cómo lo gestionamos. Repasamos los patrones que más se repiten y qué puede aportar la terapia de pareja."
 pubDate: 2026-06-17
-tag: 'Relaciones y pareja'
+tag: "Relaciones y pareja"
 ---
 
 Todas las parejas discuten. De hecho, el conflicto no es un indicador de que una relación vaya mal. Lo que realmente marca la diferencia es **cómo** gestionamos ese conflicto.
@@ -51,7 +51,7 @@ Desde fuera puede parecer frialdad, pero en realidad muchas veces es una respues
 
 En algunas discusiones aparecen una y otra vez conflictos que ya parecían cerrados.
 
-> "No solo me molesta esto, también aquello que pasó hace dos años..."
+> No solo me molesta esto, también aquello que pasó hace dos años...
 
 Esto suele indicar que existen heridas que nunca llegaron a repararse realmente.
 

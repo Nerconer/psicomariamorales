@@ -1,17 +1,17 @@
 ---
-title: 'Dependencia emocional: por qué cuesta salir de ciertas relaciones'
-description: 'La dependencia emocional va más allá del amor. Descubre por qué cuesta tanto terminar algunas relaciones, qué hay detrás de este patrón y cómo la terapia psicológica puede ayudarte.'
+title: "Dependencia emocional: por qué cuesta salir de ciertas relaciones"
+description: "La dependencia emocional va más allá del amor. Descubre por qué cuesta tanto terminar algunas relaciones, qué hay detrás de este patrón y cómo la terapia psicológica puede ayudarte."
 pubDate: 2026-07-22
-tag: 'Relaciones y pareja'
+tag: "Relaciones y pareja"
 ---
 
-> "Si sé que esta relación me hace daño, ¿por qué no puedo irme?"
+> Si sé que esta relación me hace daño, ¿por qué no puedo irme?
 
 Esta es una de las preguntas más frecuentes y dolorosas que escucho en consulta.
 
 Muchas personas se sienten culpables porque no entienden por qué siguen en una relación donde sufren, donde no se sienten valoradas o donde sus necesidades nunca parecen ser una prioridad.
 
-Desde fuera puede parecer sencillo: *"si no eres feliz, déjalo"*. Pero cuando existe dependencia emocional, la realidad suele ser mucho más compleja.
+Desde fuera puede parecer sencillo: _"si no eres feliz, déjalo"_. Pero cuando existe dependencia emocional, la realidad suele ser mucho más compleja.
 
 ## ¿Qué es la dependencia emocional?
 

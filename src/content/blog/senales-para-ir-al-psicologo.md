@@ -1,13 +1,13 @@
 ---
-title: '¿Cómo saber si necesito ir al psicólogo? 12 señales de que puede ser el momento de pedir ayuda'
-description: 'No hace falta tocar fondo para empezar terapia. Estas son las doce señales que, como psicóloga, veo con más frecuencia en quienes llevan tiempo dudando si pedir ayuda.'
+title: "¿Cómo saber si necesito ir al psicólogo? 12 señales de que puede ser el momento de pedir ayuda"
+description: "No hace falta tocar fondo para empezar terapia. Estas son las doce señales que, como psicóloga, veo con más frecuencia en quienes llevan tiempo dudando si pedir ayuda."
 pubDate: 2026-07-15
-tag: 'Empezar terapia'
+tag: "Empezar terapia"
 ---
 
 Una de las preguntas que más escucho como psicóloga sanitaria es:
 
-> "¿Lo mío es suficiente como para ir al psicólogo?"
+> ¿Lo mío es suficiente como para ir al psicólogo?
 
 Muchas personas creen que solo se debe acudir a terapia cuando existe un problema muy grave o cuando ya no se puede más. Sin embargo, la realidad es muy diferente.
 
@@ -75,7 +75,7 @@ Estas conductas suelen aliviar momentáneamente el malestar, pero no resuelven e
 
 ## 9. Sientes que ya no eres la persona que eras
 
-Muchas personas describen esta sensación con frases como *"ya no me reconozco"*, *"he perdido la ilusión"* o *"siento que voy en piloto automático"*.
+Muchas personas describen esta sensación con frases como _"ya no me reconozco"_, _"he perdido la ilusión"_ o _"siento que voy en piloto automático"_.
 
 Estas experiencias no deben ignorarse. Son una invitación a detenernos y preguntarnos qué está ocurriendo.
 

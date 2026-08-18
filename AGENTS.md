@@ -16,6 +16,21 @@
 4. **Ejecuta el plan.** Solo entonces se implementa, y cualquier desviación relevante
    respecto al plan se comunica.
 
+## Qué busca quien entra en la web
+
+Menos es más. Quien llega no viene a leer, viene a comprobar en unos segundos que aquí
+se ofrece lo que necesita y a reservar. Cada párrafo de más retrasa ese momento, y el
+texto que nadie lee no sirve de nada por bien escrito que esté.
+
+- Antes de añadir texto nuevo, comprueba si eso ya está dicho en otro punto de la web.
+  Casi siempre lo está, y entonces el trabajo consiste en afinar lo que hay, no en sumar.
+- Si un texto largo merece existir, su sitio es el blog, no una página del camino hacia
+  la reserva.
+- En la home y en las páginas de servicio manda lo que ayuda a decidir: titulares que se
+  entienden de un vistazo, listas cortas y una ruta clara hasta el botón de reservar.
+- Puestos a elegir entre explicar mejor y explicar menos, explica menos y enlaza al
+  detalle.
+
 ## Cómo se escribe
 
 Todo el texto que redactes debe leerse como escrito por una persona. Aplica a las

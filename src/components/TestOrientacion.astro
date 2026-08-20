@@ -265,6 +265,9 @@ const modalidades = [
       const doctoralia = root.dataset.doctoralia || '#';
       const whatsapp = root.dataset.whatsapp || '#';
 
+      const track = (nombre: string, datos?: Record<string, string | number>) =>
+        document.dispatchEvent(new CustomEvent('psico:evento', { detail: { nombre, datos } }));
+
       const resultados = JSON.parse(
         root.querySelector('script[data-resultados]')?.textContent || '{}'
       );
@@ -330,11 +333,23 @@ const modalidades = [
           // Ambos destinos son externos; el estado no debe arrastrarse entre reintentos
           cta.target = '_blank';
           cta.rel = 'noopener';
+          // El destino cambia según el resultado, así que la etiqueta del evento
+          // también: así el clic cuenta como reserva o como WhatsApp, no como
+          // "botón del test".
+          cta.dataset.evento = esDuda ? 'whatsapp' : 'reservar-doctoralia';
+          cta.dataset.eventoUbicacion = 'test-resultado';
         }
         if (link) {
           link.href = r.href;
           link.textContent = esDuda ? 'O escríbeme un email' : 'Conocer más sobre este proceso';
+          link.dataset.evento = 'test-resultado-enlace';
+          link.dataset.eventoDestino = r.href;
         }
+        track('test-resultado', {
+          area: state.area,
+          tiempo: state.tiempo,
+          modalidad: state.modalidad,
+        });
         show('result');
       };
 
@@ -356,16 +371,19 @@ const modalidades = [
         }
         if (btn.dataset.area) {
           state.area = btn.dataset.area;
+          track('test-paso', { paso: 1, respuesta: state.area });
           show('1');
           return;
         }
         if (btn.dataset.tiempo) {
           state.tiempo = btn.dataset.tiempo;
+          track('test-paso', { paso: 2, respuesta: state.tiempo });
           show('2');
           return;
         }
         if (btn.dataset.modalidad) {
           state.modalidad = btn.dataset.modalidad;
+          track('test-paso', { paso: 3, respuesta: state.modalidad });
           buildResult();
           return;
         }

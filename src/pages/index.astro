@@ -221,8 +221,13 @@ const faqSchema = {
           que te ocurre y construir cambios reales.
         </p>
         <div class="mt-9 flex flex-wrap gap-4">
-          <a href={SITE.doctoralia} target="_blank" rel="noopener" class="btn-sun"
-            >Reserva tu primera sesión</a
+          <a
+            href={SITE.doctoralia}
+            target="_blank"
+            rel="noopener"
+            data-evento="reservar-doctoralia"
+            data-evento-ubicacion="hero"
+            class="btn-sun">Reserva tu primera sesión</a
           >
         </div>
         <a href="/sobre-mi" class="mt-5 inline-flex items-center gap-2 font-semibold text-forest-dark underline decoration-forest-soft underline-offset-4 hover:decoration-forest-dark">Conoce mi enfoque <span aria-hidden="true">→</span></a>
@@ -491,6 +496,8 @@ const faqSchema = {
           href={SITE.doctoralia}
           target="_blank"
           rel="noopener"
+          data-evento="opiniones-doctoralia"
+          data-evento-ubicacion="inicio"
           class="btn-outline"
           >Lee las opiniones verificadas en Doctoralia →</a
         >

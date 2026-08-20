@@ -28,9 +28,18 @@ const {
     <h2 class="font-editorial text-3xl font-semibold text-white md:text-4xl">{title}</h2>
     <p class="mx-auto mt-4 max-w-[60ch] text-white/90">{text}</p>
     <div class="mt-8 flex flex-wrap justify-center gap-4">
-      <a href={primaryHref} target="_blank" rel="noopener" class="btn-light">{primaryLabel}</a>
+      <a
+        href={primaryHref}
+        target="_blank"
+        rel="noopener"
+        data-evento="reservar-doctoralia"
+        data-evento-ubicacion="cta-final"
+        class="btn-light">{primaryLabel}</a
+      >
       <a
         href="/contacto"
+        data-evento="ir-a-contacto"
+        data-evento-ubicacion="cta-final"
         class="btn border border-white/70 text-white hover:bg-white/10 hover:-translate-y-0.5"
         >Contactar</a
       >

@@ -16,3 +16,10 @@ export const SITE = {
   schedule: 'De 9:00 a 19:00 h',
   linkedin: 'https://www.linkedin.com/in/maria-morales-herrer%C3%ADas-7213a0175/',
 };
+
+export const ANALYTICS = {
+  // Cuenta de Umami Cloud con la región europea contratada: las estadísticas se
+  // alojan en la UE, que es lo que dice la política de privacidad.
+  umamiSrc: 'https://cloud.umami.is/script.js',
+  umamiWebsiteId: 'da719459-4222-4708-998b-4ca98794f3d2',
+};

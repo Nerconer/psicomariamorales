@@ -1,0 +1,125 @@
+---
+// Umami Cloud. No instala cookies, no guarda identificadores del visitante y
+// las estadísticas son agregadas, así que no hace falta banner de
+// consentimiento (relevante en una web sanitaria).
+//
+// El tracker se carga desde este <script>, que Astro marca como ya ejecutado y
+// no vuelve a lanzar en cada transición de página, así que la carga y los
+// escuchadores se montan una sola vez. Las visitas de las navegaciones internas
+// las detecta el propio tracker, que se engancha a history.pushState.
+//
+// Los eventos con nombre se declaran con data-evento="nombre" y se envían desde
+// aquí, no con los atributos data-umami-event nativos: el tracker intercepta el
+// clic en los enlaces (preventDefault y luego location.href) y eso se lleva por
+// delante las transiciones de ClientRouter en los enlaces internos.
+---
+
+<script>
+  import { ANALYTICS } from '../consts';
+
+  type Datos = Record<string, string | number | boolean>;
+  type Umami = { track: (nombre: string, datos?: Datos) => void };
+
+  const umami = () => (window as unknown as { umami?: Umami }).umami;
+
+  // El tracker tarda unos milisegundos en estar disponible. Lo que ocurra antes
+  // se guarda aquí y se envía en cuanto carga, para no perder el primer clic.
+  const cola: Array<[string, Datos | undefined]> = [];
+
+  const track = (nombre: string, datos?: Datos) => {
+    const u = umami();
+    if (u) u.track(nombre, datos);
+    else cola.push([nombre, datos]);
+  };
+
+  const cargarTracker = () => {
+    if (document.querySelector('script[data-umami-tracker]')) return;
+    const s = document.createElement('script');
+    s.defer = true;
+    s.src = ANALYTICS.umamiSrc;
+    s.dataset.umamiTracker = '';
+    s.dataset.websiteId = ANALYTICS.umamiWebsiteId;
+    // Core Web Vitals medidos sobre visitantes reales.
+    s.dataset.performance = 'true';
+    s.addEventListener('load', () => {
+      for (const [nombre, datos] of cola.splice(0, cola.length)) track(nombre, datos);
+    });
+    document.head.appendChild(s);
+  };
+
+  // ── Clics ────────────────────────────────────────────────────────────────
+  // Primero los elementos con data-evento. Si no hay ninguno, queda el respaldo
+  // para teléfono, email y cualquier salida a otro dominio que se añada más
+  // adelante sin acordarse de etiquetarla.
+  const datosDe = (el: HTMLElement) => {
+    const datos: Datos = {};
+    for (const { name, value } of Array.from(el.attributes))
+      if (name.startsWith('data-evento-')) datos[name.slice(12)] = value;
+    return datos;
+  };
+
+  const initClics = () => {
+    document.addEventListener('click', (e) => {
+      const objetivo = e.target as HTMLElement | null;
+
+      const etiquetado = objetivo?.closest?.<HTMLElement>('[data-evento]');
+      if (etiquetado) {
+        track(etiquetado.dataset.evento || 'sin-nombre', datosDe(etiquetado));
+        return;
+      }
+
+      const enlace = objetivo?.closest?.('a');
+      if (!enlace) return;
+      const href = enlace.getAttribute('href') || '';
+      if (href.startsWith('tel:')) track('telefono', { ubicacion: 'sin-etiquetar' });
+      else if (href.startsWith('mailto:')) track('email', { ubicacion: 'sin-etiquetar' });
+      else if (enlace.host && enlace.host !== window.location.host)
+        track('enlace-externo', { destino: enlace.host, url: enlace.href });
+    });
+
+    // El menú móvil y el test de orientación avisan por aquí: así no dependen de
+    // que el tracker ya esté cargado.
+    document.addEventListener('psico:evento', (e) => {
+      const detalle = (e as CustomEvent<{ nombre?: string; datos?: Datos }>).detail;
+      if (detalle?.nombre) track(detalle.nombre, detalle.datos);
+    });
+  };
+
+  // ── Profundidad de lectura en los artículos ──────────────────────────────
+  const HITOS = [25, 50, 75, 100];
+  let lectura: AbortController | null = null;
+
+  const initLectura = () => {
+    lectura?.abort();
+    lectura = null;
+
+    const articulo = document.querySelector<HTMLElement>('[data-articulo]');
+    if (!articulo) return;
+
+    const slug = articulo.dataset.articulo || window.location.pathname;
+    const ac = new AbortController();
+    lectura = ac;
+    let siguiente = 0;
+
+    const medir = () => {
+      const caja = articulo.getBoundingClientRect();
+      if (caja.height <= 0) return;
+      const pct = Math.max(0, Math.min(100, ((window.innerHeight - caja.top) / caja.height) * 100));
+      while (siguiente < HITOS.length && pct >= HITOS[siguiente]) {
+        track('lectura-articulo', { articulo: slug, profundidad: HITOS[siguiente] });
+        siguiente++;
+      }
+      if (siguiente >= HITOS.length) ac.abort();
+    };
+
+    window.addEventListener('scroll', medir, { passive: true, signal: ac.signal });
+    window.addEventListener('resize', medir, { passive: true, signal: ac.signal });
+    // Un artículo corto puede caber entero en pantalla desde el principio.
+    requestAnimationFrame(medir);
+  };
+
+  cargarTracker();
+  initClics();
+  // astro:page-load dispara también en la carga inicial.
+  document.addEventListener('astro:page-load', initLectura);
+</script>

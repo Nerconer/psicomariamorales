@@ -70,6 +70,9 @@ const tarifas = [
                 href={SITE.doctoralia}
                 target="_blank"
                 rel="noopener"
+                data-evento="reservar-doctoralia"
+                data-evento-ubicacion="tarifas-tarjeta"
+                data-evento-tarifa={t.title}
                 class:list={['mt-6 justify-center', t.featured ? 'btn-light' : 'btn-outline']}
               >
                 Reservar cita
@@ -101,6 +104,8 @@ const tarifas = [
           href={SITE.doctoralia}
           target="_blank"
           rel="noopener"
+          data-evento="reservar-doctoralia"
+          data-evento-ubicacion="tarifas-nota"
           class="font-semibold text-forest underline decoration-forest-soft underline-offset-4"
           >Doctoralia</a
         >, donde puedes consultar la disponibilidad actualizada.

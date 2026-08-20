@@ -27,7 +27,12 @@ const formatDate = (d: Date) =>
     <div class="mx-auto grid w-[min(1120px,92%)] gap-6 md:grid-cols-2 lg:grid-cols-3">
       {
         posts.map((post) => (
-          <a href={`/blog/${post.id}`} class="card group flex flex-col">
+          <a
+            href={`/blog/${post.id}`}
+            data-evento="post-listado"
+            data-evento-post={post.id}
+            class="card group flex flex-col"
+          >
             <span
               class={`mb-4 inline-block self-start rounded-full border px-4 py-1 text-sm font-semibold uppercase tracking-wider ${categoryBadgeClass(post.data.tag)}`}
             >

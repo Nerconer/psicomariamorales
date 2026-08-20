@@ -26,7 +26,9 @@ import { SITE } from '../consts';
             data-evento-ubicacion="aviso-legal">{SITE.licenseNumber}</a
           > (Col·legi Oficial de Psicologia de Catalunya)
         </li>
-        <li><strong>NIF:</strong> [NIF]</li>
+        {/* Pendiente: el art. 10.1.e de la LSSI exige publicar el NIF. Se quita el
+            marcador para no dejarlo a la vista, y se repone la línea en cuanto
+            se tenga el dato. */}
         <li><strong>Domicilio:</strong> {SITE.address}</li>
         <li><strong>Email de contacto:</strong> {SITE.email}</li>
       </ul>

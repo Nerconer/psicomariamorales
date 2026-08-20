@@ -16,7 +16,16 @@ import { SITE } from '../consts';
       <ul>
         <li><strong>Titular:</strong> Maria Morales Herrerías</li>
         <li><strong>Actividad:</strong> Psicóloga General Sanitaria</li>
-        <li><strong>N.º de colegiada:</strong> [NÚMERO DE COLEGIADA] (Col·legi Oficial de Psicologia de Catalunya)</li>
+        <li>
+          <strong>N.º de colegiada:</strong>{' '}
+          <a
+            href={SITE.copc}
+            target="_blank"
+            rel="noopener"
+            data-evento="colegiada-copc"
+            data-evento-ubicacion="aviso-legal">{SITE.licenseNumber}</a
+          > (Col·legi Oficial de Psicologia de Catalunya)
+        </li>
         <li><strong>NIF:</strong> [NIF]</li>
         <li><strong>Domicilio:</strong> {SITE.address}</li>
         <li><strong>Email de contacto:</strong> {SITE.email}</li>

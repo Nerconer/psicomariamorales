@@ -5,6 +5,8 @@ export const SITE = {
   doctoralia:
     'https://www.doctoralia.es/maria-morales-herrerias/psicologo/barcelona',
   licenseNumber: '35153',
+  // Ficha pública en el Col·legi Oficial de Psicologia de Catalunya
+  copc: 'https://www.copc.cat/es/contacte/maria-morales-herrerias-179636',
   phone: '+34 685 811 731',
   whatsapp: 'https://wa.me/34685811731', 
   email: 'hola@psicomariamorales.com',

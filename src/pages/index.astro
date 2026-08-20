@@ -227,7 +227,16 @@ const faqSchema = {
         </div>
         <a href="/sobre-mi" class="mt-5 inline-flex items-center gap-2 font-semibold text-forest-dark underline decoration-forest-soft underline-offset-4 hover:decoration-forest-dark">Conoce mi enfoque <span aria-hidden="true">→</span></a>
         <div class="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-base font-medium text-ink-soft">
-          <span>Colegiada n.º {SITE.licenseNumber}</span>
+          <a
+            href={SITE.copc}
+            target="_blank"
+            rel="noopener"
+            title="Ficha profesional en el Col·legi Oficial de Psicologia de Catalunya"
+            data-evento="colegiada-copc"
+            data-evento-ubicacion="inicio"
+            class="underline decoration-forest-soft underline-offset-4 hover:text-forest-dark hover:decoration-forest-dark"
+            >Colegiada n.º {SITE.licenseNumber}</a
+          >
           <span aria-hidden="true" class="hidden text-forest-soft sm:inline">•</span>
           <span>Barcelona y online</span>
           <span aria-hidden="true" class="hidden text-forest-soft sm:inline">•</span>

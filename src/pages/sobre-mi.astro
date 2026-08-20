@@ -120,7 +120,18 @@ const valores = [
           <p class="text-sm font-bold uppercase tracking-[0.14em] text-white/85">Acreditación profesional</p>
           <p class="mt-3 font-editorial text-2xl font-semibold">Maria Morales Herrerías</p>
           <p class="mt-2 text-base text-white/85">Psicóloga General Sanitaria</p>
-          <p class="mt-1 text-base font-semibold">Colegiada n.º {SITE.licenseNumber}</p>
+          <p class="mt-1 text-base font-semibold">
+            <a
+              href={SITE.copc}
+              target="_blank"
+              rel="noopener"
+              title="Ficha profesional en el Col·legi Oficial de Psicologia de Catalunya"
+              data-evento="colegiada-copc"
+              data-evento-ubicacion="sobre-mi"
+              class="underline decoration-white/50 underline-offset-4 hover:decoration-white"
+              >Colegiada n.º {SITE.licenseNumber}</a
+            >
+          </p>
         </div>
         <div class="card">
           <h3 class="font-display text-xl font-semibold text-forest-dark">Especialización</h3>

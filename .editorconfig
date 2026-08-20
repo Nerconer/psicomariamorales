@@ -1,0 +1,14 @@
+# El formateador propio de VS Code también lee este fichero, así que aquí
+# quedan las reglas mínimas para cualquier editor.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+trim_trailing_whitespace = false

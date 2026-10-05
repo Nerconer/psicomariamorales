@@ -22,8 +22,6 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // Internal pages stay out of the sitemap.
-      filter: (page) => !page.includes('/style-tile/'),
       // Alternate language links for pages listed in src/i18n/routes.ts.
       serialize(item) {
         const path = new URL(item.url).pathname;

@@ -9,7 +9,7 @@ Soy Maria Morales, psicóloga sanitaria, y entiendo la terapia como un espacio e
 
 Mi forma de trabajar parte de una mirada **integradora y centrada en la persona**. No creo que exista una única terapia que funcione para todo el mundo. Por eso combino diferentes enfoques y herramientas, adaptándome a lo que necesitas y a tu momento vital.
 
-Estoy formada en diferentes modelos psicoterapéuticos, entre ellos [EMDR](/blog/que-es-emdr-terapia-trauma), IFS, terapia focalizada en las emociones, terapia de esquemas, terapia sistémica, terapia humanista, TCC, terapia dialéctico-conductual, ACT y diferentes enfoques de psicoterapia centrados en el trauma y el cuerpo.
+Estoy formada en diferentes modelos psicoterapéuticos, entre ellos [EMDR](/blog/que-es-emdr-terapia-trauma/), IFS, terapia focalizada en las emociones, terapia de esquemas, terapia sistémica, terapia humanista, TCC, terapia dialéctico-conductual, ACT y diferentes enfoques de psicoterapia centrados en el trauma y el cuerpo.
 
 Pero para mí, la terapia no consiste únicamente en aplicar técnicas.
 
@@ -33,7 +33,7 @@ No necesitas llegar a terapia sabiendo cuál es tu diagnóstico, de dónde viene
 
 Podemos descubrirlo juntos.
 
-Quizá llevas mucho tiempo funcionando, pero estás cansado. Quizá [te cuesta poner límites](/blog/como-poner-limites-sin-sentir-culpa), afrontar conflictos o expresar lo que necesitas. Quizá tu cabeza no para, te cuesta desconectar o sientes que estás repitiendo patrones que no entiendes.
+Quizá llevas mucho tiempo funcionando, pero estás cansado. Quizá [te cuesta poner límites](/blog/como-poner-limites-sin-sentir-culpa/), afrontar conflictos o expresar lo que necesitas. Quizá tu cabeza no para, te cuesta desconectar o sientes que estás repitiendo patrones que no entiendes.
 
 > La terapia puede ser un lugar para parar, comprender y empezar a hacer las cosas de otra manera.
 

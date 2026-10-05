@@ -112,6 +112,8 @@ const businessSchema = {
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
 
+    <slot name="head" />
+
     <Analytics />
 
     <!-- Smooth page transitions between navigations -->

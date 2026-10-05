@@ -54,12 +54,12 @@ Si siempre has priorizado las necesidades de los demás, empezar a priorizar tam
 
 Al principio puede parecer que evitar conflictos mantiene la paz. Sin embargo, con el tiempo suelen aparecer consecuencias importantes. Es frecuente sentir:
 
-- [Agotamiento constante](/blog/burnout-sintomas-recuperacion).
+- [Agotamiento constante](/blog/burnout-sintomas-recuperacion/).
 - Resentimiento hacia los demás.
 - Sensación de que nadie valora lo que haces.
 - Baja autoestima.
 - Ansiedad.
-- [Relaciones desequilibradas](/blog/dependencia-emocional-por-que-cuesta-salir-de-ciertas-relaciones) donde siempre das más de lo que recibes.
+- [Relaciones desequilibradas](/blog/dependencia-emocional-por-que-cuesta-salir-de-ciertas-relaciones/) donde siempre das más de lo que recibes.
 
 Muchas personas terminan explotando después de años guardándose lo que sienten. No porque sean impulsivas, sino porque han acumulado demasiado tiempo de silencio.
 

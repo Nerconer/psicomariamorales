@@ -36,7 +36,7 @@ Hay pérdidas que reciben apoyo social: un fallecimiento, por ejemplo. Pero exis
 - Mudarse lejos de la familia.
 - Perder la salud.
 - Tener que renunciar a una profesión.
-- Descubrir que los padres nunca pudieron ofrecer [el cariño o la seguridad que necesitábamos](/blog/estilos-de-apego-relaciones).
+- Descubrir que los padres nunca pudieron ofrecer [el cariño o la seguridad que necesitábamos](/blog/estilos-de-apego-relaciones/).
 
 Cuando estas pérdidas no son reconocidas, muchas personas sienten que "no tienen derecho" a sufrir, y eso dificulta aún más el proceso.
 
@@ -64,7 +64,7 @@ En consulta podemos observar diferentes formas en las que un duelo no elaborado 
 - Tener dificultad para ilusionarse con el futuro.
 - Sentir que una parte de la vida quedó detenida en aquel momento.
 
-A veces, el duelo no desaparece. Simplemente cambia de forma y continúa manifestándose a través de [ansiedad](/blog/como-saber-si-tengo-ansiedad), irritabilidad, insomnio, vacío o dificultades en las relaciones.
+A veces, el duelo no desaparece. Simplemente cambia de forma y continúa manifestándose a través de [ansiedad](/blog/como-saber-si-tengo-ansiedad/), irritabilidad, insomnio, vacío o dificultades en las relaciones.
 
 ## El duelo no consiste en olvidar
 

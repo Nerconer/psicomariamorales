@@ -44,7 +44,7 @@ No siempre significa que exista un trastorno psicológico, pero sí puede ser un
 
 ## 5. Has vivido una experiencia difícil
 
-[La muerte de un ser querido](/blog/el-duelo-vivir-con-una-perdida), una ruptura, un accidente, una enfermedad, un despido, una situación de violencia. O una infancia marcada por el rechazo, la negligencia o el maltrato.
+[La muerte de un ser querido](/blog/el-duelo-vivir-con-una-perdida/), una ruptura, un accidente, una enfermedad, un despido, una situación de violencia. O una infancia marcada por el rechazo, la negligencia o el maltrato.
 
 No todas las personas desarrollan dificultades tras estas experiencias, pero contar con apoyo psicológico puede facilitar el proceso de adaptación y recuperación.
 
@@ -99,7 +99,7 @@ La psicoterapia también puede ser un espacio de crecimiento personal.
 
 ## ¿Y si no estoy seguro?
 
-Si dudas sobre si necesitas ayuda, probablemente merezca la pena, al menos, [hacer una primera consulta](/blog/empezar-terapia-dudas-frecuentes).
+Si dudas sobre si necesitas ayuda, probablemente merezca la pena, al menos, [hacer una primera consulta](/blog/empezar-terapia-dudas-frecuentes/).
 
 La primera sesión no implica un compromiso de iniciar un tratamiento. Es un espacio para valorar tu situación, resolver dudas y decidir conjuntamente cuál puede ser el mejor camino.
 

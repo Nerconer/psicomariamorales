@@ -62,11 +62,11 @@ Aunque solemos hablar del apego en las relaciones amorosas, su influencia alcanz
 
 El apego condiciona cómo discutimos, cómo mostramos afecto, cómo ponemos límites, cómo interpretamos los silencios y cómo reaccionamos cuando sentimos que la relación está en peligro.
 
-[Muchas discusiones no nacen de la falta de amor](/blog/conflicto-en-la-pareja-terapia), sino del miedo que se activa cuando cada miembro intenta protegerse de una manera diferente.
+[Muchas discusiones no nacen de la falta de amor](/blog/conflicto-en-la-pareja-terapia/), sino del miedo que se activa cuando cada miembro intenta protegerse de una manera diferente.
 
 ### En la familia
 
-Los patrones de apego también aparecen en la relación con padres, hermanos e hijos. Algunas personas sienten una [enorme dificultad para decir "no"](/blog/como-poner-limites-sin-sentir-culpa). Otras cargan con responsabilidades que no les corresponden. Otras mantienen una distancia emocional que les impide sentirse realmente conectadas.
+Los patrones de apego también aparecen en la relación con padres, hermanos e hijos. Algunas personas sienten una [enorme dificultad para decir "no"](/blog/como-poner-limites-sin-sentir-culpa/). Otras cargan con responsabilidades que no les corresponden. Otras mantienen una distancia emocional que les impide sentirse realmente conectadas.
 
 ### En la amistad
 

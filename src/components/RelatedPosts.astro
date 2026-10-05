@@ -25,7 +25,7 @@ const formatDate = (d: Date) =>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <a
-              href={`/blog/${post.id}`}
+              href={`/blog/${post.id}/`}
               data-event="related_post_click"
               data-event-post={post.id}
               class="card group flex flex-col"

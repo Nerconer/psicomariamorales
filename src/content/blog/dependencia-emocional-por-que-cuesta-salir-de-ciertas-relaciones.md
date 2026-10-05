@@ -34,7 +34,7 @@ Ese miedo no suele estar relacionado únicamente con la pareja actual. Muchas ve
 
 En numerosas ocasiones, la dependencia emocional no nace del amor. Nace del miedo:
 
-- [Miedo al abandono](/blog/estilos-de-apego-relaciones).
+- [Miedo al abandono](/blog/estilos-de-apego-relaciones/).
 - Miedo a quedarse solo.
 - Miedo a no encontrar otra pareja.
 - Miedo a no ser suficiente.
@@ -96,7 +96,7 @@ Durante el proceso terapéutico trabajamos aspectos como:
 - Los patrones aprendidos en la infancia y en relaciones anteriores.
 - La regulación de las emociones que aparecen ante la idea de la separación.
 - La capacidad de identificar y expresar las propias necesidades.
-- La [construcción de límites](/blog/como-poner-limites-sin-sentir-culpa) y de una red de apoyo fuera de la relación.
+- La [construcción de límites](/blog/como-poner-limites-sin-sentir-culpa/) y de una red de apoyo fuera de la relación.
 
 ## Salir de una relación no siempre es el primer paso
 

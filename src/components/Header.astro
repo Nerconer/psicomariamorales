@@ -3,17 +3,17 @@ import { SITE } from '../consts';
 
 const links = [
   { href: '/', label: 'Inicio' },
-  { href: '/terapia-psicologica', label: 'Terapia psicológica' },
-  { href: '/terapia-de-pareja', label: 'Terapia de pareja' },
-  { href: '/sobre-mi', label: 'Sobre mí' },
-  { href: '/tarifas', label: 'Tarifas' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/contacto', label: 'Contacto' },
+  { href: '/terapia-psicologica/', label: 'Terapia psicológica' },
+  { href: '/terapia-de-pareja/', label: 'Terapia de pareja' },
+  { href: '/sobre-mi/', label: 'Sobre mí' },
+  { href: '/tarifas/', label: 'Tarifas' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/contacto/', label: 'Contacto' },
 ];
 
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) =>
-  href === '/' ? current === '/' : current.startsWith(href);
+  href === '/' ? current === '/' : current.startsWith(href.replace(/\/$/, ''));
 ---
 
 <!-- Opaque background without backdrop-blur below xl: on Android a sticky

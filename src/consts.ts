@@ -8,9 +8,21 @@ export const FREE_CALL_WHATSAPP = whatsappUrl(
   'Hola Maria, me gustaría pedir la llamada informativa gratuita de 15 minutos.'
 );
 
+// Same links with the first message in Catalan, for the Catalan pages.
+export const WHATSAPP_BY_LOCALE = {
+  es: whatsappUrl('Hola Maria, me gustaría pedir información.'),
+  ca: whatsappUrl("Hola Maria, m'agradaria demanar informació."),
+} as const;
+
+export const FREE_CALL_BY_LOCALE = {
+  es: FREE_CALL_WHATSAPP,
+  ca: whatsappUrl("Hola Maria, m'agradaria demanar la trucada informativa gratuïta de 15 minuts."),
+} as const;
+
 export const SITE = {
   person: 'Maria Morales',
   role: 'Psicóloga General Sanitaria',
+  roleCa: 'Psicòloga General Sanitària',
   name: 'Maria Morales · Psicóloga',
   brand: 'PsicoMariaMorales',
   tagline: 'Psicóloga sanitaria en Barcelona · Terapia presencial y online',
@@ -25,6 +37,7 @@ export const SITE = {
   address: 'Carrer de los Castillejos, 326, Eixample, 08025 Barcelona',
   maps: 'https://www.google.com/maps/place//data=!4m2!3m1!1s0x12a4a2daca5fde37:0x2af25dd8aff241ca?sa=X&ved=1t:8290&ictx=111',
   schedule: 'De 9:00 a 19:00 h',
+  scheduleCa: 'De 9.00 a 19.00 h',
   linkedin: 'https://www.linkedin.com/in/maria-morales-herrer%C3%ADas-7213a0175/',
 };
 

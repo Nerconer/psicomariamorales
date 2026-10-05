@@ -1,0 +1,129 @@
+---
+// Couples therapy page, shared by the Spanish and Catalan routes.
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import Faq from '../components/ui/Faq.astro';
+import Chip from '../components/ui/Chip.astro';
+import { SITE, PRICES, formatPrice } from '../consts';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const price = formatPrice(PRICES.couple.amount);
+const minutes = PRICES.couple.minutes;
+
+const COPY = {
+  es: {
+    metaTitle: 'Terapia de pareja online y en Barcelona',
+    description: `Terapia de pareja online y en Barcelona: comunicación, discusiones, distancia, celos o infidelidad. Sesiones de ${minutes} minutos por ${price}.`,
+    title: 'Terapia de pareja online y en Barcelona',
+    lead: `Para parejas que discuten más de la cuenta, que se han distanciado o que quieren cuidarse. Sesiones de ${minutes} minutos.`,
+    whenTitle: '¿Cuándo venir?',
+    situations: [
+      'Discusiones que se repiten y no se resuelven.',
+      'Problemas de comunicación.',
+      'Distancia emocional o pérdida de conexión.',
+      'Celos, desconfianza o una infidelidad.',
+      'Cambios grandes: un hijo, una mudanza, el trabajo.',
+      'Ganas de fortalecer la relación antes de que haya problemas.',
+    ],
+    howTitle: 'Cómo trabajo',
+    how: 'Os escucho a los dos sin tomar partido. Buscamos qué hay debajo de los conflictos y practicamos otras formas de hablaros. Si la relación no puede o no debe seguir, la terapia también ayuda a separarse con respeto.',
+    boxTitle: 'Terapia de pareja',
+    boxText: 'Online o presencial en Barcelona.',
+    book: 'Reservar sesión',
+    languages: 'Castellano y català',
+    faqTitle: 'Dudas',
+    faqs: [
+      { q: '¿Y si mi pareja no quiere venir?', a: 'Puedes empezar en terapia individual y ver más adelante si se suma.' },
+      { q: '¿Hace falta estar en crisis?', a: 'No. Muchas parejas vienen para cuidar la relación antes de que haya problemas.' },
+      { q: '¿Se puede hacer online?', a: 'Sí, por videollamada, juntos o cada uno desde donde esté.' },
+    ],
+    ctaTitle: '¿Empezamos a cuidar vuestra relación?',
+    ctaText: 'Reservad la primera sesión o escribidme para resolver dudas.',
+    ctaLabel: 'Reservar sesión de pareja',
+  },
+  ca: {
+    metaTitle: 'Teràpia de parella en línia i a Barcelona',
+    description: `Teràpia de parella en línia i a Barcelona: comunicació, discussions, distància, gelosia o infidelitat. Sessions de ${minutes} minuts per ${price}.`,
+    title: 'Teràpia de parella en línia i a Barcelona',
+    lead: `Per a parelles que discuteixen més del compte, que s'han distanciat o que es volen cuidar. Sessions de ${minutes} minuts.`,
+    whenTitle: 'Quan venir?',
+    situations: [
+      'Discussions que es repeteixen i no es resolen.',
+      'Problemes de comunicació.',
+      'Distància emocional o pèrdua de connexió.',
+      'Gelosia, desconfiança o una infidelitat.',
+      'Canvis grans: un fill, una mudança, la feina.',
+      "Ganes d'enfortir la relació abans que hi hagi problemes.",
+    ],
+    howTitle: 'Com treballo',
+    how: "Us escolto a tots dos sense prendre partit. Busquem què hi ha sota els conflictes i practiquem altres maneres de parlar-vos. Si la relació no pot o no ha de continuar, la teràpia també ajuda a separar-se amb respecte.",
+    boxTitle: 'Teràpia de parella',
+    boxText: 'En línia o presencial a Barcelona.',
+    book: 'Reservar sessió',
+    languages: 'Català i castellà',
+    faqTitle: 'Dubtes',
+    faqs: [
+      { q: 'I si la meva parella no vol venir?', a: "Pots començar amb teràpia individual i veure més endavant si s'hi suma." },
+      { q: 'Cal estar en crisi?', a: 'No. Moltes parelles vénen per cuidar la relació abans que hi hagi problemes.' },
+      { q: 'Es pot fer en línia?', a: "Sí, per videotrucada, junts o cadascú des d'on sigui." },
+    ],
+    ctaTitle: 'Comencem a cuidar la vostra relació?',
+    ctaText: 'Reserveu la primera sessió o escriviu-me per resoldre dubtes.',
+    ctaLabel: 'Reservar sessió de parella',
+  },
+}[locale];
+---
+
+<Layout title={COPY.metaTitle} description={COPY.description}>
+  <PageHero title={COPY.title} lead={COPY.lead} />
+
+  <section class="py-12 md:py-16">
+    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+      <div>
+        <h2 class="text-2xl font-bold text-primary md:text-3xl">{COPY.whenTitle}</h2>
+        <ul class="checklist mt-5">
+          {COPY.situations.map((s) => <li>{s}</li>)}
+        </ul>
+
+        <h2 class="mt-10 text-2xl font-bold text-primary md:text-3xl">{COPY.howTitle}</h2>
+        <p class="mt-4 max-w-[62ch]">{COPY.how}</p>
+      </div>
+
+      <aside class="self-start rounded-2xl bg-primary p-6 text-white">
+        <p class="font-display text-lg font-bold">{COPY.boxTitle}</p>
+        <p class="mt-2 flex items-baseline gap-2">
+          <span class="font-display text-4xl font-bold">{price}</span>
+          <span class="text-white/85">{minutes} min</span>
+        </p>
+        <p class="mt-2 text-white/90">{COPY.boxText}</p>
+        <a
+          href={SITE.doctoralia}
+          target="_blank"
+          rel="noopener"
+          data-event="booking_click"
+          data-event-location="couples_price"
+          class="btn-light mt-5 w-full">{COPY.book}</a
+        >
+        <div class="mt-4 flex flex-wrap gap-2">
+          <Chip>{COPY.languages}</Chip>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="bg-surface py-12 md:py-16">
+    <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
+      <h2 class="text-2xl font-bold text-primary md:text-3xl">{COPY.faqTitle}</h2>
+      <div class="mt-5">
+        <Faq items={COPY.faqs} schema />
+      </div>
+    </div>
+  </section>
+
+  <CtaFinal title={COPY.ctaTitle} text={COPY.ctaText} primaryLabel={COPY.ctaLabel} />
+</Layout>

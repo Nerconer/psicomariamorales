@@ -1,97 +1,20 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import PageHero from '../components/PageHero.astro';
-import CtaFinal from '../components/CtaFinal.astro';
-import RelatedPosts from '../components/RelatedPosts.astro';
-import Faq from '../components/ui/Faq.astro';
-import Icon from '../components/ui/Icon.astro';
-import WhatsAppIcon from '../components/ui/WhatsAppIcon.astro';
-import { SERVICES, type Service } from '../data/services';
+import ServiceView from '../views/ServiceView.astro';
+import { SERVICES, serviceSlug } from '../data/services';
 import { getPublishedPosts } from '../lib/posts';
-import { SITE, PRICES, formatPrice, FREE_CALL_WHATSAPP } from '../consts';
 
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
   return SERVICES.map((service) => ({
-    params: { service: service.slug },
+    params: { service: serviceSlug(service, 'es') },
     props: {
       service,
-      related: service.posts
-        .map((slug) => posts.find((p) => p.id === slug))
-        .filter((p) => p !== undefined),
+      related: service.posts.map((slug) => posts.find((p) => p.id === slug)).filter((p) => p !== undefined),
     },
   }));
 }
 
-interface Props {
-  service: Service;
-  related: Awaited<ReturnType<typeof getPublishedPosts>>;
-}
 const { service, related } = Astro.props;
 ---
 
-<Layout title={service.metaTitle} description={service.description}>
-  <PageHero title={service.title} lead={service.lead} />
-
-  <section class="py-12 md:py-16">
-    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 lg:grid-cols-[1.25fr_0.75fr]">
-      <div>
-        <h2 class="text-2xl font-bold text-primary md:text-3xl">{service.signsTitle}</h2>
-        <ul class="checklist mt-5">
-          {service.signs.map((s) => <li>{s}</li>)}
-        </ul>
-
-        <h2 class="mt-10 text-2xl font-bold text-primary md:text-3xl">Cómo lo trabajo</h2>
-        {service.approach.map((p) => <p class="mt-4 max-w-[62ch]">{p}</p>)}
-      </div>
-
-      <aside class="self-start rounded-2xl border border-line/60 bg-white p-6 lg:sticky lg:top-24">
-        <ul class="space-y-3">
-          <li class="flex items-center justify-between gap-3">
-            <span class="flex items-center gap-2 font-semibold"><Icon name="online" class="text-primary" /> Online</span>
-            <span class="font-display text-xl font-bold">{formatPrice(PRICES.online.amount)}</span>
-          </li>
-          <li class="flex items-center justify-between gap-3">
-            <span class="flex items-center gap-2 font-semibold"><Icon name="location" class="text-primary" /> Presencial en Barcelona</span>
-            <span class="font-display text-xl font-bold">{formatPrice(PRICES.inPerson.amount)}</span>
-          </li>
-          <li class="flex items-center justify-between gap-3 rounded-xl bg-sun/40 px-3 py-2">
-            <span class="font-semibold">Primera sesión</span>
-            <span class="font-display text-xl font-bold">{formatPrice(PRICES.firstSession.amount)}</span>
-          </li>
-        </ul>
-        <p class="mt-3 text-sm text-muted">Sesiones de {PRICES.online.minutes} minutos, en castellano o en catalán.</p>
-        <div class="mt-5 grid gap-3">
-          <a href={SITE.doctoralia} target="_blank" rel="noopener" data-event="booking_click" data-event-location={`service_${service.slug}`} class="btn-primary">
-            <Icon name="calendar" size={20} /> Reservar primera sesión
-          </a>
-          <a href={SITE.whatsapp} target="_blank" rel="noopener" data-event="whatsapp_click" data-event-location={`service_${service.slug}`} class="btn-whatsapp">
-            <WhatsAppIcon size={20} class="text-[#128c4a]" /> WhatsApp
-          </a>
-          <a
-            href={FREE_CALL_WHATSAPP}
-            target="_blank"
-            rel="noopener"
-            data-event="free_call_click"
-            data-event-location={`service_${service.slug}`}
-            class="text-center font-semibold text-primary underline decoration-line underline-offset-4 hover:decoration-primary"
-            >Pedir llamada gratuita de 15 min</a
-          >
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <section class="bg-surface py-12 md:py-16">
-    <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
-      <h2 class="text-2xl font-bold text-primary md:text-3xl">Dudas</h2>
-      <div class="mt-5">
-        <Faq items={service.faqs} schema />
-      </div>
-    </div>
-  </section>
-
-  <RelatedPosts posts={related} />
-
-  <CtaFinal />
-</Layout>
+<ServiceView service={service} locale="es" related={related} />

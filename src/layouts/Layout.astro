@@ -29,6 +29,10 @@ const {
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const locale = localeFromPath(Astro.url.pathname);
 const t = useTranslations(locale);
+const imageAlt =
+  locale === 'ca'
+    ? 'Maria Morales, psicòloga general sanitària. Teràpia en línia i presencial a Barcelona.'
+    : 'Maria Morales, psicóloga general sanitaria. Terapia online y presencial en Barcelona.';
 // hreflang only when the page really exists in another language.
 const alternates = alternatesOf(Astro.url.pathname);
 const defaultAlternate = alternates.find((a) => a.locale === DEFAULT_LOCALE);
@@ -113,7 +117,7 @@ const businessSchema = {
     <meta property="og:image:type" content="image/jpeg" />
     <meta
       property="og:image:alt"
-      content="Maria Morales, psicóloga general sanitaria en Barcelona. Terapia presencial y online."
+      content={imageAlt}
     />
     <meta property="og:locale" content={LOCALES[locale].ogLocale} />
     {
@@ -128,7 +132,7 @@ const businessSchema = {
     <meta name="twitter:image" content={ogImage} />
     <meta
       name="twitter:image:alt"
-      content="Maria Morales, psicóloga general sanitaria en Barcelona. Terapia presencial y online."
+      content={imageAlt}
     />
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(businessSchema)} />

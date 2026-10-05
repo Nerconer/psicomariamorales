@@ -1,27 +1,31 @@
 ---
-import { SITE } from '../consts';
+import { SITE, WHATSAPP_BY_LOCALE } from '../consts';
+import { localeFromPath } from '../i18n/config';
+import { pathFor, type RouteKey } from '../i18n/routes';
+import { useTranslations, type UIKey } from '../i18n/ui';
 import Icon from './ui/Icon.astro';
 import WhatsAppIcon from './ui/WhatsAppIcon.astro';
 
+const locale = localeFromPath(Astro.url.pathname);
+const t = useTranslations(locale);
+const role = locale === 'ca' ? SITE.roleCa : SITE.role;
 const year = new Date().getFullYear();
 
+const link = (key: RouteKey, label: UIKey) => ({ href: pathFor(key, locale), label: t(label) });
+
 const pages = [
-  { href: '/terapia-online/', label: 'Terapia online' },
-  { href: '/terapia-psicologica/', label: 'Terapia psicológica' },
-  { href: '/terapia-de-pareja/', label: 'Terapia de pareja' },
-  { href: '/tarifas/', label: 'Tarifas' },
-  { href: '/sobre-mi/', label: 'Sobre mí' },
-  { href: '/empresas/', label: 'Empresas' },
-  { href: '/centros-educativos/', label: 'Centros educativos' },
-  { href: '/blog/', label: 'Blog' },
-  { href: '/contacto/', label: 'Contacto' },
+  link('online', 'nav.online'),
+  link('therapy', 'nav.therapy'),
+  link('couples', 'nav.couples'),
+  link('pricing', 'nav.pricing'),
+  link('about', 'nav.about'),
+  link('companies', 'nav.companies'),
+  link('schools', 'nav.schools'),
+  link('blog', 'nav.blog'),
+  link('contact', 'nav.contact'),
 ];
 
-const legal = [
-  { href: '/aviso-legal/', label: 'Aviso legal' },
-  { href: '/politica-privacidad/', label: 'Política de privacidad' },
-  { href: '/politica-cookies/', label: 'Política de cookies' },
-];
+const legal = [link('legal', 'nav.legal'), link('privacy', 'nav.privacy'), link('cookies', 'nav.cookies')];
 
 const linkClass = 'flex min-h-11 items-center text-muted hover:text-primary';
 ---
@@ -30,30 +34,27 @@ const linkClass = 'flex min-h-11 items-center text-muted hover:text-primary';
   <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr]">
     <div>
       <p class="font-display text-xl font-bold text-ink">{SITE.person}</p>
-      <p class="text-muted">{SITE.role}</p>
-      <p class="mt-4 max-w-[38ch] text-base text-muted">
-        Psicología integradora presencial en Barcelona y online. Ansiedad, estrés, gestión de
-        conflictos, regulación emocional, trauma y apego.
-      </p>
+      <p class="text-muted">{role}</p>
+      <p class="mt-4 max-w-[38ch] text-base text-muted">{t('footer.about')}</p>
       <p class="mt-4 text-base font-semibold">
         <a
           href={SITE.copc}
           target="_blank"
           rel="noopener"
-          title="Ficha profesional en el Col·legi Oficial de Psicologia de Catalunya"
+          title={t('footer.licenseTitle')}
           data-event="license_click"
           data-event-location="footer"
           class="text-primary underline decoration-line underline-offset-4 hover:decoration-primary"
-          >Colegiada n.º {SITE.licenseNumber} (COPC)</a
+          >{t('footer.license')} {SITE.licenseNumber} (COPC)</a
         >
       </p>
     </div>
 
     <div class="text-base">
-      <p class="mb-2 font-display font-bold text-ink">Contacto</p>
+      <p class="mb-2 font-display font-bold text-ink">{t('footer.contact')}</p>
       <a
         class={`${linkClass} gap-2`}
-        href={SITE.whatsapp}
+        href={WHATSAPP_BY_LOCALE[locale]}
         target="_blank"
         rel="noopener"
         data-event="whatsapp_click"
@@ -79,18 +80,18 @@ const linkClass = 'flex min-h-11 items-center text-muted hover:text-primary';
         data-event-location="footer"
       >
         <Icon name="calendar" size={18} class="text-primary" />
-        Reservar en Doctoralia
+        {t('footer.bookDoctoralia')}
       </a>
     </div>
 
-    <nav aria-label="Enlaces del pie" class="grid grid-cols-2 gap-x-6 text-base md:grid-cols-1">
+    <nav aria-label={t('nav.footer')} class="grid grid-cols-2 gap-x-6 text-base md:grid-cols-1">
       {pages.map((l) => <a class={linkClass} href={l.href}>{l.label}</a>)}
     </nav>
   </div>
 
   <div class="border-t border-line/50">
     <div class="mx-auto flex w-[min(1120px,calc(100%-2rem))] flex-col gap-2 py-5 text-sm text-muted md:flex-row md:items-center md:justify-between">
-      <p>© {year} {SITE.person} · {SITE.role} · Barcelona y online</p>
+      <p>© {year} {SITE.person} · {role} · {t('footer.where')}</p>
       <div class="flex flex-wrap gap-x-5">
         {legal.map((l) => <a class="flex min-h-11 items-center hover:text-primary" href={l.href}>{l.label}</a>)}
         <a

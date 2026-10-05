@@ -1,6 +1,8 @@
 ---
 // Closing call to action shared by every page: booking, WhatsApp and a call.
-import { SITE } from '../consts';
+import { SITE, WHATSAPP_BY_LOCALE } from '../consts';
+import { localeFromPath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
 import Icon from './ui/Icon.astro';
 import WhatsAppIcon from './ui/WhatsAppIcon.astro';
 
@@ -11,10 +13,13 @@ interface Props {
   primaryHref?: string;
 }
 
+const locale = localeFromPath(Astro.url.pathname);
+const t = useTranslations(locale);
+
 const {
-  title = '¿Hablamos?',
-  text = 'Escríbeme por WhatsApp, llámame o reserva directamente.',
-  primaryLabel = 'Reservar primera sesión',
+  title = t('cta.title'),
+  text = t('cta.text'),
+  primaryLabel = t('cta.bookFirst'),
   primaryHref = SITE.doctoralia,
 } = Astro.props;
 
@@ -38,7 +43,7 @@ const external = primaryHref.startsWith('http');
         {primaryLabel}
       </a>
       <a
-        href={SITE.whatsapp}
+        href={WHATSAPP_BY_LOCALE[locale]}
         target="_blank"
         rel="noopener"
         data-event="whatsapp_click"
@@ -50,7 +55,7 @@ const external = primaryHref.startsWith('http');
       </a>
       <a href={SITE.phoneHref} data-event="phone_click" data-event-location="final_cta" class="btn-sun-outline">
         <Icon name="phone" size={20} />
-        Llamar
+        {t('cta.call')}
       </a>
     </div>
   </div>

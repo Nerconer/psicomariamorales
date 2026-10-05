@@ -1,7 +1,7 @@
 ---
-import { SITE } from '../consts';
+import { SITE, WHATSAPP_BY_LOCALE } from '../consts';
 import { LOCALES, localeFromPath } from '../i18n/config';
-import { alternatesOf } from '../i18n/routes';
+import { alternatesOf, pathFor } from '../i18n/routes';
 import { useTranslations } from '../i18n/ui';
 import Icon from './ui/Icon.astro';
 import WhatsAppIcon from './ui/WhatsAppIcon.astro';
@@ -13,14 +13,14 @@ const alternates = alternatesOf(Astro.url.pathname).filter((a) => a.locale !== l
 
 // The logo already links home, so "Inicio" is not repeated in the menu.
 const links = [
-  { href: '/terapia-online/', label: t('nav.online') },
-  { href: '/terapia-psicologica/', label: t('nav.therapy') },
-  { href: '/terapia-de-pareja/', label: t('nav.couples') },
-  { href: '/tarifas/', label: t('nav.pricing') },
+  { href: pathFor('online', locale), label: t('nav.online') },
+  { href: pathFor('therapy', locale), label: t('nav.therapy') },
+  { href: pathFor('couples', locale), label: t('nav.couples') },
+  { href: pathFor('pricing', locale), label: t('nav.pricing') },
   // Shown from xl only on desktop: between 1024 and 1280 px there is no room.
-  { href: '/sobre-mi/', label: t('nav.about'), wide: true },
-  { href: '/blog/', label: t('nav.blog'), wide: true },
-  { href: '/contacto/', label: t('nav.contact') },
+  { href: pathFor('about', locale), label: t('nav.about'), wide: true },
+  { href: pathFor('blog', locale), label: t('nav.blog'), wide: true },
+  { href: pathFor('contact', locale), label: t('nav.contact') },
 ];
 
 const current = Astro.url.pathname;
@@ -32,11 +32,11 @@ const isActive = (href: string) => current.startsWith(href);
      the URL bar resizes the viewport. -->
 <header class="sticky top-0 z-50 border-b border-line/50 bg-bg lg:bg-bg/90 lg:backdrop-blur-md">
   <div class="mx-auto flex w-[min(1200px,calc(100%-2rem))] items-center justify-between gap-4 py-3">
-    <a href={locale === 'ca' ? '/ca/' : '/'} class="flex items-center gap-3" aria-label={`${SITE.person}, ${SITE.role}`}>
+    <a href={pathFor('home', locale)} class="flex items-center gap-3" aria-label={`${SITE.person}, ${locale === 'ca' ? SITE.roleCa : SITE.role}`}>
       <img src={logoMark.src} alt="" width="44" height="44" class="h-11 w-11 shrink-0" />
       <span class="leading-tight">
         <span class="block whitespace-nowrap font-display text-lg font-bold text-ink">{SITE.person}</span>
-        <span class="block text-sm text-muted">Psicóloga</span>
+        <span class="block text-sm text-muted">{t('role.short')}</span>
       </span>
     </a>
 
@@ -141,7 +141,7 @@ const isActive = (href: string) => current.startsWith(href);
       </a>
       <div class="grid grid-cols-2 gap-3">
         <a
-          href={SITE.whatsapp}
+          href={WHATSAPP_BY_LOCALE[locale]}
           target="_blank"
           rel="noopener"
           data-event="whatsapp_click"

@@ -1,21 +1,22 @@
 ---
 // Fixed bar on mobile with the three ways to get in touch, always one tap
 // away. The body keeps bottom padding so it never hides the end of the page.
-import { SITE } from '../consts';
+import { SITE, WHATSAPP_BY_LOCALE } from '../consts';
 import { localeFromPath } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
 import Icon from './ui/Icon.astro';
 import WhatsAppIcon from './ui/WhatsAppIcon.astro';
 
-const t = useTranslations(localeFromPath(Astro.url.pathname));
+const locale = localeFromPath(Astro.url.pathname);
+const t = useTranslations(locale);
 ---
 
 <nav
-  aria-label="Contacto rápido"
+  aria-label={t('nav.quick')}
   class="fixed inset-x-3 bottom-3 z-50 grid grid-cols-[1fr_1.35fr_1fr] gap-1.5 rounded-full border border-line/50 bg-white p-1.5 shadow-[0_12px_32px_-12px_rgb(42_36_51/0.45)] md:hidden"
 >
   <a
-    href={SITE.whatsapp}
+    href={WHATSAPP_BY_LOCALE[locale]}
     target="_blank"
     rel="noopener"
     data-event="whatsapp_click"

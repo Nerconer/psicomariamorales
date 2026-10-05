@@ -32,7 +32,7 @@ const isActive = (href: string) => current.startsWith(href);
      the URL bar resizes the viewport. -->
 <header class="sticky top-0 z-50 border-b border-line/50 bg-bg lg:bg-bg/90 lg:backdrop-blur-md">
   <div class="mx-auto flex w-[min(1200px,calc(100%-2rem))] items-center justify-between gap-4 py-3">
-    <a href={pathFor('home', locale)} class="flex items-center gap-3" aria-label={`${SITE.person}, ${locale === 'ca' ? SITE.roleCa : SITE.role}`}>
+    <a href={pathFor('home', locale)} class="flex items-center gap-3">
       <img src={logoMark.src} alt="" width="44" height="44" class="h-11 w-11 shrink-0" />
       <span class="leading-tight">
         <span class="block whitespace-nowrap font-display text-lg font-bold text-ink">{SITE.person}</span>

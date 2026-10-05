@@ -1,393 +1,312 @@
 ---
-import { SITE } from '../consts';
+// Orientation quiz (not a clinical test). Three questions route the visitor to
+// the page and the first step that fit them. Answers live only in memory:
+// they are not stored, not put in the URL and not sent to analytics, because
+// they describe how the person feels, which is health data.
+import { SITE, PRICES, formatPrice, FREE_CALL_WHATSAPP } from '../consts';
 
-// Orientation quiz (not a diagnosis). It guides the visitor to the closest
-// specialty and to the first step (booking or contact). All the logic lives
-// in the <script> below and works through data attributes.
+const first = formatPrice(PRICES.firstSession.amount);
 
-// Analytics only records that a step was completed, never the answer: the
-// answers describe the visitor's state of mind, which is health data.
+// Where each result leads. Point these to the dedicated pages once they exist.
+const ROUTES = {
+  anxiety: '/terapia-psicologica/#ansiedad',
+  trauma: '/terapia-psicologica/#trauma',
+  loss: '/terapia-psicologica/#duelo',
+  relations: '/terapia-psicologica/#apego',
+  demand: '/terapia-psicologica/#autoestima',
+  growth: '/terapia-psicologica/#bloqueos',
+  couple: '/terapia-de-pareja/',
+  unsure: '/contacto/',
+};
 
-const areas = [
-  { key: 'anxiety', label: 'Ansiedad o preocupación constante' },
-  { key: 'stress', label: 'Estrés, agotamiento o burnout' },
-  { key: 'attachment', label: 'Relaciones, apego o miedo al rechazo' },
-  { key: 'self_esteem', label: 'Autoestima y autoexigencia' },
-  { key: 'trauma', label: 'Experiencias difíciles o trauma' },
-  { key: 'couple', label: 'Dificultades en la pareja' },
-  { key: 'unsure', label: 'No lo tengo claro todavía' },
-];
-
-// What the quiz gives back: for each area, a validating headline (not an echo
-// of the answer) and 3 concrete points on how it is worked on in sessions.
 const results = {
   anxiety: {
-    title: 'La ansiedad tiene salida, y responde muy bien a la terapia',
+    title: 'Vivir en alerta cansa mucho. Y se puede trabajar.',
     points: [
-      'Entenderás por qué se activa tu alarma interna y qué la mantiene.',
-      'Aprenderás a regular tu sistema nervioso con herramientas prácticas.',
-      'Recuperarás la calma y la capacidad de disfrutar del presente.',
+      'Entenderemos qué dispara tu ansiedad o tu agotamiento.',
+      'Practicaremos formas de calmar el cuerpo que te sirvan en tu día a día.',
     ],
-    href: '/terapia-psicologica/#ansiedad',
-  },
-  stress: {
-    title: 'El agotamiento es una señal, no una debilidad',
-    points: [
-      'Identificaremos qué te está drenando y qué lo sostiene.',
-      'Aprenderás a poner límites sin sentirte culpable.',
-      'Recuperarás la energía y la motivación, paso a paso.',
-    ],
-    href: '/terapia-psicologica/#estres',
-  },
-  attachment: {
-    title: 'Los patrones que se aprendieron también se pueden cambiar',
-    points: [
-      'Entenderás tu historia de vínculos y por qué se repiten patrones.',
-      'Trabajaremos la seguridad y la confianza en tus relaciones.',
-      'Construirás vínculos más sanos, también contigo.',
-    ],
-    href: '/terapia-psicologica/#apego',
-  },
-  self_esteem: {
-    title: 'Esa voz crítica no eres tú, y se puede transformar',
-    points: [
-      'Entenderás de dónde viene tanta autoexigencia.',
-      'Aprenderás a tratarte con la misma amabilidad que a los demás.',
-      'Reconocerás tu valor y te resultará más fácil poner límites.',
-    ],
-    href: '/terapia-psicologica/#autoestima',
+    href: ROUTES.anxiety,
   },
   trauma: {
-    title: 'El pasado no tiene por qué seguir dirigiendo tu presente',
+    title: 'Lo que pasó no tiene por qué seguir mandando.',
     points: [
-      'Procesaremos esas experiencias con EMDR, siempre a tu ritmo.',
-      'Recuperarás la sensación de seguridad y de control.',
-      'Sin necesidad de revivir el dolor una y otra vez.',
+      'Iremos a tu ritmo, sin que tengas que contarlo todo de golpe.',
+      'Trabajaremos con EMDR cuando tenga sentido para ti.',
     ],
-    href: '/terapia-psicologica/#trauma',
+    href: ROUTES.trauma,
+  },
+  loss: {
+    title: 'Una pérdida necesita su tiempo y su espacio.',
+    points: [
+      'Daremos lugar a lo que sientes, sin prisas.',
+      'Buscaremos cómo seguir adelante con lo que ha pasado.',
+    ],
+    href: ROUTES.loss,
+  },
+  relations: {
+    title: 'Los patrones que aprendimos también se pueden cambiar.',
+    points: [
+      'Entenderemos por qué se repiten en tus relaciones.',
+      'Practicaremos formas más seguras de vincularte.',
+    ],
+    href: ROUTES.relations,
+  },
+  demand: {
+    title: 'Esa voz que te exige tanto se puede suavizar.',
+    points: [
+      'Veremos de dónde viene tanta exigencia.',
+      'Trabajaremos para que te trates con más cuidado.',
+    ],
+    href: ROUTES.demand,
+  },
+  growth: {
+    title: 'No hace falta estar mal para venir a terapia.',
+    points: [
+      'Pondremos sobre la mesa qué quieres cambiar y qué te frena.',
+      'Avanzaremos con objetivos concretos y a tu ritmo.',
+    ],
+    href: ROUTES.growth,
   },
   couple: {
-    title: 'Pedir ayuda a tiempo puede transformar la relación',
+    title: 'Cuidar la relación a tiempo cambia mucho.',
     points: [
-      'Mejoraréis la comunicación y la gestión de los conflictos.',
-      'Entenderéis qué hay debajo de las discusiones que se repiten.',
-      'Recuperaréis la conexión y la confianza.',
+      `Sesiones de ${PRICES.couple.minutes} minutos para los dos, por ${formatPrice(PRICES.couple.amount)}.`,
+      'Trabajaremos cómo os comunicáis y qué hay debajo de las discusiones.',
     ],
-    href: '/terapia-de-pareja/',
+    href: ROUTES.couple,
   },
   unsure: {
-    title: 'No pasa nada por no tenerlo claro',
+    title: 'No hace falta tenerlo claro para empezar.',
     points: [
-      'La primera sesión sirve exactamente para eso.',
-      'Exploraremos qué te ocurre, sin prisa y sin juicios.',
-      'No necesitas ponerle nombre todavía.',
+      'En una llamada gratuita de 15 minutos lo hablamos.',
+      'Después decides si quieres seguir, sin compromiso.',
     ],
-    href: '/contacto/',
+    href: ROUTES.unsure,
   },
 };
 
-const durations = [
-  { key: 'recent', label: 'Hace poco, días o semanas' },
-  { key: 'months', label: 'Desde hace varios meses' },
-  { key: 'chronic', label: 'Hace más de un año' },
+const priceLines = {
+  online: `La primera sesión cuesta ${first}. Después, ${formatPrice(PRICES.online.amount)} la sesión online.`,
+  in_person: `La primera sesión cuesta ${first}. Después, ${formatPrice(PRICES.inPerson.amount)} la sesión en Barcelona.`,
+  either: `La primera sesión cuesta ${first}. Después, ${formatPrice(PRICES.online.amount)} online o ${formatPrice(PRICES.inPerson.amount)} en Barcelona.`,
+  couple: `La primera sesión cuesta ${first}. La terapia de pareja, ${formatPrice(PRICES.couple.amount)} la sesión de ${PRICES.couple.minutes} minutos.`,
+};
+
+const start = [
+  { value: 'hard', label: 'Estoy pasando una mala racha', next: 'hard' },
+  { value: 'growth', label: 'Estoy bien, pero quiero mejorar algo', next: 'growth' },
+  { value: 'couple', label: 'Queremos trabajar algo en pareja', next: 'format' },
+  { value: 'unsure', label: 'Todavía no lo tengo claro', next: 'format' },
+];
+
+const hard = [
+  { value: 'anxiety', label: 'La ansiedad o una preocupación que no se apaga' },
+  { value: 'anxiety', label: 'El estrés o el agotamiento' },
+  { value: 'trauma', label: 'Algo que me pasó y sigue doliendo' },
+  { value: 'loss', label: 'Una pérdida' },
+  { value: 'relations', label: 'Cómo me relaciono y el miedo al rechazo' },
+  { value: 'demand', label: 'Lo mucho que me exijo' },
+];
+
+const growth = [
+  { value: 'growth', label: 'Tomar decisiones con más claridad' },
+  { value: 'growth', label: 'Confiar más en mí' },
+  { value: 'growth', label: 'Aprender a poner límites' },
+  { value: 'growth', label: 'Salir de un bloqueo' },
 ];
 
 const formats = [
-  { key: 'in_person', label: 'Presencial en Barcelona' },
-  { key: 'online', label: 'Online' },
-  { key: 'either', label: 'Me da igual / no lo sé' },
+  { value: 'online', label: 'Online, desde donde estés' },
+  { value: 'in_person', label: 'En persona, en Barcelona' },
+  { value: 'either', label: 'Me da igual' },
 ];
+
+const config = {
+  results,
+  priceLines,
+  booking: SITE.doctoralia,
+  whatsapp: SITE.whatsapp,
+  freeCall: FREE_CALL_WHATSAPP,
+  firstLabel: `Reservar primera sesión · ${first}`,
+};
 ---
 
-<div
-  class="orientation-quiz mx-auto w-[min(760px,100%)] rounded-3xl border border-line/40 bg-white p-6 shadow-primary sm:p-9"
-  data-doctoralia={SITE.doctoralia}
-  data-whatsapp={SITE.whatsapp}
->
-  <!-- Progress -->
-  <div class="mb-7 flex items-center justify-center gap-2" data-progress aria-hidden="true">
-    <span class="h-1.5 w-8 rounded-full bg-primary transition-colors" data-dot="0"></span>
-    <span class="h-1.5 w-8 rounded-full bg-line/40 transition-colors" data-dot="1"></span>
-    <span class="h-1.5 w-8 rounded-full bg-line/40 transition-colors" data-dot="2"></span>
-  </div>
+<div class="orientation-quiz rounded-3xl border border-line/60 bg-white p-5 shadow-soft sm:p-8">
+  <p class="sr-only" aria-live="polite" data-announce></p>
 
-  <!-- Step 1: area -->
-  <div class="quiz-step" data-step="0">
-    <p class="eyebrow text-center">Paso 1 de 3</p>
-    <h3 class="text-center font-display text-2xl font-bold text-primary-strong sm:text-3xl">
-      ¿Con qué te identificas más ahora mismo?
-    </h3>
-    <div class="mt-7 grid gap-3 sm:grid-cols-2">
-      {
-        areas.map((a) => (
-          <button type="button" class="quiz-option" data-area={a.key}>
-            {a.label}
-          </button>
-        ))
-      }
+  <div class="quiz-step" data-step="start">
+    <p class="text-sm font-bold text-muted">Paso 1 de 3</p>
+    <h3 class="mt-1 text-2xl font-bold text-primary" tabindex="-1">Cuéntame qué te trae por aquí</h3>
+    <div class="mt-5 grid gap-2.5">
+      {start.map((o) => <button type="button" class="quiz-option" data-start={o.value} data-next={o.next}>{o.label}</button>)}
     </div>
   </div>
 
-  <!-- Step 2: duration -->
-  <div class="quiz-step hidden" data-step="1">
-    <p class="eyebrow text-center">Paso 2 de 3</p>
-    <h3 class="text-center font-display text-2xl font-bold text-primary-strong sm:text-3xl">
-      ¿Desde cuándo lo notas?
-    </h3>
-    <div class="mt-7 grid gap-3">
-      {
-        durations.map((t) => (
-          <button type="button" class="quiz-option" data-duration={t.key}>
-            {t.label}
-          </button>
-        ))
-      }
+  <div class="quiz-step hidden" data-step="hard">
+    <p class="text-sm font-bold text-muted">Paso 2 de 3</p>
+    <h3 class="mt-1 text-2xl font-bold text-primary" tabindex="-1">¿Qué es lo que más te pesa ahora?</h3>
+    <div class="mt-5 grid gap-2.5">
+      {hard.map((o) => <button type="button" class="quiz-option" data-topic={o.value}>{o.label}</button>)}
     </div>
-    <div class="mt-6 text-center">
-      <button type="button" class="quiz-back" data-back>← Atrás</button>
-    </div>
+    <button type="button" class="quiz-back" data-back="start">Atrás</button>
   </div>
 
-  <!-- Step 3: format -->
-  <div class="quiz-step hidden" data-step="2">
-    <p class="eyebrow text-center">Paso 3 de 3</p>
-    <h3 class="text-center font-display text-2xl font-bold text-primary-strong sm:text-3xl">
-      ¿Cómo prefieres la terapia?
-    </h3>
-    <div class="mt-7 grid gap-3">
-      {
-        formats.map((m) => (
-          <button type="button" class="quiz-option" data-format={m.key}>
-            {m.label}
-          </button>
-        ))
-      }
+  <div class="quiz-step hidden" data-step="growth">
+    <p class="text-sm font-bold text-muted">Paso 2 de 3</p>
+    <h3 class="mt-1 text-2xl font-bold text-primary" tabindex="-1">¿Qué te gustaría cambiar?</h3>
+    <div class="mt-5 grid gap-2.5">
+      {growth.map((o) => <button type="button" class="quiz-option" data-topic={o.value}>{o.label}</button>)}
     </div>
-    <div class="mt-6 text-center">
-      <button type="button" class="quiz-back" data-back>← Atrás</button>
-    </div>
+    <button type="button" class="quiz-back" data-back="start">Atrás</button>
   </div>
 
-  <!-- Result -->
-  <div class="quiz-step hidden" data-step="result" aria-live="polite">
-    <div class="text-center">
-      <span
-        class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-surface text-primary"
-        aria-hidden="true"
+  <div class="quiz-step hidden" data-step="format">
+    <p class="text-sm font-bold text-muted">Paso 3 de 3</p>
+    <h3 class="mt-1 text-2xl font-bold text-primary" tabindex="-1">¿Cómo te viene mejor?</h3>
+    <div class="mt-5 grid gap-2.5">
+      {formats.map((o) => <button type="button" class="quiz-option" data-format={o.value}>{o.label}</button>)}
+    </div>
+    <button type="button" class="quiz-back" data-back="previous">Atrás</button>
+  </div>
+
+  <div class="quiz-step hidden" data-step="result">
+    <h3 class="text-2xl font-bold text-primary" tabindex="-1" data-result-title></h3>
+    <ul class="checklist mt-4" data-result-points></ul>
+    <p class="mt-4 font-semibold" data-result-price></p>
+    <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+      <a class="btn-primary" target="_blank" rel="noopener" data-result-cta data-event-location="quiz_result" href="#"></a>
+      <a
+        class="btn-whatsapp"
+        target="_blank"
+        rel="noopener"
+        data-event="whatsapp_click"
+        data-event-location="quiz_result"
+        href={SITE.whatsapp}>Escríbeme por WhatsApp</a
       >
-        <svg
-          width="26"
-          height="26"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <circle cx="12" cy="12" r="9"></circle>
-          <path d="M14.8 9.2l-1.9 4.6-4.7 2 1.9-4.6 4.7-2z"></path>
-        </svg>
-      </span>
-      <h3 class="mt-4 font-display text-2xl font-bold text-primary-strong sm:text-3xl" data-result-title>
-      </h3>
-      <p class="mx-auto mt-4 max-w-[52ch] text-muted" data-result-text></p>
-      <div class="mx-auto mt-6 max-w-[52ch] rounded-2xl bg-surface/60 p-5 text-left sm:p-6">
-        <p class="mb-3 text-sm font-bold uppercase tracking-[0.12em] text-primary">
-          Así lo trabajaremos en consulta
-        </p>
-        <ul class="checklist space-y-2 text-base text-ink" data-result-points></ul>
-      </div>
-      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <a class="btn-primary" data-result-cta href="#">Reservar primera sesión</a>
-        <a
-          class="font-semibold text-primary-strong underline decoration-line underline-offset-4 hover:text-primary"
-          data-result-link
-          href="#">Ver más</a
-        >
-      </div>
-      <p class="mx-auto mt-7 max-w-[46ch] text-sm text-muted">
-        Esta orientación es informativa y no sustituye una valoración profesional.
-      </p>
-      <button type="button" class="quiz-back mt-3" data-restart>↺ Empezar de nuevo</button>
     </div>
+    <div class="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+      <a class="font-semibold text-primary underline decoration-line underline-offset-4" data-result-link data-event="quiz_result_link" href="#"
+        >Saber más sobre esto</a
+      >
+      <button type="button" class="font-semibold text-muted underline decoration-line underline-offset-4" data-restart>Volver a empezar</button>
+    </div>
+    <p class="mt-6 border-t border-line/60 pt-4 text-sm text-muted">
+      Esto es una orientación, no una valoración profesional. Si ahora mismo estás en peligro o
+      piensas en hacerte daño, llama al <a class="font-semibold underline" href="tel:024">024</a> (gratis,
+      24 horas) o al <a class="font-semibold underline" href="tel:112">112</a>.
+    </p>
   </div>
 
-  <script type="application/json" data-results set:html={JSON.stringify(results)} />
+  <script is:inline type="application/json" data-config set:html={JSON.stringify(config)} />
 </div>
 
 <style>
-  .quiz-step {
-    animation: quiz-fade 0.32s ease both;
-  }
   .quiz-option {
+    min-height: 3.25rem;
     width: 100%;
-    text-align: left;
     border-radius: 1rem;
-    border: 1px solid color-mix(in srgb, var(--color-line) 55%, white);
+    border: 1.5px solid color-mix(in srgb, var(--color-line) 80%, white);
     background: var(--color-bg);
-    padding: 0.95rem 1.15rem;
+    padding: 0.8rem 1.1rem;
+    text-align: left;
     font-weight: 600;
-    color: var(--color-primary-strong);
-    transition: all 0.18s ease;
+    color: var(--color-ink);
+    transition: border-color 0.15s ease, background-color 0.15s ease;
   }
   .quiz-option:hover {
     border-color: var(--color-primary);
     background: var(--color-surface);
-    transform: translateY(-2px);
   }
   .quiz-back {
+    margin-top: 1rem;
     min-height: 2.75rem;
-    padding-inline: 0.5rem;
-    font-size: 1rem;
     font-weight: 600;
     color: var(--color-muted);
-    transition: color 0.18s ease;
-  }
-  .quiz-back:hover {
-    color: var(--color-primary);
-  }
-  @keyframes quiz-fade {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .quiz-step { animation: none; }
-    .quiz-option:hover { transform: none; }
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 </style>
 
 <script>
-  function initQuiz() {
-    document.querySelectorAll<HTMLElement>('.orientation-quiz').forEach((root) => {
-      if (root.dataset.ready === '1') return;
-      root.dataset.ready = '1';
+  type Result = { title: string; points: string[]; href: string };
+  type Config = {
+    results: Record<string, Result>;
+    priceLines: Record<string, string>;
+    booking: string;
+    whatsapp: string;
+    freeCall: string;
+    firstLabel: string;
+  };
 
-      const steps = root.querySelectorAll<HTMLElement>('.quiz-step');
-      const dots = root.querySelectorAll<HTMLElement>('[data-dot]');
-      const doctoralia = root.dataset.doctoralia || '#';
-      const whatsapp = root.dataset.whatsapp || '#';
+  document.querySelectorAll<HTMLElement>('.orientation-quiz').forEach((root) => {
+    const config: Config = JSON.parse(root.querySelector('script[data-config]')?.textContent || '{}');
+    const announce = root.querySelector<HTMLElement>('[data-announce]');
+    const state = { start: '', topic: '', format: '', previous: 'start' };
+    let started = false;
 
-      const track = (name: string, data?: Record<string, string | number>) =>
-        document.dispatchEvent(new CustomEvent('site:event', { detail: { name, data } }));
+    const track = (name: string, data?: Record<string, string | number>) =>
+      document.dispatchEvent(new CustomEvent('site:event', { detail: { name, data } }));
 
-      const results = JSON.parse(
-        root.querySelector('script[data-results]')?.textContent || '{}'
-      );
-      const state = { area: '', duration: '', format: '' };
+    const show = (name: string) => {
+      root.querySelectorAll<HTMLElement>('.quiz-step').forEach((s) => s.classList.toggle('hidden', s.dataset.step !== name));
+      const heading = root.querySelector<HTMLElement>(`.quiz-step[data-step="${name}"] h3`);
+      if (announce && heading) announce.textContent = heading.textContent ?? '';
+      heading?.focus({ preventScroll: true });
+    };
 
-      const show = (name: string) => {
-        steps.forEach((s) => s.classList.toggle('hidden', s.dataset.step !== name));
-        // Restart the entrance animation
-        const active = root.querySelector<HTMLElement>(`.quiz-step[data-step="${name}"]`);
-        if (active) {
-          active.style.animation = 'none';
-          void active.offsetWidth;
-          active.style.animation = '';
-        }
-        const idx = Number(name);
-        dots.forEach((d, i) => {
-          const done = !Number.isNaN(idx) && i <= idx;
-          d.classList.toggle('bg-primary', done);
-          d.classList.toggle('bg-line/40', !done);
-        });
-      };
+    const buildResult = () => {
+      const key = state.start === 'couple' ? 'couple' : state.start === 'unsure' ? 'unsure' : state.topic;
+      const r = config.results[key] ?? config.results.unsure;
+      const priceKey = key === 'couple' ? 'couple' : state.format || 'either';
 
-      const durationPhrase: Record<string, string> = {
-        recent: 'Has dado el paso pronto, y eso juega a tu favor.',
-        months: 'Llevas un tiempo sosteniéndolo. Pedir apoyo ahora tiene mucho sentido.',
-        chronic: 'Llevas conviviendo con ello demasiado tiempo: mereces un espacio para soltarlo.',
-      };
-      const formatPhrase: Record<string, string> = {
-        in_person: 'de forma presencial en la consulta de Barcelona',
-        online: 'por videollamada, estés donde estés',
-        either: 'en formato presencial u online, como mejor encaje contigo',
-      };
+      root.querySelector('[data-result-title]')!.textContent = r.title;
+      const list = root.querySelector('[data-result-points]')!;
+      list.textContent = '';
+      for (const p of r.points) {
+        const li = document.createElement('li');
+        li.textContent = p;
+        list.appendChild(li);
+      }
+      root.querySelector('[data-result-price]')!.textContent = config.priceLines[priceKey] ?? '';
 
-      const buildResult = () => {
-        const titleEl = root.querySelector<HTMLElement>('[data-result-title]');
-        const textEl = root.querySelector<HTMLElement>('[data-result-text]');
-        const pointsEl = root.querySelector<HTMLElement>('[data-result-points]');
-        const cta = root.querySelector<HTMLAnchorElement>('[data-result-cta]');
-        const link = root.querySelector<HTMLAnchorElement>('[data-result-link]');
+      const cta = root.querySelector<HTMLAnchorElement>('[data-result-cta]')!;
+      const unsure = key === 'unsure';
+      cta.href = unsure ? config.freeCall : config.booking;
+      cta.textContent = unsure ? 'Pedir llamada gratuita de 15 min' : config.firstLabel;
+      cta.dataset.event = unsure ? 'free_call_click' : 'booking_click';
 
-        const isUnsure = state.area === 'unsure';
-        const r = results[state.area] || results.unsure;
+      root.querySelector<HTMLAnchorElement>('[data-result-link]')!.href = r.href;
+      track('quiz_complete');
+      show('result');
+    };
 
-        if (titleEl) titleEl.textContent = r.title;
-        if (textEl) {
-          const durationText = durationPhrase[state.duration] || '';
-          const formatText = formatPhrase[state.format] || '';
-          textEl.textContent = isUnsure
-            ? `${durationText} Podemos verlo en una primera sesión ${formatText}, sin compromiso.`
-            : `${durationText} Podemos trabajarlo ${formatText}.`;
-        }
-        if (pointsEl) {
-          pointsEl.textContent = '';
-          for (const p of r.points) {
-            const li = document.createElement('li');
-            li.textContent = p;
-            pointsEl.appendChild(li);
-          }
-        }
-        if (cta) {
-          cta.href = isUnsure ? whatsapp : doctoralia;
-          cta.textContent = isUnsure ? 'Escríbeme por WhatsApp' : 'Reservar primera sesión';
-          // Both targets are external, so the state must not carry over between retries.
-          cta.target = '_blank';
-          cta.rel = 'noopener';
-          // The target depends on the result, and so does the event name: the
-          // click counts as a booking or as WhatsApp, not as a quiz button.
-          cta.dataset.event = isUnsure ? 'whatsapp_click' : 'booking_click';
-          cta.dataset.eventLocation = 'quiz_result';
-        }
-        if (link) {
-          link.href = r.href;
-          link.textContent = isUnsure ? 'O escríbeme un email' : 'Conocer más sobre este proceso';
-          // No target in the event: the link reveals the chosen area.
-          link.dataset.event = 'quiz_result_link';
-        }
-        track('quiz_complete');
-        show('result');
-      };
+    root.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('button');
+      if (!btn || !root.contains(btn)) return;
 
-      root.addEventListener('click', (e) => {
-        const btn = (e.target as HTMLElement).closest('button');
-        if (!btn || !root.contains(btn)) return;
-
-        if (btn.hasAttribute('data-restart')) {
-          state.area = state.duration = state.format = '';
-          show('0');
-          return;
-        }
-        if (btn.hasAttribute('data-back')) {
-          const current = root.querySelector<HTMLElement>('.quiz-step:not(.hidden)');
-          const step = current?.dataset.step;
-          if (step === '1') show('0');
-          else if (step === '2') show('1');
-          return;
-        }
-        if (btn.dataset.area) {
-          state.area = btn.dataset.area;
-          track('quiz_step', { step: 1 });
-          show('1');
-          return;
-        }
-        if (btn.dataset.duration) {
-          state.duration = btn.dataset.duration;
-          track('quiz_step', { step: 2 });
-          show('2');
-          return;
-        }
-        if (btn.dataset.format) {
-          state.format = btn.dataset.format;
-          track('quiz_step', { step: 3 });
-          buildResult();
-          return;
-        }
-      });
+      if (btn.dataset.start) {
+        if (!started) track('quiz_start');
+        started = true;
+        state.start = btn.dataset.start;
+        state.topic = '';
+        state.previous = btn.dataset.next === 'format' ? 'start' : btn.dataset.next ?? 'start';
+        track('quiz_step', { step: 1 });
+        show(btn.dataset.next ?? 'format');
+      } else if (btn.dataset.topic) {
+        state.topic = btn.dataset.topic;
+        track('quiz_step', { step: 2 });
+        show('format');
+      } else if (btn.dataset.format) {
+        state.format = btn.dataset.format;
+        track('quiz_step', { step: 3 });
+        buildResult();
+      } else if (btn.dataset.back) {
+        show(btn.dataset.back === 'previous' ? state.previous : btn.dataset.back);
+      } else if (btn.hasAttribute('data-restart')) {
+        state.start = state.topic = state.format = '';
+        show('start');
+      }
     });
-  }
-
-  initQuiz();
+  });
 </script>

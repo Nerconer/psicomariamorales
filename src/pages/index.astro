@@ -7,6 +7,7 @@ import Chip from '../components/ui/Chip.astro';
 import Faq from '../components/ui/Faq.astro';
 import Icon from '../components/ui/Icon.astro';
 import ProblemCard from '../components/ui/ProblemCard.astro';
+import OrientationQuiz from '../components/OrientationQuiz.astro';
 import WhatsAppIcon from '../components/ui/WhatsAppIcon.astro';
 import { SITE, PRICES, formatPrice, FREE_CALL_WHATSAPP } from '../consts';
 import mariaHero from '../assets/img/maria-hero.jpg';
@@ -204,8 +205,21 @@ const faqs = [
     </div>
   </section>
 
+  <!-- Orientation quiz -->
+  <section class="py-14 md:py-20" id="test">
+    <div class="mx-auto w-[min(760px,calc(100%-2rem))]">
+      <h2 class="text-3xl font-bold text-primary md:text-4xl">¿No sabes por dónde empezar?</h2>
+      <p class="mt-3 text-muted">
+        Tres preguntas y te digo cómo puedo ayudarte. Tus respuestas no se guardan ni se envían.
+      </p>
+      <div class="mt-6">
+        <OrientationQuiz />
+      </div>
+    </div>
+  </section>
+
   <!-- Who I am and how we start -->
-  <section class="py-14 md:py-20">
+  <section class="bg-surface py-14 md:py-20">
     <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-12 lg:grid-cols-2">
       <div>
         <h2 class="text-3xl font-bold text-primary md:text-4xl">Quién soy</h2>
@@ -246,7 +260,7 @@ const faqs = [
   </section>
 
   <!-- Reviews -->
-  <section class="bg-surface py-14 md:py-20" id="opiniones">
+  <section class="py-14 md:py-20" id="opiniones">
     <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
       <h2 class="text-3xl font-bold text-primary md:text-4xl">Opiniones de pacientes</h2>
       <div class="mt-6">
@@ -256,7 +270,7 @@ const faqs = [
   </section>
 
   <!-- FAQ -->
-  <section class="py-14 md:py-20" id="faq">
+  <section class="bg-surface py-14 md:py-20" id="faq">
     <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
       <h2 class="text-3xl font-bold text-primary md:text-4xl">Dudas</h2>
       <div class="mt-6">

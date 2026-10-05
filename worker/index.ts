@@ -10,13 +10,15 @@ interface Env {
 const PRODUCTION_HOST = 'psicomariamorales.com';
 
 // Content Security Policy. Inline scripts are allowed because Astro inlines its
-// small component scripts. Third parties are limited to the analytics provider.
+// small component scripts. Third parties are limited to the analytics provider
+// and to Doctoralia, whose widget only loads after the visitor clicks for it.
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://cloud.umami.is",
+  "script-src 'self' 'unsafe-inline' https://cloud.umami.is https://platform.docplanner.com",
   "connect-src 'self' https://cloud.umami.is https://api-gateway.umami.dev",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data:",
+  "img-src 'self' data: https://platform.docplanner.com",
+  "frame-src https://*.doctoralia.es https://*.docplanner.com",
   "font-src 'self' data:",
   "frame-ancestors 'none'",
   "base-uri 'self'",

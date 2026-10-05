@@ -31,6 +31,12 @@ export const formatPrice = (amount: number) => `${amount} €`;
 const amounts = Object.values(PRICES).map((p) => p.amount);
 export const PRICE_RANGE = `${formatPrice(Math.min(...amounts))} - ${formatPrice(Math.max(...amounts))}`;
 
+// Public reviews shown on the site. Update by hand when new ones come in: the
+// site never copies review texts, it shows the aggregate and links out.
+export const REVIEWS = {
+  doctoralia: { rating: 5, count: 2, slug: 'maria-morales-herrerias' },
+} as const;
+
 export const ANALYTICS = {
   // Umami Cloud account on the EU region: statistics are hosted in the EU,
   // which is what the privacy policy states.

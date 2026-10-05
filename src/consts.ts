@@ -1,4 +1,6 @@
 export const SITE = {
+  person: 'Maria Morales',
+  role: 'Psicóloga General Sanitaria',
   name: 'Maria Morales · Psicóloga',
   brand: 'PsicoMariaMorales',
   tagline: 'Psicóloga sanitaria en Barcelona · Terapia presencial y online',
@@ -33,9 +35,9 @@ export const PRICE_RANGE = `${formatPrice(Math.min(...amounts))} - ${formatPrice
 
 // Public reviews shown on the site. Update by hand when new ones come in: the
 // site never copies review texts, it shows the aggregate and links out.
-export const REVIEWS = {
+export const REVIEWS: Record<'doctoralia', { rating: number; count: number; slug: string }> = {
   doctoralia: { rating: 5, count: 2, slug: 'maria-morales-herrerias' },
-} as const;
+};
 
 export const ANALYTICS = {
   // Umami Cloud account on the EU region: statistics are hosted in the EU,

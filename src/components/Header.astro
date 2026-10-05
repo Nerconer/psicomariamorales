@@ -1,53 +1,69 @@
 ---
 import { SITE } from '../consts';
+import { LOCALES, localeFromPath } from '../i18n/config';
+import { alternatesOf } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
+import Icon from './ui/Icon.astro';
+import WhatsAppIcon from './ui/WhatsAppIcon.astro';
 
+const locale = localeFromPath(Astro.url.pathname);
+const t = useTranslations(locale);
+const alternates = alternatesOf(Astro.url.pathname).filter((a) => a.locale !== locale);
+
+// The logo already links home, so "Inicio" is not repeated in the menu.
 const links = [
-  { href: '/', label: 'Inicio' },
-  { href: '/terapia-psicologica/', label: 'Terapia psicológica' },
-  { href: '/terapia-de-pareja/', label: 'Terapia de pareja' },
-  { href: '/sobre-mi/', label: 'Sobre mí' },
-  { href: '/tarifas/', label: 'Tarifas' },
-  { href: '/blog/', label: 'Blog' },
-  { href: '/contacto/', label: 'Contacto' },
+  { href: '/terapia-psicologica/', label: t('nav.therapy') },
+  { href: '/terapia-de-pareja/', label: t('nav.couples') },
+  { href: '/tarifas/', label: t('nav.pricing') },
+  { href: '/sobre-mi/', label: t('nav.about') },
+  { href: '/blog/', label: t('nav.blog') },
+  { href: '/contacto/', label: t('nav.contact') },
 ];
 
-const current = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (href: string) =>
-  href === '/' ? current === '/' : current.startsWith(href.replace(/\/$/, ''));
+const current = Astro.url.pathname;
+const isActive = (href: string) => current.startsWith(href);
 ---
 
-<!-- Opaque background without backdrop-blur below xl: on Android a sticky
+<!-- Opaque background without backdrop-blur below lg: on Android a sticky
      element with backdrop-filter stops repainting the strip underneath it when
-     the URL bar resizes the viewport. Desktop keeps the blur. -->
-<header class="sticky top-0 z-50 border-b border-line/20 bg-bg xl:bg-bg/90 xl:backdrop-blur-md">
-  <div class="mx-auto flex w-[min(1200px,94%)] items-center justify-between gap-4 py-3">
-    <a href="/" class="flex items-center gap-3" aria-label="Inicio — PsicoMariaMorales">
+     the URL bar resizes the viewport. -->
+<header class="sticky top-0 z-50 border-b border-line/50 bg-bg lg:bg-bg/90 lg:backdrop-blur-md">
+  <div class="mx-auto flex w-[min(1200px,calc(100%-2rem))] items-center justify-between gap-4 py-3">
+    <a href={locale === 'ca' ? '/ca/' : '/'} class="flex items-center gap-3" aria-label={`${SITE.person}, ${SITE.role}`}>
       <span
-        class="grid h-11 w-11 place-items-center rounded-full border border-primary/60 font-display text-2xl font-bold text-primary"
-        >M</span
+        class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-surface font-display text-xl font-bold text-primary"
+        aria-hidden="true">M</span
       >
       <span class="leading-tight">
-        <span class="block font-display text-xl font-semibold text-ink"
-          >Psico<em class="not-italic text-primary">Maria</em>Morales</span
-        >
-        <span class="block text-[0.72rem] font-medium uppercase tracking-[0.2em] text-primary"
-          >Psicología integradora</span
-        >
+        <span class="block font-display text-lg font-bold text-ink">{SITE.person}</span>
+        <span class="block text-sm text-muted">Psicóloga</span>
       </span>
     </a>
 
-    <nav class="hidden items-center gap-5 xl:flex" aria-label="Navegación principal">
+    <nav class="hidden items-center gap-1 lg:flex" aria-label={t('nav.main')}>
       {
         links.map((l) => (
           <a
             href={l.href}
             class:list={[
-              'whitespace-nowrap text-[0.86rem] font-medium transition-colors hover:text-primary',
-              isActive(l.href) ? 'text-primary' : 'text-muted',
+              'whitespace-nowrap rounded-full px-3 py-2 text-[0.95rem] font-semibold transition-colors hover:bg-surface hover:text-primary',
+              isActive(l.href) ? 'text-primary' : 'text-ink',
             ]}
             aria-current={isActive(l.href) ? 'page' : undefined}
           >
             {l.label}
+          </a>
+        ))
+      }
+      {
+        alternates.map((a) => (
+          <a
+            href={a.path}
+            hreflang={LOCALES[a.locale].htmlLang}
+            lang={LOCALES[a.locale].htmlLang}
+            class="rounded-full px-3 py-2 text-sm font-bold text-muted hover:bg-surface hover:text-primary"
+          >
+            {LOCALES[a.locale].short}
           </a>
         ))
       }
@@ -57,20 +73,22 @@ const isActive = (href: string) =>
         rel="noopener"
         data-event="booking_click"
         data-event-location="header"
-        class="btn-primary whitespace-nowrap !px-5 !py-2"
+        class="btn-primary ml-2 min-h-11! px-5! py-2!"
       >
-        Reservar cita
+        {t('cta.book')}
       </a>
     </nav>
 
     <button
       id="menu-toggle"
-      class="grid h-11 w-11 shrink-0 place-items-center rounded-full text-primary transition-colors hover:bg-surface xl:hidden"
-      aria-label="Abrir menú"
+      class="grid h-11 w-11 shrink-0 place-items-center rounded-full text-primary transition-colors hover:bg-surface lg:hidden"
+      aria-label={t('nav.open')}
+      data-label-open={t('nav.open')}
+      data-label-close={t('nav.close')}
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
         <path class="icon-open" d="M4 7h16M4 12h16M4 17h16"></path>
         <path class="icon-close hidden" d="M6 6l12 12M18 6L6 18"></path>
       </svg>
@@ -79,50 +97,85 @@ const isActive = (href: string) =>
 
   <nav
     id="mobile-menu"
-    class="hidden border-t border-line/20 bg-bg px-[4%] pb-6 pt-3 xl:!hidden"
-    aria-label="Navegación móvil"
+    class="hidden max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-line/50 bg-bg px-4 pb-6 pt-2 lg:hidden!"
+    aria-label={t('nav.mobile')}
   >
     {
       links.map((l) => (
         <a
           href={l.href}
           class:list={[
-            'block border-b border-line/15 py-3 font-display text-lg',
+            'flex min-h-12 items-center border-b border-line/40 font-display text-lg font-semibold',
             isActive(l.href) ? 'text-primary' : 'text-ink',
           ]}
+          aria-current={isActive(l.href) ? 'page' : undefined}
         >
           {l.label}
         </a>
       ))
     }
-    <a
-      href={SITE.doctoralia}
-      target="_blank"
-      rel="noopener"
-      data-event="booking_click"
-      data-event-location="mobile_menu"
-      class="btn-primary mt-5 w-full justify-center"
-    >
-      Reservar cita en Doctoralia
-    </a>
+    {
+      alternates.map((a) => (
+        <a
+          href={a.path}
+          hreflang={LOCALES[a.locale].htmlLang}
+          lang={LOCALES[a.locale].htmlLang}
+          class="flex min-h-12 items-center border-b border-line/40 font-semibold text-muted"
+        >
+          {LOCALES[a.locale].label}
+        </a>
+      ))
+    }
+    <div class="mt-5 grid gap-3">
+      <a
+        href={SITE.doctoralia}
+        target="_blank"
+        rel="noopener"
+        data-event="booking_click"
+        data-event-location="mobile_menu"
+        class="btn-primary w-full"
+      >
+        <Icon name="calendar" size={20} />
+        {t('cta.book')}
+      </a>
+      <div class="grid grid-cols-2 gap-3">
+        <a
+          href={SITE.whatsapp}
+          target="_blank"
+          rel="noopener"
+          data-event="whatsapp_click"
+          data-event-location="mobile_menu"
+          class="btn-whatsapp w-full px-4!"
+        >
+          <WhatsAppIcon size={20} class="text-[#128c4a]" />
+          {t('cta.whatsapp')}
+        </a>
+        <a
+          href={SITE.phoneHref}
+          data-event="phone_click"
+          data-event-location="mobile_menu"
+          class="btn-outline w-full px-4!"
+        >
+          <Icon name="phone" size={20} />
+          {t('cta.call')}
+        </a>
+      </div>
+    </div>
   </nav>
 </header>
 
 <script>
-  function initMenu() {
-    const toggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('mobile-menu');
-    if (!toggle || !menu) return;
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
     toggle.addEventListener('click', () => {
       const open = menu.classList.toggle('hidden') === false;
       toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', (open ? toggle.dataset.labelClose : toggle.dataset.labelOpen) ?? '');
       if (open)
-        document.dispatchEvent(
-          new CustomEvent('site:event', { detail: { name: 'mobile_menu_open' } })
-        );
+        document.dispatchEvent(new CustomEvent('site:event', { detail: { name: 'mobile_menu_open' } }));
       toggle.querySelector('.icon-open')?.classList.toggle('hidden', open);
       toggle.querySelector('.icon-close')?.classList.toggle('hidden', !open);
     });
   }
-  initMenu();
 </script>

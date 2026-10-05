@@ -2,25 +2,31 @@
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaFinal from '../components/CtaFinal.astro';
-import { SITE } from '../consts';
+import { SITE, PRICES, formatPrice } from '../consts';
 
-const tarifas = [
+const rates = [
   {
-    title: 'Primera sesión',
-    price: 'desde 50 €',
-    desc: 'Un espacio para conocernos: exploramos qué te trae a consulta, cómo te está afectando y cuáles son tus objetivos.',
+    title: 'Terapia online',
+    price: PRICES.online,
+    desc: 'Por videollamada, desde cualquier lugar y con mayor flexibilidad horaria.',
     featured: true,
   },
   {
+    title: 'Primera sesión',
+    price: PRICES.firstSession,
+    desc: 'Un espacio para conocernos: exploramos qué te trae a consulta, cómo te está afectando y cuáles son tus objetivos.',
+    featured: false,
+  },
+  {
     title: 'Terapia presencial en Barcelona',
-    price: 'desde 50 €',
+    price: PRICES.inPerson,
     desc: 'Sesiones individuales de seguimiento en consulta, en un ambiente tranquilo, confidencial y seguro.',
     featured: false,
   },
   {
-    title: 'Terapia online',
-    price: '45 €',
-    desc: 'La misma calidad y cercanía que la terapia presencial, desde cualquier lugar y con mayor flexibilidad horaria.',
+    title: 'Terapia de pareja',
+    price: PRICES.couple,
+    desc: 'Sesión conjunta para los dos miembros de la pareja, presencial u online.',
     featured: false,
   },
 ];
@@ -33,14 +39,14 @@ const tarifas = [
   <PageHero
     eyebrow="Tarifas"
     title="Tarifas claras y sin sorpresas"
-    lead="Invertir en tu bienestar es una de las decisiones más importantes que puedes tomar. Estas son las tarifas de las sesiones, siempre sincronizadas con mi perfil de Doctoralia."
+    lead="Las sesiones duran 60 minutos. La terapia de pareja, 90."
   />
 
   <section class="py-16 md:py-24">
     <div class="mx-auto w-[min(1120px,92%)]">
-      <div class="grid gap-6 md:grid-cols-3">
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {
-          tarifas.map((t) => (
+          rates.map((t) => (
             <div
               class:list={[
                 'card flex flex-col text-center',
@@ -61,7 +67,10 @@ const tarifas = [
                   t.featured ? 'text-cream' : 'text-forest',
                 ]}
               >
-                {t.price}
+                {formatPrice(t.price.amount)}
+              </p>
+              <p class:list={['-mt-2 mb-4 text-sm font-semibold', t.featured ? 'text-cream/85' : 'text-ink-soft']}>
+                {t.price.minutes} min
               </p>
               <p class:list={['text-base', t.featured ? 'text-cream/85' : 'text-ink-soft']}>
                 {t.desc}
@@ -100,7 +109,7 @@ const tarifas = [
       </div>
 
       <p class="mt-10 text-center text-base text-ink-soft">
-        Los precios se mantienen sincronizados con el perfil de <a
+        Puedes consultar la disponibilidad y reservar en <a
           href={SITE.doctoralia}
           target="_blank"
           rel="noopener"
@@ -108,7 +117,7 @@ const tarifas = [
           data-event-location="pricing_note"
           class="font-semibold text-forest underline decoration-forest-soft underline-offset-4"
           >Doctoralia</a
-        >, donde puedes consultar la disponibilidad actualizada.
+        >.
       </p>
     </div>
   </section>

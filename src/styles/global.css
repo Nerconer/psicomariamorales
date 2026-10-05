@@ -53,7 +53,7 @@ html {
 }
 
 body {
-  @apply bg-bg pb-24 font-sans text-[1.0625rem] leading-[1.65] text-ink antialiased md:pb-0 md:text-lg;
+  @apply bg-bg font-sans text-[1.0625rem] leading-[1.65] text-ink antialiased md:text-lg;
   /* Safety net against horizontal scroll. Several sections rely on decorative
      elements that stick out and on narrow screens they pushed the document
      width. It is `clip` and not `hidden` on purpose: `hidden` would make the

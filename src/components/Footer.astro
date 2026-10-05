@@ -30,7 +30,8 @@ const legal = [link('legal', 'nav.legal'), link('privacy', 'nav.privacy'), link(
 const linkClass = 'flex min-h-11 items-center text-muted hover:text-primary';
 ---
 
-<footer class="bg-surface">
+<!-- Bottom padding on mobile leaves room for the fixed contact bar. -->
+<footer class="bg-surface pb-24 md:pb-0">
   <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr]">
     <div>
       <p class="font-display text-xl font-bold text-ink">{SITE.person}</p>

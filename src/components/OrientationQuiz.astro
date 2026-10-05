@@ -90,7 +90,7 @@ const priceLines = {
   online: `La primera sesión cuesta ${first}. Después, ${formatPrice(PRICES.online.amount)} la sesión online.`,
   in_person: `La primera sesión cuesta ${first}. Después, ${formatPrice(PRICES.inPerson.amount)} la sesión en Barcelona.`,
   either: `La primera sesión cuesta ${first}. Después, ${formatPrice(PRICES.online.amount)} online o ${formatPrice(PRICES.inPerson.amount)} en Barcelona.`,
-  couple: `La primera sesión cuesta ${first}. La terapia de pareja, ${formatPrice(PRICES.couple.amount)} la sesión de ${PRICES.couple.minutes} minutos.`,
+  couple: `La terapia de pareja cuesta ${formatPrice(PRICES.couple.amount)} la sesión de ${PRICES.couple.minutes} minutos, también la primera.`,
 };
 
 const start = [
@@ -273,7 +273,11 @@ const config = {
       const cta = root.querySelector<HTMLAnchorElement>('[data-result-cta]')!;
       const unsure = key === 'unsure';
       cta.href = unsure ? config.freeCall : config.booking;
-      cta.textContent = unsure ? 'Pedir llamada gratuita de 15 min' : config.firstLabel;
+      cta.textContent = unsure
+        ? 'Pedir llamada gratuita de 15 min'
+        : key === 'couple'
+          ? 'Reservar sesión de pareja'
+          : config.firstLabel;
       cta.dataset.event = unsure ? 'free_call_click' : 'booking_click';
 
       root.querySelector<HTMLAnchorElement>('[data-result-link]')!.href = r.href;

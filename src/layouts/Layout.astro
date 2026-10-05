@@ -2,7 +2,6 @@
 // Self-hosted fonts (no Google CDN): better performance and the visitor's IP
 // is not sent to a third party (relevant for GDPR on a health website). Only
 // the .woff2 of the subset in use is downloaded.
-import '@fontsource-variable/lora/index.css';
 import '@fontsource-variable/plus-jakarta-sans/index.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
@@ -136,7 +135,7 @@ const businessSchema = {
 
   </head>
   <body>
-    <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:text-forest-dark focus:shadow-lg">{t('a11y.skip')}</a>
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:text-primary-strong focus:shadow-lg">{t('a11y.skip')}</a>
     <Header />
     <main id="contenido">
       <slot />

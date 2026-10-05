@@ -43,17 +43,17 @@ const articleSchema = {
 <Layout title={post.data.title} description={post.data.description} ogType="article">
   <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <article data-article={post.id}>
-    <header class="border-b border-forest-soft/15 bg-mist">
+    <header class="border-b border-line/15 bg-surface">
       <div class="mx-auto w-[min(820px,92%)] py-16 text-center md:py-20">
         <span
           class={`mb-5 inline-block rounded-full border px-4 py-1 text-sm font-semibold uppercase tracking-wider ${categoryBadgeClass(post.data.tag)}`}
         >
           {post.data.tag}
         </span>
-        <h1 class="font-display text-4xl font-semibold leading-tight text-forest-dark md:text-5xl">
+        <h1 class="font-display text-4xl font-semibold leading-tight text-primary-strong md:text-5xl">
           {post.data.title}
         </h1>
-        <p class="mt-5 text-sm uppercase tracking-wider text-ink-soft">
+        <p class="mt-5 text-sm uppercase tracking-wider text-muted">
           {formatDate(post.data.pubDate)} · Maria Morales
         </p>
       </div>
@@ -63,11 +63,11 @@ const articleSchema = {
       <div class="prose-brand">
         <Content />
       </div>
-      <div class="mt-12 border-t border-forest-soft/20 pt-8">
+      <div class="mt-12 border-t border-line/20 pt-8">
         <a
           href="/blog/"
           data-event="back_to_blog_click"
-          class="group font-semibold text-forest hover:text-forest-dark"
+          class="group font-semibold text-primary hover:text-primary-strong"
         >
           <span class="text-sun transition-transform group-hover:-translate-x-0.5 inline-block">←</span> Volver al blog
         </a>

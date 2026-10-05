@@ -19,18 +19,18 @@ const isActive = (href: string) =>
 <!-- Opaque background without backdrop-blur below xl: on Android a sticky
      element with backdrop-filter stops repainting the strip underneath it when
      the URL bar resizes the viewport. Desktop keeps the blur. -->
-<header class="sticky top-0 z-50 border-b border-forest-soft/20 bg-cream xl:bg-cream/90 xl:backdrop-blur-md">
+<header class="sticky top-0 z-50 border-b border-line/20 bg-bg xl:bg-bg/90 xl:backdrop-blur-md">
   <div class="mx-auto flex w-[min(1200px,94%)] items-center justify-between gap-4 py-3">
     <a href="/" class="flex items-center gap-3" aria-label="Inicio — PsicoMariaMorales">
       <span
-        class="grid h-11 w-11 place-items-center rounded-full border border-forest/60 font-display text-2xl font-bold text-forest"
+        class="grid h-11 w-11 place-items-center rounded-full border border-primary/60 font-display text-2xl font-bold text-primary"
         >M</span
       >
       <span class="leading-tight">
         <span class="block font-display text-xl font-semibold text-ink"
-          >Psico<em class="not-italic text-forest">Maria</em>Morales</span
+          >Psico<em class="not-italic text-primary">Maria</em>Morales</span
         >
-        <span class="block text-[0.72rem] font-medium uppercase tracking-[0.2em] text-forest"
+        <span class="block text-[0.72rem] font-medium uppercase tracking-[0.2em] text-primary"
           >Psicología integradora</span
         >
       </span>
@@ -42,8 +42,8 @@ const isActive = (href: string) =>
           <a
             href={l.href}
             class:list={[
-              'whitespace-nowrap text-[0.86rem] font-medium transition-colors hover:text-forest',
-              isActive(l.href) ? 'text-forest' : 'text-ink-soft',
+              'whitespace-nowrap text-[0.86rem] font-medium transition-colors hover:text-primary',
+              isActive(l.href) ? 'text-primary' : 'text-muted',
             ]}
             aria-current={isActive(l.href) ? 'page' : undefined}
           >
@@ -65,7 +65,7 @@ const isActive = (href: string) =>
 
     <button
       id="menu-toggle"
-      class="grid h-11 w-11 shrink-0 place-items-center rounded-full text-forest transition-colors hover:bg-mist xl:hidden"
+      class="grid h-11 w-11 shrink-0 place-items-center rounded-full text-primary transition-colors hover:bg-surface xl:hidden"
       aria-label="Abrir menú"
       aria-expanded="false"
       aria-controls="mobile-menu"
@@ -79,7 +79,7 @@ const isActive = (href: string) =>
 
   <nav
     id="mobile-menu"
-    class="hidden border-t border-forest-soft/20 bg-cream px-[4%] pb-6 pt-3 xl:!hidden"
+    class="hidden border-t border-line/20 bg-bg px-[4%] pb-6 pt-3 xl:!hidden"
     aria-label="Navegación móvil"
   >
     {
@@ -87,8 +87,8 @@ const isActive = (href: string) =>
         <a
           href={l.href}
           class:list={[
-            'block border-b border-forest-soft/15 py-3 font-display text-lg',
-            isActive(l.href) ? 'text-forest' : 'text-ink',
+            'block border-b border-line/15 py-3 font-display text-lg',
+            isActive(l.href) ? 'text-primary' : 'text-ink',
           ]}
         >
           {l.label}

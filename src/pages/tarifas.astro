@@ -2,123 +2,120 @@
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaFinal from '../components/CtaFinal.astro';
-import { SITE, PRICES, formatPrice } from '../consts';
+import DoctoraliaEmbed from '../components/DoctoraliaEmbed.astro';
+import Icon from '../components/ui/Icon.astro';
+import { SITE, PRICES, formatPrice, FREE_CALL_WHATSAPP } from '../consts';
 
 const rates = [
   {
     title: 'Terapia online',
     price: PRICES.online,
-    desc: 'Por videollamada, desde cualquier lugar y con mayor flexibilidad horaria.',
+    desc: 'Por videollamada, desde donde estés.',
     featured: true,
   },
   {
     title: 'Primera sesión',
     price: PRICES.firstSession,
-    desc: 'Un espacio para conocernos: exploramos qué te trae a consulta, cómo te está afectando y cuáles son tus objetivos.',
+    desc: 'Para conocernos y ver qué necesitas. Terapia individual, online o en Barcelona.',
     featured: false,
   },
   {
-    title: 'Terapia presencial en Barcelona',
+    title: 'Presencial',
     price: PRICES.inPerson,
-    desc: 'Sesiones individuales de seguimiento en consulta, en un ambiente tranquilo, confidencial y seguro.',
+    desc: 'En la consulta de Barcelona.',
     featured: false,
   },
   {
     title: 'Terapia de pareja',
     price: PRICES.couple,
-    desc: 'Sesión conjunta para los dos miembros de la pareja, presencial u online.',
+    desc: 'Para los dos, online o en Barcelona.',
     featured: false,
   },
 ];
 ---
 
 <Layout
-  title="Tarifas"
-  description="Tarifas de terapia psicológica con Maria Morales: primera sesión y sesiones de seguimiento, presencial en Barcelona y online. Reserva en Doctoralia."
+  title="Tarifas de terapia online y en Barcelona"
+  description={`Primera sesión ${formatPrice(PRICES.firstSession.amount)}, terapia online ${formatPrice(PRICES.online.amount)}, presencial en Barcelona ${formatPrice(PRICES.inPerson.amount)} y terapia de pareja ${formatPrice(PRICES.couple.amount)}. Sesiones de 60 minutos, pareja de 90.`}
 >
-  <PageHero
-    eyebrow="Tarifas"
-    title="Tarifas claras y sin sorpresas"
-    lead="Las sesiones duran 60 minutos. La terapia de pareja, 90."
-  />
+  <PageHero title="Tarifas" lead="Las sesiones duran 60 minutos. La terapia de pareja, 90." />
 
-  <section class="py-16 md:py-24">
-    <div class="mx-auto w-[min(1120px,92%)]">
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+  <section class="py-12 md:py-16">
+    <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {
-          rates.map((t) => (
+          rates.map((r) => (
             <div
               class:list={[
-                'card flex flex-col text-center',
-                t.featured && 'border-primary/40 !bg-primary text-bg',
+                'flex flex-col rounded-2xl border p-6',
+                r.featured ? 'border-primary bg-primary text-white' : 'border-line/60 bg-white',
               ]}
             >
-              <h2
-                class:list={[
-                  'font-display text-2xl font-semibold',
-                  t.featured ? 'text-bg' : 'text-primary-strong',
-                ]}
-              >
-                {t.title}
-              </h2>
-              <p
-                class:list={[
-                  'my-4 font-display text-5xl font-semibold',
-                  t.featured ? 'text-bg' : 'text-primary',
-                ]}
-              >
-                {formatPrice(t.price.amount)}
+              <h2 class:list={['text-xl font-bold', r.featured ? 'text-white' : 'text-primary']}>{r.title}</h2>
+              <p class="mt-3 flex items-baseline gap-2">
+                <span class="font-display text-4xl font-bold">{formatPrice(r.price.amount)}</span>
+                <span class:list={['text-sm font-semibold', r.featured ? 'text-white/85' : 'text-muted']}>
+                  {r.price.minutes} min
+                </span>
               </p>
-              <p class:list={['-mt-2 mb-4 text-sm font-semibold', t.featured ? 'text-bg/85' : 'text-muted']}>
-                {t.price.minutes} min
-              </p>
-              <p class:list={['text-base', t.featured ? 'text-bg/85' : 'text-muted']}>
-                {t.desc}
-              </p>
+              <p class:list={['mt-3 flex-1 text-base', r.featured ? 'text-white/90' : 'text-muted']}>{r.desc}</p>
               <a
                 href={SITE.doctoralia}
                 target="_blank"
                 rel="noopener"
                 data-event="booking_click"
                 data-event-location="pricing_card"
-                data-event-rate={t.title}
-                class:list={['mt-6 justify-center', t.featured ? 'btn-light' : 'btn-outline']}
+                data-event-rate={r.title}
+                class:list={['mt-5', r.featured ? 'btn-light' : 'btn-outline']}
               >
-                Reservar cita
+                Reservar
               </a>
             </div>
           ))
         }
       </div>
 
-      <div class="mt-12 grid gap-6 md:grid-cols-2">
-        <div class="card">
-          <h3 class="font-display text-xl font-semibold text-primary-strong">Formas de pago</h3>
-          <p class="mt-2 text-base text-muted">
-            Puedes abonar las sesiones en efectivo, por transferencia bancaria o Bizum. Las
-            sesiones online se abonan antes de la cita.
-          </p>
-        </div>
-        <div class="card">
-          <h3 class="font-display text-xl font-semibold text-primary-strong">Política de cancelación</h3>
-          <p class="mt-2 text-base text-muted">
-            Si no puedes asistir a una sesión, te agradezco que avises con al menos 24 horas de
-            antelación para poder reprogramarla sin coste.
-          </p>
-        </div>
-      </div>
-
-      <p class="mt-10 text-center text-base text-muted">
-        Puedes consultar la disponibilidad y reservar en <a
-          href={SITE.doctoralia}
+      <p class="mt-6 text-center text-base text-muted">
+        ¿Tienes dudas antes de reservar?{' '}
+        <a
+          href={FREE_CALL_WHATSAPP}
           target="_blank"
           rel="noopener"
-          data-event="booking_click"
-          data-event-location="pricing_note"
-          class="font-semibold text-primary underline decoration-line underline-offset-4"
-          >Doctoralia</a
+          data-event="free_call_click"
+          data-event-location="pricing"
+          class="font-semibold text-primary underline decoration-line underline-offset-4 hover:decoration-primary"
+          >Pide una llamada gratuita de 15 minutos</a
         >.
       </p>
+    </div>
+  </section>
+
+  <section class="bg-surface py-12 md:py-16" id="reservar">
+    <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
+      <h2 class="text-2xl font-bold text-primary md:text-3xl">Reserva sin salir de la web</h2>
+      <div class="mt-5">
+        <DoctoraliaEmbed mode="calendar" location="pricing" />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16">
+    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-4 md:grid-cols-2">
+      <div class="card">
+        <h2 class="flex items-center gap-2 text-xl font-bold text-primary">
+          <Icon name="check" class="text-primary" /> Pago
+        </h2>
+        <p class="mt-2 text-muted">Efectivo, transferencia o Bizum. Las sesiones online se pagan antes de la cita.</p>
+      </div>
+      <div class="card">
+        <h2 class="flex items-center gap-2 text-xl font-bold text-primary">
+          <Icon name="calendar" class="text-primary" /> Cancelación
+        </h2>
+        <p class="mt-2 text-muted">
+          Si no puedes venir, avísame con 24 horas de antelación y la cambiamos sin coste.
+        </p>
+      </div>
+      <p class="text-sm text-muted md:col-span-2">Los precios se revisan una vez al año.</p>
     </div>
   </section>
 

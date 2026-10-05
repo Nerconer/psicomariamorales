@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
+import Wave from '../components/Wave.astro';
 import { SITE } from '../consts';
 ---
 
@@ -14,4 +15,5 @@ import { SITE } from '../consts';
       <a href={SITE.whatsapp} target="_blank" rel="noopener" data-event="whatsapp_click" data-event-location="not_found" class="btn-outline">Escribir por WhatsApp</a>
     </div>
   </section>
+  <Wave from="var(--color-bg)" to="var(--color-surface)" />
 </Layout>

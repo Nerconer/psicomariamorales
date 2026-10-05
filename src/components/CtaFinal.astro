@@ -4,6 +4,7 @@ import { SITE, WHATSAPP_BY_LOCALE } from '../consts';
 import { localeFromPath } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
 import Icon from './ui/Icon.astro';
+import Wave from './Wave.astro';
 import WhatsAppIcon from './ui/WhatsAppIcon.astro';
 
 interface Props {
@@ -11,6 +12,8 @@ interface Props {
   text?: string;
   primaryLabel?: string;
   primaryHref?: string;
+  /** Background of the section above, for the wave. */
+  from?: string;
 }
 
 const locale = localeFromPath(Astro.url.pathname);
@@ -21,11 +24,13 @@ const {
   text = t('cta.text'),
   primaryLabel = t('cta.bookFirst'),
   primaryHref = SITE.doctoralia,
+  from = 'var(--color-bg)',
 } = Astro.props;
 
 const external = primaryHref.startsWith('http');
 ---
 
+<Wave from={from} to="var(--color-primary-strong)" />
 <section class="bg-primary-strong">
   <div class="mx-auto w-[min(820px,calc(100%-2rem))] py-16 text-center md:py-20">
     <h2 class="text-3xl font-bold text-white md:text-4xl">{title}</h2>
@@ -60,3 +65,4 @@ const external = primaryHref.startsWith('http');
     </div>
   </div>
 </section>
+<Wave from="var(--color-primary-strong)" to="var(--color-surface)" flip />

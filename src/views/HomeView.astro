@@ -3,6 +3,7 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import CtaFinal from '../components/CtaFinal.astro';
+import Wave from '../components/Wave.astro';
 import DoctoraliaEmbed from '../components/DoctoraliaEmbed.astro';
 import GoogleReviewsLink from '../components/GoogleReviewsLink.astro';
 import OrientationQuiz from '../components/OrientationQuiz.astro';
@@ -229,6 +230,7 @@ const c = COPY[locale];
   </section>
 
   <!-- Do you recognise yourself -->
+  <Wave from="var(--color-bg)" to="var(--color-surface)" />
   <section class="bg-surface py-14 md:py-20" id="ayuda">
     <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
       <div class="max-w-[68ch]">
@@ -252,6 +254,7 @@ const c = COPY[locale];
   </section>
 
   <!-- Orientation quiz -->
+  <Wave from="var(--color-surface)" to="var(--color-bg)" flip />
   <section class="py-14 md:py-20" id="test">
     <div class="mx-auto w-[min(760px,calc(100%-2rem))]">
       <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.quizTitle}</h2>
@@ -263,6 +266,7 @@ const c = COPY[locale];
   </section>
 
   <!-- Who I am and how we start -->
+  <Wave from="var(--color-bg)" to="var(--color-surface)" />
   <section class="bg-surface py-14 md:py-20">
     <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-12 lg:grid-cols-2">
       <div>
@@ -299,6 +303,7 @@ const c = COPY[locale];
   </section>
 
   <!-- Reviews -->
+  <Wave from="var(--color-surface)" to="var(--color-bg)" flip />
   <section class="py-14 md:py-20" id="opiniones">
     <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
       <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.reviews}</h2>
@@ -310,6 +315,7 @@ const c = COPY[locale];
   </section>
 
   <!-- FAQ -->
+  <Wave from="var(--color-bg)" to="var(--color-surface)" />
   <section class="bg-surface py-14 md:py-20" id="faq">
     <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
       <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.faqTitle}</h2>
@@ -319,5 +325,5 @@ const c = COPY[locale];
     </div>
   </section>
 
-  <CtaFinal />
+  <CtaFinal from="var(--color-surface)" />
 </Layout>

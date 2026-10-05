@@ -3,6 +3,7 @@
 // the topics, and a direct way to ask for a proposal.
 import Layout from '../layouts/Layout.astro';
 import PageHero from './PageHero.astro';
+import Wave from './Wave.astro';
 import Chip from './ui/Chip.astro';
 import Icon from './ui/Icon.astro';
 import WhatsAppIcon from './ui/WhatsAppIcon.astro';
@@ -40,6 +41,7 @@ const whatsapp = whatsappUrl(`Hola Maria, te escribo por: ${subject}.`);
     </div>
   </section>
 
+  <Wave from="var(--color-bg)" to="var(--color-primary-strong)" />
   <section class="bg-primary-strong">
     <div class="mx-auto w-[min(820px,calc(100%-2rem))] py-14 text-center md:py-16">
       <h2 class="text-3xl font-bold text-white">Cuéntame qué necesitáis</h2>
@@ -53,4 +55,5 @@ const whatsapp = whatsappUrl(`Hola Maria, te escribo por: ${subject}.`);
       </div>
     </div>
   </section>
+  <Wave from="var(--color-primary-strong)" to="var(--color-surface)" flip />
 </Layout>

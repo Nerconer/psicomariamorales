@@ -2,16 +2,21 @@
 // Wave-shaped section divider.
 // `from`: colour of the previous section (above the wave)
 // `to`: colour of the next section (wave fill)
+// `flip`: mirror the wave so consecutive dividers do not look identical
 interface Props {
   from: string;
   to: string;
+  flip?: boolean;
 }
-const { from, to } = Astro.props;
+const { from, to, flip = false } = Astro.props;
 ---
 
-<div aria-hidden="true" class="leading-none" style={`background:${from}`}>
-  <svg viewBox="0 0 1440 72" preserveAspectRatio="none" class="block h-10 w-full md:h-[72px]">
-    <path d="M0,40 C180,72 420,4 720,20 C1020,36 1260,76 1440,32 L1440,72 L0,72 Z" fill={to}
-    ></path>
+<div aria-hidden="true" class="-mb-px leading-none" style={`background:${from}`}>
+  <svg
+    viewBox="0 0 1440 72"
+    preserveAspectRatio="none"
+    class:list={['block h-8 w-full sm:h-12 md:h-[72px]', flip && '-scale-x-100']}
+  >
+    <path d="M0,40 C180,72 420,4 720,20 C1020,36 1260,76 1440,32 L1440,72 L0,72 Z" fill={to}></path>
   </svg>
 </div>

@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import CtaFinal from '../../components/CtaFinal.astro';
+import Wave from '../../components/Wave.astro';
 import RelatedPosts from '../../components/RelatedPosts.astro';
 import Icon from '../../components/ui/Icon.astro';
 import WhatsAppIcon from '../../components/ui/WhatsAppIcon.astro';
@@ -107,6 +108,7 @@ const breadcrumbSchema = {
         </p>
       </div>
     </header>
+    <Wave from="var(--color-surface)" to="var(--color-bg)" />
 
     <div class="mx-auto w-[min(760px,calc(100%-2rem))] py-12 md:py-16">
       <div class="prose-brand">

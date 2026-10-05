@@ -1,0 +1,33 @@
+---
+// Link to the Google Business Profile reviews, with the rating once there is one.
+import { REVIEWS } from '../consts';
+import { localeFromPath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+const locale = localeFromPath(Astro.url.pathname);
+const t = useTranslations(locale);
+const { rating, count, url } = REVIEWS.google;
+---
+
+<p class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1">
+  {
+    count > 0 && (
+      <span class="font-display font-bold">
+        {rating.toLocaleString(locale === 'ca' ? 'ca-ES' : 'es-ES', { minimumFractionDigits: 1 })}{' '}
+        <span class="text-sun-strong" aria-hidden="true">★</span>{' '}
+        <span class="font-normal text-muted">
+          · {count} {t('google.count')}
+        </span>
+      </span>
+    )
+  }
+  <a
+    href={url}
+    target="_blank"
+    rel="noopener"
+    data-event="reviews_click"
+    data-event-location="google"
+    class="font-semibold text-primary underline decoration-line underline-offset-4 hover:decoration-primary"
+    >{t('google.reviews')}</a
+  >
+</p>

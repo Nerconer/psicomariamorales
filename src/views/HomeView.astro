@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import DoctoraliaEmbed from '../components/DoctoraliaEmbed.astro';
+import GoogleReviewsLink from '../components/GoogleReviewsLink.astro';
 import OrientationQuiz from '../components/OrientationQuiz.astro';
 import Chip from '../components/ui/Chip.astro';
 import Faq from '../components/ui/Faq.astro';
@@ -303,6 +304,7 @@ const c = COPY[locale];
       <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.reviews}</h2>
       <div class="mt-6">
         <DoctoraliaEmbed mode="reviews" location="home" />
+        <GoogleReviewsLink />
       </div>
     </div>
   </section>

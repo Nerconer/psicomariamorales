@@ -62,8 +62,14 @@ export const PRICE_RANGE = `${formatPrice(Math.min(...amounts))} - ${formatPrice
 
 // Public reviews shown on the site. Update by hand when new ones come in: the
 // site never copies review texts, it shows the aggregate and links out.
-export const REVIEWS: Record<'doctoralia', { rating: number; count: number; slug: string }> = {
+export const REVIEWS: {
+  doctoralia: { rating: number; count: number; slug: string };
+  // Google Business Profile. Leave count at 0 until there are reviews: the
+  // site then shows only the link, without a rating.
+  google: { rating: number; count: number; url: string };
+} = {
   doctoralia: { rating: 5, count: 2, slug: 'maria-morales-herrerias' },
+  google: { rating: 0, count: 0, url: SITE.maps },
 };
 
 export const ANALYTICS = {

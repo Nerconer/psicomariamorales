@@ -3,15 +3,9 @@
 // aggregated statistics, so no consent banner is needed (relevant for a health
 // website).
 //
-// The tracker is loaded from this <script>, which Astro marks as already run
-// and does not execute again on page transitions, so loading and listeners are
-// set up only once. Pageviews for internal navigations are detected by the
-// tracker itself, which hooks into history.pushState.
-//
-// Named events are declared with data-event="name" and sent from here instead
-// of the native data-umami-event attributes: the tracker intercepts link clicks
-// (preventDefault followed by location.href), which breaks ClientRouter
-// transitions on internal links.
+// Named events are declared with data-event="name" (plus data-event-* for
+// extra properties) and sent from here. Components that need to report
+// something else dispatch a site:event custom event.
 ---
 
 <script>
@@ -89,18 +83,13 @@
 
   // ── Reading depth on blog posts ──────────────────────────────────────────
   const MILESTONES = [25, 50, 75, 100];
-  let reading: AbortController | null = null;
 
   const initReading = () => {
-    reading?.abort();
-    reading = null;
-
     const article = document.querySelector<HTMLElement>('[data-article]');
     if (!article) return;
 
     const slug = article.dataset.article || window.location.pathname;
     const ac = new AbortController();
-    reading = ac;
     let next = 0;
 
     const measure = () => {
@@ -122,6 +111,5 @@
 
   loadTracker();
   initClicks();
-  // astro:page-load also fires on the initial load.
-  document.addEventListener('astro:page-load', initReading);
+  initReading();
 </script>

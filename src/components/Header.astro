@@ -109,8 +109,6 @@ const isActive = (href: string) =>
 </header>
 
 <script>
-  // Re-attached on every View Transitions navigation.
-  // astro:page-load also fires on the initial load.
   function initMenu() {
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('mobile-menu');
@@ -126,5 +124,5 @@ const isActive = (href: string) =>
       toggle.querySelector('.icon-close')?.classList.toggle('hidden', !open);
     });
   }
-  document.addEventListener('astro:page-load', initMenu);
+  initMenu();
 </script>

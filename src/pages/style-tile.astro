@@ -1,0 +1,273 @@
+---
+// Internal page to compare the two visual directions before the redesign.
+// Not linked, not in the sitemap and noindex. Delete it once a direction is
+// chosen.
+import '@fontsource-variable/plus-jakarta-sans/index.css';
+import { Image } from 'astro:assets';
+import mariaHero from '../assets/img/maria-hero.jpg';
+import { PRICES, formatPrice } from '../consts';
+
+const directions = [
+  {
+    id: 'a',
+    name: 'A · Lila cálido',
+    note: 'Parte de la paleta que eligió Maria: lila, amarillo y crema.',
+    colors: [
+      ['Fondo', '#FFF8EE'],
+      ['Superficie', '#F4F0FA'],
+      ['Acción y titulares', '#5F5399'],
+      ['Acento', '#8B7EC8'],
+      ['Luz', '#FFCA5C'],
+      ['Texto', '#2A2433'],
+    ],
+  },
+  {
+    id: 'b',
+    name: 'B · Salvia y arcilla',
+    note: 'Evoluciona el verde actual hacia un tono más cálido.',
+    colors: [
+      ['Fondo', '#FBF7F1'],
+      ['Superficie', '#EAF1EC'],
+      ['Acción y titulares', '#3F6B5A'],
+      ['Acento', '#C9785B'],
+      ['Luz', '#F2D7A6'],
+      ['Texto', '#26302B'],
+    ],
+  },
+];
+
+const problems = {
+  hard: ['Ansiedad', 'Estrés y burnout', 'Duelo', 'Trauma (EMDR)'],
+  grow: ['Mi relación de pareja', 'Decisiones y trabajo', 'Seguridad en mí', 'Bloqueos'],
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Muestra de estilo · interno</title>
+  </head>
+  <body>
+    <header class="intro">
+      <h1>Muestra de estilo</h1>
+      <p>
+        Dos direcciones para la nueva web, con la misma estructura y el mismo texto de ejemplo.
+        Solo cambia la paleta. Tipografía en las dos: Plus Jakarta Sans.
+      </p>
+    </header>
+
+    <main class="grid">
+      {
+        directions.map((d) => (
+          <section class={`dir dir-${d.id}`}>
+            <h2 class="dir-name">{d.name}</h2>
+            <p class="dir-note">{d.note}</p>
+
+            <div class="swatches">
+              {d.colors.map(([label, hex]) => (
+                <div class="swatch">
+                  <span style={`background:${hex}`} />
+                  <small>
+                    {label}
+                    <br />
+                    {hex}
+                  </small>
+                </div>
+              ))}
+            </div>
+
+            <div class="phone">
+              <div class="bar">
+                <strong>Maria Morales</strong>
+                <span aria-hidden="true">☰</span>
+              </div>
+
+              <div class="hero">
+                <div class="who">
+                  <Image src={mariaHero} alt="" width={160} height={160} class="avatar" />
+                  <div>
+                    <p class="hello">Hola, soy Maria</p>
+                    <p class="cred">Psicóloga General Sanitaria · Col. 35153</p>
+                  </div>
+                </div>
+                <h3 class="h1">Psicóloga online y en Barcelona</h3>
+                <p class="lead">
+                  Para cuando algo pesa y para cuando quieres estar mejor. Texto de ejemplo.
+                </p>
+                <a class="btn btn-primary" href="#">
+                  Reservar primera sesión · {formatPrice(PRICES.firstSession.amount)}
+                </a>
+                <a class="btn btn-whatsapp" href="#">
+                  <span class="dot" aria-hidden="true" />
+                  Escríbeme por WhatsApp
+                </a>
+                <div class="chips">
+                  <span class="chip chip-sun">Online desde casa · {formatPrice(PRICES.online.amount)}</span>
+                  <span class="chip">60 min</span>
+                  <span class="chip">Castellano y català</span>
+                </div>
+              </div>
+
+              <div class="block">
+                <h3 class="h2">¿Te reconoces?</h3>
+                <p class="group">Estoy pasando un mal momento</p>
+                <div class="cards">
+                  {problems.hard.map((p) => (
+                    <a class="card" href="#">
+                      <span class="icon" aria-hidden="true" />
+                      {p}
+                    </a>
+                  ))}
+                </div>
+                <p class="group">Estoy bien, pero quiero mejorar</p>
+                <div class="cards">
+                  {problems.grow.map((p) => (
+                    <a class="card" href="#">
+                      <span class="icon" aria-hidden="true" />
+                      {p}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div class="block surface">
+                <h3 class="h2">Cómo empezamos</h3>
+                <ul class="checks">
+                  <li>Me escribes o reservas tu primera sesión.</li>
+                  <li>Nos conocemos y vemos qué necesitas.</li>
+                  <li>Acordamos ritmo y modalidad.</li>
+                </ul>
+                <details class="faq" open>
+                  <summary>¿Puedo ir a terapia aunque esté bien?</summary>
+                  <p>Sí. Texto de ejemplo para ver cómo queda una respuesta corta.</p>
+                </details>
+              </div>
+
+              <nav class="sticky" aria-label="Acciones">
+                <a href="#" class="s-wa">WhatsApp</a>
+                <a href="#" class="s-book">Reservar</a>
+                <a href="#" class="s-call">Llamar</a>
+              </nav>
+            </div>
+          </section>
+        ))
+      }
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+    background: #f3f3f1;
+    color: #222;
+  }
+  .intro { max-width: 760px; margin: 0 auto; padding: 32px 16px 8px; }
+  .intro h1 { margin: 0 0 8px; font-size: 28px; }
+  .intro p { margin: 0; line-height: 1.6; color: #444; }
+  .grid {
+    display: grid;
+    gap: 32px;
+    justify-content: center;
+    padding: 24px 16px 64px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+  }
+
+  .dir-a {
+    --bg: #fff8ee; --surface: #f4f0fa; --primary: #5f5399; --accent: #8b7ec8;
+    --sun: #ffca5c; --ink: #2a2433; --muted: #5a5466;
+  }
+  .dir-b {
+    --bg: #fbf7f1; --surface: #eaf1ec; --primary: #3f6b5a; --accent: #c9785b;
+    --sun: #f2d7a6; --ink: #26302b; --muted: #56605a;
+  }
+
+  .dir-name { margin: 0; font-size: 20px; }
+  .dir-note { margin: 4px 0 16px; color: #555; font-size: 14px; }
+  .swatches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
+  .swatch span { display: block; height: 40px; border-radius: 10px; border: 1px solid #0001; }
+  .swatch small { display: block; margin-top: 4px; font-size: 11px; color: #555; line-height: 1.3; }
+
+  .phone {
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    background: var(--bg);
+    color: var(--ink);
+    box-shadow: 0 20px 50px -24px #0005;
+    border: 1px solid #0000000f;
+    padding-bottom: 72px;
+  }
+  .bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 18px; font-size: 15px; color: var(--primary);
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+  .hero { padding: 22px 18px 26px; }
+  .who { display: flex; gap: 12px; align-items: center; }
+  .avatar {
+    width: 64px; height: 64px; border-radius: 999px; object-fit: cover;
+    box-shadow: 0 0 0 4px var(--sun);
+  }
+  .hello { margin: 0; font-weight: 700; font-size: 17px; }
+  .cred { margin: 2px 0 0; font-size: 13px; color: var(--muted); }
+  .h1 { margin: 20px 0 8px; font-size: 32px; line-height: 1.15; font-weight: 700; color: var(--primary); letter-spacing: -0.01em; }
+  .lead { margin: 0 0 18px; font-size: 17px; line-height: 1.6; color: var(--ink); }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; padding: 14px 18px; border-radius: 999px; font-weight: 700;
+    font-size: 16px; text-decoration: none; margin-bottom: 10px;
+  }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-whatsapp { background: #fff; color: var(--ink); border: 1.5px solid color-mix(in srgb, var(--ink) 18%, transparent); }
+  .dot { width: 10px; height: 10px; border-radius: 99px; background: #25d366; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .chip {
+    font-size: 13px; font-weight: 600; padding: 6px 10px; border-radius: 999px;
+    background: var(--surface); color: var(--ink);
+  }
+  .chip-sun { background: var(--sun); }
+
+  .block { padding: 22px 18px; }
+  .surface { background: var(--surface); }
+  .h2 { margin: 0 0 12px; font-size: 24px; color: var(--primary); }
+  .group { margin: 14px 0 8px; font-size: 14px; font-weight: 700; color: var(--muted); }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .card {
+    display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 18px;
+    background: #fff; color: var(--ink); text-decoration: none; font-weight: 600; font-size: 15px;
+    border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  .icon {
+    width: 28px; height: 28px; border-radius: 10px;
+    background: color-mix(in srgb, var(--accent) 22%, white);
+    border: 2px solid var(--accent);
+  }
+  .checks { list-style: none; padding: 0; margin: 0 0 16px; }
+  .checks li { position: relative; padding-left: 28px; margin-bottom: 10px; line-height: 1.5; }
+  .checks li::before {
+    content: '✓'; position: absolute; left: 0; top: 0; width: 20px; height: 20px;
+    border-radius: 99px; background: var(--primary); color: #fff; font-size: 12px;
+    display: grid; place-items: center; font-weight: 700;
+  }
+  .faq { background: #fff; border-radius: 16px; padding: 14px 16px; }
+  .faq summary { font-weight: 700; cursor: pointer; }
+  .faq p { margin: 8px 0 0; color: var(--muted); line-height: 1.6; }
+
+  .sticky {
+    position: absolute; left: 10px; right: 10px; bottom: 10px;
+    display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: 6px;
+    padding: 6px; border-radius: 999px; background: #fff; box-shadow: 0 10px 30px -12px #0006;
+  }
+  .sticky a {
+    text-align: center; padding: 11px 6px; border-radius: 999px; font-weight: 700;
+    font-size: 14px; text-decoration: none; color: var(--ink);
+  }
+  .sticky .s-book { background: var(--primary); color: #fff; }
+  .sticky .s-wa { color: #128c4a; }
+</style>

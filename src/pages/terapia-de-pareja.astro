@@ -1,95 +1,95 @@
 ---
-import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaFinal from '../components/CtaFinal.astro';
-import consulta from '../assets/img/consulta.webp';
+import Faq from '../components/ui/Faq.astro';
+import Chip from '../components/ui/Chip.astro';
+import { SITE, PRICES, formatPrice } from '../consts';
 
-const situaciones = [
-  'Conflictos frecuentes o discusiones que no lográis resolver.',
-  'Problemas de comunicación o dificultades para expresar lo que sentís.',
-  'Distanciamiento emocional o pérdida de conexión.',
-  'Falta de confianza, celos o dificultades tras una infidelidad.',
-  'Dependencia emocional o relaciones desequilibradas.',
-  'Problemas para establecer límites con la familia u otras personas.',
-  'Dificultades en la intimidad o en la convivencia.',
-  'Cambios importantes, como la llegada de un hijo, mudanzas o problemas laborales.',
-  'Diferencias en la forma de afrontar los conflictos o tomar decisiones.',
-  'Deseo de fortalecer la relación y prevenir futuros problemas.',
+const situations = [
+  'Discusiones que se repiten y no se resuelven.',
+  'Problemas de comunicación.',
+  'Distancia emocional o pérdida de conexión.',
+  'Celos, desconfianza o una infidelidad.',
+  'Cambios grandes: un hijo, una mudanza, el trabajo.',
+  'Ganas de fortalecer la relación antes de que haya problemas.',
+];
+
+const faqs = [
+  {
+    q: '¿Y si mi pareja no quiere venir?',
+    a: 'Puedes empezar en terapia individual y ver más adelante si se suma.',
+  },
+  {
+    q: '¿Hace falta estar en crisis?',
+    a: 'No. Muchas parejas vienen para cuidar la relación antes de que haya problemas.',
+  },
+  {
+    q: '¿Se puede hacer online?',
+    a: 'Sí, por videollamada, juntos o cada uno desde donde esté.',
+  },
 ];
 ---
 
 <Layout
-  title="Terapia de pareja en Barcelona y online"
-  description="Terapia de pareja en Barcelona y online: comunicación, conflictos, celos, infidelidad, distanciamiento emocional y reconstrucción del vínculo."
+  title="Terapia de pareja online y en Barcelona"
+  description={`Terapia de pareja online y en Barcelona: comunicación, discusiones, distancia, celos o infidelidad. Sesiones de ${PRICES.couple.minutes} minutos por ${formatPrice(PRICES.couple.amount)}.`}
 >
   <PageHero
-    eyebrow="Terapia de pareja"
-    title="Recuperar la conexión también se trabaja"
-    lead="Todas las parejas atraviesan momentos de dificultad. Los conflictos, la falta de comunicación, el distanciamiento emocional o los cambios vitales pueden hacer que la relación deje de ser un espacio de apoyo y seguridad."
+    title="Terapia de pareja online y en Barcelona"
+    lead="Para parejas que discuten más de la cuenta, que se han distanciado o que quieren cuidarse. Sesiones de 90 minutos."
   />
 
-  <section class="py-16 md:py-24">
-    <div class="mx-auto grid w-[min(1120px,92%)] items-center gap-12 lg:grid-cols-2">
+  <section class="py-12 md:py-16">
+    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 lg:grid-cols-[1.2fr_0.8fr]">
       <div>
-        <h2 class="font-display text-3xl font-semibold text-primary-strong">
-          Un espacio neutral, seguro y sin juicios
-        </h2>
-        <p class="mt-4 text-muted">
-          La terapia de pareja ofrece un entorno neutral, seguro y libre de juicios donde ambos
-          miembros pueden expresar cómo se sienten, comprender qué está ocurriendo en la relación y
-          encontrar nuevas formas de relacionarse.
-        </p>
-        <p class="mt-4 text-muted">
-          El objetivo no es determinar quién tiene razón, sino entender las necesidades de cada
-          persona, mejorar la comunicación, fortalecer el vínculo y construir acuerdos que
-          favorezcan el bienestar de ambos. Cuando la continuidad de la relación no es posible o
-          deseada, la terapia también puede ayudar a afrontar una separación de manera respetuosa y
-          consciente.
-        </p>
-        <p class="mt-4 text-muted">
-          Trabajo desde una <strong class="text-ink">perspectiva integradora</strong>, teniendo en
-          cuenta la historia personal de cada miembro, los estilos de apego, la regulación
-          emocional y los patrones relacionales que influyen en la dinámica de la pareja. Para
-          ello, adapto las herramientas terapéuticas a las necesidades de cada caso, utilizando
-          enfoques basados en la evidencia.
+        <h2 class="text-2xl font-bold text-primary md:text-3xl">¿Cuándo venir?</h2>
+        <ul class="checklist mt-5">
+          {situations.map((s) => <li>{s}</li>)}
+        </ul>
+
+        <h2 class="mt-10 text-2xl font-bold text-primary md:text-3xl">Cómo trabajo</h2>
+        <p class="mt-4 max-w-[62ch]">
+          Os escucho a los dos sin tomar partido. Buscamos qué hay debajo de los conflictos y
+          practicamos otras formas de hablaros. Si la relación no puede o no debe seguir, la terapia
+          también ayuda a separarse con respeto.
         </p>
       </div>
-      <div class="relative">
-        <div class="absolute -inset-4 -z-10 rotate-2 rounded-3xl bg-line/30"></div>
-        <Image
-          src={consulta}
-          alt="Sesión de terapia de pareja en consulta"
-          class="h-[320px] w-full rounded-3xl object-cover shadow-primary md:h-[420px]"
-          widths={[480, 800, 920]}
-          sizes="(max-width: 1024px) 92vw, 520px"
-        />
-      </div>
+
+      <aside class="self-start rounded-2xl bg-primary p-6 text-white">
+        <p class="font-display text-lg font-bold">Terapia de pareja</p>
+        <p class="mt-2 flex items-baseline gap-2">
+          <span class="font-display text-4xl font-bold">{formatPrice(PRICES.couple.amount)}</span>
+          <span class="text-white/85">{PRICES.couple.minutes} min</span>
+        </p>
+        <p class="mt-2 text-white/90">Online o presencial en Barcelona.</p>
+        <a
+          href={SITE.doctoralia}
+          target="_blank"
+          rel="noopener"
+          data-event="booking_click"
+          data-event-location="couples_price"
+          class="btn-light mt-5 w-full">Reservar sesión</a
+        >
+        <div class="mt-4 flex flex-wrap gap-2">
+          <Chip>Castellano y català</Chip>
+        </div>
+      </aside>
     </div>
   </section>
 
-  <section class="bg-surface py-16 md:py-24">
-    <div class="mx-auto w-[min(820px,92%)]">
-      <div class="text-center">
-        <p class="eyebrow">¿Cuándo acudir?</p>
-        <h2 class="font-display text-4xl font-semibold text-primary-strong">¿En qué puedo ayudaros?</h2>
-        <p class="mx-auto mt-4 max-w-[60ch] text-muted">
-          La terapia de pareja puede ser útil si estáis viviendo situaciones como:
-        </p>
+  <section class="bg-surface py-12 md:py-16">
+    <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
+      <h2 class="text-2xl font-bold text-primary md:text-3xl">Dudas</h2>
+      <div class="mt-5">
+        <Faq items={faqs} schema />
       </div>
-      <ul class="checklist mt-10 grid gap-x-10 gap-y-3 md:grid-cols-2">
-        {situaciones.map((s) => <li class="text-muted">{s}</li>)}
-      </ul>
-      <p class="mt-10 text-center font-display text-xl font-semibold text-primary">
-        Cada pareja es única. Por ello, el proceso terapéutico se adapta a vuestra historia,
-        vuestras necesidades y los objetivos que queráis alcanzar juntos.
-      </p>
     </div>
   </section>
 
   <CtaFinal
     title="¿Empezamos a cuidar vuestra relación?"
-    text="No hace falta esperar a una gran crisis. La terapia de pareja también sirve para mejorar la comunicación, fortalecer el vínculo y construir una relación más sana y satisfactoria."
-    primaryLabel="Reservad vuestra primera sesión"
+    text="Reservad la primera sesión o escribidme para resolver dudas."
+    primaryLabel="Reservar sesión de pareja"
   />
 </Layout>

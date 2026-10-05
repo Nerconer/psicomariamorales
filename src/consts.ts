@@ -1,3 +1,13 @@
+// WhatsApp link with a pre-filled first message. The text is neutral on
+// purpose: nothing about the reason for therapy, which would be health data.
+export function whatsappUrl(text: string) {
+  return `https://wa.me/34611193569?text=${encodeURIComponent(text)}`;
+}
+
+export const FREE_CALL_WHATSAPP = whatsappUrl(
+  'Hola Maria, me gustaría pedir la llamada informativa gratuita de 15 minutos.'
+);
+
 export const SITE = {
   person: 'Maria Morales',
   role: 'Psicóloga General Sanitaria',
@@ -10,7 +20,7 @@ export const SITE = {
   copc: 'https://www.copc.cat/es/contacte/maria-morales-herrerias-179636',
   phone: '+34 611 19 35 69',
   phoneHref: 'tel:+34611193569',
-  whatsapp: 'https://wa.me/34611193569',
+  whatsapp: whatsappUrl('Hola Maria, me gustaría pedir información.'),
   email: 'info@psicomariamorales.com',
   address: 'Carrer de los Castillejos, 326, Eixample, 08025 Barcelona',
   maps: 'https://www.google.com/maps/place//data=!4m2!3m1!1s0x12a4a2daca5fde37:0x2af25dd8aff241ca?sa=X&ved=1t:8290&ictx=111',

@@ -42,6 +42,6 @@ const { name, size = 24, class: className } = Astro.props;
   stroke-linecap="round"
   stroke-linejoin="round"
   aria-hidden="true"
-  class={className}
+  class:list={['shrink-0', className]}
   set:html={PATHS[name]}
 />

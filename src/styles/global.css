@@ -85,7 +85,7 @@ h3 {
 }
 
 @utility btn {
-  @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-7 py-3 text-base font-bold transition-colors duration-200;
+  @apply inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 py-3 text-base font-bold transition-colors duration-200;
 }
 
 @layer components {

@@ -5,6 +5,7 @@ import { alternatesOf } from '../i18n/routes';
 import { useTranslations } from '../i18n/ui';
 import Icon from './ui/Icon.astro';
 import WhatsAppIcon from './ui/WhatsAppIcon.astro';
+import logoMark from '../assets/brand/logo-mark.svg';
 
 const locale = localeFromPath(Astro.url.pathname);
 const t = useTranslations(locale);
@@ -30,10 +31,7 @@ const isActive = (href: string) => current.startsWith(href);
 <header class="sticky top-0 z-50 border-b border-line/50 bg-bg lg:bg-bg/90 lg:backdrop-blur-md">
   <div class="mx-auto flex w-[min(1200px,calc(100%-2rem))] items-center justify-between gap-4 py-3">
     <a href={locale === 'ca' ? '/ca/' : '/'} class="flex items-center gap-3" aria-label={`${SITE.person}, ${SITE.role}`}>
-      <span
-        class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-surface font-display text-xl font-bold text-primary"
-        aria-hidden="true">M</span
-      >
+      <img src={logoMark.src} alt="" width="44" height="44" class="h-11 w-11 shrink-0" />
       <span class="leading-tight">
         <span class="block font-display text-lg font-bold text-ink">{SITE.person}</span>
         <span class="block text-sm text-muted">Psicóloga</span>

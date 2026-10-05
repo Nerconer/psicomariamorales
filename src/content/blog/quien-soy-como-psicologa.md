@@ -3,6 +3,7 @@ title: 'Hola, me presento: quién soy y qué puedes esperar de mí como psicólo
 description: 'Soy Maria Morales, psicóloga sanitaria en Barcelona. Te cuento cómo entiendo la terapia, en qué enfoques me he formado y qué puedes esperar de un proceso conmigo.'
 pubDate: 2026-05-20
 tag: 'Empezar terapia'
+service: 'sobre-mi'
 ---
 
 Soy Maria Morales, psicóloga sanitaria, y entiendo la terapia como un espacio en el que no tienes que venir con todo resuelto. Puedes venir con ansiedad, pensamientos que no paran, problemas para dormir, dificultades en tus relaciones, estrés, sensación de bloqueo o simplemente con la sensación de que algo no está bien y no sabes exactamente qué es.

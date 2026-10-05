@@ -3,6 +3,7 @@ title: '¿Cómo saber si tengo ansiedad? Señales a las que prestar atención'
 description: 'La ansiedad no siempre se presenta como esperamos. Estas son las señales físicas, mentales y conductuales más habituales, y qué puedes hacer al respecto.'
 pubDate: 2026-07-01
 tag: 'Ansiedad y estrés'
+service: 'psicologa-ansiedad-barcelona'
 ---
 
 La ansiedad es una de las razones más frecuentes por las que las personas acuden a terapia. Sin embargo, muchas veces llega disfrazada: como un nudo en el estómago que no desaparece, como noches de insomnio o como una sensación constante de que algo malo va a ocurrir.

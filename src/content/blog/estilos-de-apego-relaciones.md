@@ -3,6 +3,7 @@ title: "Los estilos de apego: por qué algunas relaciones nos hacen sentir segur
 description: "La forma en la que aprendimos a vincularnos de pequeños sigue influyendo en cómo amamos, discutimos y ponemos límites. Te explico los cuatro estilos de apego y cómo pueden transformarse."
 pubDate: 2026-07-08
 tag: "Relaciones y pareja"
+service: 'crecimiento-personal'
 ---
 
 ¿Por qué hay personas que necesitan una constante confirmación de que las quieren? ¿Por qué otras se sienten agobiadas cuando alguien se acerca demasiado? ¿Por qué algunas personas repiten una y otra vez relaciones que les hacen daño?

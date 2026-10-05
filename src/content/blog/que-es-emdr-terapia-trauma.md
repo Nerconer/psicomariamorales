@@ -3,6 +3,7 @@ title: 'Qué es el EMDR y cómo ayuda a sanar el trauma'
 description: 'El EMDR es una de las terapias con mayor respaldo científico para el tratamiento del trauma. Te explico en qué consiste y qué puedes esperar de una sesión.'
 pubDate: 2026-06-15
 tag: 'Trauma y duelo'
+service: 'terapia-emdr-barcelona'
 ---
 
 Cuando vivimos una experiencia que nos desborda (una pérdida, un accidente, años de críticas o de invalidación emocional), nuestro cerebro no siempre consigue procesarla del todo. Esa experiencia queda "almacenada" de forma disfuncional y sigue activándose en el presente: en forma de recuerdos dolorosos, reacciones desproporcionadas, estado de alerta constante o patrones que se repiten.

@@ -3,6 +3,7 @@ title: 'La metacognición: la capacidad que puede cambiar la forma en la que ent
 description: 'Observar y comprender el propio funcionamiento es una de las habilidades que más transforma un proceso terapéutico. Te explico qué es la metacognición y cómo se desarrolla.'
 pubDate: 2026-08-05
 tag: 'Autoestima y emociones'
+service: 'crecimiento-personal'
 ---
 
 Muchas personas llegan a consulta diciendo cosas como:

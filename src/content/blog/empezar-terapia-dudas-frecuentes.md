@@ -3,6 +3,7 @@ title: "¿Estás pensando en empezar terapia? Resolvemos las dudas más frecuent
 description: "Cómo es la primera sesión, cuánto dura un proceso, cómo elegir psicólogo y qué hay de cierto en los mitos más habituales sobre ir a terapia."
 pubDate: 2026-08-14
 tag: "Empezar terapia"
+service: 'terapia-online'
 ---
 
 Tomar la decisión de acudir al psicólogo no siempre es fácil.

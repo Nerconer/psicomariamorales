@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import Wave from '../components/Wave.astro';
 import RibbonField from '../components/RibbonField.astro';
-import TestOrientacion from '../components/TestOrientacion.astro';
+import OrientationQuiz from '../components/OrientationQuiz.astro';
 import { SITE } from '../consts';
 import mariaHero from '../assets/img/maria-hero.jpg';
 import consulta from '../assets/img/consulta.webp';
@@ -137,9 +137,7 @@ const servicios = [
   'Terapia de pareja',
 ];
 
-// ⚠️ EDITAR: testimonios de ejemplo. Sustituir por reseñas reales de
-// Doctoralia cuando estén disponibles (respetando la privacidad: iniciales
-// o nombre + consentimiento). La estructura ya está lista para ese cambio.
+// Sample testimonials, to be removed: they are not real reviews.
 const testimonios = [
   {
     texto:
@@ -225,8 +223,8 @@ const faqSchema = {
             href={SITE.doctoralia}
             target="_blank"
             rel="noopener"
-            data-evento="reservar-doctoralia"
-            data-evento-ubicacion="hero"
+            data-event="booking_click"
+            data-event-location="hero"
             class="btn-sun">Reserva tu primera sesión</a
           >
         </div>
@@ -237,8 +235,8 @@ const faqSchema = {
             target="_blank"
             rel="noopener"
             title="Ficha profesional en el Col·legi Oficial de Psicologia de Catalunya"
-            data-evento="colegiada-copc"
-            data-evento-ubicacion="inicio"
+            data-event="license_click"
+            data-event-location="home"
             class="underline decoration-forest-soft underline-offset-4 hover:text-forest-dark hover:decoration-forest-dark"
             >Colegiada n.º {SITE.licenseNumber}</a
           >
@@ -270,7 +268,7 @@ const faqSchema = {
   </section>
   <div class="organic-section-transition" aria-hidden="true"></div>
 
-  <!-- ¿En qué puedo ayudarte? -->
+  <!-- How can I help -->
   <section class="bg-forest-light pb-16 pt-10 md:pb-24 md:pt-16" id="ayuda">
     <div class="mx-auto w-[min(1120px,92%)]">
       <div class="reveal mx-auto max-w-[75ch] text-center">
@@ -321,7 +319,7 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- Test de orientación -->
+  <!-- Orientation quiz -->
   <Wave from="var(--color-forest-light)" to="var(--color-lilac-light)" />
   <section class="bg-lilac-light pb-16 pt-4 md:pb-24 md:pt-6" id="test-orientacion">
     <div class="mx-auto w-[min(1120px,92%)]">
@@ -335,11 +333,11 @@ const faqSchema = {
           primer paso. Sin compromiso.
         </p>
       </div>
-      <TestOrientacion />
+      <OrientationQuiz />
     </div>
   </section>
 
-  <!-- Cómo trabajo -->
+  <!-- How I work -->
   <Wave from="var(--color-lilac-light)" to="#ffffff" />
   <section class="bg-white pb-16 pt-8 md:pb-24 md:pt-12" id="como-trabajo">
     <div class="mx-auto grid w-[min(1120px,92%)] items-center gap-12 lg:grid-cols-2">
@@ -420,7 +418,7 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- Servicios -->
+  <!-- Services -->
   <Wave from="#ffffff" to="var(--color-lilac-light)" />
   <section class="relative isolate overflow-hidden bg-lilac-light py-16 md:py-24" id="servicios">
     <RibbonField class="absolute -right-[38%] -top-[12%] -z-10 h-[125%] w-[115%] opacity-30" />
@@ -453,7 +451,7 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- Opiniones -->
+  <!-- Reviews -->
   <Wave from="var(--color-lilac-light)" to="#ffffff" />
   <section class="bg-white pb-16 pt-8 md:pb-24 md:pt-12" id="opiniones">
     <div class="mx-auto w-[min(1120px,92%)]">
@@ -496,8 +494,8 @@ const faqSchema = {
           href={SITE.doctoralia}
           target="_blank"
           rel="noopener"
-          data-evento="opiniones-doctoralia"
-          data-evento-ubicacion="inicio"
+          data-event="reviews_click"
+          data-event-location="home"
           class="btn-outline"
           >Lee las opiniones verificadas en Doctoralia →</a
         >
@@ -558,13 +556,13 @@ const faqSchema = {
     mask-image: linear-gradient(115deg, #000, transparent 58%);
   }
 
-  /* Halo blanco que separa el texto del fondo.
-     Antes era un rectangulo blanco con filter: blur(18px). El filtro obligaba a
-     Chrome a promocionarlo a capa compositada, y al rehacer la composicion (en
-     Android la barra de URL redimensiona el viewport al hacer scroll) se perdia
-     el orden de pintado del z-index negativo y el halo acababa tapando el
-     titular. Un degradado radial da el mismo difuminado sin crear capa, y el
-     apilado pasa a ser explicito en lugar de depender de un z-index negativo. */
+  /* White halo that separates the copy from the background.
+     It used to be a white rectangle with filter: blur(18px). The filter forced
+     Chrome to promote it to a composited layer, and when compositing was redone
+     (on Android the URL bar resizes the viewport while scrolling) the paint
+     order of the negative z-index was lost and the halo ended up covering the
+     headline. A radial gradient gives the same blur without a layer, and the
+     stacking is explicit instead of relying on a negative z-index. */
   .hero-copy::before {
     content: '';
     position: absolute;
@@ -584,9 +582,9 @@ const faqSchema = {
     z-index: 1;
   }
 
-  /* Sin will-change: mantenia tres capas compositadas vivas de forma permanente
-     y una de las propiedades declaradas (border-radius) ni siquiera se puede
-     componer. El navegador ya promociona lo que necesita mientras anima. */
+  /* No will-change: it kept three composited layers alive permanently, and one
+     of the declared properties (border-radius) cannot even be composited. The
+     browser already promotes what it needs while animating. */
   .hero-blob {
     filter: blur(1px);
   }
@@ -660,9 +658,9 @@ const faqSchema = {
     .hero-visual { margin-top: 1rem; }
   }
 
-  /* En movil las animaciones decorativas se paran. No aportan nada a esa
-     escala, mantienen capas compositadas en movimiento continuo y son parte de
-     la presion de repintado que provoca el fallo de Android. */
+  /* Decorative animations stop on mobile. They add nothing at that size, keep
+     composited layers moving all the time and are part of the repaint pressure
+     behind the Android bug. */
   @media (prefers-reduced-motion: reduce), (max-width: 768px) {
     .hero-blob, .hero-image-wrap, .hero-orbit, .hero-note, .hero-spark { animation: none !important; }
   }

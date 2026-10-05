@@ -22,13 +22,13 @@ import { SITE } from '../consts';
             href={SITE.copc}
             target="_blank"
             rel="noopener"
-            data-evento="colegiada-copc"
-            data-evento-ubicacion="aviso-legal">{SITE.licenseNumber}</a
+            data-event="license_click"
+            data-event-location="legal_notice">{SITE.licenseNumber}</a
           > (Col·legi Oficial de Psicologia de Catalunya)
         </li>
-        {/* Pendiente: el art. 10.1.e de la LSSI exige publicar el NIF. Se quita el
-            marcador para no dejarlo a la vista, y se repone la línea en cuanto
-            se tenga el dato. */}
+        {/* Pending: art. 10.1.e of the LSSI requires the tax ID (NIF). The
+            placeholder was removed so it is not visible, and the line comes
+            back as soon as the value is available. */}
         <li><strong>Domicilio:</strong> {SITE.address}</li>
         <li><strong>Email de contacto:</strong> {SITE.email}</li>
       </ul>

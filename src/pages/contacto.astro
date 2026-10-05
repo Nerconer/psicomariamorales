@@ -16,14 +16,14 @@ import { SITE } from '../consts';
 
   <section class="py-10 sm:py-14 md:py-20 lg:py-24">
     <div class="mx-auto grid w-[min(1120px,calc(100%-1.25rem))] gap-8 sm:w-[92%] lg:grid-cols-[1fr_1fr] lg:gap-10">
-      <!-- Vías de contacto -->
+      <!-- Contact channels -->
       <div class="space-y-4 sm:space-y-5">
         <a
           href={SITE.whatsapp}
           target="_blank"
           rel="noopener"
-          data-evento="whatsapp"
-          data-evento-ubicacion="contacto"
+          data-event="whatsapp_click"
+          data-event-location="contact"
           class="card flex items-center gap-3 !p-5 sm:!p-7 min-[420px]:gap-5"
         >
           <span class="hidden h-12 w-12 shrink-0 place-items-center rounded-full bg-forest-light/70 text-forest min-[420px]:grid">
@@ -37,8 +37,8 @@ import { SITE } from '../consts';
 
         <a
           href={`mailto:${SITE.email}`}
-          data-evento="email"
-          data-evento-ubicacion="contacto"
+          data-event="email_click"
+          data-event-location="contact"
           class="card flex items-center gap-3 !p-5 sm:!p-7 min-[420px]:gap-5"
         >
           <span class="hidden h-12 w-12 shrink-0 place-items-center rounded-full bg-forest-light/70 text-forest min-[420px]:grid">
@@ -54,8 +54,8 @@ import { SITE } from '../consts';
           href={SITE.doctoralia}
           target="_blank"
           rel="noopener"
-          data-evento="reservar-doctoralia"
-          data-evento-ubicacion="contacto"
+          data-event="booking_click"
+          data-event-location="contact"
           class="card flex items-center gap-3 !p-5 sm:!p-7 min-[420px]:gap-5"
         >
           <span class="hidden h-12 w-12 shrink-0 place-items-center rounded-full bg-forest-light/70 text-forest min-[420px]:grid">
@@ -76,8 +76,8 @@ import { SITE } from '../consts';
               href={SITE.maps}
               target="_blank"
               rel="noopener"
-              data-evento="mapa"
-              data-evento-ubicacion="contacto"
+              data-event="map_click"
+              data-event-location="contact"
               class="font-semibold text-forest-dark underline decoration-forest-soft underline-offset-4"
               >{SITE.address}</a
             >
@@ -93,7 +93,7 @@ import { SITE } from '../consts';
         </div>
       </div>
 
-      <!-- Mapa -->
+      <!-- Map -->
       <div class="overflow-hidden rounded-2xl border border-forest-soft/25 shadow-soft">
         <iframe
           title="Mapa de la consulta en Barcelona"

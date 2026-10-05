@@ -4,7 +4,7 @@ export const SITE = {
   tagline: 'Psicóloga sanitaria en Barcelona · Terapia presencial y online',
   doctoralia: 'https://www.doctoralia.es/maria-morales-herrerias/psicologo/barcelona',
   licenseNumber: '35153',
-  // Ficha pública en el Col·legi Oficial de Psicologia de Catalunya
+  // Public profile at the Col·legi Oficial de Psicologia de Catalunya
   copc: 'https://www.copc.cat/es/contacte/maria-morales-herrerias-179636',
   phone: '+34 685 811 731',
   whatsapp: 'https://wa.me/34685811731',
@@ -17,8 +17,8 @@ export const SITE = {
 };
 
 export const ANALYTICS = {
-  // Cuenta de Umami Cloud con la región europea contratada: las estadísticas se
-  // alojan en la UE, que es lo que dice la política de privacidad.
+  // Umami Cloud account on the EU region: statistics are hosted in the EU,
+  // which is what the privacy policy states.
   umamiSrc: 'https://cloud.umami.is/script.js',
   umamiWebsiteId: 'da719459-4222-4708-998b-4ca98794f3d2',
 };

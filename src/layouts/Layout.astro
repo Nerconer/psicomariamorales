@@ -1,7 +1,7 @@
 ---
-// Fuentes auto-alojadas (sin CDN de Google): mejor rendimiento y sin
-// enviar la IP del visitante a un tercero (relevante para RGPD en una
-// web sanitaria). Solo se descarga el .woff2 de la variante que se usa.
+// Self-hosted fonts (no Google CDN): better performance and the visitor's IP
+// is not sent to a third party (relevant for GDPR on a health website). Only
+// the .woff2 of the subset in use is downloaded.
 import '@fontsource-variable/lora';
 import '@fontsource-variable/plus-jakarta-sans';
 import '../styles/global.css';
@@ -26,7 +26,7 @@ const {
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og.jpg', Astro.site);
 
-// Ficha de negocio local (schema.org) para búsquedas tipo "psicóloga Barcelona"
+// Local business entity (schema.org) for searches such as "psicóloga Barcelona"
 const businessSchema = {
   '@context': 'https://schema.org',
   '@type': ['MedicalBusiness', 'LocalBusiness'],
@@ -113,7 +113,7 @@ const businessSchema = {
 
     <Analytics />
 
-    <!-- Transiciones de página suaves (SPA-like) entre navegaciones -->
+    <!-- Smooth page transitions between navigations -->
     <ClientRouter />
   </head>
   <body>
@@ -124,14 +124,14 @@ const businessSchema = {
     </main>
     <Footer />
 
-    <!-- Botón flotante de WhatsApp -->
+    <!-- Floating WhatsApp button -->
     <a
       href={SITE.whatsapp}
       target="_blank"
       rel="noopener"
       aria-label="Escríbeme por WhatsApp"
-      data-evento="whatsapp"
-      data-evento-ubicacion="boton-flotante"
+      data-event="whatsapp_click"
+      data-event-location="floating_button"
       class="fixed bottom-5 right-5 z-50 hidden h-14 w-14 place-items-center rounded-full bg-[#18783e] text-white shadow-lg transition-transform duration-200 hover:scale-110 md:grid"
     >
       <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -144,8 +144,8 @@ const businessSchema = {
       href={SITE.doctoralia}
       target="_blank"
       rel="noopener"
-      data-evento="reservar-doctoralia"
-      data-evento-ubicacion="barra-movil"
+      data-event="booking_click"
+      data-event-location="mobile_bar"
       class="btn-primary fixed bottom-4 left-1/2 z-50 w-[calc(100%-2rem)] -translate-x-1/2 justify-center shadow-lg md:hidden"
       >Reservar primera sesión</a
     >

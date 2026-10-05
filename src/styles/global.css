@@ -2,7 +2,7 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-  /* Paleta esmeralda: profesional, cálida y con contraste AA. */
+  /* Emerald palette with AA contrast. */
   --color-forest: #2d6a4f;
   --color-forest-dark: #1b4332;
   --color-forest-soft: #95b8a6;
@@ -12,8 +12,8 @@
   --color-cream: #ffffff;
   --color-mist: #f1f5f0;
 
-  /* Color propio de cada categoría del blog. Pasteles muy desaturados; el par
-     fondo/texto de cada uno supera AA (contraste mínimo medido: 5,75:1). */
+  /* Each blog category has its own colour: very desaturated pastels. Every
+     background/text pair passes AA (lowest measured contrast: 5.75:1). */
   --color-badge-mint: #e8f2ed;
   --color-badge-mint-ink: #1b4332;
   --color-badge-mint-line: #a8c9b7;
@@ -30,7 +30,7 @@
   --color-badge-sky-ink: #2b4a5e;
   --color-badge-sky-line: #a9c6d8;
   --color-ink: #17211c;
-  --color-ink-soft: #55534e; /* neutro cálido: antes verdoso (#4c5b53) */
+  --color-ink-soft: #55534e; /* warm neutral, previously greenish (#4c5b53) */
   --color-sun: #f2a38a;
 
   --font-display: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
@@ -54,11 +54,11 @@ html {
 
 body {
   @apply bg-cream pb-20 font-sans text-ink antialiased md:pb-0;
-  /* Red de seguridad contra el scroll horizontal. Varias secciones apoyan su
-     diseno en elementos decorativos que sobresalen (tarjetas rotadas con
-     -inset, manchas, cintas) y en pantallas estrechas empujaban el ancho del
-     documento. Es `clip` y no `hidden` a proposito: `hidden` convertiria el
-     body en contenedor de scroll y romperia la cabecera sticky. */
+  /* Safety net against horizontal scroll. Several sections rely on decorative
+     elements that stick out (rotated cards with -inset, blobs, ribbons) and on
+     narrow screens they pushed the document width. It is `clip` and not
+     `hidden` on purpose: `hidden` would make the body a scroll container and
+     break the sticky header. */
   overflow-x: clip;
 }
 
@@ -104,7 +104,7 @@ body {
   .eyebrow {
     @apply mb-4 inline-block max-w-full text-[0.8rem] font-bold uppercase tracking-[0.16em] text-forest sm:text-[0.82rem] sm:tracking-[0.2em];
   }
-  /* Microacento cálido recurrente: punto salmón delante de cada eyebrow */
+  /* Recurring warm accent: salmon dot before every eyebrow */
   .eyebrow::before {
     content: '';
     @apply mr-2 inline-block h-1.5 w-1.5 rounded-full bg-sun align-[0.08em];
@@ -114,7 +114,7 @@ body {
     @apply rounded-2xl border border-forest-soft/40 bg-white p-7 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-forest;
   }
 
-  /* Aura pastel como halo exterior de la tarjeta (un solo color: forest) */
+  /* Pastel aura as an outer halo around the card (single colour: forest) */
   .card-aura {
     border-color: color-mix(in srgb, var(--color-forest-soft) 45%, white);
     box-shadow:
@@ -127,7 +127,7 @@ body {
       0 20px 56px -10px color-mix(in srgb, var(--color-forest-soft) 48%, transparent);
   }
 
-  /* Lista con viñeta de marca */
+  /* List with brand bullet */
   .checklist {
     @apply list-none space-y-2 pl-0;
   }
@@ -139,29 +139,29 @@ body {
     @apply absolute left-0 top-[0.5em] h-4 w-4 rounded-full border-[1.5px] border-forest-soft bg-forest-light;
   }
 
-  /* Párrafos largos justificados en pantallas medianas+ (feedback Maria);
-     en móvil se mantiene bandera izquierda para evitar ríos de espacios */
+  /* Long paragraphs justified from medium screens up (Maria's feedback); on
+     mobile they stay left-aligned to avoid rivers of white space */
   .justify-md {
     hyphens: auto;
   }
 }
 
-/* Tipografía de artículos y páginas legales, en tonos de marca */
+/* Typography for posts and legal pages, in brand colours */
 .prose-brand {
   @apply prose prose-lg max-w-none text-ink prose-headings:font-display prose-headings:font-bold prose-headings:text-forest-dark prose-a:text-forest-dark prose-strong:text-ink prose-blockquote:border-sun prose-blockquote:font-semibold prose-blockquote:text-forest-dark prose-li:marker:text-forest-soft;
 }
 .prose-brand p { hyphens: auto; }
 
 /* ── Scroll-reveal ─────────────────────────────────────────────
-   Entrada suave de secciones y tarjetas al hacer scroll.
-   Solo CSS (Scroll-driven Animations API). Con @supports garantizamos
-   que en navegadores sin soporte el contenido se ve siempre (nunca
-   queda oculto) y respetamos prefers-reduced-motion. */
+   Soft entrance of sections and cards on scroll.
+   CSS only (Scroll-driven Animations API). @supports guarantees that
+   content is always visible in browsers without support (never hidden),
+   and prefers-reduced-motion is respected. */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
-    /* Longhands a propósito: el minificador (LightningCSS) fusiona el
-       shorthand `animation` con `animation-timeline` generando un valor
-       inválido que el navegador descarta. No convertir en shorthand. */
+    /* Longhands on purpose: the minifier (LightningCSS) merges the
+       `animation` shorthand with `animation-timeline` into an invalid value
+       that the browser drops. Do not turn this into a shorthand. */
     .reveal {
       animation-name: reveal-in;
       animation-timing-function: linear;
@@ -169,14 +169,14 @@ body {
       animation-timeline: view();
       animation-range: entry 2% cover 22%;
     }
-    /* Variante con desplazamiento lateral suave para columnas */
+    /* Variant with a soft sideways slide for columns */
     .reveal-left { animation-name: reveal-left; }
     .reveal-right { animation-name: reveal-right; }
 
-    /* En pantallas estrechas no hay margen lateral que absorba el
-       desplazamiento: el translateX empuja la columna fuera del viewport y
-       aparece scroll horizontal con una banda blanca a la derecha. Ahi se usa
-       la entrada vertical, que no desborda y a ese tamano se percibe igual. */
+    /* On narrow screens there is no side margin to absorb the slide: the
+       translateX pushes the column out of the viewport and a horizontal scroll
+       appears with a white strip on the right. The vertical entrance is used
+       there instead, which does not overflow and looks the same at that size. */
     @media (max-width: 768px) {
       .reveal-left,
       .reveal-right {

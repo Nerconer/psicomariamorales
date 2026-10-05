@@ -26,8 +26,8 @@ const formatDate = (d: Date) =>
           {posts.map((post) => (
             <a
               href={`/blog/${post.id}`}
-              data-evento="post-relacionado"
-              data-evento-post={post.id}
+              data-event="related_post_click"
+              data-event-post={post.id}
               class="card group flex flex-col"
             >
               <span

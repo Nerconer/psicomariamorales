@@ -1,125 +1,127 @@
 ---
-// Umami Cloud. No instala cookies, no guarda identificadores del visitante y
-// las estadísticas son agregadas, así que no hace falta banner de
-// consentimiento (relevante en una web sanitaria).
+// Umami Cloud. It sets no cookies, stores no visitor identifier and only keeps
+// aggregated statistics, so no consent banner is needed (relevant for a health
+// website).
 //
-// El tracker se carga desde este <script>, que Astro marca como ya ejecutado y
-// no vuelve a lanzar en cada transición de página, así que la carga y los
-// escuchadores se montan una sola vez. Las visitas de las navegaciones internas
-// las detecta el propio tracker, que se engancha a history.pushState.
+// The tracker is loaded from this <script>, which Astro marks as already run
+// and does not execute again on page transitions, so loading and listeners are
+// set up only once. Pageviews for internal navigations are detected by the
+// tracker itself, which hooks into history.pushState.
 //
-// Los eventos con nombre se declaran con data-evento="nombre" y se envían desde
-// aquí, no con los atributos data-umami-event nativos: el tracker intercepta el
-// clic en los enlaces (preventDefault y luego location.href) y eso se lleva por
-// delante las transiciones de ClientRouter en los enlaces internos.
+// Named events are declared with data-event="name" and sent from here instead
+// of the native data-umami-event attributes: the tracker intercepts link clicks
+// (preventDefault followed by location.href), which breaks ClientRouter
+// transitions on internal links.
 ---
 
 <script>
   import { ANALYTICS } from '../consts';
 
-  type Datos = Record<string, string | number | boolean>;
-  type Umami = { track: (nombre: string, datos?: Datos) => void };
+  type EventData = Record<string, string | number | boolean>;
+  type Umami = { track: (name: string, data?: EventData) => void };
 
   const umami = () => (window as unknown as { umami?: Umami }).umami;
 
-  // El tracker tarda unos milisegundos en estar disponible. Lo que ocurra antes
-  // se guarda aquí y se envía en cuanto carga, para no perder el primer clic.
-  const cola: Array<[string, Datos | undefined]> = [];
+  // The tracker takes a few milliseconds to become available. Anything that
+  // happens before that is queued here and sent once it loads, so the first
+  // click is not lost.
+  const queue: Array<[string, EventData | undefined]> = [];
 
-  const track = (nombre: string, datos?: Datos) => {
+  const track = (name: string, data?: EventData) => {
     const u = umami();
-    if (u) u.track(nombre, datos);
-    else cola.push([nombre, datos]);
+    if (u) u.track(name, data);
+    else queue.push([name, data]);
   };
 
-  const cargarTracker = () => {
+  const loadTracker = () => {
     if (document.querySelector('script[data-umami-tracker]')) return;
     const s = document.createElement('script');
     s.defer = true;
     s.src = ANALYTICS.umamiSrc;
     s.dataset.umamiTracker = '';
     s.dataset.websiteId = ANALYTICS.umamiWebsiteId;
-    // Core Web Vitals medidos sobre visitantes reales.
+    // Core Web Vitals measured on real visitors.
     s.dataset.performance = 'true';
     s.addEventListener('load', () => {
-      for (const [nombre, datos] of cola.splice(0, cola.length)) track(nombre, datos);
+      for (const [name, data] of queue.splice(0, queue.length)) track(name, data);
     });
     document.head.appendChild(s);
   };
 
-  // ── Clics ────────────────────────────────────────────────────────────────
-  // Primero los elementos con data-evento. Si no hay ninguno, queda el respaldo
-  // para teléfono, email y cualquier salida a otro dominio que se añada más
-  // adelante sin acordarse de etiquetarla.
-  const datosDe = (el: HTMLElement) => {
-    const datos: Datos = {};
+  // ── Clicks ───────────────────────────────────────────────────────────────
+  // Elements with data-event come first. If there is none, a fallback covers
+  // phone, email and any outbound link added later without a tag.
+  const DATA_PREFIX = 'data-event-';
+
+  const dataOf = (el: HTMLElement) => {
+    const data: EventData = {};
     for (const { name, value } of Array.from(el.attributes))
-      if (name.startsWith('data-evento-')) datos[name.slice(12)] = value;
-    return datos;
+      if (name.startsWith(DATA_PREFIX)) data[name.slice(DATA_PREFIX.length)] = value;
+    return data;
   };
 
-  const initClics = () => {
+  const initClicks = () => {
     document.addEventListener('click', (e) => {
-      const objetivo = e.target as HTMLElement | null;
+      const target = e.target as HTMLElement | null;
 
-      const etiquetado = objetivo?.closest?.<HTMLElement>('[data-evento]');
-      if (etiquetado) {
-        track(etiquetado.dataset.evento || 'sin-nombre', datosDe(etiquetado));
+      const tagged = target?.closest?.<HTMLElement>('[data-event]');
+      if (tagged) {
+        track(tagged.dataset.event || 'unnamed', dataOf(tagged));
         return;
       }
 
-      const enlace = objetivo?.closest?.('a');
-      if (!enlace) return;
-      const href = enlace.getAttribute('href') || '';
-      if (href.startsWith('tel:')) track('telefono', { ubicacion: 'sin-etiquetar' });
-      else if (href.startsWith('mailto:')) track('email', { ubicacion: 'sin-etiquetar' });
-      else if (enlace.host && enlace.host !== window.location.host)
-        track('enlace-externo', { destino: enlace.host, url: enlace.href });
+      const link = target?.closest?.('a');
+      if (!link) return;
+      const href = link.getAttribute('href') || '';
+      if (href.startsWith('tel:')) track('phone_click', { location: 'untagged' });
+      else if (href.startsWith('mailto:')) track('email_click', { location: 'untagged' });
+      else if (link.host && link.host !== window.location.host)
+        track('outbound_click', { target: link.host, url: link.href });
     });
 
-    // El menú móvil y el test de orientación avisan por aquí: así no dependen de
-    // que el tracker ya esté cargado.
-    document.addEventListener('psico:evento', (e) => {
-      const detalle = (e as CustomEvent<{ nombre?: string; datos?: Datos }>).detail;
-      if (detalle?.nombre) track(detalle.nombre, detalle.datos);
+    // Components report their own events through here, so they do not depend
+    // on the tracker being loaded yet.
+    document.addEventListener('site:event', (e) => {
+      const detail = (e as CustomEvent<{ name?: string; data?: EventData }>).detail;
+      if (detail?.name) track(detail.name, detail.data);
     });
   };
 
-  // ── Profundidad de lectura en los artículos ──────────────────────────────
-  const HITOS = [25, 50, 75, 100];
-  let lectura: AbortController | null = null;
+  // ── Reading depth on blog posts ──────────────────────────────────────────
+  const MILESTONES = [25, 50, 75, 100];
+  let reading: AbortController | null = null;
 
-  const initLectura = () => {
-    lectura?.abort();
-    lectura = null;
+  const initReading = () => {
+    reading?.abort();
+    reading = null;
 
-    const articulo = document.querySelector<HTMLElement>('[data-articulo]');
-    if (!articulo) return;
+    const article = document.querySelector<HTMLElement>('[data-article]');
+    if (!article) return;
 
-    const slug = articulo.dataset.articulo || window.location.pathname;
+    const slug = article.dataset.article || window.location.pathname;
     const ac = new AbortController();
-    lectura = ac;
-    let siguiente = 0;
+    reading = ac;
+    let next = 0;
 
-    const medir = () => {
-      const caja = articulo.getBoundingClientRect();
-      if (caja.height <= 0) return;
-      const pct = Math.max(0, Math.min(100, ((window.innerHeight - caja.top) / caja.height) * 100));
-      while (siguiente < HITOS.length && pct >= HITOS[siguiente]) {
-        track('lectura-articulo', { articulo: slug, profundidad: HITOS[siguiente] });
-        siguiente++;
+    const measure = () => {
+      const box = article.getBoundingClientRect();
+      if (box.height <= 0) return;
+      const pct = Math.max(0, Math.min(100, ((window.innerHeight - box.top) / box.height) * 100));
+      while (next < MILESTONES.length && pct >= MILESTONES[next]) {
+        track('article_read', { article: slug, depth: MILESTONES[next] });
+        next++;
       }
-      if (siguiente >= HITOS.length) ac.abort();
+      if (next >= MILESTONES.length) ac.abort();
     };
 
-    window.addEventListener('scroll', medir, { passive: true, signal: ac.signal });
-    window.addEventListener('resize', medir, { passive: true, signal: ac.signal });
-    // Un artículo corto puede caber entero en pantalla desde el principio.
-    requestAnimationFrame(medir);
+    window.addEventListener('scroll', measure, { passive: true, signal: ac.signal });
+    window.addEventListener('resize', measure, { passive: true, signal: ac.signal });
+    // A short post can fit entirely on screen from the start.
+    requestAnimationFrame(measure);
   };
 
-  cargarTracker();
-  initClics();
-  // astro:page-load dispara también en la carga inicial.
-  document.addEventListener('astro:page-load', initLectura);
+  loadTracker();
+  initClicks();
+  // astro:page-load also fires on the initial load.
+  document.addEventListener('astro:page-load', initReading);
 </script>

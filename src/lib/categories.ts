@@ -1,13 +1,13 @@
 /**
- * Color de la píldora de categoría en el blog.
+ * Colour of the category pill on the blog.
  *
- * Cada categoría tiene su propio pastel para que el índice no sea una sucesión
- * de etiquetas idénticas y el color aporte información: se reconoce la
- * categoría de un vistazo. Todos los pares fondo/texto superan el contraste
- * AA (mínimo medido: 5,75:1).
+ * Each category has its own pastel so the index is not a row of identical
+ * labels and the colour carries information: the category is recognised at a
+ * glance. Every background/text pair passes AA contrast (lowest measured:
+ * 5.75:1).
  *
- * Al crear una categoría nueva basta con añadirla aquí. Si falta, se usa el
- * verde de marca, así que nunca se rompe nada.
+ * A new category only needs to be added here. If it is missing, the brand
+ * fallback is used, so nothing breaks.
  */
 const CATEGORY_BADGE: Record<string, string> = {
   'Ansiedad y estrés': 'border-badge-sky-line bg-badge-sky text-badge-sky-ink',

@@ -1,6 +1,7 @@
 ---
 title: 'Burnout: cuando el trabajo agota más de lo que llena'
-description: 'El síndrome de desgaste profesional va mucho más allá del cansancio. Aprende a reconocer sus señales y descubre cómo la terapia puede ayudarte a recuperarte.'
+seoTitle: 'Burnout: síntomas y cómo recuperarte'
+description: 'El desgaste profesional va mucho más allá del cansancio. Aprende a reconocer sus señales y cómo la terapia puede ayudarte a recuperarte.'
 pubDate: 2026-05-30
 tag: 'Ansiedad y estrés'
 service: 'terapia-estres-burnout'

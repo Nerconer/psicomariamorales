@@ -91,7 +91,7 @@ const businessSchema = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} · {SITE.brand}</title>
+    <title>{title} · {SITE.person}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {
@@ -102,7 +102,7 @@ const businessSchema = {
     {defaultAlternate && <link rel="alternate" hreflang="x-default" href={new URL(defaultAlternate.path, Astro.site)} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <meta property="og:site_name" content={SITE.brand} />
+    <meta property="og:site_name" content={SITE.person} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />

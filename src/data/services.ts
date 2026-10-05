@@ -54,7 +54,7 @@ export const SERVICES: Service[] = [
   {
     slug: 'psicologa-ansiedad-barcelona',
     icon: 'anxiety',
-    metaTitle: 'Psicóloga para la ansiedad, online y en Barcelona',
+    metaTitle: 'Psicóloga para la ansiedad en Barcelona',
     description:
       'Psicóloga para la ansiedad online y en Barcelona: insomnio, presión en el pecho, pensamientos que no paran, obsesiones y ataques de pánico. Primera sesión 35 €.',
     title: 'Psicóloga para la ansiedad, online y en Barcelona',
@@ -87,7 +87,7 @@ export const SERVICES: Service[] = [
   {
     slug: 'terapia-emdr-barcelona',
     icon: 'trauma',
-    metaTitle: 'Terapia EMDR para el trauma, online y en Barcelona',
+    metaTitle: 'Terapia EMDR online y en Barcelona',
     description:
       'Terapia EMDR para el trauma online y en Barcelona con una psicóloga general sanitaria formada en EMDR nivel I y II. A tu ritmo, sin tener que contarlo todo.',
     title: 'Terapia EMDR para el trauma, online y en Barcelona',
@@ -121,7 +121,7 @@ export const SERVICES: Service[] = [
   {
     slug: 'terapia-estres-burnout',
     icon: 'stress',
-    metaTitle: 'Terapia para el estrés y el burnout, online y en Barcelona',
+    metaTitle: 'Terapia para el estrés y el burnout',
     description:
       'Terapia para el estrés y el burnout online y en Barcelona: agotamiento, falta de motivación, límites en el trabajo y autoexigencia. Primera sesión 35 €.',
     title: 'Terapia para el estrés y el burnout',

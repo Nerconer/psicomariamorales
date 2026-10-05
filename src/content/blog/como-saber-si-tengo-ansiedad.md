@@ -1,5 +1,6 @@
 ---
 title: '¿Cómo saber si tengo ansiedad? Señales a las que prestar atención'
+seoTitle: 'Cómo saber si tengo ansiedad: señales'
 description: 'La ansiedad no siempre se presenta como esperamos. Estas son las señales físicas, mentales y conductuales más habituales, y qué puedes hacer al respecto.'
 pubDate: 2026-07-01
 tag: 'Ansiedad y estrés'

@@ -1,6 +1,7 @@
 ---
 title: "Los estilos de apego: por qué algunas relaciones nos hacen sentir seguros y otras nos llenan de miedo"
-description: "La forma en la que aprendimos a vincularnos de pequeños sigue influyendo en cómo amamos, discutimos y ponemos límites. Te explico los cuatro estilos de apego y cómo pueden transformarse."
+seoTitle: 'Estilos de apego y relaciones'
+description: 'Cómo aprendimos a vincularnos de pequeños influye en cómo amamos, discutimos y ponemos límites. Los cuatro estilos de apego y cómo cambian.'
 pubDate: 2026-07-08
 tag: "Relaciones y pareja"
 service: 'crecimiento-personal'

@@ -1,6 +1,7 @@
 ---
 title: "¿Cómo saber si necesito ir al psicólogo? 12 señales de que puede ser el momento de pedir ayuda"
-description: "No hace falta tocar fondo para empezar terapia. Estas son las doce señales que, como psicóloga, veo con más frecuencia en quienes llevan tiempo dudando si pedir ayuda."
+seoTitle: '¿Necesito ir al psicólogo? 12 señales'
+description: 'No hace falta tocar fondo para empezar terapia. Las doce señales que más veo en quienes llevan tiempo dudando si pedir ayuda.'
 pubDate: 2026-07-15
 tag: "Empezar terapia"
 service: 'terapia-online'

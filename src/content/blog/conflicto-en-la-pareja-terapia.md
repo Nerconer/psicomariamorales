@@ -1,6 +1,7 @@
 ---
 title: "Cuando el conflicto entra en la pareja: por qué discutimos como discutimos y cómo la terapia puede ayudar"
-description: "El conflicto no es señal de que una relación vaya mal: lo determinante es cómo lo gestionamos. Repasamos los patrones que más se repiten y qué puede aportar la terapia de pareja."
+seoTitle: 'Discusiones de pareja: por qué se repiten'
+description: 'El conflicto no significa que la relación vaya mal. Importa cómo lo gestionamos. Los patrones que más se repiten y qué aporta la terapia de pareja.'
 pubDate: 2026-06-17
 tag: "Relaciones y pareja"
 service: 'terapia-de-pareja'

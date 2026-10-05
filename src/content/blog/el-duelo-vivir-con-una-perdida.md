@@ -1,6 +1,7 @@
 ---
 title: 'El duelo: aprender a vivir con una pérdida que cambia nuestra vida'
-description: 'No solo hacemos duelo por la muerte de un ser querido. Hablamos de las pérdidas que nadie reconoce, de los duelos que se quedan bloqueados y de cómo la terapia puede acompañarlos.'
+seoTitle: 'El duelo: vivir con una pérdida'
+description: 'No solo hacemos duelo por la muerte de un ser querido. Las pérdidas que nadie reconoce, los duelos bloqueados y cómo acompañarlos en terapia.'
 pubDate: 2026-07-17
 tag: 'Trauma y duelo'
 service: 'terapia-duelo'

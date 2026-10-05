@@ -1,6 +1,7 @@
 ---
 title: 'Lo que más he visto trabajando con jóvenes: el dolor que nadie ve'
-description: 'Detrás de la ansiedad, la desmotivación o las conductas de riesgo en la adolescencia suele haber una historia de soledad e incomprensión. Una mirada a lo que realmente necesitan los jóvenes.'
+seoTitle: 'El dolor que nadie ve en los jóvenes'
+description: 'Detrás de la ansiedad o la desmotivación en la adolescencia suele haber soledad e incomprensión. Lo que de verdad necesitan los jóvenes.'
 pubDate: 2026-06-26
 tag: 'Trauma y duelo'
 service: 'terapia-psicologica'

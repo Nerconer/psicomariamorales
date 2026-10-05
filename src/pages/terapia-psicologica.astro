@@ -5,6 +5,18 @@ import CtaFinal from '../components/CtaFinal.astro';
 import Icon, { type IconName } from '../components/ui/Icon.astro';
 import { PRICES, formatPrice } from '../consts';
 
+// Specialties with their own page link to it.
+const LANDINGS: Record<string, string> = {
+  ansiedad: '/psicologa-ansiedad-barcelona/',
+  estres: '/terapia-estres-burnout/',
+  burnout: '/terapia-estres-burnout/',
+  autoestima: '/terapia-autoestima/',
+  perfeccionismo: '/terapia-autoestima/',
+  bloqueos: '/crecimiento-personal/',
+  duelo: '/terapia-duelo/',
+  trauma: '/terapia-emdr-barcelona/',
+};
+
 // Anxiety comes first and trauma last, as Maria asked. The ids are the anchors
 // other pages link to.
 const specialties: Array<{ id: string; icon: IconName; title: string; text: string }> = [
@@ -21,6 +33,9 @@ const specialties: Array<{ id: string; icon: IconName; title: string; text: stri
   { id: 'dependencia', icon: 'couple', title: 'Dependencia emocional', text: 'Cuando el miedo a perder una relación decide por ti.' },
   { id: 'apego', icon: 'couple', title: 'Apego y límites', text: 'Te cuesta confiar, poner límites o mantener relaciones estables.' },
   { id: 'familia', icon: 'couple', title: 'Relaciones familiares', text: 'Conflictos familiares que desgastan.' },
+  { id: 'soledad', icon: 'couple', title: 'Soledad y conexión', text: 'Soledad, dificultad para conectar con la gente o sentirte diferente.' },
+  { id: 'sentido', icon: 'self', title: 'Apatía y falta de sentido', text: 'No encontrar el sentido de la vida, apatía o falta de ganas.' },
+  { id: 'pantallas', icon: 'self', title: 'Móvil y pantallas', text: 'Horas y horas atrapado en el móvil o en las pantallas.' },
   { id: 'crisis', icon: 'self', title: 'Crisis vitales', text: 'Una separación, un cambio de trabajo, la maternidad o una enfermedad.' },
   { id: 'duelo', icon: 'grief', title: 'Duelo', text: 'Una pérdida que duele y necesita su espacio.' },
   { id: 'perfeccionismo', icon: 'confidence', title: 'Perfeccionismo', text: 'Presión constante, miedo al error y la sensación de no llegar nunca.' },
@@ -70,12 +85,20 @@ const specialties: Array<{ id: string; icon: IconName; title: string; text: stri
       <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {
           specialties.map((s) => (
-            <article id={s.id} class="card flex scroll-mt-28 gap-4 p-5!">
+            <article id={s.id} class="card relative flex scroll-mt-28 gap-4 p-5!">
               <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-surface text-primary" aria-hidden="true">
                 <Icon name={s.icon} />
               </span>
               <div>
-                <h3 class="font-display text-lg font-bold">{s.title}</h3>
+                <h3 class="font-display text-lg font-bold">
+                  {LANDINGS[s.id] ? (
+                    <a href={LANDINGS[s.id]} class="text-primary after:absolute after:inset-0 hover:underline">
+                      {s.title}
+                    </a>
+                  ) : (
+                    s.title
+                  )}
+                </h3>
                 {s.text !== `${s.title}.` && <p class="mt-1 text-base text-muted">{s.text}</p>}
               </div>
             </article>

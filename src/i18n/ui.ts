@@ -9,6 +9,7 @@ import type { Locale } from './config';
 export const UI = {
   es: {
     'nav.home': 'Inicio',
+    'nav.online': 'Terapia online',
     'nav.therapy': 'Terapia psicológica',
     'nav.couples': 'Terapia de pareja',
     'nav.about': 'Sobre mí',
@@ -30,6 +31,7 @@ export const UI = {
   },
   ca: {
     'nav.home': 'Inici',
+    'nav.online': 'Teràpia en línia',
     'nav.therapy': 'Teràpia psicològica',
     'nav.couples': 'Teràpia de parella',
     'nav.about': 'Sobre mi',

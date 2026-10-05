@@ -13,11 +13,13 @@ const alternates = alternatesOf(Astro.url.pathname).filter((a) => a.locale !== l
 
 // The logo already links home, so "Inicio" is not repeated in the menu.
 const links = [
+  { href: '/terapia-online/', label: t('nav.online') },
   { href: '/terapia-psicologica/', label: t('nav.therapy') },
   { href: '/terapia-de-pareja/', label: t('nav.couples') },
   { href: '/tarifas/', label: t('nav.pricing') },
-  { href: '/sobre-mi/', label: t('nav.about') },
-  { href: '/blog/', label: t('nav.blog') },
+  // Shown from xl only on desktop: between 1024 and 1280 px there is no room.
+  { href: '/sobre-mi/', label: t('nav.about'), wide: true },
+  { href: '/blog/', label: t('nav.blog'), wide: true },
   { href: '/contacto/', label: t('nav.contact') },
 ];
 
@@ -33,7 +35,7 @@ const isActive = (href: string) => current.startsWith(href);
     <a href={locale === 'ca' ? '/ca/' : '/'} class="flex items-center gap-3" aria-label={`${SITE.person}, ${SITE.role}`}>
       <img src={logoMark.src} alt="" width="44" height="44" class="h-11 w-11 shrink-0" />
       <span class="leading-tight">
-        <span class="block font-display text-lg font-bold text-ink">{SITE.person}</span>
+        <span class="block whitespace-nowrap font-display text-lg font-bold text-ink">{SITE.person}</span>
         <span class="block text-sm text-muted">Psicóloga</span>
       </span>
     </a>
@@ -46,6 +48,7 @@ const isActive = (href: string) => current.startsWith(href);
             class:list={[
               'whitespace-nowrap rounded-full px-3 py-2 text-[0.95rem] font-semibold transition-colors hover:bg-surface hover:text-primary',
               isActive(l.href) ? 'text-primary' : 'text-ink',
+              'wide' in l && l.wide && 'hidden xl:inline-block',
             ]}
             aria-current={isActive(l.href) ? 'page' : undefined}
           >

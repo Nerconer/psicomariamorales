@@ -7,14 +7,15 @@ import { SITE, PRICES, formatPrice, FREE_CALL_WHATSAPP } from '../consts';
 
 const first = formatPrice(PRICES.firstSession.amount);
 
-// Where each result leads. Point these to the dedicated pages once they exist.
+// Where each result leads.
 const ROUTES = {
-  anxiety: '/terapia-psicologica/#ansiedad',
-  trauma: '/terapia-psicologica/#trauma',
-  loss: '/terapia-psicologica/#duelo',
+  anxiety: '/psicologa-ansiedad-barcelona/',
+  trauma: '/terapia-emdr-barcelona/',
+  loss: '/terapia-duelo/',
   relations: '/terapia-psicologica/#apego',
-  demand: '/terapia-psicologica/#autoestima',
-  growth: '/terapia-psicologica/#bloqueos',
+  meaning: '/terapia-psicologica/#sentido',
+  demand: '/terapia-autoestima/',
+  growth: '/crecimiento-personal/',
   couple: '/terapia-de-pareja/',
   unsure: '/contacto/',
 };
@@ -51,6 +52,14 @@ const results = {
       'Practicaremos formas más seguras de vincularte.',
     ],
     href: ROUTES.relations,
+  },
+  meaning: {
+    title: 'Cuando nada parece tener sentido, también se puede pedir ayuda.',
+    points: [
+      'Exploraremos qué se ha apagado y desde cuándo.',
+      'Buscaremos qué tiene valor para ti.',
+    ],
+    href: ROUTES.meaning,
   },
   demand: {
     title: 'Esa voz que te exige tanto se puede suavizar.',
@@ -106,6 +115,8 @@ const hard = [
   { value: 'trauma', label: 'Algo que me pasó y sigue doliendo' },
   { value: 'loss', label: 'Una pérdida' },
   { value: 'relations', label: 'Cómo me relaciono y el miedo al rechazo' },
+  { value: 'relations', label: 'Me siento solo o diferente a los demás' },
+  { value: 'meaning', label: 'Nada me motiva o no le encuentro sentido' },
   { value: 'demand', label: 'Lo mucho que me exijo' },
 ];
 
@@ -114,6 +125,7 @@ const growth = [
   { value: 'growth', label: 'Confiar más en mí' },
   { value: 'growth', label: 'Aprender a poner límites' },
   { value: 'growth', label: 'Salir de un bloqueo' },
+  { value: 'growth', label: 'Pasar menos tiempo atrapado en el móvil' },
 ];
 
 const formats = [

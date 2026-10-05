@@ -3,6 +3,7 @@ title: 'Cómo poner límites sin sentir culpa'
 description: "Aprender a poner límites es una de las habilidades más importantes para cuidar de nuestra salud mental y construir relaciones sanas. Descubre por qué cuesta tanto decir 'no' y cómo la terapia puede ayudarte."
 pubDate: 2026-07-03
 tag: 'Autoestima y emociones'
+draft: true
 ---
 
 ¿Te cuesta decir "no"? ¿Aceptas compromisos que realmente no quieres? ¿Sientes que decepcionarás a los demás si priorizas tus propias necesidades?
@@ -68,7 +69,7 @@ Existe una gran diferencia entre cuidar de uno mismo y actuar sin tener en cuent
 
 Poner límites significa reconocer que tus necesidades también son importantes. No se trata de imponer, controlar o hacer daño.
 
-<!-- PENDIENTE DE REVISIÓN: el texto del issue #21 se corta aquí ("Se trata de expresar"). Desde este punto hasta el final, el contenido ha sido redactado siguiendo el estilo del resto de artículos y debe ser validado por María antes de publicar. -->
+<!-- PENDIENTE DE REVISIÓN: el texto del issue #21 se corta aquí ("Se trata de expresar"). Desde este punto hasta el final, el contenido ha sido redactado siguiendo el estilo del resto de artículos y debe ser validado por Maria antes de publicar. -->
 
 Se trata de expresar con claridad y respeto qué necesitas, hasta dónde puedes llegar y qué no estás dispuesto a aceptar, dejando espacio para que la otra persona haga lo mismo.
 

@@ -1,13 +1,14 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import CtaFinal from '../../components/CtaFinal.astro';
 import RelatedPosts from '../../components/RelatedPosts.astro';
 import { buildRelatedMap } from '../../lib/related';
 import { categoryBadgeClass } from '../../lib/categories';
+import { getPublishedPosts } from '../../lib/posts';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getPublishedPosts();
   const relatedMap = buildRelatedMap(posts);
   return posts.map((post) => ({
     params: { slug: post.id },

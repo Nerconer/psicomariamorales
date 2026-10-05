@@ -8,6 +8,8 @@ const blog = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     tag: z.string(),
+    // Drafts are kept in the repo but never built: no page, no listing, no sitemap.
+    draft: z.boolean().default(false),
   }),
 });
 

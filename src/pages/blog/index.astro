@@ -1,13 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PageHero from '../../components/PageHero.astro';
 import CtaFinal from '../../components/CtaFinal.astro';
 import { categoryBadgeClass } from '../../lib/categories';
+import { getPublishedPosts } from '../../lib/posts';
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const posts = await getPublishedPosts();
 
 const formatDate = (d: Date) =>
   d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });

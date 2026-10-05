@@ -9,7 +9,7 @@ import Footer from '../components/Footer.astro';
 import Analytics from '../components/Analytics.astro';
 import MobileActionBar from '../components/MobileActionBar.astro';
 import WhatsAppIcon from '../components/ui/WhatsAppIcon.astro';
-import { SITE, PRICE_RANGE } from '../consts';
+import { SITE, PRICES, PRICE_RANGE } from '../consts';
 import { LOCALES, DEFAULT_LOCALE, localeFromPath } from '../i18n/config';
 import { alternatesOf, ROUTES } from '../i18n/routes';
 import { useTranslations } from '../i18n/ui';
@@ -43,45 +43,78 @@ const OG_KEYS = ['home', 'online', 'therapy', 'anxiety', 'emdr', 'stress', 'self
 const ogImage = new URL(`/og/${localeFromPath(Astro.url.pathname)}-${routeKey && OG_KEYS.includes(routeKey) ? routeKey : 'home'}.jpg`, Astro.site);
 
 // Local business entity (schema.org) for searches such as "psicóloga Barcelona"
+const siteUrl = new URL('/', Astro.site).href;
+const offer = (name: string, key: keyof typeof PRICES) => ({
+  '@type': 'Offer',
+  name,
+  price: PRICES[key].amount,
+  priceCurrency: 'EUR',
+});
+
+const personSchema = {
+  '@type': 'Person',
+  '@id': `${siteUrl}#maria`,
+  name: 'Maria Morales Herrerías',
+  jobTitle: SITE.role,
+  url: new URL('/sobre-mi/', Astro.site).href,
+  image: new URL('/og/es-about.jpg', Astro.site).href,
+  knowsLanguage: ['es', 'ca'],
+  sameAs: [SITE.copc, SITE.doctoralia, SITE.linkedin],
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'Colegiación profesional',
+    name: `Psicóloga General Sanitaria, colegiada n.º ${SITE.licenseNumber}`,
+    recognizedBy: { '@type': 'Organization', name: "Col·legi Oficial de Psicologia de Catalunya", url: 'https://www.copc.cat/' },
+  },
+};
+
+// Local business entity (schema.org) for searches such as "psicóloga Barcelona"
 const businessSchema = {
   '@context': 'https://schema.org',
   '@type': ['MedicalBusiness', 'LocalBusiness'],
-  '@id': new URL('/', Astro.site).href,
-  name: 'Maria Morales · Psicóloga sanitaria en Barcelona',
-  alternateName: SITE.brand,
+  '@id': `${siteUrl}#consulta`,
+  name: `${SITE.person}, ${SITE.role}`,
   description:
-    'Psicóloga sanitaria en Barcelona. Terapia psicológica presencial y online: trauma y EMDR, ansiedad, estrés, burnout, autoestima, apego y terapia de pareja.',
-  url: new URL('/', Astro.site).href,
-  image: ogImage.href,
+    'Psicóloga general sanitaria. Terapia psicológica online en toda España y presencial en Barcelona: ansiedad, estrés, burnout, autoestima, duelo, trauma con EMDR y terapia de pareja.',
+  url: siteUrl,
+  image: new URL('/og/es-home.jpg', Astro.site).href,
+  logo: new URL('/apple-touch-icon.png', Astro.site).href,
+  telephone: SITE.phone,
+  email: SITE.email,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Carrer de los Castillejos, 326',
-    postalCode: '08025',
-    addressLocality: 'Barcelona',
+    streetAddress: SITE.postalAddress.street,
+    postalCode: SITE.postalAddress.postalCode,
+    addressLocality: SITE.postalAddress.locality,
     addressRegion: 'Barcelona',
     addressCountry: 'ES',
   },
+  geo: { '@type': 'GeoCoordinates', ...SITE.geo },
+  hasMap: SITE.maps,
   areaServed: [
     { '@type': 'City', name: 'Barcelona' },
     { '@type': 'Country', name: 'España' },
   ],
-  telephone: SITE.phone,
+  availableLanguage: ['es', 'ca'],
   priceRange: PRICE_RANGE,
   currenciesAccepted: 'EUR',
+  paymentAccepted: 'Efectivo, transferencia, Bizum',
   sameAs: [SITE.doctoralia, SITE.linkedin, SITE.copc],
-  founder: {
-    '@type': 'Person',
-    name: 'Maria Morales Herrerías',
-    jobTitle: 'Psicóloga General Sanitaria',
-    identifier: `Colegiada n.º ${SITE.licenseNumber}`,
-  },
+  founder: personSchema,
+  makesOffer: [
+    offer('Primera sesión de terapia individual', 'firstSession'),
+    offer('Terapia psicológica online', 'online'),
+    offer('Terapia psicológica presencial en Barcelona', 'inPerson'),
+    offer('Terapia de pareja', 'couple'),
+  ],
   knowsAbout: [
     'Psicología sanitaria',
-    'Trauma y trauma complejo',
-    'EMDR',
     'Ansiedad',
     'Estrés y burnout',
     'Autoestima',
+    'Duelo',
+    'Trauma y trauma complejo',
+    'EMDR',
     'Apego',
     'Regulación emocional',
     'Terapia de pareja',

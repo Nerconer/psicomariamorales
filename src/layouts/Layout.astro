@@ -9,6 +9,9 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Analytics from '../components/Analytics.astro';
 import { SITE, PRICE_RANGE } from '../consts';
+import { LOCALES, DEFAULT_LOCALE, localeFromPath } from '../i18n/config';
+import { alternatesOf } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -23,6 +26,11 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const locale = localeFromPath(Astro.url.pathname);
+const t = useTranslations(locale);
+// hreflang only when the page really exists in another language.
+const alternates = alternatesOf(Astro.url.pathname);
+const defaultAlternate = alternates.find((a) => a.locale === DEFAULT_LOCALE);
 const ogImage = new URL('/og.jpg', Astro.site);
 
 // Local business entity (schema.org) for searches such as "psicóloga Barcelona"
@@ -74,7 +82,7 @@ const businessSchema = {
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={LOCALES[locale].htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -83,6 +91,12 @@ const businessSchema = {
     <title>{title} · {SITE.brand}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {
+      alternates.map((a) => (
+        <link rel="alternate" hreflang={LOCALES[a.locale].hreflang} href={new URL(a.path, Astro.site)} />
+      ))
+    }
+    {defaultAlternate && <link rel="alternate" hreflang="x-default" href={new URL(defaultAlternate.path, Astro.site)} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta property="og:site_name" content={SITE.brand} />
@@ -98,7 +112,12 @@ const businessSchema = {
       property="og:image:alt"
       content="Maria Morales, psicóloga general sanitaria en Barcelona. Terapia presencial y online."
     />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale" content={LOCALES[locale].ogLocale} />
+    {
+      alternates
+        .filter((a) => a.locale !== locale)
+        .map((a) => <meta property="og:locale:alternate" content={LOCALES[a.locale].ogLocale} />)
+    }
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -117,7 +136,7 @@ const businessSchema = {
 
   </head>
   <body>
-    <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:text-forest-dark focus:shadow-lg">Saltar al contenido</a>
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:text-forest-dark focus:shadow-lg">{t('a11y.skip')}</a>
     <Header />
     <main id="contenido">
       <slot />

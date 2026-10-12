@@ -1,6 +1,6 @@
 ---
 // Home page, shared by / and /ca/.
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import Wave from '../components/Wave.astro';
@@ -27,20 +27,21 @@ const first = formatPrice(PRICES.firstSession.amount);
 const online = formatPrice(PRICES.online.amount);
 const inPerson = formatPrice(PRICES.inPerson.amount);
 const minutes = PRICES.online.minutes;
+const couple = formatPrice(PRICES.couple.amount);
 
 const COPY = {
   es: {
-    metaTitle: 'Psicóloga online y en Barcelona',
+    metaTitle: 'Psicóloga en Barcelona y online',
     description: `Maria Morales, psicóloga general sanitaria. Terapia online en toda España y presencial en Barcelona: ansiedad, estrés, pareja, autoestima y trauma con EMDR. Primera sesión ${first}.`,
     hello: 'Hola, soy Maria',
     role: SITE.role,
-    h1: 'Psicóloga online y en Barcelona',
-    sub: 'Te acompaño cuando algo pesa, y también cuando estás bien pero quieres cambiar algo.',
+    h1: 'Psicóloga en Barcelona y online',
+    sub: 'Te acompaño cuando algo pasa y cuando simplemente quieres mejorar algo.',
     book: `Reservar primera sesión · ${first}`,
     whatsapp: 'Escríbeme por WhatsApp',
     doubts: '¿Tienes dudas?',
     freeCall: 'Pide una llamada gratuita de 15 minutos',
-    chips: [`Online desde casa · ${online}`, `Sesiones de ${minutes} min`, 'Castellano y català', `Presencial en Barcelona · ${inPerson}`],
+    chips: [`Online desde casa · ${online}`, `Sesiones de ${minutes} min`, 'Castellano y català', `Presencial en Barcelona · ${inPerson}`, `Terapia de pareja · ${couple}`],
     recogniseTitle: '¿Te reconoces en algo de esto?',
     recogniseIntro:
       'A veces no es ansiedad exactamente. Puede aparecer como estrés, tristeza, inseguridad, dificultad para poner límites o sensación de estar bloqueado/a. Si te reconoces en alguna de estas situaciones, la terapia puede ayudarte:',
@@ -50,7 +51,7 @@ const COPY = {
       'Y a veces el problema es precisamente no saber cómo afrontar lo que te está pasando: evitar conversaciones difíciles, bloquearte ante los conflictos, darle demasiadas vueltas antes de decidir o reaccionar de una manera que después no entiendes.',
     closing: 'Si llevas tiempo pensando «no sé qué me pasa, pero no estoy bien», también es un motivo válido para pedir ayuda.',
     hard: [
-      { icon: 'anxiety', title: 'Ansiedad', text: 'Tu mente no para y te cuesta desconectar.', key: 'anxiety' },
+      { icon: 'anxiety', title: 'Ansiedad', text: 'Te cuesta dormir, tu mente no para, sientes presión en el pecho, temblores, etc.', key: 'anxiety' },
       { icon: 'stress', title: 'Estrés y burnout', text: 'Sientes que ya no puedes con todo.', key: 'stress' },
       { icon: 'grief', title: 'Duelo', text: 'Una pérdida que no encuentra alivio.', key: 'grief' },
       { icon: 'trauma', title: 'Trauma y EMDR', text: 'El pasado sigue pesando en tu presente.', key: 'emdr' },
@@ -87,17 +88,17 @@ const COPY = {
     ],
   },
   ca: {
-    metaTitle: 'Psicòloga en línia i a Barcelona',
+    metaTitle: 'Psicòloga a Barcelona i en línia',
     description: `Maria Morales, psicòloga general sanitària. Teràpia en línia a tot Espanya i presencial a Barcelona: ansietat, estrès, parella, autoestima i trauma amb EMDR. Primera sessió ${first}.`,
     hello: 'Hola, soc Maria',
     role: SITE.roleCa,
-    h1: 'Psicòloga en línia i a Barcelona',
-    sub: "T'acompanyo quan alguna cosa pesa, i també quan estàs bé però vols canviar alguna cosa.",
+    h1: 'Psicòloga a Barcelona i en línia',
+    sub: "T'acompanyo quan passa alguna cosa i quan simplement vols millorar alguna cosa.",
     book: `Reservar la primera sessió · ${first}`,
     whatsapp: 'Escriu-me per WhatsApp',
     doubts: 'Tens dubtes?',
     freeCall: 'Demana una trucada gratuïta de 15 minuts',
-    chips: [`En línia des de casa · ${online}`, `Sessions de ${minutes} min`, 'Català i castellà', `Presencial a Barcelona · ${inPerson}`],
+    chips: [`En línia des de casa · ${online}`, `Sessions de ${minutes} min`, 'Català i castellà', `Presencial a Barcelona · ${inPerson}`, `Teràpia de parella · ${couple}`],
     recogniseTitle: "T'hi reconeixes en alguna cosa d'això?",
     recogniseIntro:
       "De vegades no és exactament ansietat. Pot aparèixer com a estrès, tristesa, inseguretat, dificultat per posar límits o sensació d'estar bloquejat/da. Si et reconeixes en alguna d'aquestes situacions, la teràpia et pot ajudar:",
@@ -107,7 +108,7 @@ const COPY = {
       "I de vegades el problema és precisament no saber com afrontar el que t'està passant: evitar converses difícils, bloquejar-te davant dels conflictes, donar-hi massa voltes abans de decidir o reaccionar d'una manera que després no entens.",
     closing: 'Si fa temps que penses «no sé què em passa, però no estic bé», també és un motiu vàlid per demanar ajuda.',
     hard: [
-      { icon: 'anxiety', title: 'Ansietat', text: "La teva ment no s'atura i et costa desconnectar.", key: 'anxiety' },
+      { icon: 'anxiety', title: 'Ansietat', text: "Et costa dormir, la teva ment no s'atura, sents pressió al pit, tremolors, etc.", key: 'anxiety' },
       { icon: 'stress', title: 'Estrès i burnout', text: 'Sents que ja no pots amb tot.', key: 'stress' },
       { icon: 'grief', title: 'Dol', text: 'Una pèrdua que no troba alleujament.', key: 'grief' },
       { icon: 'trauma', title: 'Trauma i EMDR', text: 'El passat continua pesant en el teu present.', key: 'emdr' },
@@ -146,6 +147,14 @@ const COPY = {
 } as const;
 
 const c = COPY[locale];
+
+// Desktop hero photo in AVIF with a WebP fallback. Below lg its column is
+// hidden, so the first <source> hands phones a 1x1 image and they never
+// download the photo.
+const HERO_WIDTHS = [460, 744, 920];
+const heroAvif = await getImage({ src: mariaHero, width: 460, widths: HERO_WIDTHS, format: 'avif' });
+const heroWebp = await getImage({ src: mariaHero, width: 460, widths: HERO_WIDTHS, format: 'webp' });
+const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 ---
 
 <Layout title={c.metaTitle} description={c.description}>
@@ -157,9 +166,10 @@ const c = COPY[locale];
           <Image
             src={mariaHero}
             alt="Maria Morales"
+            width={128}
             widths={[128, 192]}
             sizes="64px"
-            class="h-16 w-16 rounded-full object-cover ring-4 ring-sun lg:hidden"
+            class="h-16 w-16 rounded-full object-cover object-top ring-4 ring-sun lg:hidden"
             loading="eager"
           />
           <div>
@@ -210,21 +220,29 @@ const c = COPY[locale];
           <Chip>{c.chips[1]}</Chip>
           <Chip>{c.chips[2]}</Chip>
           <Chip icon="location">{c.chips[3]}</Chip>
+          <Chip icon="couple">{c.chips[4]}</Chip>
         </div>
       </div>
 
       <div class="relative mx-auto hidden w-full max-w-[460px] lg:block">
         <div class="absolute -right-6 -top-6 h-40 w-40 rounded-full bg-sun/70" aria-hidden="true"></div>
         <div class="absolute -bottom-6 -left-6 h-28 w-28 rounded-full bg-surface" aria-hidden="true"></div>
-        <Image
-          src={mariaHero}
-          alt={`${SITE.person}, ${c.role}`}
-          widths={[460, 744, 920]}
-          sizes="460px"
-          class="relative aspect-[4/5] w-full rounded-[2.5rem] object-cover shadow-primary"
-          loading="eager"
-          fetchpriority="high"
-        />
+        <picture class="relative block">
+          <source media="(max-width: 1023.98px)" srcset={BLANK_GIF} />
+          <source type="image/avif" srcset={heroAvif.srcSet.attribute} sizes="460px" />
+          <img
+            src={heroWebp.src}
+            srcset={heroWebp.srcSet.attribute}
+            sizes="460px"
+            width={heroWebp.attributes.width}
+            height={heroWebp.attributes.height}
+            alt={`${SITE.person}, ${c.role}`}
+            class="aspect-[4/5] w-full rounded-[2.5rem] object-cover shadow-primary"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
       </div>
     </div>
   </section>

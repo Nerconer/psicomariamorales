@@ -1,10 +1,8 @@
 ---
 title: 'Qué es el EMDR y cómo ayuda a sanar el trauma'
-seoTitle: 'Qué es el EMDR y cómo ayuda con el trauma'
 description: 'El EMDR es una de las terapias con mayor respaldo científico para el tratamiento del trauma. Te explico en qué consiste y qué puedes esperar de una sesión.'
 pubDate: 2026-06-15
 tag: 'Trauma y duelo'
-service: 'terapia-emdr-barcelona'
 ---
 
 Cuando vivimos una experiencia que nos desborda (una pérdida, un accidente, años de críticas o de invalidación emocional), nuestro cerebro no siempre consigue procesarla del todo. Esa experiencia queda "almacenada" de forma disfuncional y sigue activándose en el presente: en forma de recuerdos dolorosos, reacciones desproporcionadas, estado de alerta constante o patrones que se repiten.
@@ -23,11 +21,11 @@ No se trata de borrar recuerdos ni de olvidar lo vivido. Se trata de que, al rec
 
 ## El trauma no siempre es un gran acontecimiento
 
-Solemos asociar la palabra "trauma" a sucesos extremos. Pero existe también el llamado **[trauma complejo](/blog/jovenes-el-dolor-que-nadie-ve/)**: el que se construye a lo largo de años de experiencias repetidas de abandono, críticas constantes, relaciones inseguras o estrés mantenido.
+Solemos asociar la palabra "trauma" a sucesos extremos. Pero existe también el llamado **[trauma complejo](/blog/jovenes-el-dolor-que-nadie-ve)**: el que se construye a lo largo de años de experiencias repetidas de abandono, críticas constantes, relaciones inseguras o estrés mantenido.
 
 Algunas señales de que puede haber experiencias sin procesar:
 
-- [Repites patrones de relación que no comprendes](/blog/estilos-de-apego-relaciones/).
+- [Repites patrones de relación que no comprendes](/blog/estilos-de-apego-relaciones).
 - Vives en estado de alerta, como si nunca pudieras relajarte.
 - Te cuesta confiar en los demás o sentirte seguro/a en las relaciones.
 - Reaccionas de forma muy intensa ante situaciones aparentemente pequeñas.

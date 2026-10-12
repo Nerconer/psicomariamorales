@@ -1,10 +1,8 @@
 ---
 title: "¿Estás pensando en empezar terapia? Resolvemos las dudas más frecuentes"
-seoTitle: 'Empezar terapia: dudas frecuentes'
 description: "Cómo es la primera sesión, cuánto dura un proceso, cómo elegir psicólogo y qué hay de cierto en los mitos más habituales sobre ir a terapia."
 pubDate: 2026-08-14
 tag: "Empezar terapia"
-service: 'terapia-online'
 ---
 
 Tomar la decisión de acudir al psicólogo no siempre es fácil.
@@ -40,7 +38,7 @@ La duración no depende únicamente del problema, sino también del ritmo de cad
 Encontrar un profesional con el que te sientas cómodo es uno de los factores más importantes para que la terapia funcione. Algunos aspectos que puedes tener en cuenta son:
 
 - Que sea psicólogo sanitario o psicólogo especialista en Psicología Clínica y esté habilitado para ejercer.
-- Que tenga formación específica en el problema que quieres trabajar, como [trauma](/blog/que-es-emdr-terapia-trauma/), ansiedad, apego o terapia de pareja.
+- Que tenga formación específica en el problema que quieres trabajar, como [trauma](/blog/que-es-emdr-terapia-trauma), ansiedad, apego o terapia de pareja.
 - Que te explique con claridad cómo trabaja.
 - Que te sientas escuchado, comprendido y respetado desde las primeras sesiones.
 - Que puedas expresar dudas o desacuerdos con confianza.
@@ -77,7 +75,7 @@ Es normal que algunas conversaciones remuevan emociones difíciles. Sin embargo,
 
 ## Dar el primer paso
 
-[No hace falta tocar fondo para pedir ayuda](/blog/senales-para-ir-al-psicologo/). Muchas personas esperan demasiado tiempo porque piensan que deberían poder resolverlo solas o porque creen que "no están tan mal".
+[No hace falta tocar fondo para pedir ayuda](/blog/senales-para-ir-al-psicologo). Muchas personas esperan demasiado tiempo porque piensan que deberían poder resolverlo solas o porque creen que "no están tan mal".
 
 La realidad es que cuanto antes comprendemos qué está ocurriendo y empezamos a trabajar en ello, mayores son las posibilidades de prevenir que el malestar se cronifique.
 

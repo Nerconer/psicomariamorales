@@ -2,89 +2,64 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-  /* Lilac and cream, Maria's choice. Names describe the role, not the colour,
-     so a palette change only touches these lines. All the lilacs share the hue
-     of Maria's lilac (#8b7ec8). Every text pair passes AA: white on primary
-     5.3:1, primary on bg 5.0:1 and on surface 4.6:1, white on primary-strong
-     6.6:1, ink on bg 14.4:1, muted on bg 6.2:1, ink on highlight 11.4:1. */
-  --color-bg: #fdf8f1;
-  /* Maria's light lilac warmed with a quarter of cream, so tinted sections
-     sit well next to the cream ones. */
-  --color-surface: #f2eef6;
-  /* The lightest lilac that still passes AA with white text and as text. */
-  --color-primary: #6e5fb7;
-  --color-primary-strong: #5f5399;
-  /* Maria's lilac. Decorative only (logo, dots, shapes): 3.4:1, too light for text. */
-  --color-accent: #8b7ec8;
-  /* Soft fill for what deserves a nudge: the online option, step numbers. */
-  --color-highlight: #e2dbf3;
-  --color-line: #e6dfec;
-  --color-line-strong: #cec4e0;
-  --color-ink: #272140;
-  --color-muted: #605a72;
+  /* Paleta esmeralda: profesional, cálida y con contraste AA. */
+  --color-forest: #2d6a4f;
+  --color-forest-dark: #1b4332;
+  --color-forest-soft: #95b8a6;
+  --color-forest-light: #e8f2ed;
+  --color-lilac-soft: #dcd2f0;
+  --color-lilac-light: #f3eef9;
+  --color-cream: #ffffff;
+  --color-mist: #f1f5f0;
 
-  /* Blog categories: a coloured dot on a neutral pill. The text is always ink,
-     so these are decorative and need no contrast pair. */
-  --color-cat-sky: #6b9be0;
-  --color-cat-lilac: #8b7ec8;
-  --color-cat-rose: #c58bb5;
-  --color-cat-sage: #8bb174;
-  --color-cat-stone: #9aa7b4;
+  /* Color propio de cada categoría del blog. Pasteles muy desaturados; el par
+     fondo/texto de cada uno supera AA (contraste mínimo medido: 5,75:1). */
+  --color-badge-mint: #e8f2ed;
+  --color-badge-mint-ink: #1b4332;
+  --color-badge-mint-line: #a8c9b7;
+  --color-badge-coral: #fbe9e2;
+  --color-badge-coral-ink: #8a4a33;
+  --color-badge-coral-line: #eec3b2;
+  --color-badge-lilac: #f0eaf8;
+  --color-badge-lilac-ink: #56407e;
+  --color-badge-lilac-line: #cbb8e6;
+  --color-badge-sand: #f5efe3;
+  --color-badge-sand-ink: #6b5730;
+  --color-badge-sand-line: #ddc9a6;
+  --color-badge-sky: #e4edf3;
+  --color-badge-sky-ink: #2b4a5e;
+  --color-badge-sky-line: #a9c6d8;
+  --color-ink: #17211c;
+  --color-ink-soft: #55534e; /* neutro cálido: antes verdoso (#4c5b53) */
+  --color-sun: #f2a38a;
 
   --font-display: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: 'Lora Variable', 'Lora', ui-serif, Georgia, serif;
 
-  --radius-card: 1.25rem;
-  --radius-photo: 1.75rem;
-
-  --shadow-primary: 0 14px 32px -18px rgb(95 83 153 / 0.55);
-  --shadow-soft: 0 10px 28px -18px rgb(39 33 64 / 0.28);
-  --shadow-float: 0 18px 40px -18px rgb(39 33 64 / 0.45);
+  --shadow-forest: 0 12px 32px -16px rgb(27 67 50 / 0.38);
+  --shadow-soft: 0 6px 20px -10px rgb(31 31 31 / 0.12);
 }
 
-/* Base styles live in the base layer so utilities can override them. */
-@layer base {
+html {
+  scroll-padding-top: 6rem;
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: no-preference) {
   html {
-    scroll-padding-top: 6rem;
-    overflow-x: clip;
+    scroll-behavior: smooth;
   }
+}
 
-  @media (prefers-reduced-motion: no-preference) {
-    html {
-      scroll-behavior: smooth;
-    }
-  }
-
-  body {
-    @apply bg-bg font-sans text-[1.0625rem] leading-[1.65] text-ink antialiased md:text-lg;
-    /* Safety net against horizontal scroll. Some sections rely on decorative
-       elements that stick out and on narrow screens they pushed the document
-       width. It is `clip` and not `hidden` on purpose: `hidden` would make the
-       body a scroll container and break the sticky header. */
-    overflow-x: clip;
-  }
-
-  /* Headings are ink: the brand colour is kept for what can be clicked. */
-  h1,
-  h2,
-  h3 {
-    @apply font-display text-ink;
-    letter-spacing: -0.025em;
-    text-wrap: balance;
-  }
-  h3 {
-    letter-spacing: -0.01em;
-  }
-
-  :focus-visible {
-    outline: 3px solid var(--color-primary);
-    outline-offset: 3px;
-  }
-
-  ::selection {
-    background: var(--color-highlight);
-    color: var(--color-ink);
-  }
+body {
+  @apply bg-cream pb-20 font-sans text-ink antialiased md:pb-0;
+  /* Red de seguridad contra el scroll horizontal. Varias secciones apoyan su
+     diseno en elementos decorativos que sobresalen (tarjetas rotadas con
+     -inset, manchas, cintas) y en pantallas estrechas empujaban el ancho del
+     documento. Es `clip` y no `hidden` a proposito: `hidden` convertiria el
+     body en contenedor de scroll y romperia la cabecera sticky. */
+  overflow-x: clip;
 }
 
 .grid > *,
@@ -92,51 +67,67 @@
   min-width: 0;
 }
 
+:focus-visible {
+  outline: 3px solid #f2a38a;
+  outline-offset: 3px;
+}
+
+::selection {
+  background: #cfe3d8;
+  color: #1b4332;
+}
+
 @utility btn {
-  @apply inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 py-3 text-base font-bold transition-[background-color,border-color,color,box-shadow,translate] duration-200 motion-safe:hover:-translate-y-px;
+  @apply inline-flex items-center gap-2 rounded-full px-7 py-3 text-base font-bold tracking-wide transition-all duration-200;
 }
 
 @layer components {
   .btn-primary {
-    @apply btn bg-primary text-white shadow-primary hover:bg-primary-strong;
+    @apply btn bg-forest text-white hover:bg-forest-dark hover:-translate-y-0.5 hover:shadow-forest;
   }
   .btn-outline {
-    @apply btn border border-primary/40 bg-white text-primary-strong hover:border-primary hover:bg-surface;
+    @apply btn border border-forest text-forest-dark hover:bg-forest hover:text-white hover:-translate-y-0.5;
+  }
+  .btn-light {
+    @apply btn bg-cream text-forest-dark hover:bg-forest-light hover:-translate-y-0.5;
+  }
+  .btn-sun {
+    @apply btn bg-sun text-ink hover:bg-[#ee8f6e] hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-12px_rgb(242_138_105/0.55)];
+  }
+  .btn-sun-outline {
+    @apply btn border border-white/70 text-white hover:bg-white hover:text-forest-dark hover:-translate-y-0.5;
   }
   .btn-whatsapp {
-    @apply btn border border-line-strong bg-white text-ink hover:border-ink/35;
-  }
-  /* For dark bands (closing call to action). */
-  .btn-light {
-    @apply btn bg-white text-primary-strong hover:bg-highlight;
-  }
-  .btn-light-outline {
-    @apply btn border border-white/45 text-white hover:border-white/80 hover:bg-white/10;
+    @apply btn border border-[#1faa53]/40 bg-[#e9f8ef] text-[#177a3d] hover:bg-[#d5f2e0] hover:-translate-y-0.5;
   }
 
-  /* Small uppercase label above a heading. */
   .eyebrow {
-    @apply mb-3 inline-flex max-w-full items-center gap-2 text-sm font-bold uppercase tracking-[0.08em] text-primary;
+    @apply mb-4 inline-block max-w-full text-[0.8rem] font-bold uppercase tracking-[0.16em] text-forest sm:text-[0.82rem] sm:tracking-[0.2em];
   }
+  /* Microacento cálido recurrente: punto salmón delante de cada eyebrow */
   .eyebrow::before {
     content: '';
-    @apply h-2 w-2 shrink-0 rounded-full bg-accent;
+    @apply mr-2 inline-block h-1.5 w-1.5 rounded-full bg-sun align-[0.08em];
   }
 
-  /* Text link in the brand colour with a thin underline that firms up on hover. */
-  .link {
-    @apply font-semibold text-primary underline decoration-primary/30 decoration-1 underline-offset-[5px] transition-colors hover:decoration-primary;
-  }
-
-  /* Cards only react to hover when they are links. */
   .card {
-    @apply rounded-card border border-line bg-white p-7;
-  }
-  a.card {
-    @apply transition-[border-color,box-shadow,translate] duration-200 hover:border-primary/30 hover:shadow-soft motion-safe:hover:-translate-y-0.5;
+    @apply rounded-2xl border border-forest-soft/40 bg-white p-7 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-forest;
   }
 
-  /* List with a check mark in the brand colour */
+  /* Aura pastel como halo exterior de la tarjeta (un solo color: forest) */
+  .card-aura {
+    border-color: color-mix(in srgb, var(--color-forest-soft) 45%, white);
+    box-shadow:
+      0 4px 18px -4px color-mix(in srgb, var(--color-forest-soft) 42%, transparent),
+      0 14px 44px -10px color-mix(in srgb, var(--color-forest-soft) 32%, transparent);
+  }
+  .card-aura:hover {
+    box-shadow:
+      0 6px 22px -4px color-mix(in srgb, var(--color-forest-soft) 62%, transparent),
+      0 20px 56px -10px color-mix(in srgb, var(--color-forest-soft) 48%, transparent);
+  }
+
+  /* Lista con viñeta de marca */
   .checklist {
     @apply list-none space-y-2 pl-0;
   }
@@ -145,29 +136,32 @@
   }
   .checklist li::before {
     content: '';
-    @apply absolute left-0 top-[0.3em] h-5 w-5 rounded-full bg-highlight;
+    @apply absolute left-0 top-[0.5em] h-4 w-4 rounded-full border-[1.5px] border-forest-soft bg-forest-light;
   }
-  .checklist li::after {
-    content: '';
-    @apply absolute left-[0.42rem] top-[0.55em] h-2.5 w-1.5 rotate-45 border-b-2 border-r-2 border-primary-strong;
+
+  /* Párrafos largos justificados en pantallas medianas+ (feedback Maria);
+     en móvil se mantiene bandera izquierda para evitar ríos de espacios */
+  .justify-md {
+    hyphens: auto;
   }
 }
 
-/* Typography for posts and legal pages, in brand colours */
+/* Tipografía de artículos y páginas legales, en tonos de marca */
 .prose-brand {
-  @apply prose prose-lg max-w-none text-ink prose-headings:font-display prose-headings:font-bold prose-headings:tracking-[-0.02em] prose-headings:text-ink prose-a:text-primary prose-a:decoration-primary/30 prose-a:underline-offset-4 prose-a:hover:decoration-primary prose-strong:text-ink prose-blockquote:border-accent prose-blockquote:font-semibold prose-blockquote:text-primary-strong prose-li:marker:text-accent;
+  @apply prose prose-lg max-w-none text-ink prose-headings:font-display prose-headings:font-bold prose-headings:text-forest-dark prose-a:text-forest-dark prose-strong:text-ink prose-blockquote:border-sun prose-blockquote:font-semibold prose-blockquote:text-forest-dark prose-li:marker:text-forest-soft;
 }
+.prose-brand p { hyphens: auto; }
 
 /* ── Scroll-reveal ─────────────────────────────────────────────
-   Soft entrance of sections and cards on scroll.
-   CSS only (Scroll-driven Animations API). @supports guarantees that
-   content is always visible in browsers without support (never hidden),
-   and prefers-reduced-motion is respected. */
+   Entrada suave de secciones y tarjetas al hacer scroll.
+   Solo CSS (Scroll-driven Animations API). Con @supports garantizamos
+   que en navegadores sin soporte el contenido se ve siempre (nunca
+   queda oculto) y respetamos prefers-reduced-motion. */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
-    /* Longhands on purpose: the minifier (LightningCSS) merges the
-       `animation` shorthand with `animation-timeline` into an invalid value
-       that the browser drops. Do not turn this into a shorthand. */
+    /* Longhands a propósito: el minificador (LightningCSS) fusiona el
+       shorthand `animation` con `animation-timeline` generando un valor
+       inválido que el navegador descarta. No convertir en shorthand. */
     .reveal {
       animation-name: reveal-in;
       animation-timing-function: linear;
@@ -175,14 +169,14 @@
       animation-timeline: view();
       animation-range: entry 2% cover 22%;
     }
-    /* Variant with a soft sideways slide for columns */
+    /* Variante con desplazamiento lateral suave para columnas */
     .reveal-left { animation-name: reveal-left; }
     .reveal-right { animation-name: reveal-right; }
 
-    /* On narrow screens there is no side margin to absorb the slide: the
-       translateX pushes the column out of the viewport and a horizontal scroll
-       appears with a white strip on the right. The vertical entrance is used
-       there instead, which does not overflow and looks the same at that size. */
+    /* En pantallas estrechas no hay margen lateral que absorba el
+       desplazamiento: el translateX empuja la columna fuera del viewport y
+       aparece scroll horizontal con una banda blanca a la derecha. Ahi se usa
+       la entrada vertical, que no desborda y a ese tamano se percibe igual. */
     @media (max-width: 768px) {
       .reveal-left,
       .reveal-right {

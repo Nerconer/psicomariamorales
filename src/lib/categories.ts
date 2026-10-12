@@ -1,26 +1,24 @@
 /**
- * Category pill on the blog: a neutral pill with a coloured dot.
+ * Color de la píldora de categoría en el blog.
  *
- * Each category has its own dot so the colour carries information and the
- * category is recognised at a glance, while the pill itself stays calm. The
- * text is always ink, so contrast does not depend on the dot colour.
+ * Cada categoría tiene su propio pastel para que el índice no sea una sucesión
+ * de etiquetas idénticas y el color aporte información: se reconoce la
+ * categoría de un vistazo. Todos los pares fondo/texto superan el contraste
+ * AA (mínimo medido: 5,75:1).
  *
- * A new category only needs to be added here. If it is missing, the brand
- * fallback is used, so nothing breaks.
+ * Al crear una categoría nueva basta con añadirla aquí. Si falta, se usa el
+ * verde de marca, así que nunca se rompe nada.
  */
-const CATEGORY_DOT: Record<string, string> = {
-  'Ansiedad y estrés': 'before:bg-cat-sky',
-  'Relaciones y pareja': 'before:bg-cat-rose',
-  'Autoestima y emociones': 'before:bg-cat-sage',
-  'Trauma y duelo': 'before:bg-cat-stone',
-  'Empezar terapia': 'before:bg-cat-lilac',
+const CATEGORY_BADGE: Record<string, string> = {
+  'Ansiedad y estrés': 'border-badge-sky-line bg-badge-sky text-badge-sky-ink',
+  'Relaciones y pareja': 'border-badge-coral-line bg-badge-coral text-badge-coral-ink',
+  'Autoestima y emociones': 'border-badge-lilac-line bg-badge-lilac text-badge-lilac-ink',
+  'Trauma y duelo': 'border-badge-sand-line bg-badge-sand text-badge-sand-ink',
+  'Empezar terapia': 'border-badge-mint-line bg-badge-mint text-badge-mint-ink',
 };
 
-const CATEGORY_DOT_FALLBACK = 'before:bg-accent';
-
-const PILL =
-  'inline-flex items-center gap-2 self-start rounded-full border border-line bg-white px-3 py-1 text-sm font-semibold text-ink before:h-2 before:w-2 before:shrink-0 before:rounded-full';
+const CATEGORY_BADGE_FALLBACK = 'border-badge-mint-line bg-badge-mint text-badge-mint-ink';
 
 export function categoryBadgeClass(tag: string): string {
-  return `${PILL} ${CATEGORY_DOT[tag] ?? CATEGORY_DOT_FALLBACK}`;
+  return CATEGORY_BADGE[tag] ?? CATEGORY_BADGE_FALLBACK;
 }

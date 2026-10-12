@@ -1,10 +1,8 @@
 ---
 title: 'Estoy siempre a la defensiva: cuando la rabia se convierte en la forma habitual de relacionarnos'
-seoTitle: 'Rabia constante y estar a la defensiva'
-description: 'Sentir rabia constante o reaccionar atacando no te hace mala persona. Qué hay detrás de la ira, por qué ocurre y cómo puede ayudarte la terapia.'
+description: 'Sentir rabia constantemente o reaccionar atacando no significa que seas una mala persona. Descubre qué hay detrás de la ira, por qué ocurre y cómo la terapia psicológica puede ayudarte.'
 pubDate: 2026-07-10
 tag: 'Autoestima y emociones'
-service: 'terapia-autoestima'
 ---
 
 - "Salto por cualquier cosa."
@@ -87,7 +85,7 @@ Aunque aprender técnicas para regular las emociones es importante, el cambio su
 
 - ¿Qué situaciones activan mi rabia?
 - ¿Qué pensamientos aparecen en esos momentos?
-- [¿Qué emoción hay debajo del enfado?](/blog/metacognicion-comprender-tu-funcionamiento/)
+- [¿Qué emoción hay debajo del enfado?](/blog/metacognicion-comprender-tu-funcionamiento)
 - ¿Qué intento proteger cuando reacciono así?
 
 Responder a estas preguntas permite salir poco a poco del piloto automático.
@@ -101,7 +99,7 @@ El objetivo es que deje de controlar tu forma de relacionarte. En terapia podemo
 - Comprender qué desencadena la rabia.
 - Identificar las emociones que hay debajo del enfado.
 - Aprender estrategias de regulación emocional.
-- [Mejorar la comunicación durante los conflictos](/blog/conflicto-en-la-pareja-terapia/).
+- [Mejorar la comunicación durante los conflictos](/blog/conflicto-en-la-pareja-terapia).
 - Identificar patrones aprendidos en la infancia o en relaciones anteriores.
 - Desarrollar formas más saludables de protegerte sin necesidad de atacar.
 

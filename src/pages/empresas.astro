@@ -1,7 +1,9 @@
 ---
-import OrgServicesPage from '../components/OrgServicesPage.astro';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaFinal from '../components/CtaFinal.astro';
 
-const topics = [
+const temas = [
   'Gestión del estrés y la ansiedad',
   'Prevención del burnout',
   'Regulación emocional',
@@ -12,15 +14,102 @@ const topics = [
   'Prevención del suicidio y detección del malestar psicológico',
   'Autocuidado y bienestar emocional',
 ];
+
+const servicios = [
+  {
+    title: 'Formación y talleres',
+    text: 'Formaciones dinámicas y participativas sobre salud mental y bienestar psicológico, adaptadas a equipos, profesionales y organizaciones.',
+  },
+  {
+    title: 'Charlas y conferencias',
+    text: 'Ponencias dirigidas a empresas, administraciones públicas, asociaciones y otras entidades, con un enfoque divulgativo, práctico y basado en la evidencia científica.',
+  },
+  {
+    title: 'Asesoramiento psicológico',
+    text: 'Asesoramiento a equipos y organizaciones para el diseño e implementación de estrategias de promoción de la salud mental y prevención de riesgos psicosociales.',
+  },
+  {
+    title: 'Programas personalizados',
+    text: 'Cada organización tiene unas necesidades diferentes. Desarrollo proyectos y programas a medida, adaptados a los objetivos, características y contexto de cada empresa o institución.',
+  },
+];
 ---
 
-<OrgServicesPage
-  metaTitle="Bienestar emocional para empresas"
-  description="Talleres, charlas, asesoramiento y programas a medida de salud mental para empresas: estrés, burnout, liderazgo saludable y riesgos psicosociales."
+<Layout
   title="Bienestar emocional para empresas"
-  lead="Talleres, charlas y programas a medida para cuidar la salud mental de los equipos."
-  formats={['Talleres y formación', 'Charlas y conferencias', 'Asesoramiento', 'Programas a medida']}
-  topics={topics}
-  subject="Empresas"
-  location="companies"
-/>
+  description="Formación, talleres, charlas y programas de bienestar psicológico para empresas: gestión del estrés, prevención del burnout, liderazgo saludable y riesgos psicosociales."
+>
+  <PageHero
+    eyebrow="Empresas"
+    title="Bienestar psicológico en el entorno laboral"
+    lead="Cuidar la salud mental no solo mejora la calidad de vida de los equipos: favorece un mejor clima laboral, incrementa el compromiso y ayuda a prevenir el estrés, el burnout y el absentismo."
+  />
+
+  <section class="py-16 md:py-24">
+    <div class="mx-auto w-[min(820px,92%)]">
+      <p class="justify-md text-ink-soft">
+        El bienestar psicológico de las personas trabajadoras es un elemento clave para el buen
+        funcionamiento de cualquier organización. Colaboro con empresas, entidades e instituciones
+        diseñando intervenciones adaptadas a las necesidades de cada organización. El objetivo es
+        promover entornos de trabajo más saludables, fortalecer las competencias emocionales y
+        ofrecer herramientas prácticas que puedan aplicarse en el día a día.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-mist py-16 md:py-24">
+    <div class="mx-auto w-[min(1120px,92%)]">
+      <div class="text-center">
+        <p class="eyebrow">Servicios para empresas</p>
+        <h2 class="font-display text-4xl font-semibold text-forest-dark">Formas de colaborar</h2>
+      </div>
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        {
+          servicios.map((s) => (
+            <div class="card">
+              <h3 class="font-display text-2xl font-semibold text-forest-dark">{s.title}</h3>
+              <p class="mt-3 text-base text-ink-soft">{s.text}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mx-auto mt-14 max-w-[820px]">
+        <h3 class="text-center font-display text-2xl font-semibold text-forest-dark">
+          Temáticas más solicitadas
+        </h3>
+        <div class="mt-6 flex flex-wrap justify-center gap-3">
+          {
+            temas.map((t) => (
+              <span class="rounded-full border border-forest-soft/60 bg-white px-5 py-2 text-base text-ink">
+                {t}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24">
+    <div class="mx-auto w-[min(820px,92%)] text-center">
+      <p class="eyebrow">¿Por qué apostar por la salud mental en la empresa?</p>
+      <h2 class="font-display text-3xl font-semibold text-forest-dark">
+        Una inversión en las personas y en la organización
+      </h2>
+      <p class="justify-md mt-5 text-ink-soft">
+        Invertir en bienestar psicológico supone una mejora tanto para las personas como para la
+        organización. Favorece equipos más saludables, motivados y comprometidos, mejora la
+        comunicación y la convivencia, ayuda a prevenir el desgaste profesional y contribuye a
+        crear una cultura organizacional basada en el cuidado, el respeto y la prevención.
+      </p>
+    </div>
+  </section>
+
+  <CtaFinal
+    title="Solicita un presupuesto sin compromiso"
+    text="Si buscas desarrollar acciones de promoción de la salud mental o diseñar un programa adaptado a tu organización, estaré encantada de estudiar vuestra propuesta y encontrar la mejor forma de colaborar."
+    primaryLabel="Solicitar presupuesto"
+    primaryHref="/contacto"
+  />
+</Layout>

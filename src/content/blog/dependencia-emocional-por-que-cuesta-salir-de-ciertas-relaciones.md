@@ -3,8 +3,6 @@ title: "Dependencia emocional: por qué cuesta salir de ciertas relaciones"
 description: "La dependencia emocional va más allá del amor. Descubre por qué cuesta tanto terminar algunas relaciones, qué hay detrás de este patrón y cómo la terapia psicológica puede ayudarte."
 pubDate: 2026-07-22
 tag: "Relaciones y pareja"
-service: 'crecimiento-personal'
-draft: true
 ---
 
 > Si sé que esta relación me hace daño, ¿por qué no puedo irme?
@@ -35,7 +33,7 @@ Ese miedo no suele estar relacionado únicamente con la pareja actual. Muchas ve
 
 En numerosas ocasiones, la dependencia emocional no nace del amor. Nace del miedo:
 
-- [Miedo al abandono](/blog/estilos-de-apego-relaciones/).
+- [Miedo al abandono](/blog/estilos-de-apego-relaciones).
 - Miedo a quedarse solo.
 - Miedo a no encontrar otra pareja.
 - Miedo a no ser suficiente.
@@ -90,14 +88,14 @@ La terapia no busca convencer a nadie de terminar una relación. Su objetivo es 
 
 Durante el proceso terapéutico trabajamos aspectos como:
 
-<!-- PENDIENTE DE REVISIÓN: el texto del issue #20 se corta aquí. Desde este punto hasta el final, el contenido ha sido redactado siguiendo el estilo del resto de artículos y debe ser validado por Maria antes de publicar. -->
+<!-- PENDIENTE DE REVISIÓN: el texto del issue #20 se corta aquí. Desde este punto hasta el final, el contenido ha sido redactado siguiendo el estilo del resto de artículos y debe ser validado por María antes de publicar. -->
 
 - La autoestima y la imagen que cada persona tiene de sí misma.
 - El miedo al abandono y la tolerancia a la soledad.
 - Los patrones aprendidos en la infancia y en relaciones anteriores.
 - La regulación de las emociones que aparecen ante la idea de la separación.
 - La capacidad de identificar y expresar las propias necesidades.
-- La [construcción de límites](/blog/como-poner-limites-sin-sentir-culpa/) y de una red de apoyo fuera de la relación.
+- La [construcción de límites](/blog/como-poner-limites-sin-sentir-culpa) y de una red de apoyo fuera de la relación.
 
 ## Salir de una relación no siempre es el primer paso
 

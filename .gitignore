@@ -26,5 +26,3 @@ pnpm-debug.log*
 temp/
 
 _to_delete/
-# wrangler local state
-.wrangler/

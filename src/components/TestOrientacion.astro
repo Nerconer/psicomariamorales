@@ -1,0 +1,395 @@
+---
+import { SITE } from '../consts';
+
+// Test de orientación (no diagnóstico). Guía al visitante hacia la
+// especialidad más afín y hacia el primer paso (reservar / contacto).
+// Toda la lógica vive en el <script> de abajo mediante data-attributes.
+
+const areas = [
+  { key: 'ansiedad', label: 'Ansiedad o preocupación constante' },
+  { key: 'estres', label: 'Estrés, agotamiento o burnout' },
+  { key: 'apego', label: 'Relaciones, apego o miedo al rechazo' },
+  { key: 'autoestima', label: 'Autoestima y autoexigencia' },
+  { key: 'trauma', label: 'Experiencias difíciles o trauma' },
+  { key: 'pareja', label: 'Dificultades en la pareja' },
+  { key: 'duda', label: 'No lo tengo claro todavía' },
+];
+
+// El "regalo" del test: por cada área, un titular validante (no un eco
+// de la respuesta) y 3 puntos concretos de cómo se trabaja en consulta.
+const resultados = {
+  ansiedad: {
+    titulo: 'La ansiedad tiene salida, y responde muy bien a la terapia',
+    puntos: [
+      'Entenderás por qué se activa tu alarma interna y qué la mantiene.',
+      'Aprenderás a regular tu sistema nervioso con herramientas prácticas.',
+      'Recuperarás la calma y la capacidad de disfrutar del presente.',
+    ],
+    href: '/terapia-psicologica#ansiedad',
+  },
+  estres: {
+    titulo: 'El agotamiento es una señal, no una debilidad',
+    puntos: [
+      'Identificaremos qué te está drenando y qué lo sostiene.',
+      'Aprenderás a poner límites sin sentirte culpable.',
+      'Recuperarás la energía y la motivación, paso a paso.',
+    ],
+    href: '/terapia-psicologica#estres',
+  },
+  apego: {
+    titulo: 'Los patrones que se aprendieron también se pueden cambiar',
+    puntos: [
+      'Entenderás tu historia de vínculos y por qué se repiten patrones.',
+      'Trabajaremos la seguridad y la confianza en tus relaciones.',
+      'Construirás vínculos más sanos, también contigo.',
+    ],
+    href: '/terapia-psicologica#apego',
+  },
+  autoestima: {
+    titulo: 'Esa voz crítica no eres tú, y se puede transformar',
+    puntos: [
+      'Entenderás de dónde viene tanta autoexigencia.',
+      'Aprenderás a tratarte con la misma amabilidad que a los demás.',
+      'Reconocerás tu valor y te resultará más fácil poner límites.',
+    ],
+    href: '/terapia-psicologica#autoestima',
+  },
+  trauma: {
+    titulo: 'El pasado no tiene por qué seguir dirigiendo tu presente',
+    puntos: [
+      'Procesaremos esas experiencias con EMDR, siempre a tu ritmo.',
+      'Recuperarás la sensación de seguridad y de control.',
+      'Sin necesidad de revivir el dolor una y otra vez.',
+    ],
+    href: '/terapia-psicologica#trauma',
+  },
+  pareja: {
+    titulo: 'Pedir ayuda a tiempo puede transformar la relación',
+    puntos: [
+      'Mejoraréis la comunicación y la gestión de los conflictos.',
+      'Entenderéis qué hay debajo de las discusiones que se repiten.',
+      'Recuperaréis la conexión y la confianza.',
+    ],
+    href: '/terapia-de-pareja',
+  },
+  duda: {
+    titulo: 'No pasa nada por no tenerlo claro',
+    puntos: [
+      'La primera sesión sirve exactamente para eso.',
+      'Exploraremos qué te ocurre, sin prisa y sin juicios.',
+      'No necesitas ponerle nombre todavía.',
+    ],
+    href: '/contacto',
+  },
+};
+
+const tiempos = [
+  { key: 'reciente', label: 'Hace poco, días o semanas' },
+  { key: 'meses', label: 'Desde hace varios meses' },
+  { key: 'cronico', label: 'Hace más de un año' },
+];
+
+const modalidades = [
+  { key: 'presencial', label: 'Presencial en Barcelona' },
+  { key: 'online', label: 'Online' },
+  { key: 'indiferente', label: 'Me da igual / no lo sé' },
+];
+---
+
+<div
+  class="test-orientacion mx-auto w-[min(760px,100%)] rounded-3xl border border-forest-soft/40 bg-white p-6 shadow-forest sm:p-9"
+  data-doctoralia={SITE.doctoralia}
+  data-whatsapp={SITE.whatsapp}
+>
+  <!-- Progreso -->
+  <div class="mb-7 flex items-center justify-center gap-2" data-progress aria-hidden="true">
+    <span class="h-1.5 w-8 rounded-full bg-forest transition-colors" data-dot="0"></span>
+    <span class="h-1.5 w-8 rounded-full bg-forest-soft/40 transition-colors" data-dot="1"></span>
+    <span class="h-1.5 w-8 rounded-full bg-forest-soft/40 transition-colors" data-dot="2"></span>
+  </div>
+
+  <!-- Paso 1: área -->
+  <div class="test-step" data-step="0">
+    <p class="eyebrow text-center">Paso 1 de 3</p>
+    <h3 class="text-center font-display text-2xl font-bold text-forest-dark sm:text-3xl">
+      ¿Con qué te identificas más ahora mismo?
+    </h3>
+    <div class="mt-7 grid gap-3 sm:grid-cols-2">
+      {
+        areas.map((a) => (
+          <button type="button" class="test-option" data-area={a.key}>
+            {a.label}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Paso 2: tiempo -->
+  <div class="test-step hidden" data-step="1">
+    <p class="eyebrow text-center">Paso 2 de 3</p>
+    <h3 class="text-center font-display text-2xl font-bold text-forest-dark sm:text-3xl">
+      ¿Desde cuándo lo notas?
+    </h3>
+    <div class="mt-7 grid gap-3">
+      {
+        tiempos.map((t) => (
+          <button type="button" class="test-option" data-tiempo={t.key}>
+            {t.label}
+          </button>
+        ))
+      }
+    </div>
+    <div class="mt-6 text-center">
+      <button type="button" class="test-back" data-back>← Atrás</button>
+    </div>
+  </div>
+
+  <!-- Paso 3: modalidad -->
+  <div class="test-step hidden" data-step="2">
+    <p class="eyebrow text-center">Paso 3 de 3</p>
+    <h3 class="text-center font-display text-2xl font-bold text-forest-dark sm:text-3xl">
+      ¿Cómo prefieres la terapia?
+    </h3>
+    <div class="mt-7 grid gap-3">
+      {
+        modalidades.map((m) => (
+          <button type="button" class="test-option" data-modalidad={m.key}>
+            {m.label}
+          </button>
+        ))
+      }
+    </div>
+    <div class="mt-6 text-center">
+      <button type="button" class="test-back" data-back>← Atrás</button>
+    </div>
+  </div>
+
+  <!-- Resultado -->
+  <div class="test-step hidden" data-step="result" aria-live="polite">
+    <div class="text-center">
+      <span
+        class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-forest-light text-forest"
+        aria-hidden="true"
+      >
+        <svg
+          width="26"
+          height="26"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M14.8 9.2l-1.9 4.6-4.7 2 1.9-4.6 4.7-2z"></path>
+        </svg>
+      </span>
+      <h3 class="mt-4 font-display text-2xl font-bold text-forest-dark sm:text-3xl" data-result-title>
+      </h3>
+      <p class="mx-auto mt-4 max-w-[52ch] text-ink-soft" data-result-text></p>
+      <div class="mx-auto mt-6 max-w-[52ch] rounded-2xl bg-forest-light/60 p-5 text-left sm:p-6">
+        <p class="mb-3 text-sm font-bold uppercase tracking-[0.12em] text-forest">
+          Así lo trabajaremos en consulta
+        </p>
+        <ul class="checklist space-y-2 text-base text-ink" data-result-puntos></ul>
+      </div>
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a class="btn-primary" data-result-cta href="#">Reservar primera sesión</a>
+        <a
+          class="font-semibold text-forest-dark underline decoration-forest-soft underline-offset-4 hover:text-forest"
+          data-result-link
+          href="#">Ver más</a
+        >
+      </div>
+      <p class="mx-auto mt-7 max-w-[46ch] text-sm text-ink-soft">
+        Esta orientación es informativa y no sustituye una valoración profesional.
+      </p>
+      <button type="button" class="test-back mt-3" data-restart>↺ Empezar de nuevo</button>
+    </div>
+  </div>
+
+  <script type="application/json" data-resultados set:html={JSON.stringify(resultados)} />
+</div>
+
+<style>
+  .test-step {
+    animation: test-fade 0.32s ease both;
+  }
+  .test-option {
+    width: 100%;
+    text-align: left;
+    border-radius: 1rem;
+    border: 1px solid color-mix(in srgb, var(--color-forest-soft) 55%, white);
+    background: var(--color-cream);
+    padding: 0.95rem 1.15rem;
+    font-weight: 600;
+    color: var(--color-forest-dark);
+    transition: all 0.18s ease;
+  }
+  .test-option:hover {
+    border-color: var(--color-forest);
+    background: var(--color-forest-light);
+    transform: translateY(-2px);
+  }
+  .test-back {
+    min-height: 2.75rem;
+    padding-inline: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-ink-soft);
+    transition: color 0.18s ease;
+  }
+  .test-back:hover {
+    color: var(--color-forest);
+  }
+  @keyframes test-fade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .test-step { animation: none; }
+    .test-option:hover { transform: none; }
+  }
+</style>
+
+<script>
+  function initTest() {
+    document.querySelectorAll<HTMLElement>('.test-orientacion').forEach((root) => {
+      if (root.dataset.ready === '1') return;
+      root.dataset.ready = '1';
+
+      const steps = root.querySelectorAll<HTMLElement>('.test-step');
+      const dots = root.querySelectorAll<HTMLElement>('[data-dot]');
+      const doctoralia = root.dataset.doctoralia || '#';
+      const whatsapp = root.dataset.whatsapp || '#';
+
+      const track = (nombre: string, datos?: Record<string, string | number>) =>
+        document.dispatchEvent(new CustomEvent('psico:evento', { detail: { nombre, datos } }));
+
+      const resultados = JSON.parse(
+        root.querySelector('script[data-resultados]')?.textContent || '{}'
+      );
+      const state = { area: '', tiempo: '', modalidad: '' };
+
+      const show = (name: string) => {
+        steps.forEach((s) => s.classList.toggle('hidden', s.dataset.step !== name));
+        // Reinicia la animación de entrada
+        const active = root.querySelector<HTMLElement>(`.test-step[data-step="${name}"]`);
+        if (active) {
+          active.style.animation = 'none';
+          void active.offsetWidth;
+          active.style.animation = '';
+        }
+        const idx = Number(name);
+        dots.forEach((d, i) => {
+          const done = !Number.isNaN(idx) && i <= idx;
+          d.classList.toggle('bg-forest', done);
+          d.classList.toggle('bg-forest-soft/40', !done);
+        });
+      };
+
+      const tiempoFrase: Record<string, string> = {
+        reciente: 'Has dado el paso pronto, y eso juega a tu favor.',
+        meses: 'Llevas un tiempo sosteniéndolo; pedir apoyo ahora tiene mucho sentido.',
+        cronico: 'Llevas conviviendo con ello demasiado tiempo: mereces un espacio para soltarlo.',
+      };
+      const modalidadFrase: Record<string, string> = {
+        presencial: 'de forma presencial en la consulta de Barcelona',
+        online: 'por videollamada, estés donde estés',
+        indiferente: 'en formato presencial u online, como mejor encaje contigo',
+      };
+
+      const buildResult = () => {
+        const titleEl = root.querySelector<HTMLElement>('[data-result-title]');
+        const textEl = root.querySelector<HTMLElement>('[data-result-text]');
+        const puntosEl = root.querySelector<HTMLElement>('[data-result-puntos]');
+        const cta = root.querySelector<HTMLAnchorElement>('[data-result-cta]');
+        const link = root.querySelector<HTMLAnchorElement>('[data-result-link]');
+
+        const esDuda = state.area === 'duda';
+        const r = resultados[state.area] || resultados.duda;
+
+        if (titleEl) titleEl.textContent = r.titulo;
+        if (textEl) {
+          const tiempo = tiempoFrase[state.tiempo] || '';
+          const modal = modalidadFrase[state.modalidad] || '';
+          textEl.textContent = esDuda
+            ? `${tiempo} Podemos verlo en una primera sesión ${modal}, sin compromiso.`
+            : `${tiempo} Podemos trabajarlo ${modal}.`;
+        }
+        if (puntosEl) {
+          puntosEl.textContent = '';
+          for (const p of r.puntos) {
+            const li = document.createElement('li');
+            li.textContent = p;
+            puntosEl.appendChild(li);
+          }
+        }
+        if (cta) {
+          cta.href = esDuda ? whatsapp : doctoralia;
+          cta.textContent = esDuda ? 'Escríbeme por WhatsApp' : 'Reservar primera sesión';
+          // Ambos destinos son externos; el estado no debe arrastrarse entre reintentos
+          cta.target = '_blank';
+          cta.rel = 'noopener';
+          // El destino cambia según el resultado, así que la etiqueta del evento
+          // también: así el clic cuenta como reserva o como WhatsApp, no como
+          // "botón del test".
+          cta.dataset.evento = esDuda ? 'whatsapp' : 'reservar-doctoralia';
+          cta.dataset.eventoUbicacion = 'test-resultado';
+        }
+        if (link) {
+          link.href = r.href;
+          link.textContent = esDuda ? 'O escríbeme un email' : 'Conocer más sobre este proceso';
+          link.dataset.evento = 'test-resultado-enlace';
+          link.dataset.eventoDestino = r.href;
+        }
+        track('test-resultado', {
+          area: state.area,
+          tiempo: state.tiempo,
+          modalidad: state.modalidad,
+        });
+        show('result');
+      };
+
+      root.addEventListener('click', (e) => {
+        const btn = (e.target as HTMLElement).closest('button');
+        if (!btn || !root.contains(btn)) return;
+
+        if (btn.hasAttribute('data-restart')) {
+          state.area = state.tiempo = state.modalidad = '';
+          show('0');
+          return;
+        }
+        if (btn.hasAttribute('data-back')) {
+          const current = root.querySelector<HTMLElement>('.test-step:not(.hidden)');
+          const step = current?.dataset.step;
+          if (step === '1') show('0');
+          else if (step === '2') show('1');
+          return;
+        }
+        if (btn.dataset.area) {
+          state.area = btn.dataset.area;
+          track('test-paso', { paso: 1, respuesta: state.area });
+          show('1');
+          return;
+        }
+        if (btn.dataset.tiempo) {
+          state.tiempo = btn.dataset.tiempo;
+          track('test-paso', { paso: 2, respuesta: state.tiempo });
+          show('2');
+          return;
+        }
+        if (btn.dataset.modalidad) {
+          state.modalidad = btn.dataset.modalidad;
+          track('test-paso', { paso: 3, respuesta: state.modalidad });
+          buildResult();
+          return;
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initTest);
+</script>

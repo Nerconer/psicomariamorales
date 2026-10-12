@@ -5,7 +5,7 @@ import { SITE } from '../consts';
 ---
 
 <Layout title="Aviso legal" description="Aviso legal del sitio web de Maria Morales, psicóloga sanitaria en Barcelona.">
-  <PageHero title="Aviso legal" narrow />
+  <PageHero title="Aviso legal" />
   <section class="py-14 md:py-20">
     <div class="prose-brand mx-auto w-[min(760px,92%)]">
       <p>
@@ -22,13 +22,13 @@ import { SITE } from '../consts';
             href={SITE.copc}
             target="_blank"
             rel="noopener"
-            data-event="license_click"
-            data-event-location="legal_notice">{SITE.licenseNumber}</a
+            data-evento="colegiada-copc"
+            data-evento-ubicacion="aviso-legal">{SITE.licenseNumber}</a
           > (Col·legi Oficial de Psicologia de Catalunya)
         </li>
-        {/* Pending: art. 10.1.e of the LSSI requires the tax ID (NIF). The
-            placeholder was removed so it is not visible, and the line comes
-            back as soon as the value is available. */}
+        {/* Pendiente: el art. 10.1.e de la LSSI exige publicar el NIF. Se quita el
+            marcador para no dejarlo a la vista, y se repone la línea en cuanto
+            se tenga el dato. */}
         <li><strong>Domicilio:</strong> {SITE.address}</li>
         <li><strong>Email de contacto:</strong> {SITE.email}</li>
       </ul>

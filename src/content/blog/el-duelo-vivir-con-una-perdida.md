@@ -1,10 +1,8 @@
 ---
 title: 'El duelo: aprender a vivir con una pérdida que cambia nuestra vida'
-seoTitle: 'El duelo: vivir con una pérdida'
-description: 'No solo hacemos duelo por la muerte de un ser querido. Las pérdidas que nadie reconoce, los duelos bloqueados y cómo acompañarlos en terapia.'
+description: 'No solo hacemos duelo por la muerte de un ser querido. Hablamos de las pérdidas que nadie reconoce, de los duelos que se quedan bloqueados y de cómo la terapia puede acompañarlos.'
 pubDate: 2026-07-17
 tag: 'Trauma y duelo'
-service: 'terapia-duelo'
 ---
 
 Cuando pensamos en el duelo, la mayoría imaginamos la muerte de un ser querido. Sin embargo, como psicóloga, una de las cosas que más veo en consulta es que las personas hacen duelo por muchas pérdidas diferentes:
@@ -38,7 +36,7 @@ Hay pérdidas que reciben apoyo social: un fallecimiento, por ejemplo. Pero exis
 - Mudarse lejos de la familia.
 - Perder la salud.
 - Tener que renunciar a una profesión.
-- Descubrir que los padres nunca pudieron ofrecer [el cariño o la seguridad que necesitábamos](/blog/estilos-de-apego-relaciones/).
+- Descubrir que los padres nunca pudieron ofrecer [el cariño o la seguridad que necesitábamos](/blog/estilos-de-apego-relaciones).
 
 Cuando estas pérdidas no son reconocidas, muchas personas sienten que "no tienen derecho" a sufrir, y eso dificulta aún más el proceso.
 
@@ -66,7 +64,7 @@ En consulta podemos observar diferentes formas en las que un duelo no elaborado 
 - Tener dificultad para ilusionarse con el futuro.
 - Sentir que una parte de la vida quedó detenida en aquel momento.
 
-A veces, el duelo no desaparece. Simplemente cambia de forma y continúa manifestándose a través de [ansiedad](/blog/como-saber-si-tengo-ansiedad/), irritabilidad, insomnio, vacío o dificultades en las relaciones.
+A veces, el duelo no desaparece. Simplemente cambia de forma y continúa manifestándose a través de [ansiedad](/blog/como-saber-si-tengo-ansiedad), irritabilidad, insomnio, vacío o dificultades en las relaciones.
 
 ## El duelo no consiste en olvidar
 

@@ -1,10 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { categoryBadgeClass } from '../lib/categories';
-import { localeFromPath } from '../i18n/config';
-import { useTranslations } from '../i18n/ui';
-
-const t = useTranslations(localeFromPath(Astro.url.pathname));
 
 interface Props {
   posts: CollectionEntry<'blog'>[];
@@ -18,32 +14,32 @@ const formatDate = (d: Date) =>
 
 {
   posts.length > 0 && (
-    <section aria-labelledby="seguir-leyendo" class="py-16 md:py-20">
+    <section aria-labelledby="seguir-leyendo" class="border-t border-forest-soft/15 bg-mist py-16 md:py-20">
       <div class="mx-auto w-[min(1120px,92%)]">
         <h2
           id="seguir-leyendo"
-          class="mb-8 font-display text-3xl font-semibold md:text-4xl"
+          class="mb-8 font-display text-3xl font-semibold text-forest-dark md:text-4xl"
         >
-          {t('related.title')}
+          Seguir leyendo
         </h2>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <a
-              href={`/blog/${post.id}/`}
-              data-event="related_post_click"
-              data-event-post={post.id}
+              href={`/blog/${post.id}`}
+              data-evento="post-relacionado"
+              data-evento-post={post.id}
               class="card group flex flex-col"
             >
               <span
-                class={`mb-4 ${categoryBadgeClass(post.data.tag)}`}
+                class={`mb-4 inline-block self-start rounded-full border px-4 py-1 text-sm font-semibold uppercase tracking-wider ${categoryBadgeClass(post.data.tag)}`}
               >
                 {post.data.tag}
               </span>
-              <h3 class="font-display text-xl font-semibold leading-snug group-hover:text-primary">
+              <h3 class="font-display text-xl font-semibold leading-snug text-forest-dark group-hover:text-forest">
                 {post.data.title}
               </h3>
-              <p class="mt-3 flex-1 text-base text-muted">{post.data.description}</p>
-              <p class="mt-5 text-sm uppercase tracking-wider text-muted">
+              <p class="mt-3 flex-1 text-base text-ink-soft">{post.data.description}</p>
+              <p class="mt-5 text-sm uppercase tracking-wider text-ink-soft">
                 {formatDate(post.data.pubDate)}
               </p>
             </a>

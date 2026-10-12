@@ -2,24 +2,24 @@ import type { CollectionEntry } from 'astro:content';
 
 type Post = CollectionEntry<'blog'>;
 
-/** Número de entradas que se muestran en el bloque "Seguir leyendo". */
+/** Number of posts shown in the "Seguir leyendo" block. */
 export const RELATED_COUNT = 3;
 
 /**
- * Calcula, para cada entrada, sus entradas relacionadas.
+ * Works out the related posts for each post.
  *
- * Criterio:
- *  1. Primero se rellena con entradas de la MISMA categoría (`tag`).
- *  2. Si no hay suficientes, se completa con el resto del blog hasta llegar
- *     a RELATED_COUNT, de modo que el bloque siempre tenga el mismo aspecto.
+ * Rules:
+ *  1. Fill first with posts from the SAME category (`tag`).
+ *  2. If there are not enough, top up with the rest of the blog until
+ *     RELATED_COUNT is reached, so the block always looks the same.
  *
- * Dentro de cada nivel gana la entrada que MENOS enlaces ha recibido hasta ese
- * momento. Así se reparten los enlaces internos de forma equitativa y ninguna
- * entrada se queda huérfana. Los desempates posteriores (fecha y luego slug)
- * hacen que el resultado sea determinista: mismo contenido, misma salida.
+ * Within each level, the post that has received the FEWEST links so far wins.
+ * Internal links are spread evenly and no post is left orphaned. The later
+ * tie-breakers (date, then slug) make the result deterministic: same content,
+ * same output.
  *
- * Mantenimiento: basta con definir el `tag` de cada entrada. No hay ninguna
- * lista de relaciones que actualizar a mano.
+ * Maintenance: each post only needs its `tag`. There is no list of relations
+ * to keep up to date by hand.
  */
 export function buildRelatedMap(posts: Post[]): Map<string, Post[]> {
   const ordered = [...posts].sort(

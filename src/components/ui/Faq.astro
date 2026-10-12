@@ -1,0 +1,39 @@
+---
+// Accordion of questions. With `schema`, it also emits FAQPage structured data,
+// which should only happen once per page.
+interface Props {
+  items: Array<{ q: string; a: string }>;
+  schema?: boolean;
+}
+const { items, schema = false } = Astro.props;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+{schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+<div class="divide-y divide-line/70 rounded-2xl border border-line/60 bg-white">
+  {
+    items.map((f) => (
+      <details class="group px-5 sm:px-6">
+        <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 font-display text-lg font-bold text-ink [&::-webkit-details-marker]:hidden">
+          {f.q}
+          <span
+            class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-surface text-xl leading-none text-primary transition-transform duration-200 group-open:rotate-45"
+            aria-hidden="true"
+          >
+            +
+          </span>
+        </summary>
+        <p class="pb-5 text-muted">{f.a}</p>
+      </details>
+    ))
+  }
+</div>

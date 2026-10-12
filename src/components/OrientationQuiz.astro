@@ -1,0 +1,351 @@
+---
+// Orientation quiz (not a clinical test). Three questions route the visitor to
+// the page and the first step that fit them. Answers live only in memory:
+// they are not stored, not put in the URL and not sent to analytics, because
+// they describe how the person feels, which is health data.
+import { SITE, PRICES, formatPrice, WHATSAPP_BY_LOCALE, FREE_CALL_BY_LOCALE } from '../consts';
+import type { Locale } from '../i18n/config';
+import { pathFor } from '../i18n/routes';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'es' } = Astro.props;
+
+const first = formatPrice(PRICES.firstSession.amount);
+const online = formatPrice(PRICES.online.amount);
+const inPerson = formatPrice(PRICES.inPerson.amount);
+const couple = formatPrice(PRICES.couple.amount);
+const coupleMin = PRICES.couple.minutes;
+
+// Where each result leads.
+const ROUTES = {
+  anxiety: pathFor('anxiety', locale),
+  trauma: pathFor('emdr', locale),
+  loss: pathFor('grief', locale),
+  relations: `${pathFor('therapy', locale)}#apego`,
+  meaning: `${pathFor('therapy', locale)}#sentido`,
+  demand: pathFor('selfEsteem', locale),
+  growth: pathFor('growth', locale),
+  couple: pathFor('couples', locale),
+  unsure: pathFor('contact', locale),
+};
+
+const COPY = {
+  es: {
+    step: (n: number) => `Paso ${n} de 3`,
+    back: 'Atrás',
+    qStart: 'Cuéntame qué te trae por aquí',
+    qHard: '¿Qué es lo que más te pesa ahora?',
+    qGrowth: '¿Qué te gustaría cambiar?',
+    qFormat: '¿Cómo te viene mejor?',
+    whatsapp: 'Escríbeme por WhatsApp',
+    more: 'Saber más sobre esto',
+    restart: 'Volver a empezar',
+    firstLabel: `Reservar primera sesión · ${first}`,
+    coupleLabel: 'Reservar sesión de pareja',
+    freeCallLabel: 'Pedir llamada gratuita de 15 min',
+    note: 'Esto es una orientación, no una valoración profesional. Si ahora mismo estás en peligro o piensas en hacerte daño, llama al',
+    noteFree: '(gratis, 24 horas) o al',
+    start: [
+      { value: 'hard', label: 'Estoy pasando una mala racha', next: 'hard' },
+      { value: 'growth', label: 'Estoy bien, pero quiero mejorar algo', next: 'growth' },
+      { value: 'couple', label: 'Queremos trabajar algo en pareja', next: 'format' },
+      { value: 'unsure', label: 'Todavía no lo tengo claro', next: 'format' },
+    ],
+    hard: [
+      { value: 'anxiety', label: 'La ansiedad o una preocupación que no se apaga' },
+      { value: 'anxiety', label: 'El estrés o el agotamiento' },
+      { value: 'trauma', label: 'Algo que me pasó y sigue doliendo' },
+      { value: 'loss', label: 'Una pérdida' },
+      { value: 'relations', label: 'Cómo me relaciono y el miedo al rechazo' },
+      { value: 'relations', label: 'Me siento solo o diferente a los demás' },
+      { value: 'meaning', label: 'Nada me motiva o no le encuentro sentido' },
+      { value: 'demand', label: 'Lo mucho que me exijo' },
+    ],
+    growth: [
+      { value: 'growth', label: 'Tomar decisiones con más claridad' },
+      { value: 'growth', label: 'Confiar más en mí' },
+      { value: 'growth', label: 'Aprender a poner límites' },
+      { value: 'growth', label: 'Salir de un bloqueo' },
+      { value: 'growth', label: 'Pasar menos tiempo atrapado en el móvil' },
+    ],
+    formats: [
+      { value: 'online', label: 'Online, desde donde estés' },
+      { value: 'in_person', label: 'En persona, en Barcelona' },
+      { value: 'either', label: 'Me da igual' },
+    ],
+    results: {
+      anxiety: { title: 'Vivir en alerta cansa mucho. Y se puede trabajar.', points: ['Entenderemos qué dispara tu ansiedad o tu agotamiento.', 'Practicaremos formas de calmar el cuerpo que te sirvan en tu día a día.'] },
+      trauma: { title: 'Lo que pasó no tiene por qué seguir mandando.', points: ['Iremos a tu ritmo, sin que tengas que contarlo todo de golpe.', 'Trabajaremos con EMDR cuando tenga sentido para ti.'] },
+      loss: { title: 'Una pérdida necesita su tiempo y su espacio.', points: ['Daremos lugar a lo que sientes, sin prisas.', 'Buscaremos cómo seguir adelante con lo que ha pasado.'] },
+      relations: { title: 'Los patrones que aprendimos también se pueden cambiar.', points: ['Entenderemos por qué se repiten en tus relaciones.', 'Practicaremos formas más seguras de vincularte.'] },
+      meaning: { title: 'Cuando nada parece tener sentido, también se puede pedir ayuda.', points: ['Exploraremos qué se ha apagado y desde cuándo.', 'Buscaremos qué tiene valor para ti.'] },
+      demand: { title: 'Esa voz que te exige tanto se puede suavizar.', points: ['Veremos de dónde viene tanta exigencia.', 'Trabajaremos para que te trates con más cuidado.'] },
+      growth: { title: 'No hace falta estar mal para venir a terapia.', points: ['Pondremos sobre la mesa qué quieres cambiar y qué te frena.', 'Avanzaremos con objetivos concretos y a tu ritmo.'] },
+      couple: { title: 'Cuidar la relación a tiempo cambia mucho.', points: [`Sesiones de ${coupleMin} minutos para los dos, por ${couple}.`, 'Trabajaremos cómo os comunicáis y qué hay debajo de las discusiones.'] },
+      unsure: { title: 'No hace falta tenerlo claro para empezar.', points: ['En una llamada gratuita de 15 minutos lo hablamos.', 'Después decides si quieres seguir, sin compromiso.'] },
+    },
+    priceLines: {
+      online: `La primera sesión cuesta ${first}. Después, ${online} la sesión online.`,
+      in_person: `La primera sesión cuesta ${first}. Después, ${inPerson} la sesión en Barcelona.`,
+      either: `La primera sesión cuesta ${first}. Después, ${online} online o ${inPerson} en Barcelona.`,
+      couple: `La terapia de pareja cuesta ${couple} la sesión de ${coupleMin} minutos, también la primera.`,
+    },
+  },
+  ca: {
+    step: (n: number) => `Pas ${n} de 3`,
+    back: 'Enrere',
+    qStart: "Explica'm què et porta fins aquí",
+    qHard: 'Què és el que més et pesa ara?',
+    qGrowth: "Què t'agradaria canviar?",
+    qFormat: 'Com et va millor?',
+    whatsapp: 'Escriu-me per WhatsApp',
+    more: "Saber-ne més",
+    restart: 'Tornar a començar',
+    firstLabel: `Reservar la primera sessió · ${first}`,
+    coupleLabel: 'Reservar sessió de parella',
+    freeCallLabel: 'Demanar trucada gratuïta de 15 min',
+    note: "Això és una orientació, no una valoració professional. Si ara mateix estàs en perill o penses a fer-te mal, truca al",
+    noteFree: '(gratuït, 24 hores) o al',
+    start: [
+      { value: 'hard', label: 'Estic passant una mala ratxa', next: 'hard' },
+      { value: 'growth', label: 'Estic bé, però vull millorar alguna cosa', next: 'growth' },
+      { value: 'couple', label: 'Volem treballar alguna cosa en parella', next: 'format' },
+      { value: 'unsure', label: 'Encara no ho tinc clar', next: 'format' },
+    ],
+    hard: [
+      { value: 'anxiety', label: "L'ansietat o una preocupació que no s'apaga" },
+      { value: 'anxiety', label: "L'estrès o l'esgotament" },
+      { value: 'trauma', label: 'Una cosa que em va passar i encara fa mal' },
+      { value: 'loss', label: 'Una pèrdua' },
+      { value: 'relations', label: 'Com em relaciono i la por al rebuig' },
+      { value: 'relations', label: 'Em sento sol o diferent dels altres' },
+      { value: 'meaning', label: "Res no em motiva o no hi trobo sentit" },
+      { value: 'demand', label: "Com m'arribo a exigir" },
+    ],
+    growth: [
+      { value: 'growth', label: 'Prendre decisions amb més claredat' },
+      { value: 'growth', label: 'Confiar més en mi' },
+      { value: 'growth', label: 'Aprendre a posar límits' },
+      { value: 'growth', label: "Sortir d'un bloqueig" },
+      { value: 'growth', label: 'Passar menys temps atrapat al mòbil' },
+    ],
+    formats: [
+      { value: 'online', label: "En línia, des d'on siguis" },
+      { value: 'in_person', label: 'En persona, a Barcelona' },
+      { value: 'either', label: "M'és igual" },
+    ],
+    results: {
+      anxiety: { title: 'Viure en alerta cansa molt. I es pot treballar.', points: ["Entendrem què dispara la teva ansietat o el teu esgotament.", 'Practicarem maneres de calmar el cos que et serveixin en el dia a dia.'] },
+      trauma: { title: 'El que va passar no ha de continuar manant.', points: ["Anirem al teu ritme, sense que ho hagis d'explicar tot de cop.", 'Treballarem amb EMDR quan tingui sentit per a tu.'] },
+      loss: { title: 'Una pèrdua necessita el seu temps i el seu espai.', points: ['Farem lloc al que sents, sense presses.', 'Buscarem com seguir endavant amb el que ha passat.'] },
+      relations: { title: 'Els patrons que vam aprendre també es poden canviar.', points: ['Entendrem per què es repeteixen en les teves relacions.', 'Practicarem maneres més segures de vincular-te.'] },
+      meaning: { title: 'Quan res no sembla tenir sentit, també es pot demanar ajuda.', points: ["Explorarem què s'ha apagat i des de quan.", 'Buscarem què té valor per a tu.'] },
+      demand: { title: "Aquesta veu que t'exigeix tant es pot suavitzar.", points: ["Veurem d'on ve tanta exigència.", 'Treballarem perquè et tractis amb més cura.'] },
+      growth: { title: 'No cal estar malament per venir a teràpia.', points: ["Posarem sobre la taula què vols canviar i què t'atura.", 'Avançarem amb objectius concrets i al teu ritme.'] },
+      couple: { title: 'Cuidar la relació a temps canvia molt.', points: [`Sessions de ${coupleMin} minuts per a tots dos, per ${couple}.`, 'Treballarem com us comuniqueu i què hi ha sota les discussions.'] },
+      unsure: { title: 'No cal tenir-ho clar per començar.', points: ['En una trucada gratuïta de 15 minuts en parlem.', 'Després decideixes si vols continuar, sense compromís.'] },
+    },
+    priceLines: {
+      online: `La primera sessió costa ${first}. Després, ${online} la sessió en línia.`,
+      in_person: `La primera sessió costa ${first}. Després, ${inPerson} la sessió a Barcelona.`,
+      either: `La primera sessió costa ${first}. Després, ${online} en línia o ${inPerson} a Barcelona.`,
+      couple: `La teràpia de parella costa ${couple} la sessió de ${coupleMin} minuts, també la primera.`,
+    },
+  },
+}[locale];
+
+const results = Object.fromEntries(
+  Object.entries(COPY.results).map(([key, r]) => [key, { ...r, href: ROUTES[key as keyof typeof ROUTES] }])
+);
+
+const config = {
+  results,
+  priceLines: COPY.priceLines,
+  booking: SITE.doctoralia,
+  freeCall: FREE_CALL_BY_LOCALE[locale],
+  firstLabel: COPY.firstLabel,
+  coupleLabel: COPY.coupleLabel,
+  freeCallLabel: COPY.freeCallLabel,
+};
+---
+
+<div class="orientation-quiz rounded-3xl border border-line/60 bg-white p-5 shadow-soft sm:p-8">
+  <p class="sr-only" aria-live="polite" data-announce></p>
+
+  <div class="quiz-step" data-step="start">
+    <p class="text-sm font-bold text-muted">{COPY.step(1)}</p>
+    <h3 class="mt-1 text-2xl font-bold text-primary" tabindex="-1">{COPY.qStart}</h3>
+    <div class="mt-5 grid gap-2.5">
+      {COPY.start.map((o) => <button type="button" class="quiz-option" data-start={o.value} data-next={o.next}>{o.label}</button>)}
+    </div>
+  </div>
+
+  <div class="quiz-step hidden" data-step="hard">
+    <p class="text-sm font-bold text-muted">{COPY.step(2)}</p>
+    <h3 class="mt-1 text-2xl font-bold text-primary" tabindex="-1">{COPY.qHard}</h3>
+    <div class="mt-5 grid gap-2.5">
+      {COPY.hard.map((o) => <button type="button" class="quiz-option" data-topic={o.value}>{o.label}</button>)}
+    </div>
+    <button type="button" class="quiz-back" data-back="start">{COPY.back}</button>
+  </div>
+
+  <div class="quiz-step hidden" data-step="growth">
+    <p class="text-sm font-bold text-muted">{COPY.step(2)}</p>
+    <h3 class="mt-1 text-2xl font-bold text-primary" tabindex="-1">{COPY.qGrowth}</h3>
+    <div class="mt-5 grid gap-2.5">
+      {COPY.growth.map((o) => <button type="button" class="quiz-option" data-topic={o.value}>{o.label}</button>)}
+    </div>
+    <button type="button" class="quiz-back" data-back="start">{COPY.back}</button>
+  </div>
+
+  <div class="quiz-step hidden" data-step="format">
+    <p class="text-sm font-bold text-muted">{COPY.step(3)}</p>
+    <h3 class="mt-1 text-2xl font-bold text-primary" tabindex="-1">{COPY.qFormat}</h3>
+    <div class="mt-5 grid gap-2.5">
+      {COPY.formats.map((o) => <button type="button" class="quiz-option" data-format={o.value}>{o.label}</button>)}
+    </div>
+    <button type="button" class="quiz-back" data-back="previous">{COPY.back}</button>
+  </div>
+
+  <div class="quiz-step hidden" data-step="result">
+    <h3 class="text-2xl font-bold text-primary" tabindex="-1" data-result-title></h3>
+    <ul class="checklist mt-4" data-result-points></ul>
+    <p class="mt-4 font-semibold" data-result-price></p>
+    <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+      <a class="btn-primary" target="_blank" rel="noopener" data-result-cta data-event-location="quiz_result" href="#"></a>
+      <a
+        class="btn-whatsapp"
+        target="_blank"
+        rel="noopener"
+        data-event="whatsapp_click"
+        data-event-location="quiz_result"
+        href={WHATSAPP_BY_LOCALE[locale]}>{COPY.whatsapp}</a
+      >
+    </div>
+    <div class="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+      <a class="font-semibold text-primary underline decoration-line underline-offset-4" data-result-link data-event="quiz_result_link" href="#"
+        >{COPY.more}</a
+      >
+      <button type="button" class="font-semibold text-muted underline decoration-line underline-offset-4" data-restart>{COPY.restart}</button>
+    </div>
+    <p class="mt-6 border-t border-line/60 pt-4 text-sm text-muted">
+      {COPY.note} <a class="font-semibold underline" href="tel:024">024</a>
+      {COPY.noteFree} <a class="font-semibold underline" href="tel:112">112</a>.
+    </p>
+  </div>
+
+  <script is:inline type="application/json" data-config set:html={JSON.stringify(config)} />
+</div>
+
+<style>
+  .quiz-option {
+    min-height: 3.25rem;
+    width: 100%;
+    border-radius: 1rem;
+    border: 1.5px solid color-mix(in srgb, var(--color-line) 80%, white);
+    background: var(--color-bg);
+    padding: 0.8rem 1.1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--color-ink);
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .quiz-option:hover {
+    border-color: var(--color-primary);
+    background: var(--color-surface);
+  }
+  .quiz-back {
+    margin-top: 1rem;
+    min-height: 2.75rem;
+    font-weight: 600;
+    color: var(--color-muted);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+</style>
+
+<script>
+  type Result = { title: string; points: string[]; href: string };
+  type Config = {
+    results: Record<string, Result>;
+    priceLines: Record<string, string>;
+    booking: string;
+    freeCall: string;
+    firstLabel: string;
+    coupleLabel: string;
+    freeCallLabel: string;
+  };
+
+  document.querySelectorAll<HTMLElement>('.orientation-quiz').forEach((root) => {
+    const config: Config = JSON.parse(root.querySelector('script[data-config]')?.textContent || '{}');
+    const announce = root.querySelector<HTMLElement>('[data-announce]');
+    const state = { start: '', topic: '', format: '', previous: 'start' };
+    let started = false;
+
+    const track = (name: string, data?: Record<string, string | number>) =>
+      document.dispatchEvent(new CustomEvent('site:event', { detail: { name, data } }));
+
+    const show = (name: string) => {
+      root.querySelectorAll<HTMLElement>('.quiz-step').forEach((s) => s.classList.toggle('hidden', s.dataset.step !== name));
+      const heading = root.querySelector<HTMLElement>(`.quiz-step[data-step="${name}"] h3`);
+      if (announce && heading) announce.textContent = heading.textContent ?? '';
+      heading?.focus({ preventScroll: true });
+    };
+
+    const buildResult = () => {
+      const key = state.start === 'couple' ? 'couple' : state.start === 'unsure' ? 'unsure' : state.topic;
+      const r = config.results[key] ?? config.results.unsure;
+      const priceKey = key === 'couple' ? 'couple' : state.format || 'either';
+
+      root.querySelector('[data-result-title]')!.textContent = r.title;
+      const list = root.querySelector('[data-result-points]')!;
+      list.textContent = '';
+      for (const p of r.points) {
+        const li = document.createElement('li');
+        li.textContent = p;
+        list.appendChild(li);
+      }
+      root.querySelector('[data-result-price]')!.textContent = config.priceLines[priceKey] ?? '';
+
+      const cta = root.querySelector<HTMLAnchorElement>('[data-result-cta]')!;
+      const unsure = key === 'unsure';
+      cta.href = unsure ? config.freeCall : config.booking;
+      cta.textContent = unsure ? config.freeCallLabel : key === 'couple' ? config.coupleLabel : config.firstLabel;
+      cta.dataset.event = unsure ? 'free_call_click' : 'booking_click';
+
+      root.querySelector<HTMLAnchorElement>('[data-result-link]')!.href = r.href;
+      track('quiz_complete');
+      show('result');
+    };
+
+    root.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('button');
+      if (!btn || !root.contains(btn)) return;
+
+      if (btn.dataset.start) {
+        if (!started) track('quiz_start');
+        started = true;
+        state.start = btn.dataset.start;
+        state.topic = '';
+        state.previous = btn.dataset.next === 'format' ? 'start' : btn.dataset.next ?? 'start';
+        track('quiz_step', { step: 1 });
+        show(btn.dataset.next ?? 'format');
+      } else if (btn.dataset.topic) {
+        state.topic = btn.dataset.topic;
+        track('quiz_step', { step: 2 });
+        show('format');
+      } else if (btn.dataset.format) {
+        state.format = btn.dataset.format;
+        track('quiz_step', { step: 3 });
+        buildResult();
+      } else if (btn.dataset.back) {
+        show(btn.dataset.back === 'previous' ? state.previous : btn.dataset.back);
+      } else if (btn.hasAttribute('data-restart')) {
+        state.start = state.topic = state.format = '';
+        show('start');
+      }
+    });
+  });
+</script>

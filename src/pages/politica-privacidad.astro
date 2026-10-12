@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
+import Wave from '../components/Wave.astro';
 import { SITE } from '../consts';
 ---
 
@@ -25,9 +26,22 @@ import { SITE } from '../consts';
         utilizarán exclusivamente para gestionar tu solicitud, responder a tus consultas y, en su
         caso, prestar los servicios de atención psicológica solicitados.
       </p>
+      <h2>Canales de contacto</h2>
       <p>
-        La reserva de citas a través de Doctoralia se rige, además, por la política de privacidad
-        de dicha plataforma.
+        Si escribes por <strong>WhatsApp</strong>, el mensaje pasa por los servidores de WhatsApp
+        Ireland Limited (grupo Meta), que lo trata según su propia política de privacidad y puede
+        transferir datos fuera de la Unión Europea. Por eso te recomiendo que por WhatsApp o por
+        email no envíes información clínica: basta con decir qué día y qué horario te van bien. Lo
+        que necesites contar lo hablaremos en sesión.
+      </p>
+      <p>
+        La reserva de citas a través de <strong>Doctoralia</strong> la gestiona esa plataforma como
+        responsable de sus propios tratamientos, según su política de privacidad. El widget de
+        Doctoralia solo se carga en esta web si pulsas el botón para verlo.
+      </p>
+      <p>
+        El test de orientación de la web funciona solo en tu navegador: tus respuestas no se
+        guardan ni se envían a nadie.
       </p>
       <h2>Estadísticas de uso del sitio web</h2>
       <p>
@@ -35,8 +49,10 @@ import { SITE } from '../consts';
         (Umami Software, Inc.), una herramienta de estadísticas que no instala cookies ni recoge
         información que permita identificarte: los datos se anonimizan y se guardan de forma
         agregada. Este sitio tiene contratada la región europea del servicio, así que las
-        estadísticas se alojan en servidores de la Unión Europea. Puedes evitar esta medición
-        activando el bloqueo de rastreadores de tu navegador.
+        estadísticas se alojan en servidores de la Unión Europea. Se registran visitas y clics en
+        los botones de contacto y de reserva, nunca el contenido de lo que escribes ni las
+        respuestas del test. Puedes evitar esta medición activando el bloqueo de rastreadores de tu
+        navegador.
       </p>
       <h2>Legitimación</h2>
       <p>
@@ -53,8 +69,9 @@ import { SITE } from '../consts';
       </p>
       <h2>Destinatarios</h2>
       <p>
-        No se cederán datos a terceros salvo obligación legal. Las estadísticas anónimas
-        descritas más arriba se alojan en la región europea del proveedor.
+        No se cederán datos a terceros salvo obligación legal. Los proveedores que intervienen son
+        los descritos más arriba: Umami para las estadísticas anónimas, alojadas en la Unión
+        Europea, y WhatsApp y Doctoralia cuando eliges usarlos.
       </p>
       <h2>Derechos</h2>
       <p>
@@ -64,4 +81,5 @@ import { SITE } from '../consts';
       </p>
     </div>
   </section>
+  <Wave from="var(--color-bg)" to="var(--color-surface)" />
 </Layout>

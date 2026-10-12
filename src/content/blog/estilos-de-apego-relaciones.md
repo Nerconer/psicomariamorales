@@ -1,8 +1,10 @@
 ---
 title: "Los estilos de apego: por qué algunas relaciones nos hacen sentir seguros y otras nos llenan de miedo"
-description: "La forma en la que aprendimos a vincularnos de pequeños sigue influyendo en cómo amamos, discutimos y ponemos límites. Te explico los cuatro estilos de apego y cómo pueden transformarse."
+seoTitle: 'Estilos de apego y relaciones'
+description: 'Cómo aprendimos a vincularnos de pequeños influye en cómo amamos, discutimos y ponemos límites. Los cuatro estilos de apego y cómo cambian.'
 pubDate: 2026-07-08
 tag: "Relaciones y pareja"
+service: 'crecimiento-personal'
 ---
 
 ¿Por qué hay personas que necesitan una constante confirmación de que las quieren? ¿Por qué otras se sienten agobiadas cuando alguien se acerca demasiado? ¿Por qué algunas personas repiten una y otra vez relaciones que les hacen daño?
@@ -62,11 +64,11 @@ Aunque solemos hablar del apego en las relaciones amorosas, su influencia alcanz
 
 El apego condiciona cómo discutimos, cómo mostramos afecto, cómo ponemos límites, cómo interpretamos los silencios y cómo reaccionamos cuando sentimos que la relación está en peligro.
 
-[Muchas discusiones no nacen de la falta de amor](/blog/conflicto-en-la-pareja-terapia), sino del miedo que se activa cuando cada miembro intenta protegerse de una manera diferente.
+[Muchas discusiones no nacen de la falta de amor](/blog/conflicto-en-la-pareja-terapia/), sino del miedo que se activa cuando cada miembro intenta protegerse de una manera diferente.
 
 ### En la familia
 
-Los patrones de apego también aparecen en la relación con padres, hermanos e hijos. Algunas personas sienten una [enorme dificultad para decir "no"](/blog/como-poner-limites-sin-sentir-culpa). Otras cargan con responsabilidades que no les corresponden. Otras mantienen una distancia emocional que les impide sentirse realmente conectadas.
+Los patrones de apego también aparecen en la relación con padres, hermanos e hijos. Algunas personas sienten una [enorme dificultad para decir "no"](/blog/como-poner-limites-sin-sentir-culpa/). Otras cargan con responsabilidades que no les corresponden. Otras mantienen una distancia emocional que les impide sentirse realmente conectadas.
 
 ### En la amistad
 

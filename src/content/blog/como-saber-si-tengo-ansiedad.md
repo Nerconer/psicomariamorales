@@ -1,8 +1,10 @@
 ---
 title: '¿Cómo saber si tengo ansiedad? Señales a las que prestar atención'
+seoTitle: 'Cómo saber si tengo ansiedad: señales'
 description: 'La ansiedad no siempre se presenta como esperamos. Estas son las señales físicas, mentales y conductuales más habituales, y qué puedes hacer al respecto.'
 pubDate: 2026-07-01
 tag: 'Ansiedad y estrés'
+service: 'psicologa-ansiedad-barcelona'
 ---
 
 La ansiedad es una de las razones más frecuentes por las que las personas acuden a terapia. Sin embargo, muchas veces llega disfrazada: como un nudo en el estómago que no desaparece, como noches de insomnio o como una sensación constante de que algo malo va a ocurrir.
@@ -49,6 +51,6 @@ No es necesario esperar a que la ansiedad sea insoportable. Si notas que estas s
 2. **Cuida la base**: sueño, alimentación y movimiento influyen directamente en tu sistema nervioso.
 3. **Respira de forma consciente**: alargar la exhalación activa la respuesta de relajación del cuerpo.
 4. **No luches contra los pensamientos**: intentar suprimirlos suele hacerlos más presentes. Obsérvalos con distancia.
-5. **[Pide ayuda profesional](/blog/senales-para-ir-al-psicologo)**: un proceso terapéutico te dará herramientas adaptadas a tu caso concreto.
+5. **[Pide ayuda profesional](/blog/senales-para-ir-al-psicologo/)**: un proceso terapéutico te dará herramientas adaptadas a tu caso concreto.
 
-Si te has reconocido en estas líneas y sientes que ha llegado tu momento, estaré encantada de acompañarte, de forma presencial en Barcelona o mediante [terapia online](/terapia-psicologica).
+Si te has reconocido en estas líneas y sientes que ha llegado tu momento, estaré encantada de acompañarte, de forma presencial en Barcelona o mediante [terapia online](/terapia-psicologica/).

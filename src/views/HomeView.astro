@@ -1,0 +1,329 @@
+---
+// Home page, shared by / and /ca/.
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import Wave from '../components/Wave.astro';
+import DoctoraliaEmbed from '../components/DoctoraliaEmbed.astro';
+import GoogleReviewsLink from '../components/GoogleReviewsLink.astro';
+import OrientationQuiz from '../components/OrientationQuiz.astro';
+import Chip from '../components/ui/Chip.astro';
+import Faq from '../components/ui/Faq.astro';
+import Icon from '../components/ui/Icon.astro';
+import ProblemCard from '../components/ui/ProblemCard.astro';
+import WhatsAppIcon from '../components/ui/WhatsAppIcon.astro';
+import { SITE, PRICES, formatPrice, WHATSAPP_BY_LOCALE, FREE_CALL_BY_LOCALE } from '../consts';
+import type { Locale } from '../i18n/config';
+import { pathFor } from '../i18n/routes';
+import mariaHero from '../assets/img/maria-hero.jpg';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const to = (key: Parameters<typeof pathFor>[0]) => pathFor(key, locale);
+
+const first = formatPrice(PRICES.firstSession.amount);
+const online = formatPrice(PRICES.online.amount);
+const inPerson = formatPrice(PRICES.inPerson.amount);
+const minutes = PRICES.online.minutes;
+
+const COPY = {
+  es: {
+    metaTitle: 'Psicóloga online y en Barcelona',
+    description: `Maria Morales, psicóloga general sanitaria. Terapia online en toda España y presencial en Barcelona: ansiedad, estrés, pareja, autoestima y trauma con EMDR. Primera sesión ${first}.`,
+    hello: 'Hola, soy Maria',
+    role: SITE.role,
+    h1: 'Psicóloga online y en Barcelona',
+    sub: 'Te acompaño cuando algo pesa, y también cuando estás bien pero quieres cambiar algo.',
+    book: `Reservar primera sesión · ${first}`,
+    whatsapp: 'Escríbeme por WhatsApp',
+    doubts: '¿Tienes dudas?',
+    freeCall: 'Pide una llamada gratuita de 15 minutos',
+    chips: [`Online desde casa · ${online}`, `Sesiones de ${minutes} min`, 'Castellano y català', `Presencial en Barcelona · ${inPerson}`],
+    recogniseTitle: '¿Te reconoces en algo de esto?',
+    recogniseIntro:
+      'A veces no es ansiedad exactamente. Puede aparecer como estrés, tristeza, inseguridad, dificultad para poner límites o sensación de estar bloqueado/a. Si te reconoces en alguna de estas situaciones, la terapia puede ayudarte:',
+    hardTitle: 'Si estás pasando un mal momento',
+    growthTitle: 'Si estás bien, pero quieres mejorar',
+    growthIntro:
+      'Y a veces el problema es precisamente no saber cómo afrontar lo que te está pasando: evitar conversaciones difíciles, bloquearte ante los conflictos, darle demasiadas vueltas antes de decidir o reaccionar de una manera que después no entiendes.',
+    closing: 'Si llevas tiempo pensando «no sé qué me pasa, pero no estoy bien», también es un motivo válido para pedir ayuda.',
+    hard: [
+      { icon: 'anxiety', title: 'Ansiedad', text: 'Tu mente no para y te cuesta desconectar.', key: 'anxiety' },
+      { icon: 'stress', title: 'Estrés y burnout', text: 'Sientes que ya no puedes con todo.', key: 'stress' },
+      { icon: 'grief', title: 'Duelo', text: 'Una pérdida que no encuentra alivio.', key: 'grief' },
+      { icon: 'trauma', title: 'Trauma y EMDR', text: 'El pasado sigue pesando en tu presente.', key: 'emdr' },
+    ],
+    growth: [
+      { icon: 'couple', title: 'Tu relación de pareja', text: 'Comunicaros mejor, también sin crisis.', key: 'couples' },
+      { icon: 'confidence', title: 'Seguridad en ti', text: 'Exigirte menos y confiar más en ti.', key: 'selfEsteem' },
+      { icon: 'blocks', title: 'Bloqueos y decisiones', text: 'Sabes lo que quieres cambiar, pero algo te frena.', key: 'growth' },
+      { icon: 'self', title: 'Límites', text: 'Decir que no sin sentir culpa.', key: 'growth' },
+    ],
+    quizTitle: '¿No sabes por dónde empezar?',
+    quizIntro: 'Tres preguntas y te digo cómo puedo ayudarte. Tus respuestas no se guardan ni se envían.',
+    whoTitle: 'Quién soy',
+    who: 'Soy Maria Morales, psicóloga general sanitaria. Trabajo desde la psicología integradora y me he especializado en trauma y apego con EMDR.',
+    whoChips: [`Colegiada COPC ${SITE.licenseNumber}`, 'EMDR nivel I y II', 'Máster en Psicología General Sanitaria'],
+    meet: 'Conóceme',
+    stepsTitle: 'Cómo empezamos',
+    steps: [
+      { title: 'Llamada gratuita de 15 minutos', text: 'Pídela por WhatsApp o por teléfono y resolvemos tus dudas antes de empezar.' },
+      { title: `Primera sesión, ${first}`, text: `${PRICES.firstSession.minutes} minutos para conocernos y ver qué necesitas. Online o en Barcelona.` },
+      { title: 'Seguimos a tu ritmo', text: `Online ${online}, presencial ${inPerson}.` },
+    ],
+    pricing: 'Ver tarifas',
+    reviews: 'Opiniones de pacientes',
+    faqTitle: 'Dudas',
+    faqs: [
+      { q: '¿Puedo ir a terapia aunque esté bien?', a: 'Sí. Mucha gente viene para entenderse mejor, tomar una decisión o mejorar su relación, sin que haya una crisis.' },
+      { q: '¿Funciona igual la terapia online?', a: 'Sí. La forma de trabajar es la misma. Solo necesitas un sitio tranquilo y conexión a internet.' },
+      { q: '¿Necesito saber qué me pasa para empezar?', a: 'No. Muchas personas llegan sintiendo malestar, bloqueo o confusión, sin tener todavía claro qué les ocurre. Ese también es un buen punto de partida.' },
+      { q: '¿Qué pasa en la primera sesión?', a: 'Nos conocemos, me cuentas qué te trae y vemos qué necesitas. También resolvemos tus dudas sobre el proceso.' },
+      { q: '¿Cuánto dura la terapia?', a: 'Depende de cada persona y de lo que quiera trabajar. Lo vamos revisando sobre la marcha.' },
+      { q: '¿Atiendes a adolescentes?', a: 'Sí, a partir de 12 años. También a adultos, online o en Barcelona.' },
+      { q: '¿En qué idioma son las sesiones?', a: 'En castellano o en catalán, como prefieras.' },
+    ],
+  },
+  ca: {
+    metaTitle: 'Psicòloga en línia i a Barcelona',
+    description: `Maria Morales, psicòloga general sanitària. Teràpia en línia a tot Espanya i presencial a Barcelona: ansietat, estrès, parella, autoestima i trauma amb EMDR. Primera sessió ${first}.`,
+    hello: 'Hola, soc Maria',
+    role: SITE.roleCa,
+    h1: 'Psicòloga en línia i a Barcelona',
+    sub: "T'acompanyo quan alguna cosa pesa, i també quan estàs bé però vols canviar alguna cosa.",
+    book: `Reservar la primera sessió · ${first}`,
+    whatsapp: 'Escriu-me per WhatsApp',
+    doubts: 'Tens dubtes?',
+    freeCall: 'Demana una trucada gratuïta de 15 minuts',
+    chips: [`En línia des de casa · ${online}`, `Sessions de ${minutes} min`, 'Català i castellà', `Presencial a Barcelona · ${inPerson}`],
+    recogniseTitle: "T'hi reconeixes en alguna cosa d'això?",
+    recogniseIntro:
+      "De vegades no és exactament ansietat. Pot aparèixer com a estrès, tristesa, inseguretat, dificultat per posar límits o sensació d'estar bloquejat/da. Si et reconeixes en alguna d'aquestes situacions, la teràpia et pot ajudar:",
+    hardTitle: 'Si estàs passant un mal moment',
+    growthTitle: 'Si estàs bé, però vols millorar',
+    growthIntro:
+      "I de vegades el problema és precisament no saber com afrontar el que t'està passant: evitar converses difícils, bloquejar-te davant dels conflictes, donar-hi massa voltes abans de decidir o reaccionar d'una manera que després no entens.",
+    closing: 'Si fa temps que penses «no sé què em passa, però no estic bé», també és un motiu vàlid per demanar ajuda.',
+    hard: [
+      { icon: 'anxiety', title: 'Ansietat', text: "La teva ment no s'atura i et costa desconnectar.", key: 'anxiety' },
+      { icon: 'stress', title: 'Estrès i burnout', text: 'Sents que ja no pots amb tot.', key: 'stress' },
+      { icon: 'grief', title: 'Dol', text: 'Una pèrdua que no troba alleujament.', key: 'grief' },
+      { icon: 'trauma', title: 'Trauma i EMDR', text: 'El passat continua pesant en el teu present.', key: 'emdr' },
+    ],
+    growth: [
+      { icon: 'couple', title: 'La teva relació de parella', text: 'Comunicar-vos millor, també sense crisi.', key: 'couples' },
+      { icon: 'confidence', title: 'Seguretat en tu', text: "Exigir-te menys i confiar més en tu.", key: 'selfEsteem' },
+      { icon: 'blocks', title: 'Bloquejos i decisions', text: "Saps què vols canviar, però alguna cosa t'atura.", key: 'growth' },
+      { icon: 'self', title: 'Límits', text: 'Dir que no sense sentir culpa.', key: 'growth' },
+    ],
+    quizTitle: 'No saps per on començar?',
+    quizIntro: "Tres preguntes i et dic com et puc ajudar. Les teves respostes no es guarden ni s'envien.",
+    whoTitle: 'Qui soc',
+    who: "Soc Maria Morales, psicòloga general sanitària. Treballo des de la psicologia integradora i m'he especialitzat en trauma i aferrament amb EMDR.",
+    whoChips: [`Col·legiada COPC ${SITE.licenseNumber}`, 'EMDR nivell I i II', 'Màster en Psicologia General Sanitària'],
+    meet: "Coneix-me",
+    stepsTitle: 'Com comencem',
+    steps: [
+      { title: 'Trucada gratuïta de 15 minuts', text: 'Demana-la per WhatsApp o per telèfon i resolem els teus dubtes abans de començar.' },
+      { title: `Primera sessió, ${first}`, text: `${PRICES.firstSession.minutes} minuts per conèixer-nos i veure què necessites. En línia o a Barcelona.` },
+      { title: 'Continuem al teu ritme', text: `En línia ${online}, presencial ${inPerson}.` },
+    ],
+    pricing: 'Veure tarifes',
+    reviews: 'Opinions de pacients',
+    faqTitle: 'Dubtes',
+    faqs: [
+      { q: 'Puc anar a teràpia encara que estigui bé?', a: "Sí. Molta gent ve per entendre's millor, prendre una decisió o millorar la seva relació, sense que hi hagi una crisi." },
+      { q: 'Funciona igual la teràpia en línia?', a: 'Sí. La manera de treballar és la mateixa. Només necessites un lloc tranquil i connexió a internet.' },
+      { q: 'He de saber què em passa per començar?', a: 'No. Moltes persones arriben amb malestar, bloqueig o confusió, sense tenir encara clar què els passa. Aquest també és un bon punt de partida.' },
+      { q: 'Què passa a la primera sessió?', a: "Ens coneixem, m'expliques què t'hi porta i veiem què necessites. També resolem els teus dubtes sobre el procés." },
+      { q: 'Quant dura la teràpia?', a: 'Depèn de cada persona i del que vulgui treballar. Ho anem revisant sobre la marxa.' },
+      { q: 'Atens adolescents?', a: 'Sí, a partir de 12 anys. També adults, en línia o a Barcelona.' },
+      { q: 'En quina llengua són les sessions?', a: 'En català o en castellà, com prefereixis.' },
+    ],
+  },
+} as const;
+
+const c = COPY[locale];
+---
+
+<Layout title={c.metaTitle} description={c.description}>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] items-center gap-10 py-10 md:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
+      <div>
+        <div class="flex items-center gap-4">
+          <Image
+            src={mariaHero}
+            alt="Maria Morales"
+            widths={[128, 192]}
+            sizes="64px"
+            class="h-16 w-16 rounded-full object-cover ring-4 ring-sun lg:hidden"
+            loading="eager"
+          />
+          <div>
+            <p class="font-display text-lg font-bold">{c.hello}</p>
+            <p class="text-sm text-muted">
+              {c.role} ·{' '}
+              <a
+                href={SITE.copc}
+                target="_blank"
+                rel="noopener"
+                data-event="license_click"
+                data-event-location="hero"
+                class="underline decoration-line underline-offset-4 hover:text-primary"
+                >Col. {SITE.licenseNumber}</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <h1 class="mt-6 text-[2.1rem] font-bold leading-[1.15] text-primary sm:text-5xl lg:text-[3.4rem]">{c.h1}</h1>
+        <p class="mt-4 max-w-[46ch] text-lg md:text-xl">{c.sub}</p>
+
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+          <a href={SITE.doctoralia} target="_blank" rel="noopener" data-event="booking_click" data-event-location="hero" class="btn-primary">
+            <Icon name="calendar" size={20} />
+            {c.book}
+          </a>
+          <a href={WHATSAPP_BY_LOCALE[locale]} target="_blank" rel="noopener" data-event="whatsapp_click" data-event-location="hero" class="btn-whatsapp">
+            <WhatsAppIcon size={20} class="text-[#128c4a]" />
+            {c.whatsapp}
+          </a>
+        </div>
+        <p class="mt-4 text-base text-muted">
+          {c.doubts}{' '}
+          <a
+            href={FREE_CALL_BY_LOCALE[locale]}
+            target="_blank"
+            rel="noopener"
+            data-event="free_call_click"
+            data-event-location="hero"
+            class="font-semibold text-primary underline decoration-line underline-offset-4 hover:decoration-primary"
+            >{c.freeCall}</a
+          >
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          <Chip tone="sun" icon="online">{c.chips[0]}</Chip>
+          <Chip>{c.chips[1]}</Chip>
+          <Chip>{c.chips[2]}</Chip>
+          <Chip icon="location">{c.chips[3]}</Chip>
+        </div>
+      </div>
+
+      <div class="relative mx-auto hidden w-full max-w-[460px] lg:block">
+        <div class="absolute -right-6 -top-6 h-40 w-40 rounded-full bg-sun/70" aria-hidden="true"></div>
+        <div class="absolute -bottom-6 -left-6 h-28 w-28 rounded-full bg-surface" aria-hidden="true"></div>
+        <Image
+          src={mariaHero}
+          alt={`${SITE.person}, ${c.role}`}
+          widths={[460, 744, 920]}
+          sizes="460px"
+          class="relative aspect-[4/5] w-full rounded-[2.5rem] object-cover shadow-primary"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Do you recognise yourself -->
+  <Wave from="var(--color-bg)" to="var(--color-surface)" />
+  <section class="bg-surface py-14 md:py-20" id="ayuda">
+    <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+      <div class="max-w-[68ch]">
+        <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.recogniseTitle}</h2>
+        <p class="mt-4">{c.recogniseIntro}</p>
+      </div>
+
+      <h3 class="mt-10 text-lg font-bold text-muted">{c.hardTitle}</h3>
+      <div class="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        {c.hard.map((card) => <ProblemCard href={to(card.key)} title={card.title} text={card.text} icon={card.icon} />)}
+      </div>
+
+      <h3 class="mt-12 text-lg font-bold text-muted">{c.growthTitle}</h3>
+      <p class="mt-3 max-w-[68ch]">{c.growthIntro}</p>
+      <div class="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        {c.growth.map((card) => <ProblemCard href={to(card.key)} title={card.title} text={card.text} icon={card.icon} />)}
+      </div>
+
+      <p class="mt-10 max-w-[60ch] font-display text-xl font-semibold text-primary-strong">{c.closing}</p>
+    </div>
+  </section>
+
+  <!-- Orientation quiz -->
+  <Wave from="var(--color-surface)" to="var(--color-bg)" flip />
+  <section class="py-14 md:py-20" id="test">
+    <div class="mx-auto w-[min(760px,calc(100%-2rem))]">
+      <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.quizTitle}</h2>
+      <p class="mt-3 text-muted">{c.quizIntro}</p>
+      <div class="mt-6">
+        <OrientationQuiz locale={locale} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Who I am and how we start -->
+  <Wave from="var(--color-bg)" to="var(--color-surface)" />
+  <section class="bg-surface py-14 md:py-20">
+    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-12 lg:grid-cols-2">
+      <div>
+        <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.whoTitle}</h2>
+        <p class="mt-4 max-w-[52ch]">{c.who}</p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          {c.whoChips.map((chip) => <Chip>{chip}</Chip>)}
+        </div>
+        <a href={to('about')} class="btn-outline mt-6">{c.meet}</a>
+      </div>
+
+      <div>
+        <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.stepsTitle}</h2>
+        <ol class="mt-6 space-y-4">
+          {
+            c.steps.map((s, i) => (
+              <li class="flex gap-4">
+                <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-sun font-display font-bold text-ink">
+                  {i + 1}
+                </span>
+                <div>
+                  <p class="font-display text-lg font-bold">{s.title}</p>
+                  <p class="text-muted">{s.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+        <a href={to('pricing')} class="mt-6 inline-flex items-center gap-2 font-semibold text-primary underline decoration-line underline-offset-4 hover:decoration-primary">
+          {c.pricing}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <Wave from="var(--color-surface)" to="var(--color-bg)" flip />
+  <section class="py-14 md:py-20" id="opiniones">
+    <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
+      <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.reviews}</h2>
+      <div class="mt-6">
+        <DoctoraliaEmbed mode="reviews" location="home" />
+        <GoogleReviewsLink />
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <Wave from="var(--color-bg)" to="var(--color-surface)" />
+  <section class="bg-surface py-14 md:py-20" id="faq">
+    <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
+      <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.faqTitle}</h2>
+      <div class="mt-6">
+        <Faq items={[...c.faqs]} schema />
+      </div>
+    </div>
+  </section>
+
+  <CtaFinal from="var(--color-surface)" />
+</Layout>

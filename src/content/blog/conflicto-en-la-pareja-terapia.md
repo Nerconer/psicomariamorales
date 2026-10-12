@@ -1,15 +1,17 @@
 ---
 title: "Cuando el conflicto entra en la pareja: por qué discutimos como discutimos y cómo la terapia puede ayudar"
-description: "El conflicto no es señal de que una relación vaya mal: lo determinante es cómo lo gestionamos. Repasamos los patrones que más se repiten y qué puede aportar la terapia de pareja."
+seoTitle: 'Discusiones de pareja: por qué se repiten'
+description: 'El conflicto no significa que la relación vaya mal. Importa cómo lo gestionamos. Los patrones que más se repiten y qué aporta la terapia de pareja.'
 pubDate: 2026-06-17
 tag: "Relaciones y pareja"
+service: 'terapia-de-pareja'
 ---
 
 Todas las parejas discuten. De hecho, el conflicto no es un indicador de que una relación vaya mal. Lo que realmente marca la diferencia es **cómo** gestionamos ese conflicto.
 
 Con frecuencia, las parejas llegan a consulta pensando que el problema es "discutimos mucho". Sin embargo, tras explorar lo que ocurre, descubrimos que el verdadero problema no es la discusión en sí, sino los patrones que se repiten una y otra vez: ataques, silencios, críticas, reproches o una profunda sensación de que la otra persona ya no nos entiende.
 
-La buena noticia es que estos patrones pueden comprenderse y modificarse. La [terapia de pareja](/terapia-de-pareja) ofrece un espacio seguro para hacerlo.
+La buena noticia es que estos patrones pueden comprenderse y modificarse. La [terapia de pareja](/terapia-de-pareja/) ofrece un espacio seguro para hacerlo.
 
 ## Cuando el otro deja de ser mi compañero y se convierte en mi enemigo
 
@@ -100,7 +102,7 @@ Durante el proceso terapéutico se trabaja para:
 - Comprender qué emociones y necesidades hay detrás de las discusiones.
 - Mejorar la comunicación y la escucha.
 - Aprender a regular las emociones antes de responder impulsivamente.
-- [Reparar heridas del pasado](/blog/que-es-emdr-terapia-trauma) que siguen afectando al presente.
+- [Reparar heridas del pasado](/blog/que-es-emdr-terapia-trauma/) que siguen afectando al presente.
 - Recuperar la sensación de seguridad dentro de la relación.
 - Construir acuerdos realistas y saludables.
 

@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Wave from '../components/Wave.astro';
+import { SITE } from '../consts';
+---
+
+<Layout title="Página no encontrada" description="Esta página no existe o ha cambiado de dirección.">
+  <meta name="robots" content="noindex" slot="head" />
+  <PageHero title="Esta página no existe" lead="Puede que el enlace esté mal escrito o que la página haya cambiado de dirección." />
+  <section class="py-12 md:py-16">
+    <div class="mx-auto flex w-[min(820px,92%)] flex-col items-center gap-4 text-center sm:flex-row sm:justify-center">
+      <a href="/" class="btn-primary">Ir al inicio</a>
+      <a href="/terapia-psicologica/" class="btn-outline">Ver la terapia</a>
+      <a href={SITE.whatsapp} target="_blank" rel="noopener" data-event="whatsapp_click" data-event-location="not_found" class="btn-outline">Escribir por WhatsApp</a>
+    </div>
+  </section>
+  <Wave from="var(--color-bg)" to="var(--color-surface)" />
+</Layout>

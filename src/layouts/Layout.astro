@@ -1,15 +1,20 @@
 ---
-// Fuentes auto-alojadas (sin CDN de Google): mejor rendimiento y sin
-// enviar la IP del visitante a un tercero (relevante para RGPD en una
-// web sanitaria). Solo se descarga el .woff2 de la variante que se usa.
-import '@fontsource-variable/lora';
-import '@fontsource-variable/plus-jakarta-sans';
+// Self-hosted fonts (no Google CDN): better performance and the visitor's IP
+// is not sent to a third party (relevant for GDPR on a health website). Only
+// the .woff2 of the subset in use is downloaded.
+import '@fontsource-variable/plus-jakarta-sans/index.css';
+// Preloaded so the text does not jump when the font arrives (layout shift).
+import jakartaLatin from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
 import '../styles/global.css';
-import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Analytics from '../components/Analytics.astro';
-import { SITE } from '../consts';
+import MobileActionBar from '../components/MobileActionBar.astro';
+import WhatsAppIcon from '../components/ui/WhatsAppIcon.astro';
+import { SITE, PRICES, PRICE_RANGE } from '../consts';
+import { LOCALES, DEFAULT_LOCALE, localeFromPath } from '../i18n/config';
+import { alternatesOf, ROUTES } from '../i18n/routes';
+import { useTranslations } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -24,47 +29,94 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL('/og.jpg', Astro.site);
+const locale = localeFromPath(Astro.url.pathname);
+const t = useTranslations(locale);
+const imageAlt =
+  locale === 'ca'
+    ? 'Maria Morales, psicòloga general sanitària. Teràpia en línia i presencial a Barcelona.'
+    : 'Maria Morales, psicóloga general sanitaria. Terapia online y presencial en Barcelona.';
+// hreflang only when the page really exists in another language.
+const alternates = alternatesOf(Astro.url.pathname);
+const defaultAlternate = alternates.find((a) => a.locale === DEFAULT_LOCALE);
+// Share image: each translated page has its own (public/og/<locale>-<key>.jpg),
+// the rest use the home image of their language.
+const routeKey = Object.entries(ROUTES).find(([, r]) => Object.values(r).includes(Astro.url.pathname))?.[0];
+const OG_KEYS = ['home', 'online', 'therapy', 'anxiety', 'emdr', 'stress', 'selfEsteem', 'grief', 'growth', 'couples', 'about', 'pricing', 'contact'];
+const ogImage = new URL(`/og/${localeFromPath(Astro.url.pathname)}-${routeKey && OG_KEYS.includes(routeKey) ? routeKey : 'home'}.jpg`, Astro.site);
 
-// Ficha de negocio local (schema.org) para búsquedas tipo "psicóloga Barcelona"
+// Local business entity (schema.org) for searches such as "psicóloga Barcelona"
+const siteUrl = new URL('/', Astro.site).href;
+const offer = (name: string, key: keyof typeof PRICES) => ({
+  '@type': 'Offer',
+  name,
+  price: PRICES[key].amount,
+  priceCurrency: 'EUR',
+});
+
+const personSchema = {
+  '@type': 'Person',
+  '@id': `${siteUrl}#maria`,
+  name: 'Maria Morales Herrerías',
+  jobTitle: SITE.role,
+  url: new URL('/sobre-mi/', Astro.site).href,
+  image: new URL('/og/es-about.jpg', Astro.site).href,
+  knowsLanguage: ['es', 'ca'],
+  sameAs: [SITE.copc, SITE.doctoralia, SITE.linkedin],
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'Colegiación profesional',
+    name: `Psicóloga General Sanitaria, colegiada n.º ${SITE.licenseNumber}`,
+    recognizedBy: { '@type': 'Organization', name: "Col·legi Oficial de Psicologia de Catalunya", url: 'https://www.copc.cat/' },
+  },
+};
+
+// Local business entity (schema.org) for searches such as "psicóloga Barcelona"
 const businessSchema = {
   '@context': 'https://schema.org',
   '@type': ['MedicalBusiness', 'LocalBusiness'],
-  '@id': new URL('/', Astro.site).href,
-  name: 'Maria Morales · Psicóloga sanitaria en Barcelona',
-  alternateName: SITE.brand,
+  '@id': `${siteUrl}#consulta`,
+  name: `${SITE.person}, ${SITE.role}`,
   description:
-    'Psicóloga sanitaria en Barcelona. Terapia psicológica presencial y online: trauma y EMDR, ansiedad, estrés, burnout, autoestima, apego y terapia de pareja.',
-  url: new URL('/', Astro.site).href,
-  image: ogImage.href,
+    'Psicóloga general sanitaria. Terapia psicológica online en toda España y presencial en Barcelona: ansiedad, estrés, burnout, autoestima, duelo, trauma con EMDR y terapia de pareja.',
+  url: siteUrl,
+  image: new URL('/og/es-home.jpg', Astro.site).href,
+  logo: new URL('/apple-touch-icon.png', Astro.site).href,
+  telephone: SITE.phone,
+  email: SITE.email,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Carrer de los Castillejos, 326',
-    postalCode: '08025',
-    addressLocality: 'Barcelona',
+    streetAddress: SITE.postalAddress.street,
+    postalCode: SITE.postalAddress.postalCode,
+    addressLocality: SITE.postalAddress.locality,
     addressRegion: 'Barcelona',
     addressCountry: 'ES',
   },
+  geo: { '@type': 'GeoCoordinates', ...SITE.geo },
+  hasMap: SITE.maps,
   areaServed: [
     { '@type': 'City', name: 'Barcelona' },
     { '@type': 'Country', name: 'España' },
   ],
-  priceRange: '45 € - 50 €',
+  availableLanguage: ['es', 'ca'],
+  priceRange: PRICE_RANGE,
   currenciesAccepted: 'EUR',
-  sameAs: [SITE.doctoralia, SITE.linkedin, SITE.copc],
-  founder: {
-    '@type': 'Person',
-    name: 'Maria Morales Herrerías',
-    jobTitle: 'Psicóloga General Sanitaria',
-    identifier: `Colegiada n.º ${SITE.licenseNumber}`,
-  },
+  paymentAccepted: 'Efectivo, transferencia, Bizum',
+  sameAs: [SITE.doctoralia, SITE.linkedin, SITE.copc, SITE.maps],
+  founder: personSchema,
+  makesOffer: [
+    offer('Primera sesión de terapia individual', 'firstSession'),
+    offer('Terapia psicológica online', 'online'),
+    offer('Terapia psicológica presencial en Barcelona', 'inPerson'),
+    offer('Terapia de pareja', 'couple'),
+  ],
   knowsAbout: [
     'Psicología sanitaria',
-    'Trauma y trauma complejo',
-    'EMDR',
     'Ansiedad',
     'Estrés y burnout',
     'Autoestima',
+    'Duelo',
+    'Trauma y trauma complejo',
+    'EMDR',
     'Apego',
     'Regulación emocional',
     'Terapia de pareja',
@@ -74,18 +126,27 @@ const businessSchema = {
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={LOCALES[locale].htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} · {SITE.brand}</title>
+    <title>{title} · {SITE.person}</title>
     <meta name="description" content={description} />
+    <link rel="preload" href={jakartaLatin} as="font" type="font/woff2" crossorigin />
     <link rel="canonical" href={canonical} />
+    {
+      alternates.map((a) => (
+        <link rel="alternate" hreflang={LOCALES[a.locale].hreflang} href={new URL(a.path, Astro.site)} />
+      ))
+    }
+    {defaultAlternate && <link rel="alternate" hreflang="x-default" href={new URL(defaultAlternate.path, Astro.site)} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <meta property="og:site_name" content={SITE.brand} />
+    <meta property="og:site_name" content={SITE.person} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
@@ -96,9 +157,14 @@ const businessSchema = {
     <meta property="og:image:type" content="image/jpeg" />
     <meta
       property="og:image:alt"
-      content="Maria Morales, psicóloga general sanitaria en Barcelona. Terapia presencial y online."
+      content={imageAlt}
     />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale" content={LOCALES[locale].ogLocale} />
+    {
+      alternates
+        .filter((a) => a.locale !== locale)
+        .map((a) => <meta property="og:locale:alternate" content={LOCALES[a.locale].ogLocale} />)
+    }
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -106,48 +172,36 @@ const businessSchema = {
     <meta name="twitter:image" content={ogImage} />
     <meta
       name="twitter:image:alt"
-      content="Maria Morales, psicóloga general sanitaria en Barcelona. Terapia presencial y online."
+      content={imageAlt}
     />
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
 
+    <slot name="head" />
+
     <Analytics />
 
-    <!-- Transiciones de página suaves (SPA-like) entre navegaciones -->
-    <ClientRouter />
   </head>
   <body>
-    <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:text-forest-dark focus:shadow-lg">Saltar al contenido</a>
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:text-primary-strong focus:shadow-lg">{t('a11y.skip')}</a>
     <Header />
     <main id="contenido">
       <slot />
     </main>
     <Footer />
 
-    <!-- Botón flotante de WhatsApp -->
+    <!-- Floating WhatsApp button (desktop). Mobile uses the action bar. -->
     <a
       href={SITE.whatsapp}
       target="_blank"
       rel="noopener"
-      aria-label="Escríbeme por WhatsApp"
-      data-evento="whatsapp"
-      data-evento-ubicacion="boton-flotante"
-      class="fixed bottom-5 right-5 z-50 hidden h-14 w-14 place-items-center rounded-full bg-[#18783e] text-white shadow-lg transition-transform duration-200 hover:scale-110 md:grid"
+      aria-label={t('cta.whatsappLong')}
+      data-event="whatsapp_click"
+      data-event-location="floating_button"
+      class="fixed bottom-5 right-5 z-50 hidden h-14 w-14 place-items-center rounded-full bg-[#128c4a] text-white shadow-lg transition-transform duration-200 hover:scale-105 md:grid"
     >
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path
-          d="M12 2a10 10 0 0 0-8.66 15L2 22l5.2-1.3A10 10 0 1 0 12 2Zm5.42 14.13c-.23.64-1.33 1.22-1.86 1.26-.5.05-1.12.24-3.76-.78-3.18-1.25-5.2-4.5-5.36-4.7-.15-.21-1.27-1.7-1.27-3.23s.8-2.29 1.09-2.6c.28-.32.62-.4.83-.4h.6c.19 0 .45-.07.7.54.26.62.87 2.14.95 2.3.08.15.13.34.02.55-.1.21-.16.34-.31.52-.16.18-.33.41-.47.55-.16.15-.32.32-.14.63.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.16.49.13.67-.08.18-.2.77-.9.98-1.2.2-.31.41-.26.7-.16.28.1 1.8.85 2.1 1 .31.16.52.24.6.37.07.13.07.75-.16 1.4Z"
-        ></path>
-      </svg>
+      <WhatsAppIcon size={28} />
     </a>
-    <a
-      href={SITE.doctoralia}
-      target="_blank"
-      rel="noopener"
-      data-evento="reservar-doctoralia"
-      data-evento-ubicacion="barra-movil"
-      class="btn-primary fixed bottom-4 left-1/2 z-50 w-[calc(100%-2rem)] -translate-x-1/2 justify-center shadow-lg md:hidden"
-      >Reservar primera sesión</a
-    >
+    <MobileActionBar />
   </body>
 </html>

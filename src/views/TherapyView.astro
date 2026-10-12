@@ -1,0 +1,171 @@
+---
+// Therapy hub, shared by the Spanish and Catalan routes.
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import Wave from '../components/Wave.astro';
+import Icon, { type IconName } from '../components/ui/Icon.astro';
+import { PRICES, formatPrice } from '../consts';
+import type { Locale } from '../i18n/config';
+import { pathFor, type RouteKey } from '../i18n/routes';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+// Specialties with their own page link to it.
+const LANDINGS: Record<string, RouteKey> = {
+  ansiedad: 'anxiety',
+  estres: 'stress',
+  burnout: 'stress',
+  autoestima: 'selfEsteem',
+  perfeccionismo: 'selfEsteem',
+  bloqueos: 'growth',
+  sentido: 'growth',
+  duelo: 'grief',
+  trauma: 'emdr',
+};
+
+type Specialty = { id: string; icon: IconName; title: string; text?: string };
+
+// Anxiety comes first and trauma last, as Maria asked. The ids are the anchors
+// other pages link to, so they stay the same in both languages.
+const COPY: Record<Locale, { metaTitle: string; description: string; title: string; intro: string[]; online: string; onlineText: string; inPerson: string; inPersonText: string; listTitle: string; specialties: Specialty[] }> = {
+  es: {
+    metaTitle: 'Terapia psicológica online y en Barcelona',
+    description:
+      'Terapia psicológica online en toda España y presencial en Barcelona: ansiedad, estrés, burnout, autoestima, bloqueos, duelo y trauma con EMDR.',
+    title: 'Terapia psicológica online y en Barcelona',
+    intro: [
+      'Trabajo desde la psicología integradora. Me adapto a cada persona, a cada situación y a cada necesidad. No todo funciona de la misma manera en cada persona.',
+      'Tengo formación amplia en diferentes enfoques y corrientes: cognitivo-conductual, terapias de tercera generación, EMDR nivel I y II, IFS, terapia focalizada en la emoción, terapia sistémica y análisis transaccional, entre otros.',
+    ],
+    online: 'Online',
+    onlineText: 'Por videollamada, desde cualquier lugar de España.',
+    inPerson: 'Presencial',
+    inPersonText: 'En la consulta de Barcelona.',
+    listTitle: 'Con qué acompaño',
+    specialties: [
+      { id: 'ansiedad', icon: 'anxiety', title: 'Ansiedad', text: 'Insomnio, presión en el pecho, pensamientos constantes, obsesiones o rumiaciones.' },
+      { id: 'estres', icon: 'stress', title: 'Estrés', text: 'Cuando las exigencias superan durante mucho tiempo lo que puedes sostener.' },
+      { id: 'burnout', icon: 'stress', title: 'Burnout', text: 'El trabajo te ha dejado sin energía ni ganas.' },
+      { id: 'panico', icon: 'panic', title: 'Ataques de pánico', text: 'Un miedo intenso y repentino, con síntomas físicos que asustan.' },
+      { id: 'intrusivos', icon: 'anxiety', title: 'Pensamientos intrusivos', text: 'Ideas o imágenes que aparecen sin querer y generan mucho malestar.' },
+      { id: 'autoestima', icon: 'confidence', title: 'Autoestima', text: 'Te cuesta valorarte o sientes que nunca es suficiente.' },
+      { id: 'regulacion', icon: 'heart', title: 'Regulación emocional', text: 'Emociones tan intensas que cuesta entenderlas o manejarlas.' },
+      { id: 'irritabilidad', icon: 'heart', title: 'Irritabilidad', text: 'Estar irascible, que todo te moleste.' },
+      { id: 'bloqueos', icon: 'blocks', title: 'Bloqueos', text: 'A veces sabes lo que quieres cambiar, pero algo dentro de ti parece frenarte.' },
+      { id: 'conflictos', icon: 'blocks', title: 'Gestión de conflictos', text: 'Gestión de conflictos (quedarte bloqueado).' },
+      { id: 'dependencia', icon: 'couple', title: 'Dependencia emocional', text: 'Cuando el miedo a perder una relación decide por ti.' },
+      { id: 'apego', icon: 'couple', title: 'Apego y límites', text: 'Te cuesta confiar, poner límites o mantener relaciones estables.' },
+      { id: 'familia', icon: 'couple', title: 'Relaciones familiares', text: 'Conflictos familiares que desgastan.' },
+      { id: 'soledad', icon: 'couple', title: 'Soledad y conexión', text: 'Soledad, dificultad para conectar con la gente o sentirte diferente.' },
+      { id: 'sentido', icon: 'self', title: 'Apatía y falta de sentido', text: 'No encontrar el sentido de la vida, apatía o falta de ganas.' },
+      { id: 'pantallas', icon: 'self', title: 'Móvil y pantallas', text: 'Horas y horas atrapado en el móvil o en las pantallas.' },
+      { id: 'crisis', icon: 'self', title: 'Crisis vitales', text: 'Una separación, un cambio de trabajo, la maternidad o una enfermedad.' },
+      { id: 'duelo', icon: 'grief', title: 'Duelo', text: 'Una pérdida que duele y necesita su espacio.' },
+      { id: 'perfeccionismo', icon: 'confidence', title: 'Perfeccionismo', text: 'Presión constante, miedo al error y la sensación de no llegar nunca.' },
+      { id: 'disociacion', icon: 'trauma', title: 'Disociación' },
+      { id: 'trauma', icon: 'trauma', title: 'Trauma', text: 'El trauma no siempre viene de algo extremo. A veces nace de años de críticas, abandono o relaciones inseguras.' },
+    ],
+  },
+  ca: {
+    metaTitle: 'Teràpia psicològica en línia i a Barcelona',
+    description:
+      "Teràpia psicològica en línia a tot Espanya i presencial a Barcelona: ansietat, estrès, burnout, autoestima, bloquejos, dol i trauma amb EMDR.",
+    title: 'Teràpia psicològica en línia i a Barcelona',
+    intro: [
+      "Treballo des de la psicologia integradora. M'adapto a cada persona, a cada situació i a cada necessitat. No tot funciona de la mateixa manera en cada persona.",
+      "Tinc una formació àmplia en diferents enfocaments i corrents: cognitivoconductual, teràpies de tercera generació, EMDR nivell I i II, IFS, teràpia focalitzada en l'emoció, teràpia sistèmica i anàlisi transaccional, entre d'altres.",
+    ],
+    online: 'En línia',
+    onlineText: "Per videotrucada, des de qualsevol lloc d'Espanya.",
+    inPerson: 'Presencial',
+    inPersonText: 'A la consulta de Barcelona.',
+    listTitle: 'Amb què acompanyo',
+    specialties: [
+      { id: 'ansiedad', icon: 'anxiety', title: 'Ansietat', text: 'Insomni, pressió al pit, pensaments constants, obsessions o rumiacions.' },
+      { id: 'estres', icon: 'stress', title: 'Estrès', text: 'Quan les exigències superen durant molt de temps el que pots sostenir.' },
+      { id: 'burnout', icon: 'stress', title: 'Burnout', text: "La feina t'ha deixat sense energia ni ganes." },
+      { id: 'panico', icon: 'panic', title: 'Atacs de pànic', text: 'Una por intensa i sobtada, amb símptomes físics que espanten.' },
+      { id: 'intrusivos', icon: 'anxiety', title: 'Pensaments intrusius', text: 'Idees o imatges que apareixen sense voler i generen molt de malestar.' },
+      { id: 'autoestima', icon: 'confidence', title: 'Autoestima', text: 'Et costa valorar-te o sents que mai no és suficient.' },
+      { id: 'regulacion', icon: 'heart', title: 'Regulació emocional', text: 'Emocions tan intenses que costa entendre-les o gestionar-les.' },
+      { id: 'irritabilidad', icon: 'heart', title: 'Irritabilitat', text: 'Estar irascible, que tot et molesti.' },
+      { id: 'bloqueos', icon: 'blocks', title: 'Bloquejos', text: 'De vegades saps què vols canviar, però alguna cosa dins teu sembla frenar-te.' },
+      { id: 'conflictos', icon: 'blocks', title: 'Gestió de conflictes', text: 'Gestió de conflictes (quedar-te bloquejat).' },
+      { id: 'dependencia', icon: 'couple', title: 'Dependència emocional', text: 'Quan la por de perdre una relació decideix per tu.' },
+      { id: 'apego', icon: 'couple', title: 'Aferrament i límits', text: 'Et costa confiar, posar límits o mantenir relacions estables.' },
+      { id: 'familia', icon: 'couple', title: 'Relacions familiars', text: 'Conflictes familiars que desgasten.' },
+      { id: 'soledad', icon: 'couple', title: 'Solitud i connexió', text: 'Solitud, dificultat per connectar amb la gent o sentir-te diferent.' },
+      { id: 'sentido', icon: 'self', title: 'Apatia i falta de sentit', text: 'No trobar el sentit de la vida, apatia o falta de ganes.' },
+      { id: 'pantallas', icon: 'self', title: 'Mòbil i pantalles', text: 'Hores i hores atrapat al mòbil o a les pantalles.' },
+      { id: 'crisis', icon: 'self', title: 'Crisis vitals', text: 'Una separació, un canvi de feina, la maternitat o una malaltia.' },
+      { id: 'duelo', icon: 'grief', title: 'Dol', text: 'Una pèrdua que fa mal i necessita el seu espai.' },
+      { id: 'perfeccionismo', icon: 'confidence', title: 'Perfeccionisme', text: "Pressió constant, por a l'error i la sensació de no arribar mai." },
+      { id: 'disociacion', icon: 'trauma', title: 'Dissociació' },
+      { id: 'trauma', icon: 'trauma', title: 'Trauma', text: "El trauma no sempre ve d'una cosa extrema. De vegades neix d'anys de crítiques, abandonament o relacions insegures." },
+    ],
+  },
+};
+
+const c = COPY[locale];
+---
+
+<Layout title={c.metaTitle} description={c.description}>
+  <PageHero title={c.title} />
+
+  <section class="py-12 md:py-16">
+    <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
+      {c.intro.map((p, i) => <p class:list={[i > 0 && 'mt-4']}>{p}</p>)}
+
+      <div class="mt-8 grid gap-3 sm:grid-cols-2">
+        <a href={pathFor('online', locale)} class="rounded-2xl bg-primary p-5 text-white transition-colors hover:bg-primary-strong">
+          <p class="flex items-center gap-2 font-display text-lg font-bold">
+            <Icon name="online" /> {c.online} · {formatPrice(PRICES.online.amount)}
+          </p>
+          <p class="mt-1 text-white/90">{c.onlineText}</p>
+        </a>
+        <div class="rounded-2xl border border-line/60 bg-white p-5">
+          <p class="flex items-center gap-2 font-display text-lg font-bold text-primary">
+            <Icon name="location" /> {c.inPerson} · {formatPrice(PRICES.inPerson.amount)}
+          </p>
+          <p class="mt-1 text-muted">{c.inPersonText}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Wave from="var(--color-bg)" to="var(--color-surface)" />
+  <section class="bg-surface py-12 md:py-16" id="especialidades">
+    <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+      <h2 class="text-2xl font-bold text-primary md:text-3xl">{c.listTitle}</h2>
+      <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          c.specialties.map((s) => (
+            <article id={s.id} class="card relative flex scroll-mt-28 gap-4 p-5!">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-surface text-primary" aria-hidden="true">
+                <Icon name={s.icon} />
+              </span>
+              <div>
+                <h3 class="font-display text-lg font-bold">
+                  {LANDINGS[s.id] ? (
+                    <a href={pathFor(LANDINGS[s.id], locale)} class="text-primary after:absolute after:inset-0 hover:underline">
+                      {s.title}
+                    </a>
+                  ) : (
+                    s.title
+                  )}
+                </h3>
+                {s.text && <p class="mt-1 text-base text-muted">{s.text}</p>}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaFinal from="var(--color-surface)" />
+</Layout>

@@ -1,8 +1,10 @@
 ---
 title: 'La metacognición: la capacidad que puede cambiar la forma en la que entiendes tu vida'
-description: 'Observar y comprender el propio funcionamiento es una de las habilidades que más transforma un proceso terapéutico. Te explico qué es la metacognición y cómo se desarrolla.'
+seoTitle: 'Metacognición: entender cómo funcionas'
+description: 'Observar y entender tu propio funcionamiento es de lo que más transforma una terapia. Qué es la metacognición y cómo se desarrolla.'
 pubDate: 2026-08-05
 tag: 'Autoestima y emociones'
+service: 'crecimiento-personal'
 ---
 
 Muchas personas llegan a consulta diciendo cosas como:
@@ -37,7 +39,7 @@ Cuanta mayor capacidad metacognitiva desarrollamos, más posibilidades tenemos d
 
 Muchas personas viven sus emociones como si aparecieran de la nada.
 
-Sienten ansiedad, pero no saben qué la desencadena. [Se enfadan con facilidad](/blog/rabia-constante-necesidad-de-atacar), pero creen que siempre es culpa de los demás. Se bloquean en una discusión sin entender qué les ocurre. Repiten relaciones que les hacen daño sin identificar el patrón.
+Sienten ansiedad, pero no saben qué la desencadena. [Se enfadan con facilidad](/blog/rabia-constante-necesidad-de-atacar/), pero creen que siempre es culpa de los demás. Se bloquean en una discusión sin entender qué les ocurre. Repiten relaciones que les hacen daño sin identificar el patrón.
 
 No es que no quieran cambiar. Es que les falta un mapa para comprender lo que está sucediendo dentro de ellas.
 
@@ -61,7 +63,7 @@ Uno de los mayores beneficios de la metacognición es que permite identificar pa
 
 - Descubrir que siempre evitamos los conflictos por miedo al rechazo.
 - Darnos cuenta de que nos exigimos demasiado y nunca sentimos que hacemos suficiente.
-- Observar que tendemos a elegir relaciones en las que acabamos [cuidando más de lo que somos cuidados](/blog/dependencia-emocional-por-que-cuesta-salir-de-ciertas-relaciones).
+- Observar que tendemos a elegir relaciones en las que acabamos [cuidando más de lo que somos cuidados](/blog/dependencia-emocional-por-que-cuesta-salir-de-ciertas-relaciones/).
 - Entender que determinadas críticas nos afectan especialmente porque conectan con experiencias del pasado.
 
 Cuando empezamos a reconocer estos patrones, dejamos de pensar que todo ocurre por casualidad.

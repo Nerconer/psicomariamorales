@@ -1,78 +1,109 @@
 ---
-import { SITE } from '../consts';
+import { SITE, WHATSAPP_BY_LOCALE } from '../consts';
+import { localeFromPath } from '../i18n/config';
+import { pathFor, type RouteKey } from '../i18n/routes';
+import { useTranslations, type UIKey } from '../i18n/ui';
+import Icon from './ui/Icon.astro';
+import WhatsAppIcon from './ui/WhatsAppIcon.astro';
+
+const locale = localeFromPath(Astro.url.pathname);
+const t = useTranslations(locale);
+const role = locale === 'ca' ? SITE.roleCa : SITE.role;
 const year = new Date().getFullYear();
+
+const link = (key: RouteKey, label: UIKey) => ({ href: pathFor(key, locale), label: t(label) });
+
+const pages = [
+  link('online', 'nav.online'),
+  link('therapy', 'nav.therapy'),
+  link('couples', 'nav.couples'),
+  link('pricing', 'nav.pricing'),
+  link('about', 'nav.about'),
+  link('companies', 'nav.companies'),
+  link('schools', 'nav.schools'),
+  link('blog', 'nav.blog'),
+  link('contact', 'nav.contact'),
+];
+
+const legal = [link('legal', 'nav.legal'), link('privacy', 'nav.privacy'), link('cookies', 'nav.cookies')];
+
+const linkClass = 'flex min-h-11 items-center text-muted hover:text-primary';
 ---
 
-<footer class="border-t border-forest-soft/20 bg-mist">
-  <div class="mx-auto grid w-[min(1120px,92%)] gap-10 py-14 md:grid-cols-3">
+<!-- Bottom padding on mobile leaves room for the fixed contact bar. -->
+<footer class="bg-surface pb-24 md:pb-0">
+  <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr]">
     <div>
-      <p class="font-display text-2xl font-semibold text-ink">
-        Psico<em class="not-italic text-forest">Maria</em>Morales
-      </p>
-      <p class="mt-3 max-w-[36ch] text-base text-ink-soft">
-        Psicología integradora presencial en Barcelona y online. Ansiedad, estrés, gestión de
-        conflictos, regulación emocional, trauma y apego.
-      </p>
-      <p class="mt-3 text-base font-semibold text-forest-dark">
+      <p class="font-display text-xl font-bold text-ink">{SITE.person}</p>
+      <p class="text-muted">{role}</p>
+      <p class="mt-4 max-w-[38ch] text-base text-muted">{t('footer.about')}</p>
+      <p class="mt-4 text-base font-semibold">
         <a
           href={SITE.copc}
           target="_blank"
           rel="noopener"
-          title="Ficha profesional en el Col·legi Oficial de Psicologia de Catalunya"
-          data-evento="colegiada-copc"
-          data-evento-ubicacion="footer"
-          class="underline decoration-forest-soft underline-offset-4 hover:decoration-forest-dark"
-          >Colegiada n.º {SITE.licenseNumber}</a
+          title={t('footer.licenseTitle')}
+          data-event="license_click"
+          data-event-location="footer"
+          class="text-primary underline decoration-line underline-offset-4 hover:decoration-primary"
+          >{t('footer.license')} {SITE.licenseNumber} (COPC)</a
         >
       </p>
+    </div>
+
+    <div class="text-base">
+      <p class="mb-2 font-display font-bold text-ink">{t('footer.contact')}</p>
       <a
+        class={`${linkClass} gap-2`}
+        href={WHATSAPP_BY_LOCALE[locale]}
+        target="_blank"
+        rel="noopener"
+        data-event="whatsapp_click"
+        data-event-location="footer"
+      >
+        <WhatsAppIcon size={18} class="text-[#128c4a]" />
+        WhatsApp
+      </a>
+      <a class={`${linkClass} gap-2`} href={SITE.phoneHref} data-event="phone_click" data-event-location="footer">
+        <Icon name="phone" size={18} class="text-primary" />
+        {SITE.phone}
+      </a>
+      <a class={`${linkClass} gap-2`} href={`mailto:${SITE.email}`} data-event="email_click" data-event-location="footer">
+        <Icon name="mail" size={18} class="text-primary" />
+        {SITE.email}
+      </a>
+      <a
+        class={`${linkClass} gap-2`}
         href={SITE.doctoralia}
         target="_blank"
         rel="noopener"
-        data-evento="reservar-doctoralia"
-        data-evento-ubicacion="footer"
-        class="btn-outline mt-5 min-h-11 !px-5 !py-2">Reservar cita en Doctoralia</a
+        data-event="booking_click"
+        data-event-location="footer"
       >
+        <Icon name="calendar" size={18} class="text-primary" />
+        {t('footer.bookDoctoralia')}
+      </a>
     </div>
 
-    <nav aria-label="Enlaces del pie" class="grid grid-cols-2 gap-x-6 text-base">
-      <a class="flex min-h-11 items-center text-ink-soft hover:text-forest" href="/sobre-mi">Sobre mí</a>
-      <a class="flex min-h-11 items-center text-ink-soft hover:text-forest" href="/terapia-psicologica">Terapia psicológica</a>
-      <a class="flex min-h-11 items-center text-ink-soft hover:text-forest" href="/terapia-de-pareja">Terapia de pareja</a>
-      <a class="flex min-h-11 items-center text-ink-soft hover:text-forest" href="/empresas">Empresas</a>
-      <a class="flex min-h-11 items-center text-ink-soft hover:text-forest" href="/centros-educativos">Centros educativos</a>
-      <a class="flex min-h-11 items-center text-ink-soft hover:text-forest" href="/tarifas">Tarifas</a>
-      <a class="flex min-h-11 items-center text-ink-soft hover:text-forest" href="/blog">Blog</a>
-      <a class="flex min-h-11 items-center text-ink-soft hover:text-forest" href="/contacto">Contacto</a>
+    <nav aria-label={t('nav.footer')} class="grid grid-cols-2 gap-x-6 text-base md:grid-cols-1">
+      {pages.map((l) => <a class={linkClass} href={l.href}>{l.label}</a>)}
     </nav>
+  </div>
 
-    <div class="text-base">
-      <p class="mb-2 font-semibold text-ink">Sígueme</p>
-      <div class="flex gap-4">
+  <div class="border-t border-line/50">
+    <div class="mx-auto flex w-[min(1120px,calc(100%-2rem))] flex-col gap-2 py-5 text-sm text-muted md:flex-row md:items-center md:justify-between">
+      <p>© {year} {SITE.person} · {role} · {t('footer.where')}</p>
+      <div class="flex flex-wrap gap-x-5">
+        {legal.map((l) => <a class="flex min-h-11 items-center hover:text-primary" href={l.href}>{l.label}</a>)}
         <a
-          class="inline-flex min-h-11 items-center text-ink-soft hover:text-forest"
+          class="flex min-h-11 items-center hover:text-primary"
           href={SITE.linkedin}
           target="_blank"
           rel="noopener"
-          data-evento="linkedin"
-          data-evento-ubicacion="footer">LinkedIn</a
-        >
-      </div>
-      <div class="mt-6">
-        <a class="flex min-h-11 items-center text-ink-soft hover:text-forest" href="/aviso-legal">Aviso legal</a>
-        <a class="flex min-h-11 items-center text-ink-soft hover:text-forest" href="/politica-privacidad"
-          >Política de privacidad</a
-        >
-        <a class="flex min-h-11 items-center text-ink-soft hover:text-forest" href="/politica-cookies"
-          >Política de cookies</a
+          data-event="linkedin_click"
+          data-event-location="footer">LinkedIn</a
         >
       </div>
     </div>
-  </div>
-
-  <div class="border-t border-forest-soft/20 py-4">
-    <p class="text-center text-sm text-ink-soft">
-      © {year} Maria Morales · Psicóloga sanitaria en Barcelona
-    </p>
   </div>
 </footer>

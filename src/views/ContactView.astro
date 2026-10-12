@@ -1,0 +1,124 @@
+---
+// Contact page, shared by the Spanish and Catalan routes.
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Wave from '../components/Wave.astro';
+import DoctoraliaEmbed from '../components/DoctoraliaEmbed.astro';
+import Faq from '../components/ui/Faq.astro';
+import Icon from '../components/ui/Icon.astro';
+import WhatsAppIcon from '../components/ui/WhatsAppIcon.astro';
+import { SITE, WHATSAPP_BY_LOCALE } from '../consts';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const COPY = {
+  es: {
+    metaTitle: 'Contacto, psicóloga online y en Barcelona',
+    description:
+      'Escribe a Maria Morales por WhatsApp, llama o reserva en Doctoralia. Terapia online en toda España y presencial en Barcelona.',
+    title: '¿Hablamos?',
+    lead: 'Escríbeme por WhatsApp o llámame. Te respondo lo antes posible.',
+    call: 'Llamar',
+    privacy: 'No hace falta que me cuentes nada personal por aquí. Con decirme qué día y qué horario te van bien es suficiente.',
+    practice: 'Consulta en Barcelona',
+    maps: 'Abrir en Google Maps',
+    online: '¿No estás en Barcelona? Las sesiones online funcionan igual, desde cualquier lugar.',
+    faqs: [
+      { q: '¿A quién atiendes?', a: 'A adultos y a adolescentes a partir de 12 años.' },
+      { q: '¿En qué idioma son las sesiones?', a: 'En castellano o en catalán, como prefieras.' },
+    ],
+    emergency:
+      'Este contacto no es un servicio de urgencias. Si existe riesgo inmediato para ti o para otra persona, llama al 112 o acude al servicio de urgencias más cercano. Si tienes pensamientos de suicidio, llama al 024: es gratuito, confidencial y atiende las 24 horas.',
+  },
+  ca: {
+    metaTitle: 'Contacte, psicòloga en línia i a Barcelona',
+    description:
+      'Escriu a Maria Morales per WhatsApp, truca o reserva a Doctoralia. Teràpia en línia a tot Espanya i presencial a Barcelona.',
+    title: 'En parlem?',
+    lead: "Escriu-me per WhatsApp o truca'm. Et responc al més aviat possible.",
+    call: 'Trucar',
+    privacy: "No cal que m'expliquis res personal per aquí. N'hi ha prou de dir-me quin dia i quin horari et van bé.",
+    practice: 'Consulta a Barcelona',
+    maps: 'Obrir a Google Maps',
+    online: 'No ets a Barcelona? Les sessions en línia funcionen igual, des de qualsevol lloc.',
+    faqs: [
+      { q: 'A qui atens?', a: 'Adults i adolescents a partir de 12 anys.' },
+      { q: 'En quina llengua són les sessions?', a: 'En català o en castellà, com prefereixis.' },
+    ],
+    emergency:
+      "Aquest contacte no és un servei d'urgències. Si hi ha risc immediat per a tu o per a una altra persona, truca al 112 o ves al servei d'urgències més proper. Si tens pensaments de suïcidi, truca al 024: és gratuït, confidencial i atén les 24 hores.",
+  },
+}[locale];
+
+const cardClass = 'card flex min-h-20 items-center gap-4 p-5!';
+const iconClass = 'grid h-12 w-12 shrink-0 place-items-center rounded-full bg-surface text-primary';
+---
+
+<Layout title={COPY.metaTitle} description={COPY.description}>
+  <PageHero title={COPY.title} lead={COPY.lead} />
+
+  <section class="py-12 md:py-16">
+    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-8 lg:grid-cols-2 lg:gap-10">
+      <div class="space-y-3">
+        <a href={WHATSAPP_BY_LOCALE[locale]} target="_blank" rel="noopener" data-event="whatsapp_click" data-event-location="contact" class={cardClass}>
+          <span class={iconClass}><WhatsAppIcon size={24} class="text-[#128c4a]" /></span>
+          <span>
+            <span class="block font-display text-lg font-bold">WhatsApp</span>
+            <span class="block text-muted">{SITE.phone}</span>
+          </span>
+        </a>
+        <a href={SITE.phoneHref} data-event="phone_click" data-event-location="contact" class={cardClass}>
+          <span class={iconClass}><Icon name="phone" /></span>
+          <span>
+            <span class="block font-display text-lg font-bold">{COPY.call}</span>
+            <span class="block text-muted">{SITE.phone}</span>
+          </span>
+        </a>
+        <a href={`mailto:${SITE.email}`} data-event="email_click" data-event-location="contact" class={cardClass}>
+          <span class={iconClass}><Icon name="mail" /></span>
+          <span>
+            <span class="block font-display text-lg font-bold">Email</span>
+            <span class="block break-all text-muted">{SITE.email}</span>
+          </span>
+        </a>
+        <p class="pt-2 text-base text-muted">{COPY.privacy}</p>
+      </div>
+
+      <div class="space-y-4">
+        <DoctoraliaEmbed mode="calendar" location="contact" />
+
+        <div class="card p-5!">
+          <h2 class="flex items-center gap-2 font-display text-lg font-bold">
+            <Icon name="location" class="text-primary" /> {COPY.practice}
+          </h2>
+          <p class="mt-2 text-muted">{SITE.address}</p>
+          <p class="mt-1 text-muted">{locale === 'ca' ? SITE.scheduleCa : SITE.schedule}</p>
+          <a
+            href={SITE.maps}
+            target="_blank"
+            rel="noopener"
+            data-event="map_click"
+            data-event-location="contact"
+            class="btn-outline mt-4 min-h-11! px-5! py-2!">{COPY.maps}</a
+          >
+          <p class="mt-4 flex items-start gap-2 text-muted">
+            <Icon name="online" class="mt-0.5 text-primary" />
+            <span>{COPY.online}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-12 md:pb-16">
+    <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
+      <Faq items={COPY.faqs} />
+      <p class="mt-8 rounded-2xl border border-line/60 bg-surface px-5 py-4 text-base text-muted">{COPY.emergency}</p>
+    </div>
+  </section>
+  <Wave from="var(--color-bg)" to="var(--color-surface)" />
+</Layout>

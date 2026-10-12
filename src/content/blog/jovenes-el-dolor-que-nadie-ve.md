@@ -1,8 +1,10 @@
 ---
 title: 'Lo que más he visto trabajando con jóvenes: el dolor que nadie ve'
-description: 'Detrás de la ansiedad, la desmotivación o las conductas de riesgo en la adolescencia suele haber una historia de soledad e incomprensión. Una mirada a lo que realmente necesitan los jóvenes.'
+seoTitle: 'El dolor que nadie ve en los jóvenes'
+description: 'Detrás de la ansiedad o la desmotivación en la adolescencia suele haber soledad e incomprensión. Lo que de verdad necesitan los jóvenes.'
 pubDate: 2026-06-26
 tag: 'Trauma y duelo'
+service: 'terapia-psicologica'
 ---
 
 Durante mi trabajo como psicóloga en un programa público de promoción del bienestar emocional dirigido a jóvenes, he escuchado cientos de historias. Historias muy diferentes entre sí, pero que, con el tiempo, han empezado a mostrar un patrón común.
@@ -52,7 +54,7 @@ Saben que están mal. Saben que lloran, que se enfadan, que tienen ansiedad o qu
 - No identifican patrones que se repiten.
 - No reconocen qué situaciones activan determinadas emociones.
 
-Sin esa capacidad de observar y comprender el propio funcionamiento (lo que en psicología conocemos como **[metacognición](/blog/metacognicion-comprender-tu-funcionamiento)**) resulta muy difícil cambiar aquello que produce sufrimiento.
+Sin esa capacidad de observar y comprender el propio funcionamiento (lo que en psicología conocemos como **[metacognición](/blog/metacognicion-comprender-tu-funcionamiento/)**) resulta muy difícil cambiar aquello que produce sufrimiento.
 
 Porque nadie puede modificar un patrón que ni siquiera sabe que existe.
 

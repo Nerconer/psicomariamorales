@@ -2,19 +2,26 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-  /* Warm lilac palette (direction A). Names describe the role, not the colour,
-     so a palette change only touches these lines. Every text pair passes AA:
-     primary on bg 6.3:1, white on primary 6.6:1, muted on bg 6.9:1. */
-  --color-bg: #fff8ee;
-  --color-surface: #f4f0fa;
-  --color-primary: #5f5399;
-  --color-primary-strong: #4a3f82;
-  --color-accent: #8b7ec8;
-  --color-line: #c8b6db;
-  --color-sun: #ffca5c;
-  --color-sun-strong: #f5b732;
-  --color-ink: #2a2433;
-  --color-muted: #5a5466;
+  /* Maria's palette: purple #4c0273, lilac #cec2ff and gold #ebc000 on a
+     near-white ground. Names describe the role, not the colour, so a palette
+     change only touches these lines. Every text pair passes AA: primary on bg
+     13.1:1, white on primary 13.4:1, ink on bg 15.2:1, muted on bg 7:1, ink
+     on gold 9:1. Gold and lilac are never text on a light ground (1.7:1). */
+  --color-bg: #fffbfd;
+  /* A quarter of Maria's lilac over the ground, for tinted sections. */
+  --color-surface: #f3edfe;
+  --color-primary: #4c0273;
+  /* Hover and the closing band: the purple with 20% black. */
+  --color-primary-strong: #3d025c;
+  /* Halfway between the purple and the lilac. Decorative only (logo strokes,
+     list markers, halos): 4.5:1 is just short of AA for text. */
+  --color-accent: #8d62b9;
+  --color-line: #cec2ff;
+  /* Always with ink or purple text on top, never white. */
+  --color-sun: #ebc000;
+  --color-sun-strong: #d4ad00;
+  --color-ink: #2a1f35;
+  --color-muted: #5e5468;
 
   /* Each blog category has its own colour: very desaturated pastels. Every
      background/text pair passes AA (lowest measured contrast: 5.75:1). */
@@ -37,8 +44,8 @@
   --font-display: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 
-  --shadow-primary: 0 12px 32px -16px rgb(74 63 130 / 0.35);
-  --shadow-soft: 0 6px 20px -10px rgb(42 36 51 / 0.12);
+  --shadow-primary: 0 12px 32px -16px rgb(76 2 115 / 0.3);
+  --shadow-soft: 0 6px 20px -10px rgb(42 31 53 / 0.12);
 }
 
 html {

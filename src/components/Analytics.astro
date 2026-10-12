@@ -58,6 +58,10 @@
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement | null;
 
+      // Crisis lines (024, 112) are never measured: a click there says how
+      // someone feels, and it must not count as a contact either.
+      if (target?.closest?.('[data-no-track]')) return;
+
       const tagged = target?.closest?.<HTMLElement>('[data-event]');
       if (tagged) {
         track(tagged.dataset.event || 'unnamed', dataOf(tagged));

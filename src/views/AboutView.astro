@@ -1,7 +1,7 @@
 ---
 // About page, shared by the Spanish and Catalan routes. The Spanish text is
 // Maria's own wording; the Catalan one is its translation.
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaFinal from '../components/CtaFinal.astro';
@@ -9,7 +9,7 @@ import Wave from '../components/Wave.astro';
 import Chip from '../components/ui/Chip.astro';
 import { SITE } from '../consts';
 import type { Locale } from '../i18n/config';
-import mariaHero from '../assets/img/maria-hero.jpg';
+import mariaPortrait from '../assets/img/maria-portrait.jpg';
 
 interface Props {
   locale: Locale;
@@ -91,8 +91,9 @@ const COPY = {
     <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] items-start gap-10 lg:grid-cols-[380px_1fr] lg:gap-14">
       <div class="relative mx-auto w-full max-w-[380px]">
         <div class="absolute -right-4 -top-4 h-28 w-28 rounded-full bg-sun/70" aria-hidden="true"></div>
-        <Image
-          src={mariaHero}
+        <Picture
+          src={mariaPortrait}
+          formats={['avif', 'webp']}
           alt={COPY.alt}
           width={380}
           widths={[380, 760]}

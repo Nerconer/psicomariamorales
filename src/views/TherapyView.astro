@@ -4,7 +4,9 @@ import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import Wave from '../components/Wave.astro';
+import { Picture } from 'astro:assets';
 import Icon, { type IconName } from '../components/ui/Icon.astro';
+import mariaWriting from '../assets/img/maria-writing.jpg';
 import { PRICES, formatPrice } from '../consts';
 import type { Locale } from '../i18n/config';
 import { pathFor, type RouteKey } from '../i18n/routes';
@@ -31,7 +33,7 @@ type Specialty = { id: string; icon: IconName; title: string; text?: string };
 
 // Anxiety comes first and trauma last, as Maria asked. The ids are the anchors
 // other pages link to, so they stay the same in both languages.
-const COPY: Record<Locale, { metaTitle: string; description: string; title: string; intro: string[]; online: string; onlineText: string; inPerson: string; inPersonText: string; listTitle: string; specialties: Specialty[] }> = {
+const COPY: Record<Locale, { metaTitle: string; description: string; title: string; intro: string[]; photoAlt: string; online: string; onlineText: string; inPerson: string; inPersonText: string; listTitle: string; specialties: Specialty[] }> = {
   es: {
     metaTitle: 'Terapia psicológica online y en Barcelona',
     description:
@@ -41,6 +43,7 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
       'Trabajo desde la psicología integradora. Me adapto a cada persona, a cada situación y a cada necesidad. No todo funciona de la misma manera en cada persona.',
       'Tengo formación amplia en diferentes enfoques y corrientes: cognitivo-conductual, terapias de tercera generación, EMDR nivel I y II, IFS, terapia focalizada en la emoción, terapia sistémica y análisis transaccional, entre otros.',
     ],
+    photoAlt: 'Maria Morales tomando notas en un cuaderno',
     online: 'Online',
     onlineText: 'Por videollamada, desde cualquier lugar de España.',
     inPerson: 'Presencial',
@@ -79,6 +82,7 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
       "Treballo des de la psicologia integradora. M'adapto a cada persona, a cada situació i a cada necessitat. No tot funciona de la mateixa manera en cada persona.",
       "Tinc una formació àmplia en diferents enfocaments i corrents: cognitivoconductual, teràpies de tercera generació, EMDR nivell I i II, IFS, teràpia focalitzada en l'emoció, teràpia sistèmica i anàlisi transaccional, entre d'altres.",
     ],
+    photoAlt: 'Maria Morales prenent notes en una llibreta',
     online: 'En línia',
     onlineText: "Per videotrucada, des de qualsevol lloc d'Espanya.",
     inPerson: 'Presencial',
@@ -117,22 +121,37 @@ const c = COPY[locale];
   <PageHero title={c.title} />
 
   <section class="py-12 md:py-16">
-    <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
-      {c.intro.map((p, i) => <p class:list={[i > 0 && 'mt-4']}>{p}</p>)}
+    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] items-center gap-10 lg:grid-cols-[1fr_380px] lg:gap-14">
+      <div>
+        {c.intro.map((p, i) => <p class:list={['max-w-[62ch]', i > 0 && 'mt-4']}>{p}</p>)}
 
-      <div class="mt-8 grid gap-3 sm:grid-cols-2">
-        <a href={pathFor('online', locale)} class="rounded-2xl bg-primary p-5 text-white transition-colors hover:bg-primary-strong">
-          <p class="flex items-center gap-2 font-display text-lg font-bold">
-            <Icon name="online" /> {c.online} · {formatPrice(PRICES.online.amount)}
-          </p>
-          <p class="mt-1 text-white/90">{c.onlineText}</p>
-        </a>
-        <div class="rounded-2xl border border-line/60 bg-white p-5">
-          <p class="flex items-center gap-2 font-display text-lg font-bold text-primary">
-            <Icon name="location" /> {c.inPerson} · {formatPrice(PRICES.inPerson.amount)}
-          </p>
-          <p class="mt-1 text-muted">{c.inPersonText}</p>
+        <div class="mt-8 grid gap-3 sm:grid-cols-2">
+          <a href={pathFor('online', locale)} class="rounded-2xl bg-primary p-5 text-white transition-colors hover:bg-primary-strong">
+            <p class="flex items-center gap-2 font-display text-lg font-bold">
+              <Icon name="online" /> {c.online} · {formatPrice(PRICES.online.amount)}
+            </p>
+            <p class="mt-1 text-white/90">{c.onlineText}</p>
+          </a>
+          <div class="rounded-2xl border border-line/60 bg-white p-5">
+            <p class="flex items-center gap-2 font-display text-lg font-bold text-primary">
+              <Icon name="location" /> {c.inPerson} · {formatPrice(PRICES.inPerson.amount)}
+            </p>
+            <p class="mt-1 text-muted">{c.inPersonText}</p>
+          </div>
         </div>
+      </div>
+
+      <div class="relative mx-auto w-full max-w-[380px]">
+        <div class="absolute -bottom-4 -left-4 h-28 w-28 rounded-full bg-line/70" aria-hidden="true"></div>
+        <Picture
+          src={mariaWriting}
+          formats={['avif', 'webp']}
+          alt={c.photoAlt}
+          width={380}
+          widths={[380, 760]}
+          sizes="(max-width: 1024px) 90vw, 380px"
+          class="relative aspect-square w-full rounded-[2rem] object-cover shadow-primary"
+        />
       </div>
     </div>
   </section>

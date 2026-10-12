@@ -90,7 +90,17 @@ const linkClass = 'flex min-h-11 items-center text-muted hover:text-primary';
     </nav>
   </div>
 
-  <div class="border-t border-line/50">
+  <!-- A health site should show the crisis lines on every page, not only on contact. -->
+  <div class="border-t border-line">
+    <p class="mx-auto w-[min(1120px,calc(100%-2rem))] py-4 text-sm text-muted">
+      {t('crisis.before')}{' '}
+      <a href="tel:024" data-no-track class="font-semibold text-ink underline decoration-primary/30 underline-offset-4">024</a>{t('crisis.middle')}{' '}
+      <a href="tel:112" data-no-track class="font-semibold text-ink underline decoration-primary/30 underline-offset-4">112</a>{' '}
+      {t('crisis.after')}
+    </p>
+  </div>
+
+  <div class="border-t border-line">
     <div class="mx-auto flex w-[min(1120px,calc(100%-2rem))] flex-col gap-2 py-5 text-sm text-muted md:flex-row md:items-center md:justify-between">
       <p>© {year} {SITE.person} · {role} · {t('footer.where')}</p>
       <div class="flex flex-wrap gap-x-5">

@@ -7,9 +7,14 @@ import { useTranslations } from '../i18n/ui';
 const locale = localeFromPath(Astro.url.pathname);
 const t = useTranslations(locale);
 const { rating, count, url } = REVIEWS.google;
+
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
 ---
 
-<p class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1">
+<p class:list={['flex flex-wrap items-center gap-x-3 gap-y-1', className]}>
   {
     count > 0 && (
       <span class="font-display font-bold">

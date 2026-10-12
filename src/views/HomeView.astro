@@ -273,7 +273,7 @@ const c = COPY[locale];
         <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.whoTitle}</h2>
         <p class="mt-4 max-w-[52ch]">{c.who}</p>
         <div class="mt-5 flex flex-wrap gap-2">
-          {c.whoChips.map((chip) => <Chip>{chip}</Chip>)}
+          {c.whoChips.map((chip) => <Chip tone="light">{chip}</Chip>)}
         </div>
         <a href={to('about')} class="btn-outline mt-6">{c.meet}</a>
       </div>

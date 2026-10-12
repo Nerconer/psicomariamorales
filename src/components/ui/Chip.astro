@@ -2,7 +2,8 @@
 import Icon, { type IconName } from './Icon.astro';
 
 interface Props {
-  tone?: 'default' | 'sun';
+  /** `light` is for tinted sections, where the default fill would not show. */
+  tone?: 'default' | 'sun' | 'light';
   icon?: IconName;
 }
 const { tone = 'default', icon } = Astro.props;
@@ -11,7 +12,7 @@ const { tone = 'default', icon } = Astro.props;
 <span
   class:list={[
     'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold text-ink',
-    tone === 'sun' ? 'bg-sun' : 'bg-surface',
+    tone === 'sun' ? 'bg-sun' : tone === 'light' ? 'bg-white' : 'bg-surface',
   ]}
 >
   {icon && <Icon name={icon} size={16} />}

@@ -3,7 +3,6 @@
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaFinal from '../components/CtaFinal.astro';
-import Wave from '../components/Wave.astro';
 import DoctoraliaEmbed from '../components/DoctoraliaEmbed.astro';
 import Icon from '../components/ui/Icon.astro';
 import { SITE, PRICES, formatPrice, FREE_CALL_BY_LOCALE } from '../consts';
@@ -80,7 +79,7 @@ const COPY = {
                 r.featured ? 'border-primary bg-primary text-white' : 'border-line/60 bg-white',
               ]}
             >
-              <h2 class:list={['text-xl font-bold', r.featured ? 'text-white' : 'text-primary']}>{r.title}</h2>
+              <h2 class:list={['text-xl font-bold', r.featured && 'text-white']}>{r.title}</h2>
               <p class="mt-3 flex items-baseline gap-2">
                 <span class="font-display text-4xl font-bold">{formatPrice(PRICES[r.key].amount)}</span>
                 <span class:list={['text-sm font-semibold', r.featured ? 'text-white/85' : 'text-muted']}>
@@ -112,32 +111,30 @@ const COPY = {
           rel="noopener"
           data-event="free_call_click"
           data-event-location="pricing"
-          class="font-semibold text-primary underline decoration-line underline-offset-4 hover:decoration-primary"
+          class="font-semibold text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary"
           >{COPY.freeCall}</a
         >.
       </p>
     </div>
   </section>
 
-  <Wave from="var(--color-bg)" to="var(--color-surface)" />
   <section class="bg-surface py-12 md:py-16" id="reservar">
-    <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
-      <h2 class="text-2xl font-bold text-primary md:text-3xl">{COPY.calendarTitle}</h2>
-      <div class="mt-5">
+    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.8fr)] lg:gap-12">
+      <h2 class="text-2xl font-bold md:text-3xl">{COPY.calendarTitle}</h2>
+      <div>
         <DoctoraliaEmbed mode="calendar" location="pricing" />
       </div>
     </div>
   </section>
 
-  <Wave from="var(--color-surface)" to="var(--color-bg)" flip />
   <section class="py-12 md:py-16">
     <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-4 md:grid-cols-2">
       <div class="card">
-        <h2 class="flex items-center gap-2 text-xl font-bold text-primary"><Icon name="check" /> {COPY.payTitle}</h2>
+        <h2 class="flex items-center gap-2 text-xl font-bold"><Icon name="check" class="text-primary" /> {COPY.payTitle}</h2>
         <p class="mt-2 text-muted">{COPY.pay}</p>
       </div>
       <div class="card">
-        <h2 class="flex items-center gap-2 text-xl font-bold text-primary"><Icon name="calendar" /> {COPY.cancelTitle}</h2>
+        <h2 class="flex items-center gap-2 text-xl font-bold"><Icon name="calendar" class="text-primary" /> {COPY.cancelTitle}</h2>
         <p class="mt-2 text-muted">{COPY.cancel}</p>
       </div>
       <p class="text-sm text-muted md:col-span-2">{COPY.review}</p>

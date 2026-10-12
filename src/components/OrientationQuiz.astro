@@ -176,7 +176,7 @@ const config = {
 
   <div class="quiz-step" data-step="start">
     <p class="text-sm font-bold text-muted">{COPY.step(1)}</p>
-    <h3 class="mt-1 text-2xl font-bold text-primary" tabindex="-1">{COPY.qStart}</h3>
+    <h3 class="mt-1 text-2xl font-bold" tabindex="-1">{COPY.qStart}</h3>
     <div class="mt-5 grid gap-2.5">
       {COPY.start.map((o) => <button type="button" class="quiz-option" data-start={o.value} data-next={o.next}>{o.label}</button>)}
     </div>
@@ -184,7 +184,7 @@ const config = {
 
   <div class="quiz-step hidden" data-step="hard">
     <p class="text-sm font-bold text-muted">{COPY.step(2)}</p>
-    <h3 class="mt-1 text-2xl font-bold text-primary" tabindex="-1">{COPY.qHard}</h3>
+    <h3 class="mt-1 text-2xl font-bold" tabindex="-1">{COPY.qHard}</h3>
     <div class="mt-5 grid gap-2.5">
       {COPY.hard.map((o) => <button type="button" class="quiz-option" data-topic={o.value}>{o.label}</button>)}
     </div>
@@ -193,7 +193,7 @@ const config = {
 
   <div class="quiz-step hidden" data-step="growth">
     <p class="text-sm font-bold text-muted">{COPY.step(2)}</p>
-    <h3 class="mt-1 text-2xl font-bold text-primary" tabindex="-1">{COPY.qGrowth}</h3>
+    <h3 class="mt-1 text-2xl font-bold" tabindex="-1">{COPY.qGrowth}</h3>
     <div class="mt-5 grid gap-2.5">
       {COPY.growth.map((o) => <button type="button" class="quiz-option" data-topic={o.value}>{o.label}</button>)}
     </div>
@@ -202,7 +202,7 @@ const config = {
 
   <div class="quiz-step hidden" data-step="format">
     <p class="text-sm font-bold text-muted">{COPY.step(3)}</p>
-    <h3 class="mt-1 text-2xl font-bold text-primary" tabindex="-1">{COPY.qFormat}</h3>
+    <h3 class="mt-1 text-2xl font-bold" tabindex="-1">{COPY.qFormat}</h3>
     <div class="mt-5 grid gap-2.5">
       {COPY.formats.map((o) => <button type="button" class="quiz-option" data-format={o.value}>{o.label}</button>)}
     </div>
@@ -210,7 +210,7 @@ const config = {
   </div>
 
   <div class="quiz-step hidden" data-step="result">
-    <h3 class="text-2xl font-bold text-primary" tabindex="-1" data-result-title></h3>
+    <h3 class="text-2xl font-bold" tabindex="-1" data-result-title></h3>
     <ul class="checklist mt-4" data-result-points></ul>
     <p class="mt-4 font-semibold" data-result-price></p>
     <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -225,10 +225,10 @@ const config = {
       >
     </div>
     <div class="mt-5 flex flex-wrap gap-x-6 gap-y-2">
-      <a class="font-semibold text-primary underline decoration-line underline-offset-4" data-result-link data-event="quiz_result_link" href="#"
+      <a class="font-semibold text-primary underline decoration-primary/30 underline-offset-4" data-result-link data-event="quiz_result_link" href="#"
         >{COPY.more}</a
       >
-      <button type="button" class="font-semibold text-muted underline decoration-line underline-offset-4" data-restart>{COPY.restart}</button>
+      <button type="button" class="font-semibold text-muted underline decoration-primary/30 underline-offset-4" data-restart>{COPY.restart}</button>
     </div>
     <p class="mt-6 border-t border-line/60 pt-4 text-sm text-muted">
       {COPY.note} <a class="font-semibold underline" href="tel:024">024</a>

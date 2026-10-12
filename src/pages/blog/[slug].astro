@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import CtaFinal from '../../components/CtaFinal.astro';
-import Wave from '../../components/Wave.astro';
 import RelatedPosts from '../../components/RelatedPosts.astro';
 import Icon from '../../components/ui/Icon.astro';
 import WhatsAppIcon from '../../components/ui/WhatsAppIcon.astro';
@@ -98,17 +97,16 @@ const breadcrumbSchema = {
             <li><a href="/blog/" class="hover:text-primary">Blog</a></li>
           </ol>
         </nav>
-        <span class={`mt-5 inline-block rounded-full border px-3 py-1 text-sm font-semibold ${categoryBadgeClass(post.data.tag)}`}>
+        <span class={`mt-5 ${categoryBadgeClass(post.data.tag)}`}>
           {post.data.tag}
         </span>
-        <h1 class="mt-4 text-[2rem] font-bold leading-tight text-primary md:text-5xl">{post.data.title}</h1>
+        <h1 class="mt-4 text-[2rem] font-bold leading-tight md:text-5xl">{post.data.title}</h1>
         <p class="mt-4 text-sm text-muted">
           {formatDate(post.data.pubDate)} · {readingMinutes} min de lectura ·{' '}
-          <a href="/sobre-mi/" class="underline decoration-line underline-offset-4 hover:text-primary">{SITE.person}</a>
+          <a href="/sobre-mi/" class="underline decoration-primary/30 underline-offset-4 hover:text-primary">{SITE.person}</a>
         </p>
       </div>
     </header>
-    <Wave from="var(--color-surface)" to="var(--color-bg)" />
 
     <div class="mx-auto w-[min(760px,calc(100%-2rem))] py-12 md:py-16">
       <div class="prose-brand">
@@ -129,12 +127,12 @@ const breadcrumbSchema = {
       </aside>
 
       <div class="mt-8 flex items-center gap-4 rounded-2xl bg-surface p-5">
-        <Image src={mariaHero} alt="" widths={[128]} sizes="64px" class="h-16 w-16 shrink-0 rounded-full object-cover ring-4 ring-sun" />
+        <Image src={mariaHero} alt="" widths={[128]} sizes="64px" class="h-16 w-16 shrink-0 rounded-full object-cover ring-4 ring-highlight" />
         <div>
           <p class="font-display font-bold">Escrito por {SITE.person}</p>
           <p class="text-sm text-muted">
             {SITE.role} ·{' '}
-            <a href={SITE.copc} target="_blank" rel="noopener" data-event="license_click" data-event-location="post_author" class="underline decoration-line underline-offset-4 hover:text-primary"
+            <a href={SITE.copc} target="_blank" rel="noopener" data-event="license_click" data-event-location="post_author" class="underline decoration-primary/30 underline-offset-4 hover:text-primary"
               >Colegiada n.º {SITE.licenseNumber}</a
             >
           </p>

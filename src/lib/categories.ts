@@ -1,24 +1,26 @@
 /**
- * Colour of the category pill on the blog.
+ * Category pill on the blog: a neutral pill with a coloured dot.
  *
- * Each category has its own pastel so the index is not a row of identical
- * labels and the colour carries information: the category is recognised at a
- * glance. Every background/text pair passes AA contrast (lowest measured:
- * 5.75:1).
+ * Each category has its own dot so the colour carries information and the
+ * category is recognised at a glance, while the pill itself stays calm. The
+ * text is always ink, so contrast does not depend on the dot colour.
  *
  * A new category only needs to be added here. If it is missing, the brand
  * fallback is used, so nothing breaks.
  */
-const CATEGORY_BADGE: Record<string, string> = {
-  'Ansiedad y estrés': 'border-badge-sky-line bg-badge-sky text-badge-sky-ink',
-  'Relaciones y pareja': 'border-badge-coral-line bg-badge-coral text-badge-coral-ink',
-  'Autoestima y emociones': 'border-badge-lilac-line bg-badge-lilac text-badge-lilac-ink',
-  'Trauma y duelo': 'border-badge-sand-line bg-badge-sand text-badge-sand-ink',
-  'Empezar terapia': 'border-badge-mint-line bg-badge-mint text-badge-mint-ink',
+const CATEGORY_DOT: Record<string, string> = {
+  'Ansiedad y estrés': 'before:bg-cat-sky',
+  'Relaciones y pareja': 'before:bg-cat-lilac',
+  'Autoestima y emociones': 'before:bg-cat-sage',
+  'Trauma y duelo': 'before:bg-cat-stone',
+  'Empezar terapia': 'before:bg-cat-mint',
 };
 
-const CATEGORY_BADGE_FALLBACK = 'border-badge-mint-line bg-badge-mint text-badge-mint-ink';
+const CATEGORY_DOT_FALLBACK = 'before:bg-accent';
+
+const PILL =
+  'inline-flex items-center gap-2 self-start rounded-full border border-line bg-white px-3 py-1 text-sm font-semibold text-ink before:h-2 before:w-2 before:shrink-0 before:rounded-full';
 
 export function categoryBadgeClass(tag: string): string {
-  return CATEGORY_BADGE[tag] ?? CATEGORY_BADGE_FALLBACK;
+  return `${PILL} ${CATEGORY_DOT[tag] ?? CATEGORY_DOT_FALLBACK}`;
 }

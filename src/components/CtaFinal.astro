@@ -4,7 +4,6 @@ import { SITE, WHATSAPP_BY_LOCALE } from '../consts';
 import { localeFromPath } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
 import Icon from './ui/Icon.astro';
-import Wave from './Wave.astro';
 import WhatsAppIcon from './ui/WhatsAppIcon.astro';
 
 interface Props {
@@ -12,8 +11,6 @@ interface Props {
   text?: string;
   primaryLabel?: string;
   primaryHref?: string;
-  /** Background of the section above, for the wave. */
-  from?: string;
 }
 
 const locale = localeFromPath(Astro.url.pathname);
@@ -24,17 +21,15 @@ const {
   text = t('cta.text'),
   primaryLabel = t('cta.bookFirst'),
   primaryHref = SITE.doctoralia,
-  from = 'var(--color-bg)',
 } = Astro.props;
 
 const external = primaryHref.startsWith('http');
 ---
 
-<Wave from={from} to="var(--color-primary-strong)" />
 <section class="bg-primary-strong">
   <div class="mx-auto w-[min(820px,calc(100%-2rem))] py-16 text-center md:py-20">
     <h2 class="text-3xl font-bold text-white md:text-4xl">{title}</h2>
-    <p class="mx-auto mt-4 max-w-[52ch] text-white/90">{text}</p>
+    <p class="mx-auto mt-4 max-w-[52ch] text-white/85">{text}</p>
     <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
       <a
         href={primaryHref}
@@ -42,7 +37,7 @@ const external = primaryHref.startsWith('http');
         rel={external ? 'noopener' : undefined}
         data-event={external ? 'booking_click' : 'contact_page_click'}
         data-event-location="final_cta"
-        class="btn-sun"
+        class="btn-light"
       >
         <Icon name="calendar" size={20} />
         {primaryLabel}
@@ -53,16 +48,15 @@ const external = primaryHref.startsWith('http');
         rel="noopener"
         data-event="whatsapp_click"
         data-event-location="final_cta"
-        class="btn-sun-outline"
+        class="btn-light-outline"
       >
         <WhatsAppIcon size={20} />
         WhatsApp
       </a>
-      <a href={SITE.phoneHref} data-event="phone_click" data-event-location="final_cta" class="btn-sun-outline">
+      <a href={SITE.phoneHref} data-event="phone_click" data-event-location="final_cta" class="btn-light-outline">
         <Icon name="phone" size={20} />
         {t('cta.call')}
       </a>
     </div>
   </div>
 </section>
-<Wave from="var(--color-primary-strong)" to="var(--color-surface)" flip />

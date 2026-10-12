@@ -30,7 +30,7 @@ const isActive = (href: string) => current.startsWith(href);
 <!-- Opaque background without backdrop-blur below lg: on Android a sticky
      element with backdrop-filter stops repainting the strip underneath it when
      the URL bar resizes the viewport. -->
-<header class="sticky top-0 z-50 border-b border-line/50 bg-bg lg:bg-bg/90 lg:backdrop-blur-md">
+<header class="sticky top-0 z-50 border-b border-line bg-bg lg:bg-bg/90 lg:backdrop-blur-md">
   <div class="mx-auto flex w-[min(1200px,calc(100%-2rem))] items-center justify-between gap-4 py-3">
     <a href={pathFor('home', locale)} class="flex items-center gap-3">
       <img src={logoMark.src} alt="" width="44" height="44" class="h-11 w-11 shrink-0" />

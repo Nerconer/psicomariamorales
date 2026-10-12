@@ -53,7 +53,7 @@ export const UI = {
     'google.reviews': 'Ver las opiniones en Google',
     'google.count': 'opiniones en Google',
     'related.title': 'Seguir leyendo',
-    'role.short': 'Psicóloga',
+    'role.short': 'Psicóloga sanitaria',
   },
   ca: {
     'nav.home': 'Inici',
@@ -101,7 +101,7 @@ export const UI = {
     'google.reviews': 'Veure les opinions a Google',
     'google.count': 'opinions a Google',
     'related.title': 'Continuar llegint',
-    'role.short': 'Psicòloga',
+    'role.short': 'Psicòloga sanitària',
   },
 } as const satisfies Record<Locale, Record<string, string>>;
 

@@ -1,19 +1,24 @@
 ---
-import Wave from './Wave.astro';
-
 interface Props {
   eyebrow?: string;
   title: string;
   lead?: string;
+  /** Matches the 760 px reading column of posts and legal pages. */
+  narrow?: boolean;
 }
-const { eyebrow, title, lead } = Astro.props;
+const { eyebrow, title, lead, narrow = false } = Astro.props;
 ---
 
-<section class="bg-surface">
-  <div class="mx-auto w-[min(820px,calc(100%-2rem))] pb-8 pt-12 text-center md:pb-12 md:pt-20">
+<!-- Left aligned with the content below, which starts at the same edge. -->
+<section class="border-b border-line bg-surface">
+  <div
+    class:list={[
+      'mx-auto pb-10 pt-12 md:pb-14 md:pt-20',
+      narrow ? 'w-[min(760px,calc(100%-2rem))]' : 'w-[min(1120px,calc(100%-2rem))]',
+    ]}
+  >
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-    <h1 class="text-[2.1rem] font-bold leading-tight text-primary md:text-5xl">{title}</h1>
-    {lead && <p class="mx-auto mt-4 max-w-[60ch] text-lg">{lead}</p>}
+    <h1 class="max-w-[22ch] text-[2.25rem] font-bold leading-[1.08] md:text-[3.25rem]">{title}</h1>
+    {lead && <p class="mt-4 max-w-[60ch] text-lg text-muted md:text-xl">{lead}</p>}
   </div>
 </section>
-<Wave from="var(--color-surface)" to="var(--color-bg)" />

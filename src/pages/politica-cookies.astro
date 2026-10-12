@@ -1,11 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
-import Wave from '../components/Wave.astro';
 ---
 
 <Layout title="Política de cookies" description="Política de cookies del sitio web de Maria Morales, psicóloga sanitaria en Barcelona.">
-  <PageHero title="Política de cookies" />
+  <PageHero title="Política de cookies" narrow />
   <section class="py-14 md:py-20">
     <div class="prose-brand mx-auto w-[min(760px,92%)]">
       <h2>¿Qué son las cookies?</h2>
@@ -65,5 +64,4 @@ import Wave from '../components/Wave.astro';
       </p>
     </div>
   </section>
-  <Wave from="var(--color-bg)" to="var(--color-surface)" />
 </Layout>

@@ -1,12 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
-import Wave from '../components/Wave.astro';
 import { SITE } from '../consts';
 ---
 
 <Layout title="Aviso legal" description="Aviso legal del sitio web de Maria Morales, psicóloga sanitaria en Barcelona.">
-  <PageHero title="Aviso legal" />
+  <PageHero title="Aviso legal" narrow />
   <section class="py-14 md:py-20">
     <div class="prose-brand mx-auto w-[min(760px,92%)]">
       <p>
@@ -58,5 +57,4 @@ import { SITE } from '../consts';
       </p>
     </div>
   </section>
-  <Wave from="var(--color-bg)" to="var(--color-surface)" />
 </Layout>

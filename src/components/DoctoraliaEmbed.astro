@@ -25,7 +25,7 @@ const label = mode === 'reviews' ? t('doctoralia.reviews') : t('doctoralia.calen
       mode === 'reviews' ? (
         <p class="flex flex-wrap items-baseline gap-x-2 font-display text-ink">
           <span class="text-3xl font-bold">{rating.toLocaleString(locale === 'ca' ? 'ca-ES' : 'es-ES', { minimumFractionDigits: 1 })}</span>
-          <span class="text-sun-strong" aria-hidden="true">★★★★★</span>
+          <span class="text-primary" aria-hidden="true">★★★★★</span>
           <span class="text-base text-muted">
             {count} {count === 1 ? t('doctoralia.one') : t('doctoralia.many')}
           </span>
@@ -45,7 +45,7 @@ const label = mode === 'reviews' ? t('doctoralia.reviews') : t('doctoralia.calen
         rel="noopener"
         data-event={mode === 'reviews' ? 'reviews_click' : 'booking_click'}
         data-event-location={location}
-        class="font-semibold text-primary underline decoration-line underline-offset-4 hover:decoration-primary"
+        class="font-semibold text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary"
         >{t('doctoralia.open')}</a
       >
     </div>

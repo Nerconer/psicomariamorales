@@ -3,7 +3,6 @@
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaFinal from '../components/CtaFinal.astro';
-import Wave from '../components/Wave.astro';
 import Icon, { type IconName } from '../components/ui/Icon.astro';
 import { PRICES, formatPrice } from '../consts';
 import type { Locale } from '../i18n/config';
@@ -117,10 +116,10 @@ const c = COPY[locale];
   <PageHero title={c.title} />
 
   <section class="py-12 md:py-16">
-    <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
-      {c.intro.map((p, i) => <p class:list={[i > 0 && 'mt-4']}>{p}</p>)}
+    <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+      {c.intro.map((p, i) => <p class:list={['max-w-[68ch]', i > 0 && 'mt-4']}>{p}</p>)}
 
-      <div class="mt-8 grid gap-3 sm:grid-cols-2">
+      <div class="mt-8 grid max-w-[820px] gap-3 sm:grid-cols-2">
         <a href={pathFor('online', locale)} class="rounded-2xl bg-primary p-5 text-white transition-colors hover:bg-primary-strong">
           <p class="flex items-center gap-2 font-display text-lg font-bold">
             <Icon name="online" /> {c.online} · {formatPrice(PRICES.online.amount)}
@@ -137,10 +136,9 @@ const c = COPY[locale];
     </div>
   </section>
 
-  <Wave from="var(--color-bg)" to="var(--color-surface)" />
   <section class="bg-surface py-12 md:py-16" id="especialidades">
     <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
-      <h2 class="text-2xl font-bold text-primary md:text-3xl">{c.listTitle}</h2>
+      <h2 class="text-2xl font-bold md:text-3xl">{c.listTitle}</h2>
       <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {
           c.specialties.map((s) => (
@@ -167,5 +165,5 @@ const c = COPY[locale];
     </div>
   </section>
 
-  <CtaFinal from="var(--color-surface)" />
+  <CtaFinal />
 </Layout>

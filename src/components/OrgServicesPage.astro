@@ -3,7 +3,6 @@
 // the topics, and a direct way to ask for a proposal.
 import Layout from '../layouts/Layout.astro';
 import PageHero from './PageHero.astro';
-import Wave from './Wave.astro';
 import Chip from './ui/Chip.astro';
 import Icon from './ui/Icon.astro';
 import WhatsAppIcon from './ui/WhatsAppIcon.astro';
@@ -29,31 +28,29 @@ const whatsapp = whatsappUrl(`Hola Maria, te escribo por: ${subject}.`);
 
   <section class="py-12 md:py-16">
     <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
-      <h2 class="text-2xl font-bold text-primary md:text-3xl">Formatos</h2>
+      <h2 class="text-2xl font-bold md:text-3xl">Formatos</h2>
       <div class="mt-4 flex flex-wrap gap-2">
-        {formats.map((f) => <Chip tone="sun">{f}</Chip>)}
+        {formats.map((f) => <Chip tone="highlight">{f}</Chip>)}
       </div>
 
-      <h2 class="mt-10 text-2xl font-bold text-primary md:text-3xl">Temas</h2>
+      <h2 class="mt-10 text-2xl font-bold md:text-3xl">Temas</h2>
       <div class="mt-4 flex flex-wrap gap-2">
         {topics.map((t) => <Chip>{t}</Chip>)}
       </div>
     </div>
   </section>
 
-  <Wave from="var(--color-bg)" to="var(--color-primary-strong)" />
   <section class="bg-primary-strong">
     <div class="mx-auto w-[min(820px,calc(100%-2rem))] py-14 text-center md:py-16">
       <h2 class="text-3xl font-bold text-white">Cuéntame qué necesitáis</h2>
       <div class="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-        <a href={mailto} data-event="email_click" data-event-location={location} class="btn-sun">
+        <a href={mailto} data-event="email_click" data-event-location={location} class="btn-light">
           <Icon name="mail" size={20} /> Escribir un email
         </a>
-        <a href={whatsapp} target="_blank" rel="noopener" data-event="whatsapp_click" data-event-location={location} class="btn-sun-outline">
+        <a href={whatsapp} target="_blank" rel="noopener" data-event="whatsapp_click" data-event-location={location} class="btn-light-outline">
           <WhatsAppIcon size={20} /> WhatsApp
         </a>
       </div>
     </div>
   </section>
-  <Wave from="var(--color-primary-strong)" to="var(--color-surface)" flip />
 </Layout>

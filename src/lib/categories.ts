@@ -10,10 +10,10 @@
  */
 const CATEGORY_DOT: Record<string, string> = {
   'Ansiedad y estrés': 'before:bg-cat-sky',
-  'Relaciones y pareja': 'before:bg-cat-lilac',
+  'Relaciones y pareja': 'before:bg-cat-rose',
   'Autoestima y emociones': 'before:bg-cat-sage',
   'Trauma y duelo': 'before:bg-cat-stone',
-  'Empezar terapia': 'before:bg-cat-mint',
+  'Empezar terapia': 'before:bg-cat-lilac',
 };
 
 const CATEGORY_DOT_FALLBACK = 'before:bg-accent';

@@ -2,30 +2,34 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-  /* Mediterranean palette: petrol blue and mint on an off-white ground. Names
-     describe the role, not the colour, so a palette change only touches these
-     lines. Every text pair passes AA: white on primary 6.4:1, primary on bg
-     6.1:1, ink on bg 14.5:1, muted on bg 6.6:1, ink on highlight 12:1. */
-  --color-bg: #fafaf7;
-  --color-surface: #e8f3f0;
-  --color-primary: #0e6a6b;
-  --color-primary-strong: #0a4b4d;
-  /* Decorative only (logo, dots, shapes): too light for text. */
-  --color-accent: #5cc4b4;
+  /* Lilac and cream, Maria's choice. Names describe the role, not the colour,
+     so a palette change only touches these lines. All the lilacs share the hue
+     of Maria's lilac (#8b7ec8). Every text pair passes AA: white on primary
+     5.3:1, primary on bg 5.0:1 and on surface 4.6:1, white on primary-strong
+     6.6:1, ink on bg 14.4:1, muted on bg 6.2:1, ink on highlight 11.4:1. */
+  --color-bg: #fdf8f1;
+  /* Maria's light lilac warmed with a quarter of cream, so tinted sections
+     sit well next to the cream ones. */
+  --color-surface: #f2eef6;
+  /* The lightest lilac that still passes AA with white text and as text. */
+  --color-primary: #6e5fb7;
+  --color-primary-strong: #5f5399;
+  /* Maria's lilac. Decorative only (logo, dots, shapes): 3.4:1, too light for text. */
+  --color-accent: #8b7ec8;
   /* Soft fill for what deserves a nudge: the online option, step numbers. */
-  --color-highlight: #c8ede3;
-  --color-line: #d6e6e1;
-  --color-line-strong: #b9d4cd;
-  --color-ink: #0f2a2c;
-  --color-muted: #4a5d5f;
+  --color-highlight: #e2dbf3;
+  --color-line: #e6dfec;
+  --color-line-strong: #cec4e0;
+  --color-ink: #272140;
+  --color-muted: #605a72;
 
   /* Blog categories: a coloured dot on a neutral pill. The text is always ink,
      so these are decorative and need no contrast pair. */
   --color-cat-sky: #6b9be0;
-  --color-cat-lilac: #9c8fe0;
+  --color-cat-lilac: #8b7ec8;
+  --color-cat-rose: #c58bb5;
   --color-cat-sage: #8bb174;
   --color-cat-stone: #9aa7b4;
-  --color-cat-mint: #5cc4b4;
 
   --font-display: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
@@ -33,9 +37,9 @@
   --radius-card: 1.25rem;
   --radius-photo: 1.75rem;
 
-  --shadow-primary: 0 14px 32px -18px rgb(10 75 77 / 0.5);
-  --shadow-soft: 0 10px 28px -18px rgb(15 42 44 / 0.28);
-  --shadow-float: 0 18px 40px -18px rgb(15 42 44 / 0.45);
+  --shadow-primary: 0 14px 32px -18px rgb(95 83 153 / 0.55);
+  --shadow-soft: 0 10px 28px -18px rgb(39 33 64 / 0.28);
+  --shadow-float: 0 18px 40px -18px rgb(39 33 64 / 0.45);
 }
 
 /* Base styles live in the base layer so utilities can override them. */

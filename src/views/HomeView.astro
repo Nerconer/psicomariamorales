@@ -40,6 +40,7 @@ const COPY = {
     book: `Reservar primera sesión · ${first}`,
     whatsapp: 'Escríbeme por WhatsApp',
     doubts: '¿Tienes dudas?',
+    preferCall: '¿Prefieres llamar?',
     freeCall: 'Pide una llamada gratuita de 15 minutos',
     chips: [`Online desde casa · ${online}`, `Sesiones de ${minutes} min`, 'Castellano y català', `Presencial en Barcelona · ${inPerson}`, `Terapia de pareja · ${couple}`],
     recogniseTitle: '¿Te reconoces en algo de esto?',
@@ -97,6 +98,7 @@ const COPY = {
     book: `Reservar la primera sessió · ${first}`,
     whatsapp: 'Escriu-me per WhatsApp',
     doubts: 'Tens dubtes?',
+    preferCall: 'Prefereixes trucar?',
     freeCall: 'Demana una trucada gratuïta de 15 minuts',
     chips: [`En línia des de casa · ${online}`, `Sessions de ${minutes} min`, 'Català i castellà', `Presencial a Barcelona · ${inPerson}`, `Teràpia de parella · ${couple}`],
     recogniseTitle: "T'hi reconeixes en alguna cosa d'això?",
@@ -212,6 +214,16 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
             data-event-location="hero"
             class="font-semibold text-primary underline decoration-line underline-offset-4 hover:decoration-primary"
             >{c.freeCall}</a
+          >
+        </p>
+        <p class="mt-2 text-base text-muted">
+          {c.preferCall}{' '}
+          <a
+            href={SITE.phoneHref}
+            data-event="phone_click"
+            data-event-location="hero"
+            class="whitespace-nowrap font-bold text-primary underline decoration-line underline-offset-4 hover:decoration-primary"
+            >{SITE.phoneLocal}</a
           >
         </p>
 

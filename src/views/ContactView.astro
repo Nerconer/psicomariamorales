@@ -64,18 +64,19 @@ const iconClass = 'grid h-12 w-12 shrink-0 place-items-center rounded-full bg-su
   <section class="py-12 md:py-16">
     <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-8 lg:grid-cols-2 lg:gap-10">
       <div class="space-y-3">
-        <a href={WHATSAPP_BY_LOCALE[locale]} target="_blank" rel="noopener" data-event="whatsapp_click" data-event-location="contact" class={cardClass}>
-          <span class={iconClass}><WhatsAppIcon size={24} class="text-[#128c4a]" /></span>
-          <span>
-            <span class="block font-display text-lg font-bold">WhatsApp</span>
-            <span class="block text-muted">{SITE.phone}</span>
-          </span>
-        </a>
+        <!-- Phone first and the number large: it is what older visitors look for. -->
         <a href={SITE.phoneHref} data-event="phone_click" data-event-location="contact" class={cardClass}>
           <span class={iconClass}><Icon name="phone" /></span>
           <span>
             <span class="block font-display text-lg font-bold">{COPY.call}</span>
-            <span class="block text-muted">{SITE.phone}</span>
+            <span class="block font-display text-2xl font-bold text-primary">{SITE.phoneLocal}</span>
+          </span>
+        </a>
+        <a href={WHATSAPP_BY_LOCALE[locale]} target="_blank" rel="noopener" data-event="whatsapp_click" data-event-location="contact" class={cardClass}>
+          <span class={iconClass}><WhatsAppIcon size={24} class="text-[#128c4a]" /></span>
+          <span>
+            <span class="block font-display text-lg font-bold">WhatsApp</span>
+            <span class="block text-muted">{SITE.phoneLocal}</span>
           </span>
         </a>
         <a href={`mailto:${SITE.email}`} data-event="email_click" data-event-location="contact" class={cardClass}>

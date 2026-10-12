@@ -31,6 +31,9 @@ export const SITE = {
   // Public profile at the Col·legi Oficial de Psicologia de Catalunya
   copc: 'https://www.copc.cat/es/contacte/maria-morales-herrerias-179636',
   phone: '+34 611 19 35 69',
+  // How the number is shown on the page: the local format people dial,
+  // without the +34 that confuses many older visitors.
+  phoneLocal: '611 19 35 69',
   phoneHref: 'tel:+34611193569',
   whatsapp: whatsappUrl('Hola Maria, me gustaría pedir información.'),
   email: 'info@psicomariamorales.com',

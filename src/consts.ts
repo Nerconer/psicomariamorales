@@ -42,10 +42,12 @@ export const SITE = {
   // practice moves, update these three together with `address` and `maps`.
   postalAddress: { street: 'Carrer de los Castillejos, 326', postalCode: '08025', locality: 'Barcelona' },
   geo: { latitude: 41.40945, longitude: 2.17465 },
-  maps: 'https://www.google.com/maps/place//data=!4m2!3m1!1s0x12a4a2daca5fde37:0x2af25dd8aff241ca?sa=X&ved=1t:8290&ictx=111',
-  schedule: 'De 9:00 a 19:00 h',
-  scheduleCa: 'De 9.00 a 19.00 h',
+  // Google Business Profile: the reviews and the map both open here.
+  maps: 'https://maps.app.goo.gl/9Kkk12zpmd7HVBC27',
+  schedule: 'De 9:00 a 21:00 h',
+  scheduleCa: 'De 9.00 a 21.00 h',
   linkedin: 'https://www.linkedin.com/in/maria-morales-herrer%C3%ADas-7213a0175/',
+  instagram: 'https://www.instagram.com/psicomariamorales/',
 };
 
 // Single source for session prices and lengths. Pricing page, schema and any
@@ -71,7 +73,7 @@ export const REVIEWS: {
   // site then shows only the link, without a rating.
   google: { rating: number; count: number; url: string };
 } = {
-  doctoralia: { rating: 5, count: 2, slug: 'maria-morales-herrerias' },
+  doctoralia: { rating: 5, count: 3, slug: 'maria-morales-herrerias' },
   google: { rating: 0, count: 0, url: SITE.maps },
 };
 

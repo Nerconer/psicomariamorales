@@ -1,0 +1,33 @@
+---
+// Instagram and LinkedIn as icon links, at the end of the home, contact and
+// about pages. Plain links: nothing is loaded from either network.
+import { SITE } from '../consts';
+import { localeFromPath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  /** Analytics location of the clicks. */
+  location: string;
+}
+const { location } = Astro.props;
+const t = useTranslations(localeFromPath(Astro.url.pathname));
+const linkClass =
+  'grid h-12 w-12 place-items-center rounded-full border border-line/70 bg-white text-primary transition-colors hover:border-primary hover:bg-surface';
+---
+
+<div class="flex items-center gap-3">
+  <p class="font-display font-bold text-ink">{t('social.follow')}</p>
+  <a href={SITE.instagram} target="_blank" rel="noopener" aria-label="Instagram" data-event="instagram_click" data-event-location={location} class={linkClass}>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+      <circle cx="12" cy="12" r="4"></circle>
+      <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"></circle>
+    </svg>
+  </a>
+  <a href={SITE.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn" data-event="linkedin_click" data-event-location={location} class={linkClass}>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+      <path d="M8 10.5V16M8 7.5v.01M12 16v-3.2a2.3 2.3 0 0 1 4.6 0V16M12 10.5V16"></path>
+    </svg>
+  </a>
+</div>

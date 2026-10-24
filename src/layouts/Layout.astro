@@ -62,7 +62,7 @@ const personSchema = {
   url: new URL('/sobre-mi/', Astro.site).href,
   image: new URL('/og/es-about.jpg', Astro.site).href,
   knowsLanguage: ['es', 'ca'],
-  sameAs: [SITE.copc, SITE.doctoralia, SITE.linkedin],
+  sameAs: [SITE.copc, SITE.doctoralia, SITE.linkedin, SITE.instagram],
   hasCredential: {
     '@type': 'EducationalOccupationalCredential',
     credentialCategory: 'Colegiación profesional',
@@ -102,7 +102,7 @@ const businessSchema = {
   priceRange: PRICE_RANGE,
   currenciesAccepted: 'EUR',
   paymentAccepted: 'Efectivo, transferencia, Bizum',
-  sameAs: [SITE.doctoralia, SITE.linkedin, SITE.copc, SITE.maps],
+  sameAs: [SITE.doctoralia, SITE.linkedin, SITE.instagram, SITE.copc, SITE.maps],
   founder: personSchema,
   makesOffer: [
     offer('Primera sesión de terapia individual', 'firstSession'),

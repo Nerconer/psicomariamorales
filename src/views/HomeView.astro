@@ -4,7 +4,8 @@ import { Image, getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import Wave from '../components/Wave.astro';
-import DoctoraliaEmbed from '../components/DoctoraliaEmbed.astro';
+import DoctoraliaBadge from '../components/DoctoraliaBadge.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 import GoogleReviewsLink from '../components/GoogleReviewsLink.astro';
 import LifeStages from '../components/LifeStages.astro';
 import OrientationQuiz from '../components/OrientationQuiz.astro';
@@ -47,7 +48,7 @@ const COPY = {
     chips: [`Online desde casa · ${online}`, `Sesiones de ${minutes} min`, 'Castellano y català', `Presencial en Barcelona · ${inPerson}`, `Terapia de pareja · ${couple}`, 'Adultos y adolescentes desde 12 años'],
     recogniseTitle: '¿Te reconoces en algo de esto?',
     recogniseIntro:
-      'A veces no es ansiedad exactamente. Puede aparecer como estrés, tristeza, inseguridad, dificultad para poner límites o sensación de estar bloqueado/a. Si te reconoces en alguna de estas situaciones, la terapia puede ayudarte:',
+      'A veces sientes malestar físico y/o mental. Puede aparecer como estrés, tristeza, inseguridad, dificultad para poner límites, ansiedad o sensación de estar bloqueado/a. Si te reconoces en alguna de estas situaciones, la terapia puede ayudarte:',
     hardTitle: 'Si estás pasando un mal momento',
     growthTitle: 'Si estás bien, pero quieres mejorar',
     growthIntro:
@@ -105,7 +106,7 @@ const COPY = {
     chips: [`En línia des de casa · ${online}`, `Sessions de ${minutes} min`, 'Català i castellà', `Presencial a Barcelona · ${inPerson}`, `Teràpia de parella · ${couple}`, 'Adults i adolescents des de 12 anys'],
     recogniseTitle: "T'hi reconeixes en alguna cosa d'això?",
     recogniseIntro:
-      "De vegades no és exactament ansietat. Pot aparèixer com a estrès, tristesa, inseguretat, dificultat per posar límits o sensació d'estar bloquejat/da. Si et reconeixes en alguna d'aquestes situacions, la teràpia et pot ajudar:",
+      "De vegades sents malestar físic i/o mental. Pot aparèixer com a estrès, tristesa, inseguretat, dificultat per posar límits, ansietat o sensació d'estar bloquejat/da. Si et reconeixes en alguna d'aquestes situacions, la teràpia et pot ajudar:",
     hardTitle: 'Si estàs passant un mal moment',
     growthTitle: 'Si estàs bé, però vols millorar',
     growthIntro:
@@ -230,11 +231,11 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
         </p>
 
         <div class="mt-6 flex flex-wrap gap-2">
-          <Chip tone="sun" icon="online">{c.chips[0]}</Chip>
+          <Chip tone="sun" icon="location">{c.chips[3]}</Chip>
+          <Chip icon="online">{c.chips[0]}</Chip>
           <Chip>{c.chips[1]}</Chip>
           <Chip icon="self">{c.chips[5]}</Chip>
           <Chip>{c.chips[2]}</Chip>
-          <Chip icon="location">{c.chips[3]}</Chip>
           <Chip icon="couple">{c.chips[4]}</Chip>
         </div>
       </div>
@@ -345,7 +346,7 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
     <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
       <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.reviews}</h2>
       <div class="mt-6">
-        <DoctoraliaEmbed mode="reviews" location="home" />
+        <DoctoraliaBadge />
         <GoogleReviewsLink />
       </div>
     </div>
@@ -358,6 +359,9 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
       <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.faqTitle}</h2>
       <div class="mt-6">
         <Faq items={[...c.faqs]} schema />
+      </div>
+      <div class="mt-10">
+        <SocialLinks location="home" />
       </div>
     </div>
   </section>

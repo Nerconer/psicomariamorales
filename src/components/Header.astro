@@ -13,8 +13,8 @@ const t = useTranslations(locale);
 
 // The logo already links home, so "Inicio" is not repeated in the menu.
 const links = [
-  { href: pathFor('online', locale), label: t('nav.online') },
   { href: pathFor('therapy', locale), label: t('nav.therapy') },
+  { href: pathFor('online', locale), label: t('nav.online') },
   { href: pathFor('couples', locale), label: t('nav.couples') },
   { href: pathFor('pricing', locale), label: t('nav.pricing') },
   // Shown from xl only on desktop: between 1024 and 1280 px there is no room.

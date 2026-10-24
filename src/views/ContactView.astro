@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import Wave from '../components/Wave.astro';
 import DoctoraliaEmbed from '../components/DoctoraliaEmbed.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 import Faq from '../components/ui/Faq.astro';
 import Icon from '../components/ui/Icon.astro';
 import WhatsAppIcon from '../components/ui/WhatsAppIcon.astro';
@@ -88,6 +89,9 @@ const iconClass = 'grid h-12 w-12 shrink-0 place-items-center rounded-full bg-su
           </span>
         </a>
         <p class="pt-2 text-base text-muted">{COPY.privacy}</p>
+        <div class="pt-4">
+          <SocialLinks location="contact" />
+        </div>
       </div>
 
       <div class="space-y-4">

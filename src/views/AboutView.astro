@@ -7,6 +7,7 @@ import PageHero from '../components/PageHero.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import Wave from '../components/Wave.astro';
 import Chip from '../components/ui/Chip.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 import { SITE } from '../consts';
 import { PAGE_TITLES } from '../data/page-titles';
 import type { Locale } from '../i18n/config';
@@ -110,11 +111,11 @@ const COPY = {
   },
 }[locale];
 
-// Complementary training, from Maria's CV. Course names are kept as issued,
+// Complementary training, from Maria's CV. Years are kept in the data but not
+// shown, as Maria asked. Course names are kept as issued,
 // so the Catalan page shows them in their original language too.
 const COMPLEMENTARY = [
-  { title: 'EMDR Nivel 2', place: 'IMAYA Formación. Asociación Española EMDR', years: '2026' },
-  { title: 'EMDR Nivel 1', place: 'IMAYA Formación. Asociación Española EMDR', years: '2026' },
+  { title: 'EMDR Nivel 1 y 2', place: 'IMAYA Formación. Asociación Española EMDR', years: '2026' },
   { title: 'Formación en Psicotrauma Modelo Cert', place: 'Centro Cert', years: '2026' },
   { title: 'Introducción terapia sistémica', place: 'Centro Cert', years: '2026' },
   { title: 'Formación en Sistemas Familiares Internos (IFS)', place: 'Formarme', years: '2026' },
@@ -194,7 +195,7 @@ const certificates = await Promise.all(
             <li>
               <span class="font-semibold">{d.title}</span>
               <span class="block text-sm text-muted">
-                {d.place}, {d.years}
+                {d.place}
               </span>
             </li>
           ))
@@ -208,7 +209,7 @@ const certificates = await Promise.all(
             <li>
               <span class="font-semibold">{d.title}</span>
               <span class="block text-sm text-muted">
-                {d.place}, {d.years}
+                {d.place}
               </span>
             </li>
           ))
@@ -239,6 +240,10 @@ const certificates = await Promise.all(
           ))
         }
       </ul>
+
+      <div class="mt-10">
+        <SocialLinks location="about" />
+      </div>
     </div>
   </section>
 

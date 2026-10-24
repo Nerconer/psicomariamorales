@@ -21,10 +21,10 @@ const COPY = {
     metaTitle: 'Tarifas de terapia online y en Barcelona',
     description: `Primera sesión ${p('firstSession')}, terapia online ${p('online')}, presencial en Barcelona ${p('inPerson')} y terapia de pareja ${p('couple')}. Sesiones de 60 minutos, pareja de 90.`,
     title: PAGE_TITLES.pricing.es,
-    lead: 'Las sesiones duran 60 minutos. La terapia de pareja, 90.',
+    lead: `Las sesiones individuales duran ${PRICES.online.minutes} minutos y las sesiones de pareja ${PRICES.couple.minutes} minutos.`,
     rates: [
-      { title: 'Terapia online', key: 'online', desc: 'Por videollamada, desde donde estés.', featured: true },
-      { title: 'Primera sesión', key: 'firstSession', desc: 'Para conocernos y ver qué necesitas. Terapia individual, online o en Barcelona.', featured: false },
+      { title: 'Primera sesión', key: 'firstSession', desc: 'Para conocernos y ver qué necesitas. Terapia individual, online o en Barcelona.', featured: true },
+      { title: 'Terapia online', key: 'online', desc: 'Por videollamada, desde donde estés.', featured: false },
       { title: 'Presencial', key: 'inPerson', desc: 'En la consulta de Barcelona.', featured: false },
       { title: 'Terapia de pareja', key: 'couple', desc: 'Para los dos, online o en Barcelona.', featured: false },
     ],
@@ -33,7 +33,7 @@ const COPY = {
     freeCall: 'Pide una llamada gratuita de 15 minutos',
     calendarTitle: 'Reserva sin salir de la web',
     payTitle: 'Pago',
-    pay: 'Efectivo, transferencia o Bizum. Las sesiones online se pagan antes de la cita.',
+    pay: 'Efectivo, transferencia o Bizum, al acabar la sesión.',
     cancelTitle: 'Cancelación',
     cancel: 'Si no puedes venir, avísame con 24 horas de antelación y la cambiamos sin coste.',
     review: 'Los precios se revisan una vez al año.',
@@ -42,10 +42,10 @@ const COPY = {
     metaTitle: 'Tarifes de teràpia en línia i a Barcelona',
     description: `Primera sessió ${p('firstSession')}, teràpia en línia ${p('online')}, presencial a Barcelona ${p('inPerson')} i teràpia de parella ${p('couple')}. Sessions de 60 minuts, parella de 90.`,
     title: PAGE_TITLES.pricing.ca,
-    lead: 'Les sessions duren 60 minuts. La teràpia de parella, 90.',
+    lead: `Les sessions individuals duren ${PRICES.online.minutes} minuts i les sessions de parella, ${PRICES.couple.minutes} minuts.`,
     rates: [
-      { title: 'Teràpia en línia', key: 'online', desc: "Per videotrucada, des d'on siguis.", featured: true },
-      { title: 'Primera sessió', key: 'firstSession', desc: 'Per conèixer-nos i veure què necessites. Teràpia individual, en línia o a Barcelona.', featured: false },
+      { title: 'Primera sessió', key: 'firstSession', desc: 'Per conèixer-nos i veure què necessites. Teràpia individual, en línia o a Barcelona.', featured: true },
+      { title: 'Teràpia en línia', key: 'online', desc: "Per videotrucada, des d'on siguis.", featured: false },
       { title: 'Presencial', key: 'inPerson', desc: 'A la consulta de Barcelona.', featured: false },
       { title: 'Teràpia de parella', key: 'couple', desc: 'Per a tots dos, en línia o a Barcelona.', featured: false },
     ],
@@ -54,7 +54,7 @@ const COPY = {
     freeCall: 'Demana una trucada gratuïta de 15 minuts',
     calendarTitle: 'Reserva sense sortir del web',
     payTitle: 'Pagament',
-    pay: 'Efectiu, transferència o Bizum. Les sessions en línia es paguen abans de la cita.',
+    pay: 'Efectiu, transferència o Bizum, en acabar la sessió.',
     cancelTitle: 'Cancel·lació',
     cancel: "Si no pots venir, avisa'm amb 24 hores d'antelació i la canviem sense cost.",
     review: "Els preus es revisen un cop l'any.",
@@ -123,10 +123,8 @@ const COPY = {
   <Wave from="var(--color-bg)" to="var(--color-surface)" />
   <section class="bg-surface py-12 md:py-16" id="reservar">
     <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
-      <h2 class="text-2xl font-bold text-primary md:text-3xl">{COPY.calendarTitle}</h2>
-      <div class="mt-5">
-        <DoctoraliaEmbed mode="calendar" location="pricing" />
-      </div>
+      <h2 class="sr-only">{COPY.calendarTitle}</h2>
+      <DoctoraliaEmbed mode="calendar" location="pricing" compact />
     </div>
   </section>
 

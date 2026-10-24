@@ -15,6 +15,6 @@ export const PAGE_TITLES = {
 
 /** Subtitle of the home hero, also printed on every share image. */
 export const HOME_SUBTITLE: Record<Locale, string> = {
-  es: 'Te acompaño cuando algo pasa y cuando simplemente quieres mejorar algo.',
-  ca: "T'acompanyo quan passa alguna cosa i quan simplement vols millorar alguna cosa.",
+  es: 'Te acompaño cuando algo pasa o cuando simplemente quieres mejorar.',
+  ca: "T'acompanyo quan passa alguna cosa o quan simplement vols millorar.",
 };

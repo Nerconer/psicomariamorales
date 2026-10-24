@@ -5,6 +5,10 @@ import PageHero from '../components/PageHero.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import Wave from '../components/Wave.astro';
 import LifeStages from '../components/LifeStages.astro';
+import ApproachCard from '../components/ApproachCard.astro';
+import DoctoraliaBadge from '../components/DoctoraliaBadge.astro';
+import GoogleReviewsLink from '../components/GoogleReviewsLink.astro';
+import { APPROACHES } from '../data/approaches';
 import { Picture } from 'astro:assets';
 import Icon, { type IconName } from '../components/ui/Icon.astro';
 import mariaWriting from '../assets/img/maria-writing.jpg';
@@ -18,7 +22,7 @@ interface Props {
 }
 const { locale } = Astro.props;
 
-// Specialties with their own page link to it.
+// Every specialty links to its own page (issue #45).
 const LANDINGS: Record<string, RouteKey> = {
   ansiedad: 'anxiety',
   estres: 'stress',
@@ -29,13 +33,31 @@ const LANDINGS: Record<string, RouteKey> = {
   sentido: 'growth',
   duelo: 'grief',
   trauma: 'emdr',
+  victima: 'emdr',
+  panico: 'panic',
+  intrusivos: 'intrusive',
+  tristeza: 'sadness',
+  regulacion: 'emotionRegulation',
+  irritabilidad: 'irritability',
+  control: 'control',
+  conflictos: 'conflicts',
+  dependencia: 'dependency',
+  apego: 'attachment',
+  familia: 'family',
+  soledad: 'loneliness',
+  evitacion: 'avoidance',
+  pantallas: 'screens',
+  crisis: 'lifeCrisis',
+  jovenes: 'youth',
+  perinatal: 'perinatal',
+  disociacion: 'dissociation',
 };
 
 type Specialty = { id: string; icon: IconName; title: string; text?: string };
 
 // Anxiety comes first and trauma last, as Maria asked. The ids are the anchors
 // other pages link to, so they stay the same in both languages.
-const COPY: Record<Locale, { metaTitle: string; description: string; title: string; intro: string[]; photoAlt: string; online: string; onlineText: string; inPerson: string; inPersonText: string; listTitle: string; specialties: Specialty[] }> = {
+const COPY: Record<Locale, { metaTitle: string; description: string; title: string; intro: string[]; photoAlt: string; online: string; onlineText: string; inPerson: string; inPersonText: string; listTitle: string; reviewsTitle: string; specialties: Specialty[] }> = {
   es: {
     metaTitle: 'Terapia psicológica en Barcelona',
     description:
@@ -53,6 +75,7 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
     inPerson: 'Presencial',
     inPersonText: 'En la consulta de Barcelona.',
     listTitle: 'Con qué acompaño',
+    reviewsTitle: 'Opiniones de pacientes',
     specialties: [
       { id: 'ansiedad', icon: 'anxiety', title: 'Ansiedad', text: 'Insomnio, presión en el pecho, pensamientos constantes, obsesiones o rumiaciones.' },
       { id: 'estres', icon: 'stress', title: 'Estrés', text: 'Cuando las exigencias superan durante mucho tiempo lo que puedes sostener.' },
@@ -100,6 +123,7 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
     inPerson: 'Presencial',
     inPersonText: 'A la consulta de Barcelona.',
     listTitle: 'Amb què acompanyo',
+    reviewsTitle: 'Opinions de pacients',
     specialties: [
       { id: 'ansiedad', icon: 'anxiety', title: 'Ansietat', text: 'Insomni, pressió al pit, pensaments constants, obsessions o rumiacions.' },
       { id: 'estres', icon: 'stress', title: 'Estrès', text: 'Quan les exigències superen durant molt de temps el que pots sostenir.' },
@@ -133,6 +157,7 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
 };
 
 const c = COPY[locale];
+const a = APPROACHES[locale];
 ---
 
 <Layout title={c.metaTitle} description={c.description}>
@@ -208,5 +233,27 @@ const c = COPY[locale];
     </div>
   </section>
 
-  <CtaFinal from="var(--color-surface)" />
+  <Wave from="var(--color-surface)" to="var(--color-bg)" flip />
+  <section class="py-12 md:py-16" id="enfoques">
+    <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+      <h2 class="text-2xl font-bold text-primary md:text-3xl">{a.title}</h2>
+
+      <h3 class="mt-8 text-xl font-bold text-ink">{a.approachesTitle}</h3>
+      <div class="mt-4 grid gap-3 md:grid-cols-3">{a.approaches.map((x) => <ApproachCard {...x} />)}</div>
+
+      <h3 class="mt-10 text-xl font-bold text-ink">{a.techniquesTitle}</h3>
+      <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{a.techniques.map((x) => <ApproachCard {...x} />)}</div>
+
+      <h3 class="mt-10 text-xl font-bold text-ink">{a.combineTitle}</h3>
+      <p class="mt-3 max-w-[68ch]">{a.combine}</p>
+
+      <h3 class="mt-12 text-xl font-bold text-ink">{c.reviewsTitle}</h3>
+      <div class="mt-4">
+        <DoctoraliaBadge />
+        <GoogleReviewsLink />
+      </div>
+    </div>
+  </section>
+
+  <CtaFinal />
 </Layout>

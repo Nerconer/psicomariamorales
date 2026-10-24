@@ -31,7 +31,7 @@ const COPY = {
     book: 'Reservar',
     doubts: '¿Tienes dudas antes de reservar?',
     freeCall: 'Pide una llamada gratuita de 15 minutos',
-    calendarTitle: 'Reserva sin salir de la web',
+    calendarTitle: 'Consulta la disponibilidad',
     payTitle: 'Pago',
     pay: 'Efectivo, transferencia o Bizum, al acabar la sesión.',
     cancelTitle: 'Cancelación',
@@ -52,7 +52,7 @@ const COPY = {
     book: 'Reservar',
     doubts: 'Tens dubtes abans de reservar?',
     freeCall: 'Demana una trucada gratuïta de 15 minuts',
-    calendarTitle: 'Reserva sense sortir del web',
+    calendarTitle: 'Consulta la disponibilitat',
     payTitle: 'Pagament',
     pay: 'Efectiu, transferència o Bizum, en acabar la sessió.',
     cancelTitle: 'Cancel·lació',
@@ -123,8 +123,10 @@ const COPY = {
   <Wave from="var(--color-bg)" to="var(--color-surface)" />
   <section class="bg-surface py-12 md:py-16" id="reservar">
     <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
-      <h2 class="sr-only">{COPY.calendarTitle}</h2>
-      <DoctoraliaEmbed mode="calendar" location="pricing" compact />
+      <h2 class="text-2xl font-bold text-primary md:text-3xl">{COPY.calendarTitle}</h2>
+      <div class="mt-5">
+        <DoctoraliaEmbed mode="calendar" location="pricing" />
+      </div>
     </div>
   </section>
 

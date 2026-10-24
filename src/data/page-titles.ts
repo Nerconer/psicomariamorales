@@ -6,7 +6,7 @@ import type { Locale } from '../i18n/config';
  */
 export const PAGE_TITLES = {
   home: { es: 'Psicóloga en Barcelona y online', ca: 'Psicòloga a Barcelona i en línia' },
-  therapy: { es: 'Terapia psicológica online y en Barcelona', ca: 'Teràpia psicològica en línia i a Barcelona' },
+  therapy: { es: 'Terapia psicológica en Barcelona', ca: 'Teràpia psicològica a Barcelona' },
   couples: { es: 'Terapia de pareja online y en Barcelona', ca: 'Teràpia de parella en línia i a Barcelona' },
   about: { es: 'Hola, soy Maria', ca: 'Hola, soc Maria' },
   pricing: { es: 'Tarifas', ca: 'Tarifes' },

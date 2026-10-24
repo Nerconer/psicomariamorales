@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import Wave from '../components/Wave.astro';
+import LifeStages from '../components/LifeStages.astro';
 import { Picture } from 'astro:assets';
 import Icon, { type IconName } from '../components/ui/Icon.astro';
 import mariaWriting from '../assets/img/maria-writing.jpg';
@@ -36,11 +37,13 @@ type Specialty = { id: string; icon: IconName; title: string; text?: string };
 // other pages link to, so they stay the same in both languages.
 const COPY: Record<Locale, { metaTitle: string; description: string; title: string; intro: string[]; photoAlt: string; online: string; onlineText: string; inPerson: string; inPersonText: string; listTitle: string; specialties: Specialty[] }> = {
   es: {
-    metaTitle: 'Terapia psicológica online y en Barcelona',
+    metaTitle: 'Terapia psicológica en Barcelona',
     description:
       'Terapia psicológica online en toda España y presencial en Barcelona: ansiedad, estrés, burnout, autoestima, bloqueos, duelo y trauma con EMDR.',
     title: PAGE_TITLES.therapy.es,
     intro: [
+      "Para mí los síntomas (psicológicos y somáticos) y el malestar que podemos tener las personas simplemente es el cuerpo hablando. La finalidad biológica de nuestro cuerpo es sobrevivir y para ello tiene muchos mecanismos para garantizarlo, lo que pasa que muchas veces no tenemos las herramientas o la consciencia para entenderlos y se acaban cronificando manifestándose en formato síntomas y malestar, perdiendo así salud (esos mecanismos no cumplen con su función).",
+      "Cuando se entienden, cumplen su función y muchas veces ese malestar desaparece. Eso es a lo que me dedico, a entender el origen y el porqué de los síntomas y el malestar.",
       'Trabajo desde la psicología integradora. Me adapto a cada persona, a cada situación y a cada necesidad. No todo funciona de la misma manera en cada persona.',
       'Tengo formación amplia en diferentes enfoques y corrientes: cognitivo-conductual, terapias de tercera generación, EMDR nivel I y II, IFS, terapia focalizada en la emoción, terapia sistémica y análisis transaccional, entre otros.',
     ],
@@ -55,31 +58,39 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
       { id: 'estres', icon: 'stress', title: 'Estrés', text: 'Cuando las exigencias superan durante mucho tiempo lo que puedes sostener.' },
       { id: 'burnout', icon: 'stress', title: 'Burnout', text: 'El trabajo te ha dejado sin energía ni ganas.' },
       { id: 'panico', icon: 'panic', title: 'Ataques de pánico', text: 'Un miedo intenso y repentino, con síntomas físicos que asustan.' },
-      { id: 'intrusivos', icon: 'anxiety', title: 'Pensamientos intrusivos', text: 'Ideas o imágenes que aparecen sin querer y generan mucho malestar.' },
-      { id: 'autoestima', icon: 'confidence', title: 'Autoestima', text: 'Te cuesta valorarte o sientes que nunca es suficiente.' },
-      { id: 'regulacion', icon: 'heart', title: 'Regulación emocional', text: 'Emociones tan intensas que cuesta entenderlas o manejarlas.' },
+      { id: 'intrusivos', icon: 'anxiety', title: 'Pensamientos intrusivos, obsesiones y compulsiones', text: 'Ideas o imágenes que aparecen sin querer y generan malestar. Pueden llevar a que repitas alguna acción para sentirte mejor.' },
+      { id: 'tristeza', icon: 'heart', title: 'Tristeza', text: 'Sentirme sin ganas, que todo me cueste, hasta las tareas más simples.' },
+      { id: 'autoestima', icon: 'confidence', title: 'Autoestima', text: 'Te gusta valorarte y tratarte bien.' },
+      { id: 'regulacion', icon: 'heart', title: 'Regulación emocional', text: 'Emociones tan intensas y desbordantes que cuesta entenderlas y manejarlas, generando malestar y acciones de regulación poco saludables (atracones, autolesiones, tricotilomanía, etc.).' },
       { id: 'irritabilidad', icon: 'heart', title: 'Irritabilidad', text: 'Estar irascible, que todo te moleste.' },
+      { id: 'control', icon: 'blocks', title: 'Necesidad de control', text: 'No poder ceder nunca el control, estar sobrepasando en todo, anticipar todo y estar irascible si algo no sale como esperaba.' },
       { id: 'bloqueos', icon: 'blocks', title: 'Bloqueos', text: 'A veces sabes lo que quieres cambiar, pero algo dentro de ti parece frenarte.' },
-      { id: 'conflictos', icon: 'blocks', title: 'Gestión de conflictos', text: 'Gestión de conflictos (quedarte bloqueado).' },
+      { id: 'conflictos', icon: 'blocks', title: 'Gestión de conflictos', text: 'Sentir que no solucionas bien los conflictos en el trabajo, con profesores/as, con la familia, con amigos, etc.' },
       { id: 'dependencia', icon: 'couple', title: 'Dependencia emocional', text: 'Cuando el miedo a perder una relación decide por ti.' },
       { id: 'apego', icon: 'couple', title: 'Apego y límites', text: 'Te cuesta confiar, poner límites o mantener relaciones estables.' },
-      { id: 'familia', icon: 'couple', title: 'Relaciones familiares', text: 'Conflictos familiares que desgastan.' },
+      { id: 'familia', icon: 'couple', title: 'Relaciones familiares', text: 'Aceptar o modificar la vivencia de las relaciones familiares que generan malestar.' },
       { id: 'soledad', icon: 'couple', title: 'Soledad y conexión', text: 'Soledad, dificultad para conectar con la gente o sentirte diferente.' },
-      { id: 'sentido', icon: 'self', title: 'Apatía y falta de sentido', text: 'No encontrar el sentido de la vida, apatía o falta de ganas.' },
-      { id: 'pantallas', icon: 'self', title: 'Móvil y pantallas', text: 'Horas y horas atrapado en el móvil o en las pantallas.' },
+      { id: 'sentido', icon: 'self', title: 'No saber quién soy o lo que quiero', text: 'No sabes cómo eres o lo que quieres. Te gustaría tener tu identidad y el sentido de vida más definido.' },
+      { id: 'evitacion', icon: 'self', title: 'Evitación', text: 'Evadirse con el móvil, el deporte o cualquier cosa para evitar afrontar o conectar con el sufrimiento.' },
+      { id: 'pantallas', icon: 'self', title: 'Abuso de pantallas', text: 'Notar que estoy muchas horas en el móvil, Netflix, videojuegos... hasta dejar de tener el control.' },
       { id: 'crisis', icon: 'self', title: 'Crisis vitales', text: 'Una separación, un cambio de trabajo, la maternidad o una enfermedad.' },
+      { id: 'jovenes', icon: 'self', title: 'Acompañamiento adolescente/joven', text: 'De los 12 a los 25 años es una etapa de cambios, no solo sociales sino también de cambios biológicos. En esta etapa se puede necesitar acompañamiento en las diferentes dudas y cambios vitales.' },
+      { id: 'perinatal', icon: 'heart', title: 'Psicología perinatal', text: 'Preparación psicológica para el parto, posparto.' },
       { id: 'duelo', icon: 'grief', title: 'Duelo', text: 'Una pérdida que duele y necesita su espacio.' },
       { id: 'perfeccionismo', icon: 'confidence', title: 'Perfeccionismo', text: 'Presión constante, miedo al error y la sensación de no llegar nunca.' },
-      { id: 'disociacion', icon: 'trauma', title: 'Disociación' },
+      { id: 'victima', icon: 'trauma', title: 'Haber sido víctima', text: 'De ASI, abuso, conducta narcisista, etc.' },
+      { id: 'disociacion', icon: 'trauma', title: 'Disociación', text: 'Estar presente físicamente, pero sentir que estás lejos de ti, como si vivieras en automático y te costara conectar con lo que sientes.' },
       { id: 'trauma', icon: 'trauma', title: 'Trauma', text: 'El trauma no siempre viene de algo extremo. A veces nace de años de críticas, abandono o relaciones inseguras.' },
     ],
   },
   ca: {
-    metaTitle: 'Teràpia psicològica en línia i a Barcelona',
+    metaTitle: 'Teràpia psicològica a Barcelona',
     description:
       "Teràpia psicològica en línia a tot Espanya i presencial a Barcelona: ansietat, estrès, burnout, autoestima, bloquejos, dol i trauma amb EMDR.",
     title: PAGE_TITLES.therapy.ca,
     intro: [
+      "Per a mi, els símptomes (psicològics i somàtics) i el malestar que podem tenir les persones simplement són el cos parlant. La finalitat biològica del nostre cos és sobreviure i per això té molts mecanismes per garantir-ho, el que passa és que moltes vegades no tenim les eines o la consciència per entendre'ls i s'acaben cronificant i manifestant en forma de símptomes i malestar, i així perdem salut (aquests mecanismes no compleixen la seva funció).",
+      "Quan s'entenen, compleixen la seva funció i moltes vegades aquest malestar desapareix. Això és el que faig, entendre l'origen i el perquè dels símptomes i del malestar.",
       "Treballo des de la psicologia integradora. M'adapto a cada persona, a cada situació i a cada necessitat. No tot funciona de la mateixa manera en cada persona.",
       "Tinc una formació àmplia en diferents enfocaments i corrents: cognitivoconductual, teràpies de tercera generació, EMDR nivell I i II, IFS, teràpia focalitzada en l'emoció, teràpia sistèmica i anàlisi transaccional, entre d'altres.",
     ],
@@ -94,22 +105,28 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
       { id: 'estres', icon: 'stress', title: 'Estrès', text: 'Quan les exigències superen durant molt de temps el que pots sostenir.' },
       { id: 'burnout', icon: 'stress', title: 'Burnout', text: "La feina t'ha deixat sense energia ni ganes." },
       { id: 'panico', icon: 'panic', title: 'Atacs de pànic', text: 'Una por intensa i sobtada, amb símptomes físics que espanten.' },
-      { id: 'intrusivos', icon: 'anxiety', title: 'Pensaments intrusius', text: 'Idees o imatges que apareixen sense voler i generen molt de malestar.' },
-      { id: 'autoestima', icon: 'confidence', title: 'Autoestima', text: 'Et costa valorar-te o sents que mai no és suficient.' },
-      { id: 'regulacion', icon: 'heart', title: 'Regulació emocional', text: 'Emocions tan intenses que costa entendre-les o gestionar-les.' },
+      { id: 'intrusivos', icon: 'anxiety', title: 'Pensaments intrusius, obsessions i compulsions', text: 'Idees o imatges que apareixen sense voler i generen malestar. Poden fer que repeteixis alguna acció per sentir-te millor.' },
+      { id: 'tristeza', icon: 'heart', title: 'Tristesa', text: 'Sentir-me sense ganes, que tot em costi, fins i tot les tasques més simples.' },
+      { id: 'autoestima', icon: 'confidence', title: 'Autoestima', text: "T'agrada valorar-te i tractar-te bé." },
+      { id: 'regulacion', icon: 'heart', title: 'Regulació emocional', text: 'Emocions tan intenses i desbordants que costa entendre-les i gestionar-les, i que generen malestar i accions de regulació poc saludables (afartaments, autolesions, tricotil·lomania, etc.).' },
       { id: 'irritabilidad', icon: 'heart', title: 'Irritabilitat', text: 'Estar irascible, que tot et molesti.' },
+      { id: 'control', icon: 'blocks', title: 'Necessitat de control', text: 'No poder cedir mai el control, estar sobrepassant en tot, anticipar-ho tot i estar irascible si alguna cosa no surt com esperava.' },
       { id: 'bloqueos', icon: 'blocks', title: 'Bloquejos', text: 'De vegades saps què vols canviar, però alguna cosa dins teu sembla frenar-te.' },
-      { id: 'conflictos', icon: 'blocks', title: 'Gestió de conflictes', text: 'Gestió de conflictes (quedar-te bloquejat).' },
+      { id: 'conflictos', icon: 'blocks', title: 'Gestió de conflictes', text: 'Sentir que no resols bé els conflictes a la feina, amb professors/es, amb la família, amb amics, etc.' },
       { id: 'dependencia', icon: 'couple', title: 'Dependència emocional', text: 'Quan la por de perdre una relació decideix per tu.' },
       { id: 'apego', icon: 'couple', title: 'Aferrament i límits', text: 'Et costa confiar, posar límits o mantenir relacions estables.' },
-      { id: 'familia', icon: 'couple', title: 'Relacions familiars', text: 'Conflictes familiars que desgasten.' },
+      { id: 'familia', icon: 'couple', title: 'Relacions familiars', text: 'Acceptar o modificar la vivència de les relacions familiars que generen malestar.' },
       { id: 'soledad', icon: 'couple', title: 'Solitud i connexió', text: 'Solitud, dificultat per connectar amb la gent o sentir-te diferent.' },
-      { id: 'sentido', icon: 'self', title: 'Apatia i falta de sentit', text: 'No trobar el sentit de la vida, apatia o falta de ganes.' },
-      { id: 'pantallas', icon: 'self', title: 'Mòbil i pantalles', text: 'Hores i hores atrapat al mòbil o a les pantalles.' },
+      { id: 'sentido', icon: 'self', title: 'No saber qui soc o què vull', text: "No saps com ets o què vols. T'agradaria tenir la teva identitat i el sentit de la vida més definits." },
+      { id: 'evitacion', icon: 'self', title: 'Evitació', text: "Evadir-se amb el mòbil, l'esport o qualsevol cosa per evitar afrontar el patiment o connectar-hi." },
+      { id: 'pantallas', icon: 'self', title: 'Abús de pantalles', text: 'Notar que estic moltes hores al mòbil, Netflix, videojocs... fins a deixar de tenir el control.' },
       { id: 'crisis', icon: 'self', title: 'Crisis vitals', text: 'Una separació, un canvi de feina, la maternitat o una malaltia.' },
+      { id: 'jovenes', icon: 'self', title: 'Acompanyament adolescent/jove', text: 'Dels 12 als 25 anys és una etapa de canvis, no només socials sinó també biològics. En aquesta etapa es pot necessitar acompanyament en els diferents dubtes i canvis vitals.' },
+      { id: 'perinatal', icon: 'heart', title: 'Psicologia perinatal', text: 'Preparació psicològica per al part, postpart.' },
       { id: 'duelo', icon: 'grief', title: 'Dol', text: 'Una pèrdua que fa mal i necessita el seu espai.' },
       { id: 'perfeccionismo', icon: 'confidence', title: 'Perfeccionisme', text: "Pressió constant, por a l'error i la sensació de no arribar mai." },
-      { id: 'disociacion', icon: 'trauma', title: 'Dissociació' },
+      { id: 'victima', icon: 'trauma', title: 'Haver estat víctima', text: "D'ASI, abús, conducta narcisista, etc." },
+      { id: 'disociacion', icon: 'trauma', title: 'Dissociació', text: 'Estar present físicament, però sentir que estàs lluny de tu, com si visquessis en automàtic i et costés connectar amb el que sents.' },
       { id: 'trauma', icon: 'trauma', title: 'Trauma', text: "El trauma no sempre ve d'una cosa extrema. De vegades neix d'anys de crítiques, abandonament o relacions insegures." },
     ],
   },
@@ -169,7 +186,7 @@ const c = COPY[locale];
                 <Icon name={s.icon} />
               </span>
               <div>
-                <h3 class="font-display text-lg font-bold">
+                <h3 class="font-display text-lg font-bold text-primary">
                   {LANDINGS[s.id] ? (
                     <a href={pathFor(LANDINGS[s.id], locale)} class="text-primary after:absolute after:inset-0 hover:underline">
                       {s.title}
@@ -183,6 +200,10 @@ const c = COPY[locale];
             </article>
           ))
         }
+      </div>
+
+      <div class="mt-12">
+        <LifeStages locale={locale} tone="light" />
       </div>
     </div>
   </section>

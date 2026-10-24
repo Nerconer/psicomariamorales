@@ -73,13 +73,17 @@ const COPY = {
     who: 'Soy Maria Morales, psicóloga general sanitaria. Trabajo desde la psicología integradora en regulación emocional, ansiedad, duelo, depresión, etc., a través de diferentes enfoques y técnicas: EMDR nivel II, IFS, terapias de tercera generación, TCC, mindfulness, etc.',
     whoChips: [`Colegiada COPC ${SITE.licenseNumber}`, 'EMDR nivel I y II', 'Máster en Psicología General Sanitaria'],
     meet: 'Conóceme',
-    stepsTitle: 'Cómo empezamos',
+    stepsTitle: 'Empezar es sencillo',
+    stepsIntro: 'Tres pasos, y en cada uno decides tú si seguir.',
     steps: [
-      { title: 'Llamada gratuita de 15 minutos', text: 'Pídela por WhatsApp o por teléfono y resolvemos tus dudas antes de empezar.' },
+      {
+        title: 'Llamada gratuita o reserva directa',
+        text: 'Si tienes dudas, pide una llamada gratuita de 15 minutos por WhatsApp o al {phone}. Si ya lo tienes claro, reserva directamente en Doctoralia.',
+      },
       { title: `Primera sesión, ${first}`, text: `${PRICES.firstSession.minutes} minutos para conocernos y ver qué necesitas. Online o en Barcelona.` },
-      { title: 'Seguimos a tu ritmo', text: `Online ${online}, presencial ${inPerson}.` },
+      { title: 'Seguimos a tu ritmo', text: `Online ${online}, presencial ${inPerson}. Lo vamos revisando sobre la marcha.` },
     ],
-    pricing: 'Ver tarifas',
+    stepsFreeCall: 'Pedir llamada gratuita',
     reviews: 'Opiniones de pacientes',
     faqTitle: 'Dudas',
     faqs: [
@@ -132,13 +136,17 @@ const COPY = {
     who: 'Soc Maria Morales, psicòloga general sanitària. Treballo des de la psicologia integradora en regulació emocional, ansietat, dol, depressió, etc., a través de diferents enfocaments i tècniques: EMDR nivell II, IFS, teràpies de tercera generació, TCC, mindfulness, etc.',
     whoChips: [`Col·legiada COPC ${SITE.licenseNumber}`, 'EMDR nivell I i II', 'Màster en Psicologia General Sanitària'],
     meet: "Coneix-me",
-    stepsTitle: 'Com comencem',
+    stepsTitle: 'Començar és senzill',
+    stepsIntro: 'Tres passos, i en cadascun decideixes tu si continuar.',
     steps: [
-      { title: 'Trucada gratuïta de 15 minuts', text: 'Demana-la per WhatsApp o per telèfon i resolem els teus dubtes abans de començar.' },
+      {
+        title: 'Trucada gratuïta o reserva directa',
+        text: 'Si tens dubtes, demana una trucada gratuïta de 15 minuts per WhatsApp o al {phone}. Si ja ho tens clar, reserva directament a Doctoralia.',
+      },
       { title: `Primera sessió, ${first}`, text: `${PRICES.firstSession.minutes} minuts per conèixer-nos i veure què necessites. En línia o a Barcelona.` },
-      { title: 'Continuem al teu ritme', text: `En línia ${online}, presencial ${inPerson}.` },
+      { title: 'Continuem al teu ritme', text: `En línia ${online}, presencial ${inPerson}. Ho anem revisant sobre la marxa.` },
     ],
-    pricing: 'Veure tarifes',
+    stepsFreeCall: 'Demanar trucada gratuïta',
     reviews: 'Opinions de pacients',
     faqTitle: 'Dubtes',
     faqs: [
@@ -294,9 +302,59 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
     </div>
   </section>
 
-  <!-- Orientation quiz -->
+  <!-- How to start: right after the visitor has recognised themselves -->
   <Wave from="var(--color-surface)" to="var(--color-bg)" flip />
-  <section class="py-14 md:py-20" id="test">
+  <section class="py-14 md:py-20" id="empezar">
+    <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+      <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.stepsTitle}</h2>
+      <p class="mt-3 text-muted">{c.stepsIntro}</p>
+      <ol class="mt-8 grid gap-4 md:grid-cols-3">
+        {
+          c.steps.map((s, i) => {
+            // The first step offers a call, so the number is shown in figures
+            // and can be dialled from the text itself.
+            const [before, after] = s.text.split('{phone}');
+            return (
+              <li class="card">
+                <span class="grid h-9 w-9 place-items-center rounded-full bg-sun font-display font-bold text-ink">{i + 1}</span>
+                <p class="mt-4 font-display text-xl font-bold text-ink">{s.title}</p>
+                <p class="mt-2 text-muted">
+                  {before}
+                  {after !== undefined && (
+                    <>
+                      <a
+                        href={SITE.phoneHref}
+                        data-event="phone_click"
+                        data-event-location="home_steps"
+                        class="whitespace-nowrap font-bold text-primary underline decoration-line underline-offset-4 hover:decoration-primary"
+                      >
+                        {SITE.phoneLocal}
+                      </a>
+                      {after}
+                    </>
+                  )}
+                </p>
+              </li>
+            );
+          })
+        }
+      </ol>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href={SITE.doctoralia} target="_blank" rel="noopener" data-event="booking_click" data-event-location="home_steps" class="btn-primary">
+          <Icon name="calendar" size={20} />
+          {c.book}
+        </a>
+        <a href={FREE_CALL_BY_LOCALE[locale]} target="_blank" rel="noopener" data-event="free_call_click" data-event-location="home_steps" class="btn-whatsapp">
+          <WhatsAppIcon size={20} class="text-[#128c4a]" />
+          {c.stepsFreeCall}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Orientation quiz -->
+  <Wave from="var(--color-bg)" to="var(--color-surface)" />
+  <section class="bg-surface py-14 md:py-20" id="test">
     <div class="mx-auto w-[min(760px,calc(100%-2rem))]">
       <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.quizTitle}</h2>
       <p class="mt-3 text-muted">{c.quizIntro}</p>
@@ -306,46 +364,22 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
     </div>
   </section>
 
-  <!-- Who I am and how we start -->
-  <Wave from="var(--color-bg)" to="var(--color-surface)" />
-  <section class="bg-surface py-14 md:py-20">
-    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-12 lg:grid-cols-2">
-      <div>
-        <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.whoTitle}</h2>
-        <p class="mt-4 max-w-[52ch]">{c.who}</p>
-        <div class="mt-5 flex flex-wrap gap-2">
-          {c.whoChips.map((chip) => <Chip tone="light">{chip}</Chip>)}
-        </div>
-        <a href={to('about')} class="btn-outline mt-6">{c.meet}</a>
+  <!-- Who I am -->
+  <Wave from="var(--color-surface)" to="var(--color-bg)" flip />
+  <section class="py-14 md:py-20">
+    <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
+      <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.whoTitle}</h2>
+      <p class="mt-4 max-w-[62ch]">{c.who}</p>
+      <div class="mt-5 flex flex-wrap gap-2">
+        {c.whoChips.map((chip) => <Chip>{chip}</Chip>)}
       </div>
-
-      <div>
-        <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.stepsTitle}</h2>
-        <ol class="mt-6 space-y-4">
-          {
-            c.steps.map((s, i) => (
-              <li class="flex gap-4">
-                <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-sun font-display font-bold text-ink">
-                  {i + 1}
-                </span>
-                <div>
-                  <p class="font-display text-lg font-bold">{s.title}</p>
-                  <p class="text-muted">{s.text}</p>
-                </div>
-              </li>
-            ))
-          }
-        </ol>
-        <a href={to('pricing')} class="mt-6 inline-flex items-center gap-2 font-semibold text-primary underline decoration-line underline-offset-4 hover:decoration-primary">
-          {c.pricing}
-        </a>
-      </div>
+      <a href={to('about')} class="btn-outline mt-6">{c.meet}</a>
     </div>
   </section>
 
   <!-- Reviews -->
-  <Wave from="var(--color-surface)" to="var(--color-bg)" flip />
-  <section class="py-14 md:py-20" id="opiniones">
+  <Wave from="var(--color-bg)" to="var(--color-surface)" />
+  <section class="bg-surface py-14 md:py-20" id="opiniones">
     <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
       <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.reviews}</h2>
       <div class="mt-6">
@@ -356,8 +390,8 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
   </section>
 
   <!-- FAQ -->
-  <Wave from="var(--color-bg)" to="var(--color-surface)" />
-  <section class="bg-surface py-14 md:py-20" id="faq">
+  <Wave from="var(--color-surface)" to="var(--color-bg)" flip />
+  <section class="py-14 md:py-20" id="faq">
     <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
       <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.faqTitle}</h2>
       <div class="mt-6">
@@ -369,5 +403,5 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
     </div>
   </section>
 
-  <CtaFinal from="var(--color-surface)" />
+  <CtaFinal />
 </Layout>

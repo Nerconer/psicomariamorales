@@ -79,9 +79,13 @@ export const REVIEWS: {
   google: { rating: 0, count: 0, url: SITE.maps },
 };
 
+// The only host that is public, indexed and measured. Every other host (the
+// workers.dev deployment, previews, localhost) is a test environment.
+export const PRODUCTION_HOST = 'psicomariamorales.com';
+
 export const ANALYTICS = {
   // Umami Cloud account on the EU region: statistics are hosted in the EU,
   // which is what the privacy policy states.
   umamiSrc: 'https://cloud.umami.is/script.js',
-  umamiWebsiteId: 'da719459-4222-4708-998b-4ca98794f3d2',
+  umamiWebsiteId: 'a03ab628-fc28-4501-8127-93ccdc1f6dd6',
 };

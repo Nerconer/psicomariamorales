@@ -3,13 +3,16 @@
 // aggregated statistics, so no consent banner is needed (relevant for a health
 // website).
 //
+// Only production is measured. On any other host the tracker is not even
+// loaded, so test visits and clicks never reach the statistics.
+//
 // Named events are declared with data-event="name" (plus data-event-* for
 // extra properties) and sent from here. Components that need to report
 // something else dispatch a site:event custom event.
 ---
 
 <script>
-  import { ANALYTICS } from '../consts';
+  import { ANALYTICS, PRODUCTION_HOST } from '../consts';
 
   type EventData = Record<string, string | number | boolean>;
   type Umami = { track: (name: string, data?: EventData) => void };
@@ -34,6 +37,8 @@
     s.src = ANALYTICS.umamiSrc;
     s.dataset.umamiTracker = '';
     s.dataset.websiteId = ANALYTICS.umamiWebsiteId;
+    // Second guard, in the tracker itself: it ignores any other host.
+    s.dataset.domains = PRODUCTION_HOST;
     // Core Web Vitals measured on real visitors.
     s.dataset.performance = 'true';
     s.addEventListener('load', () => {
@@ -113,7 +118,9 @@
     requestAnimationFrame(measure);
   };
 
-  loadTracker();
-  initClicks();
-  initReading();
+  if (window.location.hostname === PRODUCTION_HOST) {
+    loadTracker();
+    initClicks();
+    initReading();
+  }
 </script>

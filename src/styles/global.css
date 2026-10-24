@@ -143,6 +143,21 @@ h3 {
     box-shadow: 0 10px 34px -14px color-mix(in srgb, var(--color-accent) 40%, transparent);
   }
 
+  /* Key phrase inside a paragraph (Emphasis.astro): purple like the headings,
+     over a soft lilac highlighter band. The band is wide on purpose: a thin
+     one would look like the lilac underline of the links. The lilac stays
+     under the text, never as text. The negative margin cancels the padding,
+     so the band overhangs a little and the punctuation stays in place. */
+  .emphasis {
+    @apply -mx-[0.15em] rounded-[0.2em] px-[0.15em] font-bold text-primary;
+    background: linear-gradient(
+      transparent 38%,
+      color-mix(in srgb, var(--color-line) 65%, transparent) 38%
+    );
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
   /* List with a check mark in the brand colour */
   .checklist {
     @apply list-none space-y-2 pl-0;

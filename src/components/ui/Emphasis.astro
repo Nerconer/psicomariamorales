@@ -8,4 +8,4 @@ interface Props {
 const parts = Astro.props.text.split('**');
 ---
 
-{parts.map((part, i) => (i % 2 ? <strong class="font-semibold text-ink">{part}</strong> : part))}
+{parts.map((part, i) => (i % 2 ? <strong class="emphasis">{part}</strong> : part))}

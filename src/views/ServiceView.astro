@@ -5,6 +5,7 @@ import PageHero from '../components/PageHero.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import Wave from '../components/Wave.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
+import AnxietyTest from '../components/AnxietyTest.astro';
 import Faq from '../components/ui/Faq.astro';
 import Icon from '../components/ui/Icon.astro';
 import WhatsAppIcon from '../components/ui/WhatsAppIcon.astro';
@@ -98,6 +99,16 @@ const location = `service_${service.key}`;
       </aside>
     </div>
   </section>
+
+  {
+    service.key === 'anxiety' && (
+      <section class="pb-12 md:pb-16">
+        <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+          <AnxietyTest locale={locale} />
+        </div>
+      </section>
+    )
+  }
 
   <Wave from="var(--color-bg)" to="var(--color-surface)" />
   <section class="bg-surface py-12 md:py-16">

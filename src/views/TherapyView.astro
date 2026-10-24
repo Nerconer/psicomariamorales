@@ -8,6 +8,7 @@ import { Picture } from 'astro:assets';
 import Icon, { type IconName } from '../components/ui/Icon.astro';
 import mariaWriting from '../assets/img/maria-writing.jpg';
 import { PRICES, formatPrice } from '../consts';
+import { PAGE_TITLES } from '../data/page-titles';
 import type { Locale } from '../i18n/config';
 import { pathFor, type RouteKey } from '../i18n/routes';
 
@@ -38,7 +39,7 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
     metaTitle: 'Terapia psicológica online y en Barcelona',
     description:
       'Terapia psicológica online en toda España y presencial en Barcelona: ansiedad, estrés, burnout, autoestima, bloqueos, duelo y trauma con EMDR.',
-    title: 'Terapia psicológica online y en Barcelona',
+    title: PAGE_TITLES.therapy.es,
     intro: [
       'Trabajo desde la psicología integradora. Me adapto a cada persona, a cada situación y a cada necesidad. No todo funciona de la misma manera en cada persona.',
       'Tengo formación amplia en diferentes enfoques y corrientes: cognitivo-conductual, terapias de tercera generación, EMDR nivel I y II, IFS, terapia focalizada en la emoción, terapia sistémica y análisis transaccional, entre otros.',
@@ -77,7 +78,7 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
     metaTitle: 'Teràpia psicològica en línia i a Barcelona',
     description:
       "Teràpia psicològica en línia a tot Espanya i presencial a Barcelona: ansietat, estrès, burnout, autoestima, bloquejos, dol i trauma amb EMDR.",
-    title: 'Teràpia psicològica en línia i a Barcelona',
+    title: PAGE_TITLES.therapy.ca,
     intro: [
       "Treballo des de la psicologia integradora. M'adapto a cada persona, a cada situació i a cada necessitat. No tot funciona de la mateixa manera en cada persona.",
       "Tinc una formació àmplia en diferents enfocaments i corrents: cognitivoconductual, teràpies de tercera generació, EMDR nivell I i II, IFS, teràpia focalitzada en l'emoció, teràpia sistèmica i anàlisi transaccional, entre d'altres.",

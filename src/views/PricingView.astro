@@ -7,6 +7,7 @@ import Wave from '../components/Wave.astro';
 import DoctoraliaEmbed from '../components/DoctoraliaEmbed.astro';
 import Icon from '../components/ui/Icon.astro';
 import { SITE, PRICES, formatPrice, FREE_CALL_BY_LOCALE } from '../consts';
+import { PAGE_TITLES } from '../data/page-titles';
 import type { Locale } from '../i18n/config';
 
 interface Props {
@@ -19,7 +20,7 @@ const COPY = {
   es: {
     metaTitle: 'Tarifas de terapia online y en Barcelona',
     description: `Primera sesión ${p('firstSession')}, terapia online ${p('online')}, presencial en Barcelona ${p('inPerson')} y terapia de pareja ${p('couple')}. Sesiones de 60 minutos, pareja de 90.`,
-    title: 'Tarifas',
+    title: PAGE_TITLES.pricing.es,
     lead: 'Las sesiones duran 60 minutos. La terapia de pareja, 90.',
     rates: [
       { title: 'Terapia online', key: 'online', desc: 'Por videollamada, desde donde estés.', featured: true },
@@ -40,7 +41,7 @@ const COPY = {
   ca: {
     metaTitle: 'Tarifes de teràpia en línia i a Barcelona',
     description: `Primera sessió ${p('firstSession')}, teràpia en línia ${p('online')}, presencial a Barcelona ${p('inPerson')} i teràpia de parella ${p('couple')}. Sessions de 60 minuts, parella de 90.`,
-    title: 'Tarifes',
+    title: PAGE_TITLES.pricing.ca,
     lead: 'Les sessions duren 60 minuts. La teràpia de parella, 90.',
     rates: [
       { title: 'Teràpia en línia', key: 'online', desc: "Per videotrucada, des d'on siguis.", featured: true },

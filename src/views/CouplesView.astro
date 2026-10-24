@@ -7,6 +7,7 @@ import Wave from '../components/Wave.astro';
 import Faq from '../components/ui/Faq.astro';
 import Chip from '../components/ui/Chip.astro';
 import { SITE, PRICES, formatPrice } from '../consts';
+import { PAGE_TITLES } from '../data/page-titles';
 import type { Locale } from '../i18n/config';
 
 interface Props {
@@ -20,7 +21,7 @@ const COPY = {
   es: {
     metaTitle: 'Terapia de pareja online y en Barcelona',
     description: `Terapia de pareja online y en Barcelona: comunicación, discusiones, distancia, celos o infidelidad. Sesiones de ${minutes} minutos por ${price}.`,
-    title: 'Terapia de pareja online y en Barcelona',
+    title: PAGE_TITLES.couples.es,
     lead: `Para parejas que discuten más de la cuenta, que se han distanciado o que quieren cuidarse. Sesiones de ${minutes} minutos.`,
     whenTitle: '¿Cuándo venir?',
     situations: [
@@ -50,7 +51,7 @@ const COPY = {
   ca: {
     metaTitle: 'Teràpia de parella en línia i a Barcelona',
     description: `Teràpia de parella en línia i a Barcelona: comunicació, discussions, distància, gelosia o infidelitat. Sessions de ${minutes} minuts per ${price}.`,
-    title: 'Teràpia de parella en línia i a Barcelona',
+    title: PAGE_TITLES.couples.ca,
     lead: `Per a parelles que discuteixen més del compte, que s'han distanciat o que es volen cuidar. Sessions de ${minutes} minuts.`,
     whenTitle: 'Quan venir?',
     situations: [

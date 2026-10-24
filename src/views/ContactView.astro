@@ -8,6 +8,7 @@ import Faq from '../components/ui/Faq.astro';
 import Icon from '../components/ui/Icon.astro';
 import WhatsAppIcon from '../components/ui/WhatsAppIcon.astro';
 import { SITE, WHATSAPP_BY_LOCALE } from '../consts';
+import { PAGE_TITLES } from '../data/page-titles';
 import type { Locale } from '../i18n/config';
 
 interface Props {
@@ -20,7 +21,7 @@ const COPY = {
     metaTitle: 'Contacto, psicóloga online y en Barcelona',
     description:
       'Escribe a Maria Morales por WhatsApp, llama o reserva en Doctoralia. Terapia online en toda España y presencial en Barcelona.',
-    title: '¿Hablamos?',
+    title: PAGE_TITLES.contact.es,
     lead: 'Escríbeme por WhatsApp o llámame. Te respondo lo antes posible.',
     call: 'Llamar',
     privacy: 'No hace falta que me cuentes nada personal por aquí. Con decirme qué día y qué horario te van bien es suficiente.',
@@ -38,7 +39,7 @@ const COPY = {
     metaTitle: 'Contacte, psicòloga en línia i a Barcelona',
     description:
       'Escriu a Maria Morales per WhatsApp, truca o reserva a Doctoralia. Teràpia en línia a tot Espanya i presencial a Barcelona.',
-    title: 'En parlem?',
+    title: PAGE_TITLES.contact.ca,
     lead: "Escriu-me per WhatsApp o truca'm. Et responc al més aviat possible.",
     call: 'Trucar',
     privacy: "No cal que m'expliquis res personal per aquí. N'hi ha prou de dir-me quin dia i quin horari et van bé.",

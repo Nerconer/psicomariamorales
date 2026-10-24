@@ -8,6 +8,7 @@ import CtaFinal from '../components/CtaFinal.astro';
 import Wave from '../components/Wave.astro';
 import Chip from '../components/ui/Chip.astro';
 import { SITE } from '../consts';
+import { PAGE_TITLES } from '../data/page-titles';
 import type { Locale } from '../i18n/config';
 import mariaPortrait from '../assets/img/maria-portrait.jpg';
 
@@ -21,7 +22,7 @@ const COPY = {
     metaTitle: 'Sobre mí, psicóloga general sanitaria',
     description:
       'Soy Maria Morales, psicóloga general sanitaria (COPC 35153). Trabajo desde la psicología integradora, online y en Barcelona, en castellano y en catalán.',
-    title: 'Hola, soy Maria',
+    title: PAGE_TITLES.about.es,
     lead: 'Psicóloga general sanitaria, colegiada en Barcelona (COPC 35153). Atiendo online y en Barcelona, en castellano y en catalán.',
     alt: 'Maria Morales, psicóloga general sanitaria',
     whyTitle: 'Por qué me dedico a esto',
@@ -53,7 +54,7 @@ const COPY = {
     metaTitle: 'Sobre mi, psicòloga general sanitària',
     description:
       'Soc Maria Morales, psicòloga general sanitària (COPC 35153). Treballo des de la psicologia integradora, en línia i a Barcelona, en català i en castellà.',
-    title: 'Hola, soc Maria',
+    title: PAGE_TITLES.about.ca,
     lead: 'Psicòloga general sanitària, col·legiada a Barcelona (COPC 35153). Atenc en línia i a Barcelona, en català i en castellà.',
     alt: 'Maria Morales, psicòloga general sanitària',
     whyTitle: 'Per què em dedico a això',

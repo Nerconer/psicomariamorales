@@ -13,6 +13,7 @@ import Icon from '../components/ui/Icon.astro';
 import ProblemCard from '../components/ui/ProblemCard.astro';
 import WhatsAppIcon from '../components/ui/WhatsAppIcon.astro';
 import { SITE, PRICES, formatPrice, WHATSAPP_BY_LOCALE, FREE_CALL_BY_LOCALE } from '../consts';
+import { PAGE_TITLES, HOME_SUBTITLE } from '../data/page-titles';
 import type { Locale } from '../i18n/config';
 import { pathFor } from '../i18n/routes';
 import mariaHero from '../assets/img/maria-hero.jpg';
@@ -35,8 +36,8 @@ const COPY = {
     description: `Maria Morales, psicóloga general sanitaria. Terapia online en toda España y presencial en Barcelona: ansiedad, estrés, pareja, autoestima y trauma con EMDR. Primera sesión ${first}.`,
     hello: 'Hola, soy Maria',
     role: SITE.role,
-    h1: 'Psicóloga en Barcelona y online',
-    sub: 'Te acompaño cuando algo pasa y cuando simplemente quieres mejorar algo.',
+    h1: PAGE_TITLES.home.es,
+    sub: HOME_SUBTITLE.es,
     book: `Reservar primera sesión · ${first}`,
     whatsapp: 'Escríbeme por WhatsApp',
     doubts: '¿Tienes dudas?',
@@ -93,8 +94,8 @@ const COPY = {
     description: `Maria Morales, psicòloga general sanitària. Teràpia en línia a tot Espanya i presencial a Barcelona: ansietat, estrès, parella, autoestima i trauma amb EMDR. Primera sessió ${first}.`,
     hello: 'Hola, soc Maria',
     role: SITE.roleCa,
-    h1: 'Psicòloga a Barcelona i en línia',
-    sub: "T'acompanyo quan passa alguna cosa i quan simplement vols millorar alguna cosa.",
+    h1: PAGE_TITLES.home.ca,
+    sub: HOME_SUBTITLE.ca,
     book: `Reservar la primera sessió · ${first}`,
     whatsapp: 'Escriu-me per WhatsApp',
     doubts: 'Tens dubtes?',

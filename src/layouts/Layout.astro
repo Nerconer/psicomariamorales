@@ -12,6 +12,7 @@ import Analytics from '../components/Analytics.astro';
 import MobileActionBar from '../components/MobileActionBar.astro';
 import WhatsAppIcon from '../components/ui/WhatsAppIcon.astro';
 import { SITE, PRICES, PRICE_RANGE } from '../consts';
+import { OG_KEYS } from '../data/og';
 import { LOCALES, DEFAULT_LOCALE, localeFromPath } from '../i18n/config';
 import { alternatesOf, ROUTES } from '../i18n/routes';
 import { useTranslations } from '../i18n/ui';
@@ -38,11 +39,11 @@ const imageAlt =
 // hreflang only when the page really exists in another language.
 const alternates = alternatesOf(Astro.url.pathname);
 const defaultAlternate = alternates.find((a) => a.locale === DEFAULT_LOCALE);
-// Share image: each translated page has its own (public/og/<locale>-<key>.jpg),
+// Share image: each translated page has its own (built by src/pages/og/),
 // the rest use the home image of their language.
 const routeKey = Object.entries(ROUTES).find(([, r]) => Object.values(r).includes(Astro.url.pathname))?.[0];
-const OG_KEYS = ['home', 'online', 'therapy', 'anxiety', 'emdr', 'stress', 'selfEsteem', 'grief', 'growth', 'couples', 'about', 'pricing', 'contact'];
-const ogImage = new URL(`/og/${localeFromPath(Astro.url.pathname)}-${routeKey && OG_KEYS.includes(routeKey) ? routeKey : 'home'}.jpg`, Astro.site);
+const ogKey = (OG_KEYS as readonly string[]).includes(routeKey ?? '') ? routeKey : 'home';
+const ogImage = new URL(`/og/${localeFromPath(Astro.url.pathname)}-${ogKey}.jpg`, Astro.site);
 
 // Local business entity (schema.org) for searches such as "psicóloga Barcelona"
 const siteUrl = new URL('/', Astro.site).href;

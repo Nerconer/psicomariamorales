@@ -10,8 +10,10 @@ import { useTranslations } from '../i18n/ui';
 interface Props {
   mode: 'reviews' | 'calendar';
   location: string;
+  /** Only the button and the notice, for pages where the calendar is the point. */
+  compact?: boolean;
 }
-const { mode, location } = Astro.props;
+const { mode, location, compact = false } = Astro.props;
 const { rating, count, slug } = REVIEWS.doctoralia;
 
 const locale = localeFromPath(Astro.url.pathname);
@@ -22,7 +24,7 @@ const label = mode === 'reviews' ? t('doctoralia.reviews') : t('doctoralia.calen
 <div class="doctoralia-embed rounded-2xl border border-line/60 bg-white p-5 sm:p-7" data-mode={mode} data-location={location}>
   <div data-placeholder>
     {
-      mode === 'reviews' ? (
+      compact ? null : mode === 'reviews' ? (
         <p class="flex flex-wrap items-baseline gap-x-2 font-display text-ink">
           <span class="text-3xl font-bold">{rating.toLocaleString(locale === 'ca' ? 'ca-ES' : 'es-ES', { minimumFractionDigits: 1 })}</span>
           <span class="text-sun-strong" aria-hidden="true">★★★★★</span>
@@ -37,8 +39,9 @@ const label = mode === 'reviews' ? t('doctoralia.reviews') : t('doctoralia.calen
         </p>
       )
     }
-    <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+    <div class:list={['flex flex-col gap-3 sm:flex-row sm:items-center', !compact && 'mt-4']}>
       <button type="button" class="btn-primary" data-load>{label}</button>
+      {!compact && (
       <a
         href={SITE.doctoralia}
         target="_blank"
@@ -48,6 +51,7 @@ const label = mode === 'reviews' ? t('doctoralia.reviews') : t('doctoralia.calen
         class="font-semibold text-primary underline decoration-line underline-offset-4 hover:decoration-primary"
         >{t('doctoralia.open')}</a
       >
+      )}
     </div>
     <p class="mt-3 text-sm text-muted">
       {t('doctoralia.notice')}
@@ -63,7 +67,7 @@ const label = mode === 'reviews' ? t('doctoralia.reviews') : t('doctoralia.calen
       data-zlw-type={mode === 'reviews' ? 'big' : 'big_with_calendar'}
       data-zlw-opinion={mode === 'reviews' ? 'true' : 'false'}
       data-zlw-hide-branding="true"
-      data-zlw-saas-only="false">Maria Morales Herrerías en Doctoralia</a
+      data-zlw-saas-only="true">Maria Morales Herrerías en Doctoralia</a
     >
   </div>
 </div>

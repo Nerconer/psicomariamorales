@@ -1,0 +1,37 @@
+---
+// Doctoralia "certificate" badge with Maria's rating, shown with the page.
+// Measured on 2026-10-24: unlike the booking calendar, it sets no cookies and
+// loads no analytics, only Doctoralia and its error monitoring (Sentry), so it
+// needs no consent. Measure again before switching to another widget type.
+import { SITE, REVIEWS } from '../consts';
+
+const { slug } = REVIEWS.doctoralia;
+---
+
+<!-- The iframe is 245 x 256 px: the space is kept so nothing jumps when it loads. -->
+<div class="doctoralia-badge min-h-[256px] w-[245px]">
+  <a
+    class="zl-url"
+    href={SITE.doctoralia}
+    rel="nofollow"
+    data-zlw-doctor={slug}
+    data-zlw-type="certificate"
+    data-zlw-opinion="false"
+    data-zlw-hide-branding="true"
+    data-zlw-saas-only="true">Maria Morales Herrerías en Doctoralia</a
+  >
+</div>
+
+<script>
+  // Loaded once the page has finished, so the badge never delays it.
+  const load = () => {
+    if (document.getElementById('zl-widget-s')) return;
+    const s = document.createElement('script');
+    s.id = 'zl-widget-s';
+    s.src = 'https://platform.docplanner.com/js/widget.js';
+    s.async = true;
+    document.body.appendChild(s);
+  };
+  if (document.readyState === 'complete') load();
+  else window.addEventListener('load', load, { once: true });
+</script>

@@ -29,9 +29,8 @@ _to_delete/
 # wrangler local state
 .wrangler/
 
-# Business documents for Maria: kept locally, out of the public repository
-docs/competitor-analysis.md
-docs/booking-and-payments-analysis.md
+# Notes and business documents: kept locally, out of the public repository
+docs/
 
 # Unrelated files from other projects
 Claude outputs/

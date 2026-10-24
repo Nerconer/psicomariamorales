@@ -25,7 +25,7 @@ Developers work in English. The website speaks to its visitors in Spanish and Ca
 | README, technical documentation and this file | English |
 | Website content: page copy, blog posts, legal pages, `alt` text, metadata | Spanish and Catalan |
 | Public URLs and slugs (they are content and SEO), including the files under `src/pages/` that define them | Spanish, and Catalan under `/ca/` |
-| Business documents in `docs/` (analyses, guides for Maria) | Spanish, with English file names |
+| Business documents in `docs/` (analyses, guides for Maria; local only, never committed) | Spanish, with English file names |
 
 The writing rules below apply to everything a person will read: the human tone applies in
 both languages, and the punctuation and filler rules apply to Spanish and Catalan content.

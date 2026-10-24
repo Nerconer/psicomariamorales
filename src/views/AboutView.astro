@@ -1,7 +1,7 @@
 ---
 // About page, shared by the Spanish and Catalan routes. The Spanish text is
 // Maria's own wording; the Catalan one is its translation.
-import { Picture } from 'astro:assets';
+import { Image, Picture, getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaFinal from '../components/CtaFinal.astro';
@@ -11,6 +11,12 @@ import { SITE } from '../consts';
 import { PAGE_TITLES } from '../data/page-titles';
 import type { Locale } from '../i18n/config';
 import mariaPortrait from '../assets/img/maria-portrait.jpg';
+import certEmdr1 from '../assets/certificates/emdr-nivel-1.jpg';
+import certEmdr2 from '../assets/certificates/emdr-nivel-2.jpg';
+import certPerinatal1 from '../assets/certificates/unir-apego-perinatal-1.jpg';
+import certPerinatal2 from '../assets/certificates/unir-apego-perinatal-2.jpg';
+import certPtsd from '../assets/certificates/estres-postraumatico.jpg';
+import certCopc from '../assets/certificates/copc.jpg';
 
 interface Props {
   locale: Locale;
@@ -29,18 +35,28 @@ const COPY = {
     why: 'Me dediqué a la psicología porque me genera mucha curiosidad la conducta humana y cómo los aprendizajes condicionan la vida de las personas. Poder hacer conscientes muchos de los procesos inconscientes de nuestra vida es la clave para tener una vida plena.',
     howTitle: 'Cómo trabajo',
     how: [
-      'Trabajo desde la psicología integradora y me adapto a cada persona. Cada persona es diferente, le funcionan cosas diferentes y se siente cómoda con cosas diferentes. Me adapto a lo que creo que le puede encajar mejor por su personalidad y por lo que necesita.',
-      'Conozco varios enfoques y técnicas, entre ellos EMDR, IFS, las terapias de tercera generación y la terapia focalizada en las emociones.',
+      'Trabajo desde la psicología integradora y me adapto a cada persona. Cada persona es diferente, le funcionan cosas diferentes y se siente cómoda con cosas diferentes. Me adapto a lo que creo que le puede encajar mejor por su personalidad y por lo que necesita y siempre de forma consensuada con el paciente, que no sienta que pierde el tiempo, siempre generando un espacio de comunicación con objetivos claros.',
     ],
     chips: [`Colegiada COPC ${SITE.licenseNumber}`, 'EMDR nivel I y II', 'Castellano y català'],
     trainingTitle: 'Formación',
     approachesTitle: 'Enfoques en los que me he formado',
+    academicTitle: 'Formación académica',
+    complementaryTitle: 'Formación complementaria',
+    certificatesTitle: 'Certificados',
     degrees: [
-      'Grado en Psicología',
-      'Máster en Psicología General Sanitaria',
-      'Grado en Criminología',
-      'Máster en Intervención Criminológica y Victimológica',
+      { title: 'Máster en Psicología General Sanitaria', place: 'UNIR', years: '2025-2026' },
+      { title: 'Grado en Psicología', place: 'Universitat Oberta de Catalunya (UOC)', years: '2019-2025' },
+      { title: 'Máster Oficial en Intervención Criminológica y Victimológica', place: 'Universidad Miguel Hernández, Elche', years: '2016-2017' },
+      { title: 'Grado en Criminología', place: 'Universitat Autònoma de Barcelona', years: '2012-2016' },
     ],
+    certificates: {
+      emdr2: 'Certificado de Formación Básica en EMDR Nivel II, de Imaya Formación, acreditado por EMDR Europe',
+      emdr1: 'Certificado de Formación Básica en EMDR Nivel I, de Imaya Formación, acreditado por EMDR Europe',
+      perinatal1: 'Título del Programa Universitario Avanzado en Apego y Psicología Perinatal, de la UNIR',
+      perinatal2: 'Módulos del Programa Universitario Avanzado en Apego y Psicología Perinatal, de la UNIR',
+      ptsd: 'Certificado del curso El abordaje del estrés postraumático, de Imaya Formación',
+      copc: `Carnet de colegiada del Col·legi Oficial de Psicologia de Catalunya, número ${SITE.licenseNumber}`,
+    },
     approaches: [
       { title: 'Trauma y apego', text: 'EMDR, trauma relacional y complejo, teoría del apego y abordaje informado por el trauma.' },
       { title: 'Trabajo con partes y emociones', text: 'IFS (Sistemas Familiares Internos), Terapia Focalizada en las Emociones (EFT), Terapia de Esquemas y Terapia Centrada en la Compasión (CFT).' },
@@ -61,18 +77,28 @@ const COPY = {
     why: "Em vaig dedicar a la psicologia perquè em desperta molta curiositat la conducta humana i com els aprenentatges condicionen la vida de les persones. Poder fer conscients molts dels processos inconscients de la nostra vida és la clau per tenir una vida plena.",
     howTitle: 'Com treballo',
     how: [
-      "Treballo des de la psicologia integradora i m'adapto a cada persona. Cada persona és diferent, li funcionen coses diferents i se sent còmoda amb coses diferents. M'adapto al que crec que li pot encaixar millor per la seva personalitat i pel que necessita.",
-      "Conec diversos enfocaments i tècniques, entre els quals l'EMDR, l'IFS, les teràpies de tercera generació i la teràpia focalitzada en les emocions.",
+      "Treballo des de la psicologia integradora i m'adapto a cada persona. Cada persona és diferent, li funcionen coses diferents i se sent còmoda amb coses diferents. M'adapto al que crec que li pot encaixar millor per la seva personalitat i pel que necessita i sempre de manera consensuada amb el pacient, que no senti que perd el temps, sempre generant un espai de comunicació amb objectius clars.",
     ],
     chips: [`Col·legiada COPC ${SITE.licenseNumber}`, 'EMDR nivell I i II', 'Català i castellà'],
     trainingTitle: 'Formació',
     approachesTitle: "Enfocaments en què m'he format",
+    academicTitle: 'Formació acadèmica',
+    complementaryTitle: 'Formació complementària',
+    certificatesTitle: 'Certificats',
     degrees: [
-      'Grau en Psicologia',
-      'Màster en Psicologia General Sanitària',
-      'Grau en Criminologia',
-      'Màster en Intervenció Criminològica i Victimològica',
+      { title: 'Màster en Psicologia General Sanitària', place: 'UNIR', years: '2025-2026' },
+      { title: 'Grau en Psicologia', place: 'Universitat Oberta de Catalunya (UOC)', years: '2019-2025' },
+      { title: 'Màster Oficial en Intervenció Criminològica i Victimològica', place: 'Universitat Miguel Hernández, Elx', years: '2016-2017' },
+      { title: 'Grau en Criminologia', place: 'Universitat Autònoma de Barcelona', years: '2012-2016' },
     ],
+    certificates: {
+      emdr2: "Certificat de Formació Bàsica en EMDR Nivell II, d'Imaya Formación, acreditat per EMDR Europe",
+      emdr1: "Certificat de Formació Bàsica en EMDR Nivell I, d'Imaya Formación, acreditat per EMDR Europe",
+      perinatal1: 'Títol del Programa Universitari Avançat en Aferrament i Psicologia Perinatal, de la UNIR',
+      perinatal2: 'Mòduls del Programa Universitari Avançat en Aferrament i Psicologia Perinatal, de la UNIR',
+      ptsd: "Certificat del curs El abordaje del estrés postraumático, d'Imaya Formación",
+      copc: `Carnet de col·legiada del Col·legi Oficial de Psicologia de Catalunya, número ${SITE.licenseNumber}`,
+    },
     approaches: [
       { title: 'Trauma i aferrament', text: "EMDR, trauma relacional i complex, teoria de l'aferrament i abordatge informat pel trauma." },
       { title: 'Treball amb parts i emocions', text: "IFS (Sistemes Familiars Interns), Teràpia Focalitzada en les Emocions (EFT), Teràpia d'Esquemes i Teràpia Centrada en la Compassió (CFT)." },
@@ -83,6 +109,40 @@ const COPY = {
     ],
   },
 }[locale];
+
+// Complementary training, from Maria's CV. Course names are kept as issued,
+// so the Catalan page shows them in their original language too.
+const COMPLEMENTARY = [
+  { title: 'EMDR Nivel 2', place: 'IMAYA Formación. Asociación Española EMDR', years: '2026' },
+  { title: 'EMDR Nivel 1', place: 'IMAYA Formación. Asociación Española EMDR', years: '2026' },
+  { title: 'Formación en Psicotrauma Modelo Cert', place: 'Centro Cert', years: '2026' },
+  { title: 'Introducción terapia sistémica', place: 'Centro Cert', years: '2026' },
+  { title: 'Formación en Sistemas Familiares Internos (IFS)', place: 'Formarme', years: '2026' },
+  { title: 'Entender y explorar el apego', place: 'IMAYA Formación. Anabel González', years: '2026' },
+  { title: 'Evaluando la disociación', place: 'IMAYA Formación. Anabel González', years: '2026' },
+  { title: 'Estrés postraumático y las distintas emociones', place: 'IMAYA Formación. Anabel González', years: '2026' },
+  { title: 'El abordaje del estrés postraumático', place: 'IMAYA Formación. Anabel González', years: '2026' },
+  { title: 'Programa Universitario Avanzado en Apego y Psicología Perinatal', place: 'UNIR', years: '2026' },
+  { title: 'Análisis transaccional', place: 'Hylé', years: '2025' },
+  { title: 'Terapia de Aceptación y Compromiso', place: 'Udemy', years: '2025' },
+  { title: 'Curso de terapia de esquemas', place: 'Asociación Española de Psicología Sanitaria', years: '2025' },
+  { title: 'Curso de prevención e intervención en la conducta suicida', place: 'Asociación Española de Psicología Sanitaria', years: '2025' },
+  { title: 'Certificación de Terapia Grupal en Salud Mental como Herramienta Psicoeducativa', place: 'Ilabora Formación', years: '2024' },
+];
+
+// Certificates as images. The originals were redacted before being added:
+// ID number, signatures, verification codes and QR codes are covered, so
+// nothing can be copied or used to fetch the original document.
+const certificates = await Promise.all(
+  [
+    { src: certEmdr2, alt: COPY.certificates.emdr2 },
+    { src: certEmdr1, alt: COPY.certificates.emdr1 },
+    { src: certPerinatal1, alt: COPY.certificates.perinatal1 },
+    { src: certPerinatal2, alt: COPY.certificates.perinatal2 },
+    { src: certPtsd, alt: COPY.certificates.ptsd },
+    { src: certCopc, alt: COPY.certificates.copc },
+  ].map(async (c) => ({ ...c, full: await getImage({ src: c.src, width: 1600, format: 'webp' }) }))
+);
 ---
 
 <Layout title={COPY.metaTitle} description={COPY.description}>
@@ -126,8 +186,33 @@ const COPY = {
   <section class="bg-surface py-12 md:py-20" id="formacion">
     <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
       <h2 class="text-2xl font-bold text-primary md:text-3xl">{COPY.trainingTitle}</h2>
-      <ul class="checklist mt-6 grid gap-x-10 sm:grid-cols-2">
-        {COPY.degrees.map((d) => <li>{d}</li>)}
+
+      <h3 class="mt-8 text-xl font-bold text-ink">{COPY.academicTitle}</h3>
+      <ul class="checklist mt-4 grid gap-x-10 sm:grid-cols-2">
+        {
+          COPY.degrees.map((d) => (
+            <li>
+              <span class="font-semibold">{d.title}</span>
+              <span class="block text-sm text-muted">
+                {d.place}, {d.years}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <h3 class="mt-10 text-xl font-bold text-ink">{COPY.complementaryTitle}</h3>
+      <ul class="checklist mt-4 grid gap-x-10 md:grid-cols-2">
+        {
+          COMPLEMENTARY.map((d) => (
+            <li>
+              <span class="font-semibold">{d.title}</span>
+              <span class="block text-sm text-muted">
+                {d.place}, {d.years}
+              </span>
+            </li>
+          ))
+        }
       </ul>
 
       <h3 class="mt-10 text-xl font-bold text-ink">{COPY.approachesTitle}</h3>
@@ -141,6 +226,19 @@ const COPY = {
           ))
         }
       </dl>
+
+      <h3 class="mt-10 text-xl font-bold text-ink">{COPY.certificatesTitle}</h3>
+      <ul class="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3">
+        {
+          certificates.map((c) => (
+            <li>
+              <a href={c.full.src} target="_blank" rel="noopener" class="block overflow-hidden rounded-xl border border-line/60 bg-white shadow-soft">
+                <Image src={c.src} alt={c.alt} width={480} widths={[360, 480, 720]} sizes="(max-width: 768px) 45vw, 340px" class="aspect-[4/3] w-full bg-white object-contain" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 

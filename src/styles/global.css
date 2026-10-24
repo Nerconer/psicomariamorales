@@ -53,13 +53,6 @@ html {
   overflow-x: clip;
 }
 
-/* From lg the header has an extra row with the phone number. */
-@media (min-width: 64rem) {
-  html {
-    scroll-padding-top: 8rem;
-  }
-}
-
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;

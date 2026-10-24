@@ -2,7 +2,7 @@ import type { Locale } from '../i18n/config';
 
 /**
  * Ordinary life stages in which therapy can help, shown on the home page and
- * on the therapy page. The list is Maria's (issue #44). The title and intro
+ * on the therapy page. The list is Maria's. The title and intro
  * frame it and are pending her validation.
  */
 export const LIFE_STAGES: Record<Locale, { title: string; intro: string; items: string[] }> = {

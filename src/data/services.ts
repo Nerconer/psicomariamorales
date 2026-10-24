@@ -441,7 +441,7 @@ export const SERVICES: Service[] = [
       ],
     },
   },
-  // Pages added for every card of the therapy page (issue #45). Drafted for
+  // Pages added for every card of the therapy page. Drafted for
   // Maria's review: the Spanish and the Catalan text are pending her validation.
   {
     key: 'panic',

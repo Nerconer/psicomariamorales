@@ -18,7 +18,7 @@ interface Approaches {
 }
 
 /**
- * How Maria works, at the end of the therapy page (issue #45). The Spanish text
+ * How Maria works, at the end of the therapy page. The Spanish text
  * is hers. The Catalan one is its translation, pending a native review.
  */
 export const APPROACHES: Record<Locale, Approaches> = {

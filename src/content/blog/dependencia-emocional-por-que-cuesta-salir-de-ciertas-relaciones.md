@@ -90,7 +90,7 @@ La terapia no busca convencer a nadie de terminar una relación. Su objetivo es 
 
 Durante el proceso terapéutico trabajamos aspectos como:
 
-<!-- PENDIENTE DE REVISIÓN: el texto del issue #20 se corta aquí. Desde este punto hasta el final, el contenido ha sido redactado siguiendo el estilo del resto de artículos y debe ser validado por Maria antes de publicar. -->
+<!-- PENDIENTE DE REVISIÓN: el texto original de Maria se corta aquí. Desde este punto hasta el final, el contenido ha sido redactado siguiendo el estilo del resto de artículos y debe ser validado por Maria antes de publicar. -->
 
 - La autoestima y la imagen que cada persona tiene de sí misma.
 - El miedo al abandono y la tolerancia a la soledad.

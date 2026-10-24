@@ -70,7 +70,7 @@ Existe una gran diferencia entre cuidar de uno mismo y actuar sin tener en cuent
 
 Poner límites significa reconocer que tus necesidades también son importantes. No se trata de imponer, controlar o hacer daño.
 
-<!-- PENDIENTE DE REVISIÓN: el texto del issue #21 se corta aquí ("Se trata de expresar"). Desde este punto hasta el final, el contenido ha sido redactado siguiendo el estilo del resto de artículos y debe ser validado por Maria antes de publicar. -->
+<!-- PENDIENTE DE REVISIÓN: el texto original de Maria se corta aquí ("Se trata de expresar"). Desde este punto hasta el final, el contenido ha sido redactado siguiendo el estilo del resto de artículos y debe ser validado por Maria antes de publicar. -->
 
 Se trata de expresar con claridad y respeto qué necesitas, hasta dónde puedes llegar y qué no estás dispuesto a aceptar, dejando espacio para que la otra persona haga lo mismo.
 

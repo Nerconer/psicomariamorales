@@ -6,13 +6,14 @@ import CtaFinal from '../components/CtaFinal.astro';
 import Wave from '../components/Wave.astro';
 import LifeStages from '../components/LifeStages.astro';
 import ApproachCard from '../components/ApproachCard.astro';
+import SpecialtyDoors, { type Door } from '../components/SpecialtyDoors.astro';
 import DoctoraliaBadge from '../components/DoctoraliaBadge.astro';
 import GoogleReviewsLink from '../components/GoogleReviewsLink.astro';
 import { APPROACHES } from '../data/approaches';
 import { Picture } from 'astro:assets';
 import Icon, { type IconName } from '../components/ui/Icon.astro';
 import mariaWriting from '../assets/img/maria-writing.jpg';
-import { PRICES, formatPrice } from '../consts';
+import { PRICES, formatPrice, FREE_CALL_BY_LOCALE } from '../consts';
 import { PAGE_TITLES } from '../data/page-titles';
 import type { Locale } from '../i18n/config';
 import { pathFor, type RouteKey } from '../i18n/routes';
@@ -53,11 +54,29 @@ const LANDINGS: Record<string, RouteKey> = {
   disociacion: 'dissociation',
 };
 
-type Specialty = { id: string; icon: IconName; title: string; text?: string };
+type Specialty = { id: string; title: string; text: string };
 
-// Anxiety comes first and trauma last, as Maria asked. The ids are the anchors
-// other pages link to, so they stay the same in both languages.
-const COPY: Record<Locale, { metaTitle: string; description: string; title: string; intro: string[]; photoAlt: string; online: string; onlineText: string; inPerson: string; inPersonText: string; listTitle: string; reviewsTitle: string; specialties: Specialty[] }> = {
+// The specialties are shown in six groups, each one a "door" phrased the way a
+// visitor would say it, because many people do not know the name of what they
+// have. Anxiety comes first and trauma last, as Maria asked.
+//
+// The groups hold a similar amount of text, so no panel looks half empty next
+// to the others. Within a group, the order is the one that splits the items
+// into two columns of about the same height: check the panels on desktop after
+// moving an item or changing a long description.
+type GroupKey = 'alert' | 'emotions' | 'self' | 'relationships' | 'stages' | 'past';
+const GROUPS: { key: GroupKey; icon: IconName; ids: string[] }[] = [
+  { key: 'alert', icon: 'anxiety', ids: ['ansiedad', 'intrusivos', 'estres', 'burnout', 'panico'] },
+  { key: 'emotions', icon: 'heart', ids: ['tristeza', 'regulacion', 'irritabilidad', 'evitacion', 'pantallas'] },
+  { key: 'self', icon: 'confidence', ids: ['autoestima', 'perfeccionismo', 'bloqueos', 'control', 'sentido'] },
+  { key: 'relationships', icon: 'couple', ids: ['dependencia', 'apego', 'soledad', 'familia', 'conflictos'] },
+  { key: 'stages', icon: 'self', ids: ['crisis', 'perinatal', 'jovenes'] },
+  { key: 'past', icon: 'trauma', ids: ['duelo', 'disociacion', 'victima', 'trauma'] },
+];
+
+// The ids are the anchors other pages link to, so they stay the same in both
+// languages.
+const COPY: Record<Locale, { metaTitle: string; description: string; title: string; intro: string[]; photoAlt: string; online: string; onlineText: string; inPerson: string; inPersonText: string; listTitle: string; doorsIntro: string; doors: Record<GroupKey, string>; unsureTitle: string; unsureText: string; quizLabel: string; freeCallLabel: string; reviewsTitle: string; specialties: Specialty[] }> = {
   es: {
     metaTitle: 'Terapia psicológica en Barcelona',
     description:
@@ -74,36 +93,49 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
     onlineText: 'Por videollamada, desde cualquier lugar de España.',
     inPerson: 'Presencial',
     inPersonText: 'En la consulta de Barcelona.',
-    listTitle: 'Con qué acompaño',
+    listTitle: 'Con qué puedo acompañarte',
+    doorsIntro: '¿Te reconoces en alguna de estas situaciones?',
+    doors: {
+      alert: 'Mi cabeza no para',
+      emotions: 'Me cuesta llevar lo que siento',
+      self: 'Me exijo mucho o no sé qué quiero',
+      relationships: 'Me pesan las relaciones',
+      stages: 'Una etapa que lo remueve todo',
+      past: 'Algo que me pasó y sigue doliendo',
+    },
+    unsureTitle: '¿No sabes ponerle nombre?',
+    unsureText: 'Si llevas tiempo pensando «no sé qué me pasa, pero no estoy bien», también es un motivo válido para pedir ayuda.',
+    quizLabel: 'Responder 3 preguntas',
+    freeCallLabel: 'Llamada gratuita de 15 min',
     reviewsTitle: 'Opiniones de pacientes',
     specialties: [
-      { id: 'ansiedad', icon: 'anxiety', title: 'Ansiedad', text: 'Insomnio, presión en el pecho, pensamientos constantes, obsesiones o rumiaciones.' },
-      { id: 'estres', icon: 'stress', title: 'Estrés', text: 'Cuando las exigencias superan durante mucho tiempo lo que puedes sostener.' },
-      { id: 'burnout', icon: 'stress', title: 'Burnout', text: 'El trabajo te ha dejado sin energía ni ganas.' },
-      { id: 'panico', icon: 'panic', title: 'Ataques de pánico', text: 'Un miedo intenso y repentino, con síntomas físicos que asustan.' },
-      { id: 'intrusivos', icon: 'anxiety', title: 'Pensamientos intrusivos, obsesiones y compulsiones', text: 'Ideas o imágenes que aparecen sin querer y generan malestar. Pueden llevar a que repitas alguna acción para sentirte mejor.' },
-      { id: 'tristeza', icon: 'heart', title: 'Tristeza', text: 'Sentirme sin ganas, que todo me cueste, hasta las tareas más simples.' },
-      { id: 'autoestima', icon: 'confidence', title: 'Autoestima', text: 'Te gustaría valorarte y tratarte bien.' },
-      { id: 'regulacion', icon: 'heart', title: 'Regulación emocional', text: 'Emociones tan intensas y desbordantes que cuesta entenderlas y manejarlas, generando malestar y acciones de regulación poco saludables (atracones, autolesiones, tricotilomanía, etc.).' },
-      { id: 'irritabilidad', icon: 'heart', title: 'Irritabilidad', text: 'Estar irascible, que todo te moleste.' },
-      { id: 'control', icon: 'blocks', title: 'Necesidad de control', text: 'No poder ceder nunca el control, estar sobrepasado en todo, anticipar todo y estar irascible si algo no sale como esperaba.' },
-      { id: 'bloqueos', icon: 'blocks', title: 'Bloqueos', text: 'A veces sabes lo que quieres cambiar, pero algo dentro de ti parece frenarte.' },
-      { id: 'conflictos', icon: 'blocks', title: 'Gestión de conflictos', text: 'Sentir que no solucionas bien los conflictos en el trabajo, con profesores/as, con la familia, con amigos, etc.' },
-      { id: 'dependencia', icon: 'couple', title: 'Dependencia emocional', text: 'Cuando el miedo a perder una relación decide por ti.' },
-      { id: 'apego', icon: 'couple', title: 'Apego y límites', text: 'Te cuesta confiar, poner límites o mantener relaciones estables.' },
-      { id: 'familia', icon: 'couple', title: 'Relaciones familiares', text: 'Aceptar o modificar la vivencia de las relaciones familiares que generan malestar.' },
-      { id: 'soledad', icon: 'couple', title: 'Soledad y conexión', text: 'Soledad, dificultad para conectar con la gente o sentirte diferente.' },
-      { id: 'sentido', icon: 'self', title: 'No saber quién soy o lo que quiero', text: 'No sabes cómo eres o lo que quieres. Te gustaría tener tu identidad y el sentido de vida más definido.' },
-      { id: 'evitacion', icon: 'self', title: 'Evitación', text: 'Evadirse con el móvil, el deporte o cualquier cosa para evitar afrontar o conectar con el sufrimiento.' },
-      { id: 'pantallas', icon: 'self', title: 'Abuso de pantallas', text: 'Notar que estoy muchas horas en el móvil, Netflix, videojuegos... hasta dejar de tener el control.' },
-      { id: 'crisis', icon: 'self', title: 'Crisis vitales', text: 'Una separación, un cambio de trabajo, la maternidad o una enfermedad.' },
-      { id: 'jovenes', icon: 'self', title: 'Acompañamiento adolescente/joven', text: 'De los 12 a los 25 años es una etapa de cambios, no solo sociales sino también de cambios biológicos. En esta etapa se puede necesitar acompañamiento en las diferentes dudas y cambios vitales.' },
-      { id: 'perinatal', icon: 'heart', title: 'Psicología perinatal', text: 'Preparación psicológica para el parto, posparto.' },
-      { id: 'duelo', icon: 'grief', title: 'Duelo', text: 'Una pérdida que duele y necesita su espacio.' },
-      { id: 'perfeccionismo', icon: 'confidence', title: 'Perfeccionismo', text: 'Presión constante, miedo al error y la sensación de no llegar nunca.' },
-      { id: 'victima', icon: 'trauma', title: 'Haber sido víctima', text: 'De abuso sexual infantil, abuso, conducta narcisista, etc.' },
-      { id: 'disociacion', icon: 'trauma', title: 'Disociación', text: 'Estar presente físicamente, pero sentir que estás lejos de ti, como si vivieras en automático y te costara conectar con lo que sientes.' },
-      { id: 'trauma', icon: 'trauma', title: 'Trauma', text: 'El trauma no siempre viene de algo extremo. A veces nace de años de críticas, abandono o relaciones inseguras.' },
+      { id: 'ansiedad', title: 'Ansiedad', text: 'Insomnio, presión en el pecho, pensamientos constantes, obsesiones o rumiaciones.' },
+      { id: 'estres', title: 'Estrés', text: 'Cuando las exigencias superan durante mucho tiempo lo que puedes sostener.' },
+      { id: 'burnout', title: 'Burnout', text: 'El trabajo te ha dejado sin energía ni ganas.' },
+      { id: 'panico', title: 'Ataques de pánico', text: 'Un miedo intenso y repentino, con síntomas físicos que asustan.' },
+      { id: 'intrusivos', title: 'Pensamientos intrusivos, obsesiones y compulsiones', text: 'Ideas o imágenes que aparecen sin querer y generan malestar. Pueden llevar a que repitas alguna acción para sentirte mejor.' },
+      { id: 'tristeza', title: 'Tristeza', text: 'Sentirme sin ganas, que todo me cueste, hasta las tareas más simples.' },
+      { id: 'autoestima', title: 'Autoestima', text: 'Te gustaría valorarte y tratarte bien.' },
+      { id: 'regulacion', title: 'Regulación emocional', text: 'Emociones tan intensas y desbordantes que cuesta entenderlas y manejarlas, generando malestar y acciones de regulación poco saludables (atracones, autolesiones, tricotilomanía, etc.).' },
+      { id: 'irritabilidad', title: 'Irritabilidad', text: 'Estar irascible, que todo te moleste.' },
+      { id: 'control', title: 'Necesidad de control', text: 'No poder ceder nunca el control, estar sobrepasado en todo, anticipar todo y estar irascible si algo no sale como esperaba.' },
+      { id: 'bloqueos', title: 'Bloqueos', text: 'A veces sabes lo que quieres cambiar, pero algo dentro de ti parece frenarte.' },
+      { id: 'conflictos', title: 'Gestión de conflictos', text: 'Sentir que no solucionas bien los conflictos en el trabajo, con profesores/as, con la familia, con amigos, etc.' },
+      { id: 'dependencia', title: 'Dependencia emocional', text: 'Cuando el miedo a perder una relación decide por ti.' },
+      { id: 'apego', title: 'Apego y límites', text: 'Te cuesta confiar, poner límites o mantener relaciones estables.' },
+      { id: 'familia', title: 'Relaciones familiares', text: 'Aceptar o modificar la vivencia de las relaciones familiares que generan malestar.' },
+      { id: 'soledad', title: 'Soledad y conexión', text: 'Soledad, dificultad para conectar con la gente o sentirte diferente.' },
+      { id: 'sentido', title: 'No saber quién soy o lo que quiero', text: 'No sabes cómo eres o lo que quieres. Te gustaría tener tu identidad y el sentido de vida más definido.' },
+      { id: 'evitacion', title: 'Evitación', text: 'Evadirse con el móvil, el deporte o cualquier cosa para evitar afrontar o conectar con el sufrimiento.' },
+      { id: 'pantallas', title: 'Abuso de pantallas', text: 'Notar que estoy muchas horas en el móvil, Netflix, videojuegos... hasta dejar de tener el control.' },
+      { id: 'crisis', title: 'Crisis vitales', text: 'Una separación, un cambio de trabajo, la maternidad o una enfermedad.' },
+      { id: 'jovenes', title: 'Acompañamiento adolescente/joven', text: 'De los 12 a los 25 años es una etapa de cambios, no solo sociales sino también de cambios biológicos. En esta etapa se puede necesitar acompañamiento en las diferentes dudas y cambios vitales.' },
+      { id: 'perinatal', title: 'Psicología perinatal', text: 'Preparación psicológica para el parto, posparto.' },
+      { id: 'duelo', title: 'Duelo', text: 'Una pérdida que duele y necesita su espacio.' },
+      { id: 'perfeccionismo', title: 'Perfeccionismo', text: 'Presión constante, miedo al error y la sensación de no llegar nunca.' },
+      { id: 'victima', title: 'Haber sido víctima', text: 'De abuso sexual infantil, abuso, conducta narcisista, etc.' },
+      { id: 'disociacion', title: 'Disociación', text: 'Estar presente físicamente, pero sentir que estás lejos de ti, como si vivieras en automático y te costara conectar con lo que sientes.' },
+      { id: 'trauma', title: 'Trauma', text: 'El trauma no siempre viene de algo extremo. A veces nace de años de críticas, abandono o relaciones inseguras.' },
     ],
   },
   ca: {
@@ -122,42 +154,73 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
     onlineText: "Per videotrucada, des de qualsevol lloc d'Espanya.",
     inPerson: 'Presencial',
     inPersonText: 'A la consulta de Barcelona.',
-    listTitle: 'Amb què acompanyo',
+    listTitle: 'Amb què et puc acompanyar',
+    doorsIntro: "Et reconeixes en alguna d'aquestes situacions?",
+    doors: {
+      alert: "La meva ment no s'atura",
+      emotions: 'Em costa portar el que sento',
+      self: "M'exigeixo molt o no sé què vull",
+      relationships: 'Les relacions em pesen',
+      stages: 'Una etapa que ho remou tot',
+      past: 'Una cosa que em va passar i encara fa mal',
+    },
+    unsureTitle: 'No saps posar-hi nom?',
+    unsureText: 'Si fa temps que penses «no sé què em passa, però no estic bé», també és un motiu vàlid per demanar ajuda.',
+    quizLabel: 'Respondre 3 preguntes',
+    freeCallLabel: 'Trucada gratuïta de 15 min',
     reviewsTitle: 'Opinions de pacients',
     specialties: [
-      { id: 'ansiedad', icon: 'anxiety', title: 'Ansietat', text: 'Insomni, pressió al pit, pensaments constants, obsessions o rumiacions.' },
-      { id: 'estres', icon: 'stress', title: 'Estrès', text: 'Quan les exigències superen durant molt de temps el que pots sostenir.' },
-      { id: 'burnout', icon: 'stress', title: 'Burnout', text: "La feina t'ha deixat sense energia ni ganes." },
-      { id: 'panico', icon: 'panic', title: 'Atacs de pànic', text: 'Una por intensa i sobtada, amb símptomes físics que espanten.' },
-      { id: 'intrusivos', icon: 'anxiety', title: 'Pensaments intrusius, obsessions i compulsions', text: 'Idees o imatges que apareixen sense voler i generen malestar. Poden fer que repeteixis alguna acció per sentir-te millor.' },
-      { id: 'tristeza', icon: 'heart', title: 'Tristesa', text: 'Sentir-me sense ganes, que tot em costi, fins i tot les tasques més simples.' },
-      { id: 'autoestima', icon: 'confidence', title: 'Autoestima', text: "T'agradaria valorar-te i tractar-te bé." },
-      { id: 'regulacion', icon: 'heart', title: 'Regulació emocional', text: 'Emocions tan intenses i desbordants que costa entendre-les i gestionar-les, i que generen malestar i accions de regulació poc saludables (afartaments, autolesions, tricotil·lomania, etc.).' },
-      { id: 'irritabilidad', icon: 'heart', title: 'Irritabilitat', text: 'Estar irascible, que tot et molesti.' },
-      { id: 'control', icon: 'blocks', title: 'Necessitat de control', text: 'No poder cedir mai el control, estar sobrepassat en tot, anticipar-ho tot i estar irascible si alguna cosa no surt com esperava.' },
-      { id: 'bloqueos', icon: 'blocks', title: 'Bloquejos', text: 'De vegades saps què vols canviar, però alguna cosa dins teu sembla frenar-te.' },
-      { id: 'conflictos', icon: 'blocks', title: 'Gestió de conflictes', text: 'Sentir que no resols bé els conflictes a la feina, amb professors/es, amb la família, amb amics, etc.' },
-      { id: 'dependencia', icon: 'couple', title: 'Dependència emocional', text: 'Quan la por de perdre una relació decideix per tu.' },
-      { id: 'apego', icon: 'couple', title: 'Aferrament i límits', text: 'Et costa confiar, posar límits o mantenir relacions estables.' },
-      { id: 'familia', icon: 'couple', title: 'Relacions familiars', text: 'Acceptar o modificar la vivència de les relacions familiars que generen malestar.' },
-      { id: 'soledad', icon: 'couple', title: 'Solitud i connexió', text: 'Solitud, dificultat per connectar amb la gent o sentir-te diferent.' },
-      { id: 'sentido', icon: 'self', title: 'No saber qui soc o què vull', text: "No saps com ets o què vols. T'agradaria tenir la teva identitat i el sentit de la vida més definits." },
-      { id: 'evitacion', icon: 'self', title: 'Evitació', text: "Evadir-se amb el mòbil, l'esport o qualsevol cosa per evitar afrontar el patiment o connectar-hi." },
-      { id: 'pantallas', icon: 'self', title: 'Abús de pantalles', text: 'Notar que estic moltes hores al mòbil, Netflix, videojocs... fins a deixar de tenir el control.' },
-      { id: 'crisis', icon: 'self', title: 'Crisis vitals', text: 'Una separació, un canvi de feina, la maternitat o una malaltia.' },
-      { id: 'jovenes', icon: 'self', title: 'Acompanyament adolescent/jove', text: 'Dels 12 als 25 anys és una etapa de canvis, no només socials sinó també biològics. En aquesta etapa es pot necessitar acompanyament en els diferents dubtes i canvis vitals.' },
-      { id: 'perinatal', icon: 'heart', title: 'Psicologia perinatal', text: 'Preparació psicològica per al part, postpart.' },
-      { id: 'duelo', icon: 'grief', title: 'Dol', text: 'Una pèrdua que fa mal i necessita el seu espai.' },
-      { id: 'perfeccionismo', icon: 'confidence', title: 'Perfeccionisme', text: "Pressió constant, por a l'error i la sensació de no arribar mai." },
-      { id: 'victima', icon: 'trauma', title: 'Haver estat víctima', text: "D'abús sexual infantil, abús, conducta narcisista, etc." },
-      { id: 'disociacion', icon: 'trauma', title: 'Dissociació', text: 'Estar present físicament, però sentir que estàs lluny de tu, com si visquessis en automàtic i et costés connectar amb el que sents.' },
-      { id: 'trauma', icon: 'trauma', title: 'Trauma', text: "El trauma no sempre ve d'una cosa extrema. De vegades neix d'anys de crítiques, abandonament o relacions insegures." },
+      { id: 'ansiedad', title: 'Ansietat', text: 'Insomni, pressió al pit, pensaments constants, obsessions o rumiacions.' },
+      { id: 'estres', title: 'Estrès', text: 'Quan les exigències superen durant molt de temps el que pots sostenir.' },
+      { id: 'burnout', title: 'Burnout', text: "La feina t'ha deixat sense energia ni ganes." },
+      { id: 'panico', title: 'Atacs de pànic', text: 'Una por intensa i sobtada, amb símptomes físics que espanten.' },
+      { id: 'intrusivos', title: 'Pensaments intrusius, obsessions i compulsions', text: 'Idees o imatges que apareixen sense voler i generen malestar. Poden fer que repeteixis alguna acció per sentir-te millor.' },
+      { id: 'tristeza', title: 'Tristesa', text: 'Sentir-me sense ganes, que tot em costi, fins i tot les tasques més simples.' },
+      { id: 'autoestima', title: 'Autoestima', text: "T'agradaria valorar-te i tractar-te bé." },
+      { id: 'regulacion', title: 'Regulació emocional', text: 'Emocions tan intenses i desbordants que costa entendre-les i gestionar-les, i que generen malestar i accions de regulació poc saludables (afartaments, autolesions, tricotil·lomania, etc.).' },
+      { id: 'irritabilidad', title: 'Irritabilitat', text: 'Estar irascible, que tot et molesti.' },
+      { id: 'control', title: 'Necessitat de control', text: 'No poder cedir mai el control, estar sobrepassat en tot, anticipar-ho tot i estar irascible si alguna cosa no surt com esperava.' },
+      { id: 'bloqueos', title: 'Bloquejos', text: 'De vegades saps què vols canviar, però alguna cosa dins teu sembla frenar-te.' },
+      { id: 'conflictos', title: 'Gestió de conflictes', text: 'Sentir que no resols bé els conflictes a la feina, amb professors/es, amb la família, amb amics, etc.' },
+      { id: 'dependencia', title: 'Dependència emocional', text: 'Quan la por de perdre una relació decideix per tu.' },
+      { id: 'apego', title: 'Aferrament i límits', text: 'Et costa confiar, posar límits o mantenir relacions estables.' },
+      { id: 'familia', title: 'Relacions familiars', text: 'Acceptar o modificar la vivència de les relacions familiars que generen malestar.' },
+      { id: 'soledad', title: 'Solitud i connexió', text: 'Solitud, dificultat per connectar amb la gent o sentir-te diferent.' },
+      { id: 'sentido', title: 'No saber qui soc o què vull', text: "No saps com ets o què vols. T'agradaria tenir la teva identitat i el sentit de la vida més definits." },
+      { id: 'evitacion', title: 'Evitació', text: "Evadir-se amb el mòbil, l'esport o qualsevol cosa per evitar afrontar el patiment o connectar-hi." },
+      { id: 'pantallas', title: 'Abús de pantalles', text: 'Notar que estic moltes hores al mòbil, Netflix, videojocs... fins a deixar de tenir el control.' },
+      { id: 'crisis', title: 'Crisis vitals', text: 'Una separació, un canvi de feina, la maternitat o una malaltia.' },
+      { id: 'jovenes', title: 'Acompanyament adolescent/jove', text: 'Dels 12 als 25 anys és una etapa de canvis, no només socials sinó també biològics. En aquesta etapa es pot necessitar acompanyament en els diferents dubtes i canvis vitals.' },
+      { id: 'perinatal', title: 'Psicologia perinatal', text: 'Preparació psicològica per al part, postpart.' },
+      { id: 'duelo', title: 'Dol', text: 'Una pèrdua que fa mal i necessita el seu espai.' },
+      { id: 'perfeccionismo', title: 'Perfeccionisme', text: "Pressió constant, por a l'error i la sensació de no arribar mai." },
+      { id: 'victima', title: 'Haver estat víctima', text: "D'abús sexual infantil, abús, conducta narcisista, etc." },
+      { id: 'disociacion', title: 'Dissociació', text: 'Estar present físicament, però sentir que estàs lluny de tu, com si visquessis en automàtic i et costés connectar amb el que sents.' },
+      { id: 'trauma', title: 'Trauma', text: "El trauma no sempre ve d'una cosa extrema. De vegades neix d'anys de crítiques, abandonament o relacions insegures." },
     ],
   },
 };
 
 const c = COPY[locale];
 const a = APPROACHES[locale];
+
+const byId = new Map(c.specialties.map((s) => [s.id, s]));
+const doors: Door[] = GROUPS.map((g) => ({
+  key: g.key,
+  icon: g.icon,
+  title: c.doors[g.key],
+  items: g.ids.map((id) => {
+    const s = byId.get(id);
+    if (!s) throw new Error(`Specialty "${id}" is grouped but missing in ${locale}`);
+    return { ...s, href: LANDINGS[id] && pathFor(LANDINGS[id], locale) };
+  }),
+}));
+// A specialty left out of every group would silently disappear from the page.
+const grouped = new Set(GROUPS.flatMap((g) => g.ids));
+const ungrouped = c.specialties.filter((s) => !grouped.has(s.id)).map((s) => s.id);
+if (ungrouped.length) throw new Error(`Specialties without a group in ${locale}: ${ungrouped.join(', ')}`);
+
+const quiz = `${pathFor('home', locale)}#test`;
 ---
 
 <Layout title={c.metaTitle} description={c.description}>
@@ -203,28 +266,27 @@ const a = APPROACHES[locale];
   <section class="bg-surface py-12 md:py-16" id="especialidades">
     <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
       <h2 class="text-2xl font-bold text-primary md:text-3xl">{c.listTitle}</h2>
-      <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          c.specialties.map((s) => (
-            <article id={s.id} class="card relative flex scroll-mt-28 gap-4 p-5!">
-              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-surface text-primary" aria-hidden="true">
-                <Icon name={s.icon} />
-              </span>
-              <div>
-                <h3 class="font-display text-lg font-bold text-primary">
-                  {LANDINGS[s.id] ? (
-                    <a href={pathFor(LANDINGS[s.id], locale)} class="text-primary after:absolute after:inset-0 hover:underline">
-                      {s.title}
-                    </a>
-                  ) : (
-                    s.title
-                  )}
-                </h3>
-                {s.text && <p class="mt-1 text-base text-muted">{s.text}</p>}
-              </div>
-            </article>
-          ))
-        }
+      <p class="mt-2 text-muted">{c.doorsIntro}</p>
+      <SpecialtyDoors doors={doors} />
+
+      <div class="mt-6 flex flex-col gap-4 rounded-2xl bg-primary p-6 text-white md:flex-row md:items-center md:justify-between">
+        <div class="max-w-[54ch]">
+          <p class="font-display text-lg font-bold">{c.unsureTitle}</p>
+          <p class="mt-1 text-white/90">{c.unsureText}</p>
+        </div>
+        <div class="flex flex-wrap gap-2 md:shrink-0">
+          <a href={quiz} class="btn-light" data-event="quiz_link_click" data-event-location="therapy_specialties">{c.quizLabel}</a>
+          <a
+            href={FREE_CALL_BY_LOCALE[locale]}
+            class="btn-sun-outline"
+            target="_blank"
+            rel="noopener"
+            data-event="free_call_click"
+            data-event-location="therapy_specialties"
+          >
+            {c.freeCallLabel}
+          </a>
+        </div>
       </div>
 
       <div class="mt-12">

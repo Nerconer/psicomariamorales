@@ -1,0 +1,155 @@
+---
+// Reasons to come to therapy, grouped in "doors" phrased the way a visitor
+// would say it. The same markup is a set of tabs on desktop and an accordion
+// on mobile: each door is followed by its panel, and on desktop the grid moves
+// every panel to the right column. Items flow in two columns rather than rows,
+// so a long description does not leave a hole next to a short one, and the
+// panel is only as tall as its text.
+//
+// Every link stays in the HTML even when its panel is closed, because this is
+// the only page that links to most service pages. Which door someone opens
+// says how they feel, so it is never sent to analytics.
+import Icon, { type IconName } from './ui/Icon.astro';
+
+export interface DoorItem {
+  /** Anchor other pages link to, such as the quiz results. */
+  id: string;
+  title: string;
+  text: string;
+  href?: string;
+}
+
+export interface Door {
+  key: string;
+  icon: IconName;
+  title: string;
+  items: DoorItem[];
+}
+
+interface Props {
+  doors: Door[];
+}
+const { doors } = Astro.props;
+---
+
+<div class="mt-6 lg:grid lg:grid-cols-[minmax(0,25rem)_minmax(0,1fr)] lg:gap-x-6 lg:gap-y-2" data-doors>
+  {
+    doors.map((door, i) => (
+      <Fragment>
+        <button
+          type="button"
+          class="group mt-2 flex w-full scroll-mt-28 items-center gap-3 rounded-2xl border border-transparent bg-white/60 p-3.5 text-left transition-colors first:mt-0 hover:bg-white aria-expanded:border-line/60 aria-expanded:bg-white aria-expanded:shadow-soft lg:col-start-1 lg:mt-0"
+          style={`grid-row: ${i + 1}`}
+          aria-expanded="false"
+          aria-controls={`door-${door.key}`}
+        >
+          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-surface text-primary" aria-hidden="true">
+            <Icon name={door.icon} />
+          </span>
+          <span class="min-w-0 flex-1">
+            <span class="block font-display text-base font-bold text-ink group-aria-expanded:text-primary">{door.title}</span>
+            <span class="line-clamp-2 text-sm text-muted lg:line-clamp-1">{door.items.map((item) => item.title).join(' · ')}</span>
+          </span>
+          <span
+            class="rotate-90 text-line transition-transform group-aria-expanded:-rotate-90 group-aria-expanded:text-primary lg:rotate-0 lg:group-aria-expanded:rotate-0"
+            aria-hidden="true"
+          >
+            <Icon name="arrow" size={20} />
+          </span>
+        </button>
+        <div
+          id={`door-${door.key}`}
+          class="door-panel mt-2 rounded-2xl border border-line/60 bg-white p-5 shadow-soft lg:col-start-2 lg:row-span-6 lg:row-start-1 lg:mt-0 lg:self-start lg:p-8"
+        >
+          <ul class="-mb-5 gap-x-8 sm:columns-2">
+            {door.items.map((item) => (
+              <li id={item.id} class="scroll-mt-28 break-inside-avoid pb-5">
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    class="font-display text-lg font-bold text-primary underline decoration-line underline-offset-4 hover:decoration-primary"
+                  >
+                    {item.title}
+                  </a>
+                ) : (
+                  <span class="font-display text-lg font-bold text-primary">{item.title}</span>
+                )}
+                <p class="mt-1 text-[15px] text-muted md:text-base">{item.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Fragment>
+    ))
+  }
+</div>
+
+<noscript>
+  <style is:inline>
+    .door-panel {
+      display: block !important;
+    }
+  </style>
+</noscript>
+
+<style>
+  /* A panel shows when its door is open. On desktop the first one shows until
+     the script marks a door as open, so the right column is never empty. */
+  .door-panel {
+    display: none;
+  }
+  [data-doors] > button[aria-expanded='true'] + .door-panel {
+    display: block;
+  }
+  @media (min-width: 1024px) {
+    [data-doors]:not(:has(> button[aria-expanded='true'])) > .door-panel:nth-child(2) {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  const desktop = window.matchMedia('(min-width: 1024px)');
+
+  document.querySelectorAll<HTMLElement>('[data-doors]').forEach((root) => {
+    const doors = Array.from(root.querySelectorAll<HTMLButtonElement>(':scope > button[aria-controls]'));
+    const isOpen = (door: HTMLButtonElement) => door.getAttribute('aria-expanded') === 'true';
+    const set = (door: HTMLButtonElement, open: boolean) => door.setAttribute('aria-expanded', String(open));
+
+    doors.forEach((door) =>
+      door.addEventListener('click', () => {
+        const open = isOpen(door);
+        // Tabs: one panel is always open.
+        if (desktop.matches) {
+          if (!open) doors.forEach((d) => set(d, d === door));
+          return;
+        }
+        // Accordion: one panel at most. Closing the one above can push the
+        // door out of view, so bring it back.
+        doors.forEach((d) => set(d, d === door ? !open : false));
+        if (!open && door.getBoundingClientRect().top < 90) door.scrollIntoView({ block: 'start' });
+      })
+    );
+
+    // Links such as /terapia-psicologica/#apego open the door that holds the
+    // item and scroll to it.
+    const openFromHash = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      const item = id ? document.getElementById(id) : null;
+      const panel = item?.closest<HTMLElement>('.door-panel');
+      if (!item || !panel || !root.contains(panel)) return;
+      doors.forEach((d) => set(d, d.getAttribute('aria-controls') === panel.id));
+      item.scrollIntoView({ block: 'start' });
+    };
+
+    // Desktop always shows one panel. Mobile starts with every door closed.
+    const ensureOne = () => {
+      if (desktop.matches && !doors.some(isOpen)) set(doors[0], true);
+    };
+
+    openFromHash();
+    ensureOne();
+    window.addEventListener('hashchange', openFromHash);
+    desktop.addEventListener('change', ensureOne);
+  });
+</script>

@@ -9,6 +9,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Analytics from '../components/Analytics.astro';
+import { CSP_META } from '../csp';
 import MobileActionBar from '../components/MobileActionBar.astro';
 import WhatsAppIcon from '../components/ui/WhatsAppIcon.astro';
 import { SITE, PRICES, PRICE_RANGE } from '../consts';
@@ -130,6 +131,8 @@ const businessSchema = {
 <html lang={LOCALES[locale].htmlLang}>
   <head>
     <meta charset="utf-8" />
+    <!-- Production runs on GitHub Pages, which cannot send headers. See src/csp.ts. -->
+    <meta http-equiv="Content-Security-Policy" content={CSP_META} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

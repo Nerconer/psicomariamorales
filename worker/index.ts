@@ -1,33 +1,17 @@
-// Thin Worker in front of the static build. The same deployment answers on the
-// production domain, on workers.dev and on preview URLs, and only production may
-// be indexed. The decision is made per request host, because a single build is
-// served under every host.
+// Thin Worker in front of the static build. It serves the test deployment on
+// workers.dev and its preview URLs, which must never be indexed. Production
+// (main) is published on GitHub Pages; the production checks are kept so this
+// Worker stays safe if it is ever put in front of the real domain again.
+
+import { CSP_HEADER } from '../src/csp';
+import { PRODUCTION_HOST } from '../src/consts';
 
 interface Env {
   ASSETS: { fetch: (request: Request) => Promise<Response> };
 }
 
-const PRODUCTION_HOST = 'psicomariamorales.com';
-
-// Content Security Policy. Inline scripts are allowed because Astro inlines its
-// small component scripts. Third parties are limited to the analytics provider
-// and to Doctoralia, whose widget only loads after the visitor clicks for it.
-const CSP = [
-  "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://cloud.umami.is https://platform.docplanner.com",
-  "connect-src 'self' https://cloud.umami.is https://api-gateway.umami.dev",
-  "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: https://platform.docplanner.com",
-  "frame-src https://*.doctoralia.es https://*.docplanner.com",
-  "font-src 'self' data:",
-  "frame-ancestors 'none'",
-  "base-uri 'self'",
-  "form-action 'self'",
-  "object-src 'none'",
-].join('; ');
-
 const SECURITY_HEADERS: Record<string, string> = {
-  'Content-Security-Policy': CSP,
+  'Content-Security-Policy': CSP_HEADER,
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'X-Content-Type-Options': 'nosniff',

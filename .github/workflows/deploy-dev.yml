@@ -1,0 +1,40 @@
+# Test environment: a push to any branch except main deploys it to the
+# Cloudflare Worker on psicomariamorales.david-sola-sole.workers.dev, which is
+# never indexed (see worker/index.ts). All branches share that one URL, so the
+# last push wins.
+#
+# Needs the repository secrets CLOUDFLARE_API_TOKEN (permission to edit
+# Workers) and CLOUDFLARE_ACCOUNT_ID. The Git integration of the Worker in the
+# Cloudflare dashboard must stay disconnected, or every push deploys twice.
+name: Deploy dev
+
+on:
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A newer push makes an older deployment pointless, so it is cancelled.
+concurrency:
+  group: dev
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: '4.152.0'
+          command: deploy

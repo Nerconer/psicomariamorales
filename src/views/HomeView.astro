@@ -6,6 +6,7 @@ import CtaFinal from '../components/CtaFinal.astro';
 import Wave from '../components/Wave.astro';
 import DoctoraliaEmbed from '../components/DoctoraliaEmbed.astro';
 import GoogleReviewsLink from '../components/GoogleReviewsLink.astro';
+import LifeStages from '../components/LifeStages.astro';
 import OrientationQuiz from '../components/OrientationQuiz.astro';
 import Chip from '../components/ui/Chip.astro';
 import Faq from '../components/ui/Faq.astro';
@@ -43,7 +44,7 @@ const COPY = {
     doubts: '¿Tienes dudas?',
     preferCall: '¿Prefieres llamar?',
     freeCall: 'Pide una llamada gratuita de 15 minutos',
-    chips: [`Online desde casa · ${online}`, `Sesiones de ${minutes} min`, 'Castellano y català', `Presencial en Barcelona · ${inPerson}`, `Terapia de pareja · ${couple}`],
+    chips: [`Online desde casa · ${online}`, `Sesiones de ${minutes} min`, 'Castellano y català', `Presencial en Barcelona · ${inPerson}`, `Terapia de pareja · ${couple}`, 'Adultos y adolescentes desde 12 años'],
     recogniseTitle: '¿Te reconoces en algo de esto?',
     recogniseIntro:
       'A veces no es ansiedad exactamente. Puede aparecer como estrés, tristeza, inseguridad, dificultad para poner límites o sensación de estar bloqueado/a. Si te reconoces en alguna de estas situaciones, la terapia puede ayudarte:',
@@ -67,7 +68,7 @@ const COPY = {
     quizTitle: '¿No sabes por dónde empezar?',
     quizIntro: 'Tres preguntas y te digo cómo puedo ayudarte. Tus respuestas no se guardan ni se envían.',
     whoTitle: 'Quién soy',
-    who: 'Soy Maria Morales, psicóloga general sanitaria. Trabajo desde la psicología integradora y me he especializado en trauma y apego con EMDR.',
+    who: 'Soy Maria Morales, psicóloga general sanitaria. Trabajo desde la psicología integradora en regulación emocional, ansiedad, duelo, depresión, etc., a través de diferentes enfoques y técnicas: EMDR nivel II, IFS, terapias de tercera generación, TCC, mindfulness, etc.',
     whoChips: [`Colegiada COPC ${SITE.licenseNumber}`, 'EMDR nivel I y II', 'Máster en Psicología General Sanitaria'],
     meet: 'Conóceme',
     stepsTitle: 'Cómo empezamos',
@@ -101,7 +102,7 @@ const COPY = {
     doubts: 'Tens dubtes?',
     preferCall: 'Prefereixes trucar?',
     freeCall: 'Demana una trucada gratuïta de 15 minuts',
-    chips: [`En línia des de casa · ${online}`, `Sessions de ${minutes} min`, 'Català i castellà', `Presencial a Barcelona · ${inPerson}`, `Teràpia de parella · ${couple}`],
+    chips: [`En línia des de casa · ${online}`, `Sessions de ${minutes} min`, 'Català i castellà', `Presencial a Barcelona · ${inPerson}`, `Teràpia de parella · ${couple}`, 'Adults i adolescents des de 12 anys'],
     recogniseTitle: "T'hi reconeixes en alguna cosa d'això?",
     recogniseIntro:
       "De vegades no és exactament ansietat. Pot aparèixer com a estrès, tristesa, inseguretat, dificultat per posar límits o sensació d'estar bloquejat/da. Si et reconeixes en alguna d'aquestes situacions, la teràpia et pot ajudar:",
@@ -125,7 +126,7 @@ const COPY = {
     quizTitle: 'No saps per on començar?',
     quizIntro: "Tres preguntes i et dic com et puc ajudar. Les teves respostes no es guarden ni s'envien.",
     whoTitle: 'Qui soc',
-    who: "Soc Maria Morales, psicòloga general sanitària. Treballo des de la psicologia integradora i m'he especialitzat en trauma i aferrament amb EMDR.",
+    who: 'Soc Maria Morales, psicòloga general sanitària. Treballo des de la psicologia integradora en regulació emocional, ansietat, dol, depressió, etc., a través de diferents enfocaments i tècniques: EMDR nivell II, IFS, teràpies de tercera generació, TCC, mindfulness, etc.',
     whoChips: [`Col·legiada COPC ${SITE.licenseNumber}`, 'EMDR nivell I i II', 'Màster en Psicologia General Sanitària'],
     meet: "Coneix-me",
     stepsTitle: 'Com comencem',
@@ -154,25 +155,25 @@ const c = COPY[locale];
 // Desktop hero photo in AVIF with a WebP fallback. Below lg its column is
 // hidden, so the first <source> hands phones a 1x1 image and they never
 // download the photo.
-const HERO_WIDTHS = [460, 744, 920];
-const heroAvif = await getImage({ src: mariaHero, width: 460, widths: HERO_WIDTHS, format: 'avif' });
-const heroWebp = await getImage({ src: mariaHero, width: 460, widths: HERO_WIDTHS, format: 'webp' });
+const HERO_WIDTHS = [540, 744, 1080];
+const heroAvif = await getImage({ src: mariaHero, width: 540, widths: HERO_WIDTHS, format: 'avif' });
+const heroWebp = await getImage({ src: mariaHero, width: 540, widths: HERO_WIDTHS, format: 'webp' });
 const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 ---
 
 <Layout title={c.metaTitle} description={c.description}>
   <!-- Hero -->
   <section class="relative overflow-hidden">
-    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] items-center gap-10 py-10 md:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
+    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] items-center gap-10 py-10 md:py-16 lg:grid-cols-2 lg:py-20">
       <div>
         <div class="flex items-center gap-4">
           <Image
             src={mariaHero}
             alt="Maria Morales"
-            width={176}
-            widths={[176, 264]}
-            sizes="88px"
-            class="h-22 w-22 rounded-full object-cover object-top ring-4 ring-sun lg:hidden"
+            width={240}
+            widths={[240, 360]}
+            sizes="120px"
+            class="h-30 w-30 rounded-full object-cover object-top ring-4 ring-sun lg:hidden"
             loading="eager"
           />
           <div>
@@ -231,22 +232,23 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
         <div class="mt-6 flex flex-wrap gap-2">
           <Chip tone="sun" icon="online">{c.chips[0]}</Chip>
           <Chip>{c.chips[1]}</Chip>
+          <Chip icon="self">{c.chips[5]}</Chip>
           <Chip>{c.chips[2]}</Chip>
           <Chip icon="location">{c.chips[3]}</Chip>
           <Chip icon="couple">{c.chips[4]}</Chip>
         </div>
       </div>
 
-      <div class="relative mx-auto hidden w-full max-w-[460px] lg:block">
+      <div class="relative mx-auto hidden w-full max-w-[540px] lg:block">
         <div class="absolute -right-6 -top-6 h-40 w-40 rounded-full bg-sun/70" aria-hidden="true"></div>
         <div class="absolute -bottom-6 -left-6 h-28 w-28 rounded-full bg-surface" aria-hidden="true"></div>
         <picture class="relative block">
           <source media="(max-width: 1023.98px)" srcset={BLANK_GIF} />
-          <source type="image/avif" srcset={heroAvif.srcSet.attribute} sizes="460px" />
+          <source type="image/avif" srcset={heroAvif.srcSet.attribute} sizes="540px" />
           <img
             src={heroWebp.src}
             srcset={heroWebp.srcSet.attribute}
-            sizes="460px"
+            sizes="540px"
             width={heroWebp.attributes.width}
             height={heroWebp.attributes.height}
             alt={`${SITE.person}, ${c.role}`}
@@ -278,6 +280,10 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
       <p class="mt-3 max-w-[68ch]">{c.growthIntro}</p>
       <div class="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
         {c.growth.map((card) => <ProblemCard href={to(card.key)} title={card.title} text={card.text} icon={card.icon} />)}
+      </div>
+
+      <div class="mt-12">
+        <LifeStages locale={locale} tone="light" />
       </div>
 
       <p class="mt-10 max-w-[60ch] font-display text-xl font-semibold text-primary-strong">{c.closing}</p>

@@ -38,6 +38,7 @@ const COPY = {
     description: `Maria Morales, psicóloga general sanitaria. Terapia online en toda España y presencial en Barcelona: ansiedad, estrés, pareja, autoestima y trauma con EMDR. Primera sesión ${first}.`,
     hello: 'Hola, soy Maria',
     role: SITE.role,
+    experience: `+${SITE.experienceYears} años acompañando a personas`,
     h1: PAGE_TITLES.home.es,
     sub: HOME_SUBTITLE.es,
     book: `Reservar primera sesión · ${first}`,
@@ -96,6 +97,7 @@ const COPY = {
     description: `Maria Morales, psicòloga general sanitària. Teràpia en línia a tot Espanya i presencial a Barcelona: ansietat, estrès, parella, autoestima i trauma amb EMDR. Primera sessió ${first}.`,
     hello: 'Hola, soc Maria',
     role: SITE.roleCa,
+    experience: `+${SITE.experienceYears} anys acompanyant persones`,
     h1: PAGE_TITLES.home.ca,
     sub: HOME_SUBTITLE.ca,
     book: `Reservar la primera sessió · ${first}`,
@@ -194,7 +196,8 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
           </div>
         </div>
 
-        <h1 class="mt-6 text-[2.1rem] font-bold leading-[1.15] text-primary sm:text-5xl lg:text-[3.4rem]">{c.h1}</h1>
+        <p class="eyebrow mt-6 text-base">{c.experience}</p>
+        <h1 class="text-[2.1rem] font-bold leading-[1.15] text-primary sm:text-5xl lg:text-[3.4rem]">{c.h1}</h1>
         <p class="mt-4 max-w-[46ch] text-lg md:text-xl">{c.sub}</p>
 
         <div class="mt-7 flex flex-col gap-3 sm:flex-row">

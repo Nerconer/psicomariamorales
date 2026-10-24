@@ -28,6 +28,8 @@ export const SITE = {
   tagline: 'Psicóloga sanitaria en Barcelona · Terapia presencial y online',
   doctoralia: 'https://www.doctoralia.es/maria-morales-herrerias/psicologo/barcelona',
   licenseNumber: '35153',
+  // Shown as "+7 años acompañando a personas" on the home and about pages.
+  experienceYears: 7,
   // Public profile at the Col·legi Oficial de Psicologia de Catalunya
   copc: 'https://www.copc.cat/es/contacte/maria-morales-herrerias-179636',
   phone: '+34 611 19 35 69',

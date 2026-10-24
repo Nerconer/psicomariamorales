@@ -30,6 +30,7 @@ const COPY = {
     description:
       'Soy Maria Morales, psicóloga general sanitaria (COPC 35153). Trabajo desde la psicología integradora, online y en Barcelona, en castellano y en catalán.',
     title: PAGE_TITLES.about.es,
+    experience: `+${SITE.experienceYears} años acompañando a personas`,
     lead: 'Psicóloga general sanitaria, colegiada en Barcelona (COPC 35153). Atiendo online y en Barcelona, en castellano y en catalán.',
     alt: 'Maria Morales, psicóloga general sanitaria',
     whyTitle: 'Por qué me dedico a esto',
@@ -72,6 +73,7 @@ const COPY = {
     description:
       'Soc Maria Morales, psicòloga general sanitària (COPC 35153). Treballo des de la psicologia integradora, en línia i a Barcelona, en català i en castellà.',
     title: PAGE_TITLES.about.ca,
+    experience: `+${SITE.experienceYears} anys acompanyant persones`,
     lead: 'Psicòloga general sanitària, col·legiada a Barcelona (COPC 35153). Atenc en línia i a Barcelona, en català i en castellà.',
     alt: 'Maria Morales, psicòloga general sanitària',
     whyTitle: 'Per què em dedico a això',
@@ -147,7 +149,7 @@ const certificates = await Promise.all(
 ---
 
 <Layout title={COPY.metaTitle} description={COPY.description}>
-  <PageHero title={COPY.title} lead={COPY.lead} />
+  <PageHero eyebrow={COPY.experience} title={COPY.title} lead={COPY.lead} />
 
   <section class="py-12 md:py-20">
     <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] items-start gap-10 lg:grid-cols-[380px_1fr] lg:gap-14">

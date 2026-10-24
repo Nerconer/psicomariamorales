@@ -1,0 +1,11 @@
+---
+// Renders a line of page copy, turning the parts wrapped in **double
+// asterisks** into bold. Copy can then mark the phrase a reader should take
+// away without keeping HTML in the strings.
+interface Props {
+  text: string;
+}
+const parts = Astro.props.text.split('**');
+---
+
+{parts.map((part, i) => (i % 2 ? <strong class="font-semibold text-ink">{part}</strong> : part))}

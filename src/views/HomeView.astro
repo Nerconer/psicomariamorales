@@ -10,6 +10,7 @@ import GoogleReviewsLink from '../components/GoogleReviewsLink.astro';
 import LifeStages from '../components/LifeStages.astro';
 import OrientationQuiz from '../components/OrientationQuiz.astro';
 import Chip from '../components/ui/Chip.astro';
+import Emphasis from '../components/ui/Emphasis.astro';
 import Faq from '../components/ui/Faq.astro';
 import Icon from '../components/ui/Icon.astro';
 import ProblemCard from '../components/ui/ProblemCard.astro';
@@ -49,11 +50,11 @@ const COPY = {
     chips: [`Online desde casa · ${online}`, `Sesiones de ${minutes} min`, 'Castellano y català', `Presencial en Barcelona · ${inPerson}`, `Terapia de pareja · ${couple}`, 'Adultos y adolescentes desde 12 años'],
     recogniseTitle: '¿Te reconoces en algo de esto?',
     recogniseIntro:
-      'A veces sientes malestar físico y/o mental. Puede aparecer como estrés, tristeza, inseguridad, dificultad para poner límites, ansiedad o sensación de estar bloqueado/a. Si te reconoces en alguna de estas situaciones, la terapia puede ayudarte:',
+      'A veces sientes malestar físico y/o mental. Puede aparecer como estrés, tristeza, inseguridad, dificultad para poner límites, ansiedad o sensación de estar bloqueado/a. Si te reconoces en alguna de estas situaciones, **la terapia puede ayudarte**:',
     hardTitle: 'Si estás pasando un mal momento',
     growthTitle: 'Si estás bien, pero quieres mejorar',
     growthIntro:
-      'Y a veces el problema es precisamente no saber cómo afrontar lo que te está pasando: evitar conversaciones difíciles, bloquearte ante los conflictos, darle demasiadas vueltas antes de decidir o reaccionar de una manera que después no entiendes.',
+      'Y a veces el problema es precisamente **no saber cómo afrontar lo que te está pasando**: evitar conversaciones difíciles, bloquearte ante los conflictos, darle demasiadas vueltas antes de decidir o reaccionar de una manera que después no entiendes.',
     closing: 'Si llevas tiempo pensando «no sé qué me pasa, pero no estoy bien», también es un motivo válido para pedir ayuda.',
     hard: [
       { icon: 'anxiety', title: 'Ansiedad', text: 'Te cuesta dormir, tu mente no para, sientes presión en el pecho, temblores, etc.', key: 'anxiety' },
@@ -70,7 +71,7 @@ const COPY = {
     quizTitle: '¿No sabes por dónde empezar?',
     quizIntro: 'Tres preguntas y te digo cómo puedo ayudarte. Tus respuestas no se guardan ni se envían.',
     whoTitle: 'Quién soy',
-    who: 'Soy Maria Morales, psicóloga general sanitaria. Trabajo desde la psicología integradora en regulación emocional, ansiedad, duelo, depresión, etc., a través de diferentes enfoques y técnicas: EMDR nivel II, IFS, terapias de tercera generación, TCC, mindfulness, etc.',
+    who: 'Soy Maria Morales, psicóloga general sanitaria. Trabajo desde la **psicología integradora** en regulación emocional, ansiedad, duelo, depresión, etc., a través de diferentes enfoques y técnicas: EMDR nivel II, IFS, terapias de tercera generación, TCC, mindfulness, etc.',
     whoChips: [`Colegiada COPC ${SITE.licenseNumber}`, 'EMDR nivel I y II', 'Máster en Psicología General Sanitaria'],
     meet: 'Conóceme',
     stepsTitle: 'Empezar es sencillo',
@@ -112,11 +113,11 @@ const COPY = {
     chips: [`En línia des de casa · ${online}`, `Sessions de ${minutes} min`, 'Català i castellà', `Presencial a Barcelona · ${inPerson}`, `Teràpia de parella · ${couple}`, 'Adults i adolescents des de 12 anys'],
     recogniseTitle: "T'hi reconeixes en alguna cosa d'això?",
     recogniseIntro:
-      "De vegades sents malestar físic i/o mental. Pot aparèixer com a estrès, tristesa, inseguretat, dificultat per posar límits, ansietat o sensació d'estar bloquejat/da. Si et reconeixes en alguna d'aquestes situacions, la teràpia et pot ajudar:",
+      "De vegades sents malestar físic i/o mental. Pot aparèixer com a estrès, tristesa, inseguretat, dificultat per posar límits, ansietat o sensació d'estar bloquejat/da. Si et reconeixes en alguna d'aquestes situacions, **la teràpia et pot ajudar**:",
     hardTitle: 'Si estàs passant un mal moment',
     growthTitle: 'Si estàs bé, però vols millorar',
     growthIntro:
-      "I de vegades el problema és precisament no saber com afrontar el que t'està passant: evitar converses difícils, bloquejar-te davant dels conflictes, donar-hi massa voltes abans de decidir o reaccionar d'una manera que després no entens.",
+      "I de vegades el problema és precisament **no saber com afrontar el que t'està passant**: evitar converses difícils, bloquejar-te davant dels conflictes, donar-hi massa voltes abans de decidir o reaccionar d'una manera que després no entens.",
     closing: 'Si fa temps que penses «no sé què em passa, però no estic bé», també és un motiu vàlid per demanar ajuda.',
     hard: [
       { icon: 'anxiety', title: 'Ansietat', text: "Et costa dormir, la teva ment no s'atura, sents pressió al pit, tremolors, etc.", key: 'anxiety' },
@@ -133,7 +134,7 @@ const COPY = {
     quizTitle: 'No saps per on començar?',
     quizIntro: "Tres preguntes i et dic com et puc ajudar. Les teves respostes no es guarden ni s'envien.",
     whoTitle: 'Qui soc',
-    who: 'Soc Maria Morales, psicòloga general sanitària. Treballo des de la psicologia integradora en regulació emocional, ansietat, dol, depressió, etc., a través de diferents enfocaments i tècniques: EMDR nivell II, IFS, teràpies de tercera generació, TCC, mindfulness, etc.',
+    who: 'Soc Maria Morales, psicòloga general sanitària. Treballo des de la **psicologia integradora** en regulació emocional, ansietat, dol, depressió, etc., a través de diferents enfocaments i tècniques: EMDR nivell II, IFS, teràpies de tercera generació, TCC, mindfulness, etc.',
     whoChips: [`Col·legiada COPC ${SITE.licenseNumber}`, 'EMDR nivell I i II', 'Màster en Psicologia General Sanitària'],
     meet: "Coneix-me",
     stepsTitle: 'Començar és senzill',
@@ -280,7 +281,7 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
     <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
       <div class="max-w-[68ch]">
         <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.recogniseTitle}</h2>
-        <p class="mt-4">{c.recogniseIntro}</p>
+        <p class="mt-4"><Emphasis text={c.recogniseIntro} /></p>
       </div>
 
       <h3 class="mt-10 text-lg font-bold text-muted">{c.hardTitle}</h3>
@@ -289,7 +290,7 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
       </div>
 
       <h3 class="mt-12 text-lg font-bold text-muted">{c.growthTitle}</h3>
-      <p class="mt-3 max-w-[68ch]">{c.growthIntro}</p>
+      <p class="mt-3 max-w-[68ch]"><Emphasis text={c.growthIntro} /></p>
       <div class="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
         {c.growth.map((card) => <ProblemCard href={to(card.key)} title={card.title} text={card.text} icon={card.icon} />)}
       </div>
@@ -369,7 +370,7 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
   <section class="py-14 md:py-20">
     <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
       <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.whoTitle}</h2>
-      <p class="mt-4 max-w-[62ch]">{c.who}</p>
+      <p class="mt-4 max-w-[62ch]"><Emphasis text={c.who} /></p>
       <div class="mt-5 flex flex-wrap gap-2">
         {c.whoChips.map((chip) => <Chip>{chip}</Chip>)}
       </div>

@@ -12,6 +12,7 @@ import GoogleReviewsLink from '../components/GoogleReviewsLink.astro';
 import { APPROACHES } from '../data/approaches';
 import { Picture } from 'astro:assets';
 import Icon, { type IconName } from '../components/ui/Icon.astro';
+import Emphasis from '../components/ui/Emphasis.astro';
 import mariaWriting from '../assets/img/maria-writing.jpg';
 import { PRICES, formatPrice, FREE_CALL_BY_LOCALE } from '../consts';
 import { PAGE_TITLES } from '../data/page-titles';
@@ -83,9 +84,9 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
       'Terapia psicológica online en toda España y presencial en Barcelona: ansiedad, estrés, burnout, autoestima, bloqueos, duelo y trauma con EMDR.',
     title: PAGE_TITLES.therapy.es,
     intro: [
-      "Para mí los síntomas (psicológicos y somáticos) y el malestar que podemos tener las personas simplemente es el cuerpo hablando. La finalidad biológica de nuestro cuerpo es sobrevivir y para ello tiene muchos mecanismos para garantizarlo, lo que pasa que muchas veces no tenemos las herramientas o la consciencia para entenderlos y se acaban cronificando manifestándose en formato síntomas y malestar, perdiendo así salud (esos mecanismos no cumplen con su función).",
-      "Cuando se entienden, cumplen su función y muchas veces ese malestar desaparece. Eso es a lo que me dedico, a entender el origen y el porqué de los síntomas y el malestar.",
-      'Trabajo desde la psicología integradora. Me adapto a cada persona, a cada situación y a cada necesidad. No todo funciona de la misma manera en cada persona.',
+      "Para mí los síntomas (psicológicos y somáticos) y el malestar que podemos tener las personas simplemente es **el cuerpo hablando**. La finalidad biológica de nuestro cuerpo es sobrevivir y para ello tiene muchos mecanismos para garantizarlo, lo que pasa que muchas veces no tenemos las herramientas o la consciencia para entenderlos y se acaban cronificando manifestándose en formato síntomas y malestar, perdiendo así salud (esos mecanismos no cumplen con su función).",
+      "Cuando se entienden, cumplen su función y muchas veces ese malestar desaparece. Eso es a lo que me dedico, a **entender el origen y el porqué de los síntomas y el malestar**.",
+      'Trabajo desde la psicología integradora. **Me adapto a cada persona**, a cada situación y a cada necesidad. No todo funciona de la misma manera en cada persona.',
       'Tengo formación amplia en diferentes enfoques y corrientes: cognitivo-conductual, terapias de tercera generación, EMDR nivel I y II, IFS, terapia focalizada en la emoción, terapia sistémica y análisis transaccional, entre otros.',
     ],
     photoAlt: 'Maria Morales tomando notas en un cuaderno',
@@ -144,9 +145,9 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
       "Teràpia psicològica en línia a tot Espanya i presencial a Barcelona: ansietat, estrès, burnout, autoestima, bloquejos, dol i trauma amb EMDR.",
     title: PAGE_TITLES.therapy.ca,
     intro: [
-      "Per a mi, els símptomes (psicològics i somàtics) i el malestar que podem tenir les persones simplement són el cos parlant. La finalitat biològica del nostre cos és sobreviure i per això té molts mecanismes per garantir-ho, el que passa és que moltes vegades no tenim les eines o la consciència per entendre'ls i s'acaben cronificant i manifestant en forma de símptomes i malestar, i així perdem salut (aquests mecanismes no compleixen la seva funció).",
-      "Quan s'entenen, compleixen la seva funció i moltes vegades aquest malestar desapareix. Això és el que faig, entendre l'origen i el perquè dels símptomes i del malestar.",
-      "Treballo des de la psicologia integradora. M'adapto a cada persona, a cada situació i a cada necessitat. No tot funciona de la mateixa manera en cada persona.",
+      "Per a mi, els símptomes (psicològics i somàtics) i el malestar que podem tenir les persones simplement són **el cos parlant**. La finalitat biològica del nostre cos és sobreviure i per això té molts mecanismes per garantir-ho, el que passa és que moltes vegades no tenim les eines o la consciència per entendre'ls i s'acaben cronificant i manifestant en forma de símptomes i malestar, i així perdem salut (aquests mecanismes no compleixen la seva funció).",
+      "Quan s'entenen, compleixen la seva funció i moltes vegades aquest malestar desapareix. Això és el que faig, **entendre l'origen i el perquè dels símptomes i del malestar**.",
+      "Treballo des de la psicologia integradora. **M'adapto a cada persona**, a cada situació i a cada necessitat. No tot funciona de la mateixa manera en cada persona.",
       "Tinc una formació àmplia en diferents enfocaments i corrents: cognitivoconductual, teràpies de tercera generació, EMDR nivell I i II, IFS, teràpia focalitzada en l'emoció, teràpia sistèmica i anàlisi transaccional, entre d'altres.",
     ],
     photoAlt: 'Maria Morales prenent notes en una llibreta',
@@ -229,7 +230,7 @@ const quiz = `${pathFor('home', locale)}#test`;
   <section class="py-12 md:py-16">
     <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] items-center gap-10 lg:grid-cols-[1fr_380px] lg:gap-14">
       <div>
-        {c.intro.map((p, i) => <p class:list={['max-w-[62ch]', i > 0 && 'mt-4']}>{p}</p>)}
+        {c.intro.map((p, i) => <p class:list={['max-w-[62ch]', i > 0 && 'mt-4']}><Emphasis text={p} /></p>)}
 
         <div class="mt-8 grid gap-3 sm:grid-cols-2">
           <a href={pathFor('online', locale)} class="rounded-2xl bg-primary p-5 text-white transition-colors hover:bg-primary-strong">
@@ -307,7 +308,7 @@ const quiz = `${pathFor('home', locale)}#test`;
       <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{a.techniques.map((x) => <ApproachCard {...x} />)}</div>
 
       <h3 class="mt-10 text-xl font-bold text-ink">{a.combineTitle}</h3>
-      <p class="mt-3 max-w-[68ch]">{a.combine}</p>
+      <p class="mt-3 max-w-[68ch]"><Emphasis text={a.combine} /></p>
 
       <h3 class="mt-12 text-xl font-bold text-ink">{c.reviewsTitle}</h3>
       <div class="mt-4">

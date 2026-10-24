@@ -87,7 +87,7 @@ export const APPROACHES: Record<Locale, Approaches> = {
     ],
     combineTitle: '¿Cómo combino estas herramientas?',
     combine:
-      'Primero exploro la historia y las necesidades de cada persona. Después, establezco un plan de trabajo personalizado en el que combino la comprensión del problema, las herramientas prácticas y, cuando está indicado, el procesamiento de experiencias difíciles. Mi objetivo es que la terapia no consista únicamente en hablar, sino también en trabajar activamente para conseguir cambios duraderos.',
+      'Primero exploro la historia y las necesidades de cada persona. Después, establezco **un plan de trabajo personalizado** en el que combino la comprensión del problema, las herramientas prácticas y, cuando está indicado, el procesamiento de experiencias difíciles. Mi objetivo es que la terapia no consista únicamente en hablar, sino también en **trabajar activamente para conseguir cambios duraderos**.',
   },
   ca: {
     title: 'Com treballo',
@@ -154,6 +154,6 @@ export const APPROACHES: Record<Locale, Approaches> = {
     ],
     combineTitle: 'Com combino aquestes eines?',
     combine:
-      "Primer exploro la història i les necessitats de cada persona. Després, estableixo un pla de treball personalitzat en què combino la comprensió del problema, les eines pràctiques i, quan cal, el processament d'experiències difícils. El meu objectiu és que la teràpia no consisteixi només a parlar, sinó també a treballar activament per aconseguir canvis duradors.",
+      "Primer exploro la història i les necessitats de cada persona. Després, estableixo **un pla de treball personalitzat** en què combino la comprensió del problema, les eines pràctiques i, quan cal, el processament d'experiències difícils. El meu objectiu és que la teràpia no consisteixi només a parlar, sinó també a **treballar activament per aconseguir canvis duradors**.",
   },
 };

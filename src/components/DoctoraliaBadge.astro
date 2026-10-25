@@ -23,7 +23,8 @@ const { slug } = REVIEWS.doctoralia;
 </div>
 
 <script>
-  // Loaded once the page has finished, so the badge never delays it.
+  // The widget weighs about 180 KB, so it is only loaded when the badge is about
+  // to come into view: visitors who never scroll that far do not download it.
   const load = () => {
     if (document.getElementById('zl-widget-s')) return;
     const s = document.createElement('script');
@@ -32,6 +33,18 @@ const { slug } = REVIEWS.doctoralia;
     s.async = true;
     document.body.appendChild(s);
   };
-  if (document.readyState === 'complete') load();
-  else window.addEventListener('load', load, { once: true });
+  const badges = document.querySelectorAll('.doctoralia-badge');
+  if (!('IntersectionObserver' in window)) {
+    window.addEventListener('load', load, { once: true });
+  } else {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        observer.disconnect();
+        load();
+      },
+      { rootMargin: '600px 0px' }
+    );
+    badges.forEach((b) => observer.observe(b));
+  }
 </script>

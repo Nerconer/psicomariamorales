@@ -14,6 +14,10 @@ export default defineConfig({
   // them with a trailing slash, so every internal link uses one too. Without
   // it each click costs a 307 redirect.
   trailingSlash: 'always',
+  // The single stylesheet goes inside each page instead of in a separate file,
+  // so the browser paints without waiting for one more request. GitHub Pages
+  // only lets files be cached for 10 minutes, so a separate file saved little.
+  build: { inlineStylesheets: 'always' },
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'ca'],

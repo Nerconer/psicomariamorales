@@ -40,6 +40,7 @@ export const ROUTES = {
   youth: { es: '/psicologa-adolescentes-jovenes/', ca: '/ca/psicologa-adolescents-joves/' },
   perinatal: { es: '/psicologia-perinatal/', ca: '/ca/psicologia-perinatal/' },
   dissociation: { es: '/disociacion/', ca: '/ca/dissociacio/' },
+  eating: { es: '/trastornos-conducta-alimentaria/', ca: '/ca/trastorns-conducta-alimentaria/' },
   blog: { es: '/blog/' },
   companies: { es: '/empresas/' },
   schools: { es: '/centros-educativos/' },

@@ -1326,6 +1326,59 @@ export const SERVICES: Service[] = [
       ],
     },
   },
+  {
+    key: 'eating',
+    icon: 'regulation',
+    posts: ['senales-para-ir-al-psicologo', 'empezar-terapia-dudas-frecuentes'],
+    es: {
+      metaTitle: 'Psicóloga para TCA en Barcelona y online',
+      description:
+        'Terapia para los trastornos de la conducta alimentaria (TCA) online y en Barcelona: cuando la comida, el cuerpo o el peso ocupan demasiado espacio en tu cabeza.',
+      title: 'Trastornos de la conducta alimentaria (TCA)',
+      lead: 'Cuando la comida, el cuerpo o el peso ocupan demasiado espacio en tu cabeza. Te acompaño a entender qué hay detrás, sin juicios.',
+      signsTitle: 'Te reconoces si',
+      signs: [
+        'Pasas mucho tiempo pensando en la comida, en tu peso o en tu cuerpo.',
+        'Te saltas comidas, restringes lo que comes o sigues reglas muy estrictas.',
+        'Tienes atracones y después sientes culpa o vergüenza.',
+        'Intentas compensar lo que comes con ejercicio, vómitos u otras conductas.',
+        'Cómo ves tu cuerpo cada día decide cómo te sientes.',
+      ],
+      approach: [
+        'La comida suele ser la parte que se ve. Debajo puede haber ansiedad, necesidad de control, una autoestima frágil o emociones que cuesta sostener. Empezamos por entender qué papel cumple en tu vida, sin juzgarlo.',
+        'Trabajo con TCC, regulación emocional y terapia centrada en la compasión. En los TCA a menudo hace falta también seguimiento médico y nutricional: si es tu caso, lo hablamos y te oriento hacia esos profesionales.',
+      ],
+      faqs: [
+        { q: '¿Necesito un diagnóstico para pedir ayuda?', a: 'No. Si tu relación con la comida o con tu cuerpo te genera malestar, ya es motivo suficiente para consultarlo.' },
+        { q: '¿Basta con la terapia psicológica?', a: 'Depende de cada caso. A veces el tratamiento necesita también un médico o un dietista-nutricionista. Lo valoramos en consulta.' },
+        { q: '¿Y si mi salud física está en riesgo?', a: 'Si tienes mareos, desmayos, una pérdida de peso rápida o vómitos frecuentes, lo primero es ir al médico o a urgencias. La terapia acompaña, pero no sustituye esa atención.' },
+      ],
+    },
+    ca: {
+      metaTitle: 'Psicòloga per a TCA a Barcelona i en línia',
+      description:
+        'Teràpia per als trastorns de la conducta alimentària (TCA) en línia i a Barcelona: quan el menjar, el cos o el pes ocupen massa espai al teu cap.',
+      title: 'Trastorns de la conducta alimentària (TCA)',
+      lead: "Quan el menjar, el cos o el pes ocupen massa espai al teu cap. T'acompanyo a entendre què hi ha al darrere, sense judicis.",
+      signsTitle: "T'hi reconeixes si",
+      signs: [
+        'Passes molt de temps pensant en el menjar, en el teu pes o en el teu cos.',
+        "Et saltes àpats, restringeixes el que menges o segueixes normes molt estrictes.",
+        'Tens afartaments i després sents culpa o vergonya.',
+        'Intentes compensar el que menges amb exercici, vòmits o altres conductes.',
+        'Com veus el teu cos cada dia decideix com et sents.',
+      ],
+      approach: [
+        "El menjar sol ser la part que es veu. A sota hi pot haver ansietat, necessitat de control, una autoestima fràgil o emocions que costa sostenir. Comencem entenent quin paper té a la teva vida, sense jutjar-lo.",
+        "Treballo amb TCC, regulació emocional i teràpia centrada en la compassió. En els TCA sovint cal també un seguiment mèdic i nutricional: si és el teu cas, ho parlem i t'oriento cap a aquests professionals.",
+      ],
+      faqs: [
+        { q: "Necessito un diagnòstic per demanar ajuda?", a: 'No. Si la teva relació amb el menjar o amb el teu cos et genera malestar, ja és motiu suficient per consultar-ho.' },
+        { q: "N'hi ha prou amb la teràpia psicològica?", a: 'Depèn de cada cas. De vegades el tractament necessita també un metge o un dietista-nutricionista. Ho valorem a la consulta.' },
+        { q: 'I si la meva salut física està en risc?', a: "Si tens marejos, desmais, una pèrdua de pes ràpida o vòmits freqüents, el primer és anar al metge o a urgències. La teràpia acompanya, però no substitueix aquesta atenció." },
+      ],
+    },
+  },
 ];
 
 /** URL slug of a service in a language, without slashes or the /ca/ prefix. */

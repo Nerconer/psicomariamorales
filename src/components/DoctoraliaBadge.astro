@@ -34,7 +34,7 @@ const { slug } = REVIEWS.doctoralia;
     document.body.appendChild(s);
   };
   const badges = document.querySelectorAll('.doctoralia-badge');
-  if (!('IntersectionObserver' in window)) {
+  if (typeof IntersectionObserver === 'undefined') {
     window.addEventListener('load', load, { once: true });
   } else {
     const observer = new IntersectionObserver(

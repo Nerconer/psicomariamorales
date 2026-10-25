@@ -53,6 +53,7 @@ const LANDINGS: Record<string, RouteKey> = {
   jovenes: 'youth',
   perinatal: 'perinatal',
   disociacion: 'dissociation',
+  tca: 'eating',
 };
 
 type Specialty = { id: string; title: string; text: string };
@@ -67,7 +68,7 @@ type Specialty = { id: string; title: string; text: string };
 // moving an item or changing a long description.
 type GroupKey = 'alert' | 'emotions' | 'self' | 'relationships' | 'stages' | 'past';
 const GROUPS: { key: GroupKey; icon: IconName; ids: string[] }[] = [
-  { key: 'alert', icon: 'anxiety', ids: ['ansiedad', 'intrusivos', 'estres', 'burnout', 'panico'] },
+  { key: 'alert', icon: 'anxiety', ids: ['ansiedad', 'intrusivos', 'estres', 'burnout', 'panico', 'tca'] },
   { key: 'emotions', icon: 'heart', ids: ['tristeza', 'regulacion', 'irritabilidad', 'evitacion', 'pantallas'] },
   { key: 'self', icon: 'confidence', ids: ['autoestima', 'perfeccionismo', 'bloqueos', 'control', 'sentido'] },
   { key: 'relationships', icon: 'couple', ids: ['dependencia', 'apego', 'soledad', 'familia', 'conflictos'] },
@@ -114,6 +115,7 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
       { id: 'estres', title: 'Estrés', text: 'Cuando las exigencias superan durante mucho tiempo lo que puedes sostener.' },
       { id: 'burnout', title: 'Burnout', text: 'El trabajo te ha dejado sin energía ni ganas.' },
       { id: 'panico', title: 'Ataques de pánico', text: 'Un miedo intenso y repentino, con síntomas físicos que asustan.' },
+      { id: 'tca', title: 'Trastornos de la conducta alimentaria (TCA)', text: 'Cuando la comida, el cuerpo o el peso ocupan demasiado espacio en tu cabeza.' },
       { id: 'intrusivos', title: 'Pensamientos intrusivos, obsesiones y compulsiones', text: 'Ideas o imágenes que aparecen sin querer y generan malestar. Pueden llevar a que repitas alguna acción para sentirte mejor.' },
       { id: 'tristeza', title: 'Tristeza', text: 'Sentirme sin ganas, que todo me cueste, hasta las tareas más simples.' },
       { id: 'autoestima', title: 'Autoestima', text: 'Te gustaría valorarte y tratarte bien.' },
@@ -175,6 +177,7 @@ const COPY: Record<Locale, { metaTitle: string; description: string; title: stri
       { id: 'estres', title: 'Estrès', text: 'Quan les exigències superen durant molt de temps el que pots sostenir.' },
       { id: 'burnout', title: 'Burnout', text: "La feina t'ha deixat sense energia ni ganes." },
       { id: 'panico', title: 'Atacs de pànic', text: 'Una por intensa i sobtada, amb símptomes físics que espanten.' },
+      { id: 'tca', title: 'Trastorns de la conducta alimentària (TCA)', text: 'Quan el menjar, el cos o el pes ocupen massa espai al teu cap.' },
       { id: 'intrusivos', title: 'Pensaments intrusius, obsessions i compulsions', text: 'Idees o imatges que apareixen sense voler i generen malestar. Poden fer que repeteixis alguna acció per sentir-te millor.' },
       { id: 'tristeza', title: 'Tristesa', text: 'Sentir-me sense ganes, que tot em costi, fins i tot les tasques més simples.' },
       { id: 'autoestima', title: 'Autoestima', text: "T'agradaria valorar-te i tractar-te bé." },

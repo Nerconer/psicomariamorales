@@ -11,7 +11,7 @@ import { SERVICES } from './services';
  */
 export const OG_KEYS = [
   'home', 'online', 'therapy', 'anxiety', 'emdr', 'stress', 'selfEsteem', 'grief', 'growth', 'couples', 'about', 'pricing', 'contact',
-  'panic', 'intrusive', 'sadness', 'emotionRegulation', 'irritability', 'control', 'conflicts', 'dependency', 'attachment', 'family', 'loneliness', 'avoidance', 'screens', 'lifeCrisis', 'youth', 'perinatal', 'dissociation',
+  'panic', 'intrusive', 'sadness', 'emotionRegulation', 'irritability', 'control', 'conflicts', 'dependency', 'attachment', 'family', 'loneliness', 'avoidance', 'screens', 'lifeCrisis', 'youth', 'perinatal', 'dissociation', 'eating',
 ] as const satisfies readonly RouteKey[];
 
 export type OgKey = (typeof OG_KEYS)[number];

@@ -27,6 +27,8 @@ const links = (Object.keys(LOCALES) as Locale[]).map((l) => {
         hreflang={l.translated ? LOCALES[l.locale].htmlLang : undefined}
         lang={LOCALES[l.locale].htmlLang}
         aria-current={l.locale === locale ? 'true' : undefined}
+        data-event={l.locale === locale ? undefined : 'language_switch'}
+        data-event-to={l.locale === locale ? undefined : l.locale}
         class:list={[
           'inline-flex min-h-8 min-w-9 items-center justify-center rounded-full px-2.5 text-sm font-bold transition-colors',
           l.locale === locale ? 'bg-primary text-white' : 'text-muted hover:text-primary',

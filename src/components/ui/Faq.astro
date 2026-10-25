@@ -21,8 +21,9 @@ const faqSchema = {
 {schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 <div class="divide-y divide-line/70 rounded-2xl border border-line/60 bg-white">
   {
-    items.map((f) => (
-      <details class="group px-5 sm:px-6">
+    items.map((f, i) => (
+      // Analytics records which question is opened by its position only.
+      <details class="group px-5 sm:px-6" data-faq={i + 1}>
         <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 font-display text-lg font-bold text-ink [&::-webkit-details-marker]:hidden">
           {f.q}
           <span

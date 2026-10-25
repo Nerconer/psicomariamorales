@@ -12,7 +12,7 @@
 ---
 
 <script>
-  import { ANALYTICS, PRODUCTION_HOST } from '../consts';
+  import { ANALYTICS, PRODUCTION_HOST, SITE } from '../consts';
 
   type EventData = Record<string, string | number | boolean>;
   type Umami = { track: (name: string, data?: EventData) => void };
@@ -90,6 +90,53 @@
     });
   };
 
+  // ── Copying the phone number or the email ───────────────────────────────
+  // On a computer a tel: link often does nothing, so many people copy the
+  // number instead. Those contacts would otherwise be invisible.
+  const PHONE_DIGITS = SITE.phone.replace(/\D/g, '').slice(-9);
+
+  const initCopy = () => {
+    document.addEventListener('copy', () => {
+      const text = window.getSelection()?.toString() ?? '';
+      if (text.replace(/\D/g, '').includes(PHONE_DIGITS)) track('phone_copy');
+      else if (text.toLowerCase().includes(SITE.email)) track('email_copy');
+    });
+  };
+
+  // ── Sections reached ─────────────────────────────────────────────────────
+  // Sections marked with data-track-section="name" report once per page view
+  // when half of them is on screen, to see how far people get before leaving.
+  const initSections = () => {
+    const sections = document.querySelectorAll<HTMLElement>('[data-track-section]');
+    if (!sections.length || !('IntersectionObserver' in window)) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const el = entry.target as HTMLElement;
+          track('section_view', { section: el.dataset.trackSection || 'unnamed' });
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    sections.forEach((s) => observer.observe(s));
+  };
+
+  // ── FAQ questions opened ─────────────────────────────────────────────────
+  // Only the position is sent, never the question: on a service page the text
+  // would repeat the topic. The page URL gives the context.
+  const initFaq = () => {
+    document.addEventListener(
+      'toggle',
+      (e) => {
+        const el = e.target as HTMLDetailsElement;
+        if (el.open && el.dataset?.faq) track('faq_open', { question: Number(el.dataset.faq) });
+      },
+      true
+    );
+  };
+
   // ── Reading depth on blog posts ──────────────────────────────────────────
   const MILESTONES = [25, 50, 75, 100];
 
@@ -121,6 +168,9 @@
   if (window.location.hostname === PRODUCTION_HOST) {
     loadTracker();
     initClicks();
+    initCopy();
+    initSections();
+    initFaq();
     initReading();
   }
 </script>

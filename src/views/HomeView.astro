@@ -305,7 +305,7 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
 
   <!-- How to start: right after the visitor has recognised themselves -->
   <Wave from="var(--color-surface)" to="var(--color-bg)" flip />
-  <section class="py-14 md:py-20" id="empezar">
+  <section class="py-14 md:py-20" id="empezar" data-track-section="home_steps">
     <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
       <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.stepsTitle}</h2>
       <p class="mt-3 text-muted">{c.stepsIntro}</p>
@@ -380,7 +380,7 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
 
   <!-- Reviews -->
   <Wave from="var(--color-bg)" to="var(--color-surface)" />
-  <section class="bg-surface py-14 md:py-20" id="opiniones">
+  <section class="bg-surface py-14 md:py-20" id="opiniones" data-track-section="reviews">
     <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
       <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.reviews}</h2>
       <div class="mt-6">
@@ -392,7 +392,7 @@ const BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAE
 
   <!-- FAQ -->
   <Wave from="var(--color-surface)" to="var(--color-bg)" flip />
-  <section class="py-14 md:py-20" id="faq">
+  <section class="py-14 md:py-20" id="faq" data-track-section="faq">
     <div class="mx-auto w-[min(820px,calc(100%-2rem))]">
       <h2 class="text-3xl font-bold text-primary md:text-4xl">{c.faqTitle}</h2>
       <div class="mt-6">
